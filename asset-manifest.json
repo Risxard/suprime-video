@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/BD-Screens/static/css/main.946527a8.css",
-    "main.js": "/BD-Screens/static/js/main.54282788.js",
+    "main.css": "/BD-Screens/static/css/main.683398c0.css",
+    "main.js": "/BD-Screens/static/js/main.a3729b86.js",
     "static/media/Gilroy-Regular.ttf": "/BD-Screens/static/media/Gilroy-Regular.5b89a8df3b17dccdb73f.ttf",
     "static/media/Gilroy-Medium.ttf": "/BD-Screens/static/media/Gilroy-Medium.1b4da6582f83f45ea039.ttf",
     "static/media/Gilroy-SemiBold.ttf": "/BD-Screens/static/media/Gilroy-SemiBold.07b9100a72fe7d46d20a.ttf",
     "static/media/Gilroy-Bold.ttf": "/BD-Screens/static/media/Gilroy-Bold.ca49f7658c4eaac78b6d.ttf",
     "index.html": "/BD-Screens/index.html",
-    "main.946527a8.css.map": "/BD-Screens/static/css/main.946527a8.css.map",
-    "main.54282788.js.map": "/BD-Screens/static/js/main.54282788.js.map"
+    "main.683398c0.css.map": "/BD-Screens/static/css/main.683398c0.css.map",
+    "main.a3729b86.js.map": "/BD-Screens/static/js/main.a3729b86.js.map"
   },
   "entrypoints": [
-    "static/css/main.946527a8.css",
-    "static/js/main.54282788.js"
+    "static/css/main.683398c0.css",
+    "static/js/main.a3729b86.js"
   ]
 }
