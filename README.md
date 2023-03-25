@@ -1,4 +1,4 @@
-<h1 align="center">👨🏾‍💻 SERVIÇO DE VIDEO STREAMING USANDO API's (EM PROCESSO)  👨🏾‍💻</h1>
+<h1 align="center">👨🏾‍💻 CATÁLOGO DE FILMES USANDO API's (EM PROCESSO)  👨🏾‍💻</h1>
 
 <p align="center">
  <a href='https://risxard.github.io/BD-Screens/'>» Visitar Site «</a>
