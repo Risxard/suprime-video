@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/BD-Screens/static/css/main.6ccb075c.css",
-    "main.js": "/BD-Screens/static/js/main.c4097886.js",
+    "main.css": "/BD-Screens/static/css/main.10e773a0.css",
+    "main.js": "/BD-Screens/static/js/main.ca1f0c48.js",
     "static/media/BG.png": "/BD-Screens/static/media/BG.3924c66771cfc2d1d09b.png",
     "static/media/BGground.png": "/BD-Screens/static/media/BGground.e4be7fd5452169db9ea1.png",
     "static/media/Background.jpg": "/BD-Screens/static/media/Background.a3d67aa805fa1c045d23.jpg",
@@ -14,7 +14,6 @@
     "static/media/TvSeriesIcon.svg": "/BD-Screens/static/media/TvSeriesIcon.b51c590609d8d0530caf8bb90b448439.svg",
     "static/media/MusicVideoIcon.svg": "/BD-Screens/static/media/MusicVideoIcon.bb207704fe5f0caae30725cd84d71eef.svg",
     "static/media/DramaIcon.svg": "/BD-Screens/static/media/DramaIcon.c94d685e77eeea57ff587c90ecf34a0b.svg",
-    "static/media/DownloadIcon.svg": "/BD-Screens/static/media/DownloadIcon.63d42e321f0eb37bf3574530f67cc372.svg",
     "static/media/downloadBtn.svg": "/BD-Screens/static/media/downloadBtn.0235c66907796a66a94a061769976639.svg",
     "static/media/LiveShowIcon.svg": "/BD-Screens/static/media/LiveShowIcon.377c9ec1984ca2e669ab97f385e94341.svg",
     "static/media/HomeIcon.svg": "/BD-Screens/static/media/HomeIcon.a3629ee61096efd9c0ea0c4e80b98395.svg",
@@ -32,11 +31,11 @@
     "static/media/WatchlistIcon.svg": "/BD-Screens/static/media/WatchlistIcon.ba0a517573fa62702490a07bc84918c4.svg",
     "static/media/seeAllBtn.svg": "/BD-Screens/static/media/seeAllBtn.3a04e749decb41d8a8d05bf33bf40222.svg",
     "static/media/FullStar.svg": "/BD-Screens/static/media/FullStar.5977150e3d3bd132eed9ddfd437c8e74.svg",
-    "main.6ccb075c.css.map": "/BD-Screens/static/css/main.6ccb075c.css.map",
-    "main.c4097886.js.map": "/BD-Screens/static/js/main.c4097886.js.map"
+    "main.10e773a0.css.map": "/BD-Screens/static/css/main.10e773a0.css.map",
+    "main.ca1f0c48.js.map": "/BD-Screens/static/js/main.ca1f0c48.js.map"
   },
   "entrypoints": [
-    "static/css/main.6ccb075c.css",
-    "static/js/main.c4097886.js"
+    "static/css/main.10e773a0.css",
+    "static/js/main.ca1f0c48.js"
   ]
 }
