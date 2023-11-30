@@ -1,9 +1,7 @@
 {
   "files": {
-    "main.css": "/BD-Screens/static/css/main.30334c1b.css",
-    "main.js": "/BD-Screens/static/js/main.3a48d252.js",
-    "static/media/BG.png": "/BD-Screens/static/media/BG.3924c66771cfc2d1d09b.png",
-    "static/media/BGground.png": "/BD-Screens/static/media/BGground.e4be7fd5452169db9ea1.png",
+    "main.css": "/BD-Screens/static/css/main.027e5246.css",
+    "main.js": "/BD-Screens/static/js/main.d17578b9.js",
     "static/media/Background.jpg": "/BD-Screens/static/media/Background.a3d67aa805fa1c045d23.jpg",
     "static/media/Gilroy-Regular.ttf": "/BD-Screens/static/media/Gilroy-Regular.5b89a8df3b17dccdb73f.ttf",
     "static/media/Gilroy-Medium.ttf": "/BD-Screens/static/media/Gilroy-Medium.1b4da6582f83f45ea039.ttf",
@@ -15,9 +13,7 @@
     "static/media/TvSeriesIcon.svg": "/BD-Screens/static/media/TvSeriesIcon.b51c590609d8d0530caf8bb90b448439.svg",
     "static/media/MusicVideoIcon.svg": "/BD-Screens/static/media/MusicVideoIcon.bb207704fe5f0caae30725cd84d71eef.svg",
     "static/media/genres.svg": "/BD-Screens/static/media/genres.ae0dfa5646a6781cf28598fec8e7f085.svg",
-    "static/media/DramaIcon.svg": "/BD-Screens/static/media/DramaIcon.c94d685e77eeea57ff587c90ecf34a0b.svg",
     "static/media/downloadBtn.svg": "/BD-Screens/static/media/downloadBtn.0235c66907796a66a94a061769976639.svg",
-    "static/media/LiveShowIcon.svg": "/BD-Screens/static/media/LiveShowIcon.377c9ec1984ca2e669ab97f385e94341.svg",
     "static/media/facebookIcon.svg": "/BD-Screens/static/media/facebookIcon.00fc4c8ba8107483e48dddbef43cdacd.svg",
     "static/media/HomeIcon.svg": "/BD-Screens/static/media/HomeIcon.a3629ee61096efd9c0ea0c4e80b98395.svg",
     "static/media/WatchHistoryIcon.svg": "/BD-Screens/static/media/WatchHistoryIcon.20fff1498f48cf2cfd733b3fbadb3920.svg",
@@ -29,17 +25,18 @@
     "static/media/prevBtnSlider.svg": "/BD-Screens/static/media/prevBtnSlider.3358e5a80c0dfe47ca7ea45787f11b0e.svg",
     "static/media/nextBtnSlider.svg": "/BD-Screens/static/media/nextBtnSlider.2457b9f2604b18f099196011d2e5b97a.svg",
     "index.html": "/BD-Screens/index.html",
+    "static/media/Spinner-Loading.svg": "/BD-Screens/static/media/Spinner-Loading.f646ff40098b1d32e98b7faee8841d25.svg",
     "static/media/ProfileIcon.svg": "/BD-Screens/static/media/ProfileIcon.03b83121db849858bdc6e12f69bab331.svg",
     "static/media/WatchlistIcon.svg": "/BD-Screens/static/media/WatchlistIcon.b262a703f5929be17329bce580d5e2dc.svg",
     "static/media/ArrowIcon.svg": "/BD-Screens/static/media/ArrowIcon.d2bee546216dfd42ea6451ab37b6da45.svg",
     "static/media/InstaIcon.svg": "/BD-Screens/static/media/InstaIcon.c4df670d8ee835258d521a13111c7ba9.svg",
     "static/media/seeAllBtn.svg": "/BD-Screens/static/media/seeAllBtn.3a04e749decb41d8a8d05bf33bf40222.svg",
     "static/media/toTopBtn.svg": "/BD-Screens/static/media/toTopBtn.feb4fed55cb656cb4830942e93067226.svg",
-    "main.30334c1b.css.map": "/BD-Screens/static/css/main.30334c1b.css.map",
-    "main.3a48d252.js.map": "/BD-Screens/static/js/main.3a48d252.js.map"
+    "main.027e5246.css.map": "/BD-Screens/static/css/main.027e5246.css.map",
+    "main.d17578b9.js.map": "/BD-Screens/static/js/main.d17578b9.js.map"
   },
   "entrypoints": [
-    "static/css/main.30334c1b.css",
-    "static/js/main.3a48d252.js"
+    "static/css/main.027e5246.css",
+    "static/js/main.d17578b9.js"
   ]
 }
