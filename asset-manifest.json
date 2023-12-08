@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/BD-Screens/static/css/main.135f42b3.css",
-    "main.js": "/BD-Screens/static/js/main.e9e417c2.js",
+    "main.js": "/BD-Screens/static/js/main.ff3a336b.js",
     "static/media/BG.png": "/BD-Screens/static/media/BG.3924c66771cfc2d1d09b.png",
     "static/media/BGground.png": "/BD-Screens/static/media/BGground.bb23311c768a561f3519.png",
     "static/media/Background.jpg": "/BD-Screens/static/media/Background.a3d67aa805fa1c045d23.jpg",
@@ -36,10 +36,10 @@
     "static/media/seeAllBtn.svg": "/BD-Screens/static/media/seeAllBtn.3a04e749decb41d8a8d05bf33bf40222.svg",
     "static/media/toTopBtn.svg": "/BD-Screens/static/media/toTopBtn.feb4fed55cb656cb4830942e93067226.svg",
     "main.135f42b3.css.map": "/BD-Screens/static/css/main.135f42b3.css.map",
-    "main.e9e417c2.js.map": "/BD-Screens/static/js/main.e9e417c2.js.map"
+    "main.ff3a336b.js.map": "/BD-Screens/static/js/main.ff3a336b.js.map"
   },
   "entrypoints": [
     "static/css/main.135f42b3.css",
-    "static/js/main.e9e417c2.js"
+    "static/js/main.ff3a336b.js"
   ]
 }
