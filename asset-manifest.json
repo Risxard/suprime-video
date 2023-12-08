@@ -1,7 +1,9 @@
 {
   "files": {
-    "main.css": "/BD-Screens/static/css/main.30f44320.css",
-    "main.js": "/BD-Screens/static/js/main.f1fadc68.js",
+    "main.css": "/BD-Screens/static/css/main.64f199df.css",
+    "main.js": "/BD-Screens/static/js/main.cc8bfab8.js",
+    "static/media/BG.png": "/BD-Screens/static/media/BG.3924c66771cfc2d1d09b.png",
+    "static/media/BGground.png": "/BD-Screens/static/media/BGground.bb23311c768a561f3519.png",
     "static/media/Background.jpg": "/BD-Screens/static/media/Background.a3d67aa805fa1c045d23.jpg",
     "static/media/Gilroy-Regular.ttf": "/BD-Screens/static/media/Gilroy-Regular.5b89a8df3b17dccdb73f.ttf",
     "static/media/Gilroy-Medium.ttf": "/BD-Screens/static/media/Gilroy-Medium.1b4da6582f83f45ea039.ttf",
@@ -19,6 +21,7 @@
     "static/media/WatchHistoryIcon.svg": "/BD-Screens/static/media/WatchHistoryIcon.20fff1498f48cf2cfd733b3fbadb3920.svg",
     "static/media/SearchIcon.svg": "/BD-Screens/static/media/SearchIcon.71f030fc21cc57574dd82fd29bcdcd72.svg",
     "static/media/ShareIcon.svg": "/BD-Screens/static/media/ShareIcon.7e9a15e828fab44e49387ab12d3d870f.svg",
+    "static/media/btnPassword.svg": "/BD-Screens/static/media/btnPassword.9ec462cd6a14b8b75614eb69aa53a283.svg",
     "static/media/playMovieBtn.svg": "/BD-Screens/static/media/playMovieBtn.e87cc7b4569aa31b17d8d1ffd2caf052.svg",
     "static/media/UnsubscribeIcon.svg": "/BD-Screens/static/media/UnsubscribeIcon.dd7c93ed725ef2158795643da4370239.svg",
     "static/media/WatchListIcon.svg": "/BD-Screens/static/media/WatchListIcon.5e107733d0d91dc5e6aa7abfae4447e8.svg",
@@ -32,11 +35,11 @@
     "static/media/InstaIcon.svg": "/BD-Screens/static/media/InstaIcon.c4df670d8ee835258d521a13111c7ba9.svg",
     "static/media/seeAllBtn.svg": "/BD-Screens/static/media/seeAllBtn.3a04e749decb41d8a8d05bf33bf40222.svg",
     "static/media/toTopBtn.svg": "/BD-Screens/static/media/toTopBtn.feb4fed55cb656cb4830942e93067226.svg",
-    "main.30f44320.css.map": "/BD-Screens/static/css/main.30f44320.css.map",
-    "main.f1fadc68.js.map": "/BD-Screens/static/js/main.f1fadc68.js.map"
+    "main.64f199df.css.map": "/BD-Screens/static/css/main.64f199df.css.map",
+    "main.cc8bfab8.js.map": "/BD-Screens/static/js/main.cc8bfab8.js.map"
   },
   "entrypoints": [
-    "static/css/main.30f44320.css",
-    "static/js/main.f1fadc68.js"
+    "static/css/main.64f199df.css",
+    "static/js/main.cc8bfab8.js"
   ]
 }
