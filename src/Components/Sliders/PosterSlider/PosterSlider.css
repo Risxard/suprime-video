@@ -1,0 +1,522 @@
+.poster-section-title {
+    padding-inline: var(--inner-width);
+    padding-bottom: 3rem;
+
+    display: flex;
+    justify-content: space-between;
+}
+.poster-slider{
+    margin-bottom: 3rem;
+}
+
+.poster-section-title h2 {
+    font-family: 'Gilroy-Bold';
+    font-size: 32px;
+    line-height: 40px;
+    color: #FFFFFF;
+}
+
+.poster-content {
+    width: 100%;
+    height: 385px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    position: relative;
+}
+
+
+.poster-slide-inner {
+    width: 100%;
+    height: auto;
+
+    display: flex;
+    align-items: center;
+
+
+}
+
+
+.poster-slide-list {
+    z-index: 21;
+    width: 100%;
+    height: 385px;
+
+    overflow-x: scroll;
+    overflow-y: hidden;
+
+    display: flex;
+    flex-direction: row;
+
+    gap: 16px;
+
+    padding-inline: var(--inner-width);
+
+    position: relative;
+
+    scrollbar-width: none;
+    scrollbar-color: transparent transparent;
+
+    scroll-behavior: smooth;
+}
+
+.poster-slide-list::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+}
+
+
+
+
+.poster-item {
+    cursor: pointer;
+    text-decoration: none;
+
+    width: 226px;
+    height: 307px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.poster-item:hover .poster-card-inner {
+    background-color: #FFFFFF;
+
+    padding: 13px;
+
+    width: 250px;
+    height: 385px;
+
+    border-radius: 3px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 8px;
+
+}
+
+.poster-item:hover .poster-info-container,
+.poster-card-btn {
+    display: flex;
+}
+
+.poster-item:hover .poster-card-btn {
+    display: flex;
+}
+
+.poster-item:hover .downloadCard {
+    display: flex;
+}
+
+.poster-item:hover .poster-item-title {
+    display: flex;
+}
+
+
+.poster-card-inner {
+
+    width: 226px;
+    height: 307px;
+
+    border-radius: 3px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 8px;
+
+    position: relative;
+
+    transition: all 0.3s ease-in-out;
+}
+
+
+
+
+.poster-item img {
+    width: 100%;
+    height: 100%;
+    border-radius: 3px;
+    object-fit: cover;
+}
+
+
+.poster-info-container {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+
+    justify-content: space-between;
+
+    line-height: 24px;
+
+    transition: all 0.3s ease-in-out;
+
+    overflow: hidden;
+}
+
+.poster-info-container h3 {
+    font-family: 'Gilroy-SemiBold';
+    font-size: 16px;
+    color: #15161C;
+}
+
+.poster-info-container p {
+    font-family: 'Gilroy-Medium';
+    font-weight: 500;
+    font-size: 14px;
+    color: #4F4E50;
+}
+
+.VoteRank {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+
+.voteAvarage {
+    background-color: #F41B3B;
+    border-radius: 3px;
+    height: 20px;
+    width: 30px;
+    padding: 0.8rem 1.2rem;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #FFFF;
+}
+
+.voteAvarage h3 {
+
+    color: #FFF;
+}
+
+
+.poster-card-container {
+    width: 100%;
+    height: 307px;
+
+
+    position: relative;
+    border-radius: 3px;
+
+
+}
+
+.downloadCard {
+    position: absolute;
+    z-index: 21;
+
+    right: 18px;
+    bottom: 16px;
+
+    display: none;
+
+
+}
+
+
+.poster-card-btn {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    display: none;
+    z-index: 20;
+}
+
+
+
+.poster-bg-filter {
+    opacity: 75%;
+
+    -webkit-user-select: none;
+    user-select: none;
+
+    z-index: 20;
+
+    width: 100%;
+    height: 100%;
+    position: absolute;
+
+    background: rgb(255, 255, 255);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 35%, rgba(10, 7, 11, 1) 100%);
+
+    border-radius: 3px;
+
+}
+
+.poster-item-title {
+    z-index: 21;
+    left: 0;
+    bottom: 0;
+
+    position: absolute;
+
+    padding: 24px 13px;
+
+    display: none;
+}
+
+.poster-item-title h2 {
+    font-family: 'Gilroy-SemiBold';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+
+    color: #FFFFFF;
+}
+
+
+.poster-content:hover .posterPrevBtn{
+    visibility: visible;
+    opacity: 100%;
+}
+.poster-content:hover .posterNextBtn{
+    visibility: visible;
+    opacity: 100%;
+}
+
+
+
+.posterPrevBtn {
+    left: 0;
+    top: 30%;
+}
+
+.posterNextBtn {
+    right: 0;
+    top: 30%;
+}
+
+.posterNextBtn {
+    display: flex;
+    transition: all 0.3s;
+    z-index: 22;
+    align-self: center;
+    position: absolute;
+    right: 0;
+    width: 40px;
+    height: auto;
+    cursor: pointer;
+    visibility: hidden;
+    opacity: 0%;
+    align-items: center;
+    justify-content: center;
+    filter: drop-shadow(5px 1px 10px rgba(0, 0, 0, 0.5));
+}
+
+.posterPrevBtn {
+    display: flex;
+    transition: all 0.3s;
+    z-index: 22;
+    align-self: center;
+    position: absolute;
+    width: 40px;
+    left: 0;
+    height: auto;
+    cursor: pointer;
+    visibility: hidden;
+    opacity: 0%;
+    align-items: center;
+    justify-content: center;
+    filter: drop-shadow(5px 1px 10px rgba(0, 0, 0, 0.5));
+}
+
+
+
+
+
+
+.posterPrevBtn:hover {
+    cursor: pointer;
+}
+
+
+.posterNextBtn svg {
+    width: 20px;
+    height: 20px;
+    transition: transform 0.3s ease-in-out;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.posterPrevBtn svg {
+    width: 20px;
+    height: 20px;
+    transition: transform 0.3s ease-in-out;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.skeleton {
+    animation: skeleton-loading 1s linear infinite alternate;
+}
+
+
+
+
+@keyframes skeleton-loading {
+    0% {
+        background-color: hsla(300, 1%, 21%, 0.61);
+    }
+
+    100% {
+        background-color: hsla(231, 14%, 10%, 0.308);
+    }
+}
+
+
+@media screen and (min-width: 768px){
+
+    
+    
+}
+
+
+
+
+
+@media screen and (max-width: 768px) {
+
+
+
+
+
+
+    .poster-item {
+        min-width: 150px;
+        height: 210px;
+    }
+
+    .poster-card-inner {
+        width: 150px;
+        height: 210px;
+    }
+
+    .poster-card-container {
+        width: 150px;
+        height: 210px;
+    }
+
+    .poster-slide-list {
+        overflow-x: scroll;
+        z-index: 20;
+        height: 210px;
+        gap: 16px;
+    }
+
+
+
+
+
+    .poster-item-title {
+        position: absolute;
+
+
+        left: 0;
+        z-index: 20;
+        bottom: 6px;
+        text-align: left;
+        padding: 8px;
+    }
+
+
+    .poster-item-title h2 {
+        font-family: 'Gilroy-Regular';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 12px;
+
+        color: #FFFFFF;
+    }
+
+    .poster-section-title h2 {
+        font-size: 20px;
+        line-height: 32px;
+    }
+
+    .poster-section-title h3 {
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 22px;
+    }
+
+
+
+
+
+
+
+
+
+    .poster-item:hover .poster-card-inner {
+        background-color: none;
+
+        padding: 0;
+
+        width: 150px;
+        height: 170px;
+
+        border-radius: 3px;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+
+        gap: 8px;
+
+    }
+
+
+    .poster-card-btn {
+        justify-content: center;
+        align-items: center;
+        width: 50px;
+        height: 50px;
+    }
+
+    .poster-item:hover .downloadCard {
+        display: none;
+    }
+
+    .poster-item:hover .poster-info-container {
+        display: none;
+    }
+
+
+    .posterPrevBtn,
+    .posterNextBtn {
+        display: none;
+    }
+
+
+    .poster-content {
+        height: 210px;
+    }
+
+}

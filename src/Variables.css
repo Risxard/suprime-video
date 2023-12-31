@@ -1,0 +1,21 @@
+#root {
+    --nav-height: 3rem;
+    --inner-width: 1.5rem;
+    --color-background: #0A070B;
+}
+
+
+
+@media screen and (min-width: 880px) {
+    #root {
+        --inner-width: 2.8rem;
+        --nav-height: 2.375rem;
+    }
+}
+
+@media screen and (min-width: 1280px) {
+    #root {
+        --inner-width: 4.5rem;
+        --nav-height: 3rem;
+    }
+}

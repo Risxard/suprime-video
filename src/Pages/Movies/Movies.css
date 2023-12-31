@@ -1,0 +1,16 @@
+.TvSeries{
+
+    width: 100%;
+    height: auto;
+
+    display: flex;
+    flex-direction: column;
+
+    
+    gap: 24px;
+}
+.movie-main-section{
+    display: flex;
+    flex-direction: column;
+    margin-top: 60px;
+}

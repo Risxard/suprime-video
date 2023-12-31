@@ -1,0 +1,326 @@
+.MovieContainer{
+    width: 100%;
+    height: auto;
+
+    padding-top: 90px;
+
+    position: relative;
+}
+
+.Movie{
+    width: 100%;
+    height: 100%;
+
+}
+.MoviePlayer{
+    position: relative;
+    width: 100%;
+    min-height: 360px;
+    padding-bottom: 50.25%;
+}
+
+iframe{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.movie-image-container{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+.movie-image-container img{
+    width: 100%;
+    height: 100%;
+}
+.movie-image-filter{
+    position: absolute;
+    left: 0;
+    top: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background: rgb(10,7,11);
+    background: linear-gradient(180deg, rgba(10,7,11,0.72) 11%, rgba(0,0,0,0.2553396358543417) 54%, rgba(10,7,11,0.7231267507002801) 100%);
+}
+
+
+
+
+.MovieInner{
+    width: 100%;
+    padding-inline: 5%;
+    margin-bottom: 40px;
+    gap: 24px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.MoviesForYou{
+    width: 350px;
+    height: auto;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 20px;
+}
+
+
+
+
+
+.MoviesForYouTitle {
+    width: 100%;
+    height: auto;
+}
+.MoviesForYouTitle h2{
+    font-family: 'Gilroy-Regular';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+
+    color: #FFFFFF;
+}
+
+
+
+
+
+
+
+.MovieList{
+    width: 100%;
+    height: auto;
+
+    display: grid;
+    grid-template-columns: auto auto; /* Duas colunas na horizontal */
+    grid-template-rows: repeat(2, auto); /* Três linhas */
+    gap: 10px; /* Espaço entre os elementos */
+}
+.MovieTitle{
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+
+}
+.MovieTitle h2{
+    font-family: 'Gilroy-Medium';
+    font-style: normal;
+
+    font-weight: 600;
+    font-size: 32px;
+    line-height: 60px;
+
+    color: #FFFFFF;
+}
+.MovieTitle h3{
+    font-family: 'Gilroy-SemiBold';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    color: #FFFFFF;
+}
+.MovieTitle h4{
+    font-family: 'Gilroy-SemiBold';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    color: #FFFFFF;
+
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+}
+
+
+.genres{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+
+    list-style-type: none;
+
+    gap: 0.5rem;
+
+
+}
+.genres li{
+
+    border: solid 1px #a0a0a0;
+    padding: 5px 10px;
+    border-radius: 1rem;
+
+    cursor: pointer;
+
+    transition: all 0.3s ease-in-out;
+}
+.genres li:hover{
+    background-color: #7371744e;
+}
+
+
+
+.genres h5{
+    font-family: 'Gilroy-SemiBold';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    color: #FFFFFF;
+}
+
+
+
+
+
+.MovieTitle p{
+    margin-top: 20px;
+
+    font-family: 'Gilroy-Regular';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 20px;
+    color: #737174;
+}
+
+
+
+.MovieDescriptionContainer{
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+.MovieDescriptionContainer h3{
+    font-family: 'Gilroy-SemiBold';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 20px;
+    color: #FFFFFF;
+}
+.MovieDescriptionContainer p{
+    font-family: 'Gilroy-Regular';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 20px;
+    color: #737174;
+}
+
+
+
+.MovieContent{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+
+    margin-top: 40px;
+
+    gap: 40px;
+}
+.MoviePanel{
+    width: 100%;
+    height: auto;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
+}
+
+
+
+.MovieBtns{
+    display: flex;
+    flex-direction: row;
+
+    gap: 48px;
+}
+.MovieBtn{
+    transition: all 0.3s ease-in-out;
+}
+
+
+
+.MovieBtns span{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 16px;
+}
+
+.MovieBtns span svg{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+.MovieBtns span:hover{
+    color: #FFFFFF;
+}
+
+.DownloadIcon,
+.WatchlistIcon,
+.ShareIcon{
+    cursor: pointer;
+    font-family: 'Gilroy-Medium';
+    line-height: 20px;
+    color: #737174;
+    font-size: 14px;
+}
+
+
+.DownloadIcon{
+    color: #1884F7;
+}
+.DownloadIcon svg path{
+    transition: all 0.3s ease-in-out;
+}
+
+.WatchlistIcon svg rect{
+    transition: all 0.3s ease-in-out;
+}
+.ShareIcon svg path{
+    transition: all 0.3s ease-in-out;
+}
+.DownloadIcon:hover svg path{
+    fill: #FFFFFF;
+}
+
+.WatchlistIcon:hover svg rect{
+    fill: #FFFFFF;
+}
+.ShareIcon:hover svg path{
+    fill: #FFFFFF;
+}
+
+
+
+
+@media (max-width: 1180px) {
+    .MoviesForYou {
+        display: none;
+      }
+    
+}
+
+@media (max-width: 790px) {
+    .MoviePanel{
+        flex-direction: column;
+        align-items: flex-start;
+
+    }
+}

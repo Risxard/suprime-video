@@ -1,0 +1,7 @@
+const userActionTypes ={
+    USER_ACCESS_REQUEST: 'USER_ACCESS_REQUEST',
+    USER_ACCESS_SUCCESS: 'USER_ACCESS_SUCCESS',
+    USER_ACCESS_FAILURE: 'USER_ACCESS_FAILURE',
+}
+
+export default userActionTypes

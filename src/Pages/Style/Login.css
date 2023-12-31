@@ -1,0 +1,51 @@
+.LoginPage{
+    width: auto;
+
+    display: flex;
+    flex-direction: column;
+    padding-inline: 5%;
+
+
+    gap: 16px;
+
+    position: relative;
+
+    z-index: 24;
+}
+
+
+.LoginPage img{
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    filter: brightness(0.2);
+}
+
+
+
+
+.LoginPageContent{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+
+    z-index: 10;
+    width: 100%;
+    height: 100vh;
+    min-height: 500px;
+}
+
+.LoginPage h1{
+    color: #ffff;
+    font-family: 'Gilroy-SemiBold';
+    font-size: 32px;
+    white-space: pre-line;
+}

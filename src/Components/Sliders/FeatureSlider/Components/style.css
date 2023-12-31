@@ -1,0 +1,128 @@
+.feature-btn{
+    width: 100%;
+    justify-content: flex-start;
+
+
+    right: 1rem;
+
+    margin-bottom: 0;
+}
+.ageClass {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    padding: 1px;
+    text-align: center;
+}
+
+.ageClass h3 {
+    font-size: 0.7rem;
+    padding: 0.3rem 0.4rem;
+    border-radius: 3px;
+
+    align-items: center;
+    text-align: center;
+    align-self: center;
+
+    font-family: 'Ember-regular';
+}
+
+
+.class-container {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    justify-content: space-between;
+    gap: 1rem;
+
+    font-family: 'Ember-regular';
+
+    font-size: 12px;
+}
+
+.animationTarget{
+    visibility: hidden;
+    opacity: 0%;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.targetVisible .animationIn{
+    visibility: visible;
+    opacity: 100%;
+    transform: translateY(0);
+  }
+
+  .includeBD{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 6px;
+
+  }
+  .includeBD svg{
+    color: #1A98FF;
+
+    width: 16px;
+    height: 16px;
+  }
+
+  .includeBD span{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+  }
+
+  @media(min-width: 600px) {
+    .includeBD svg{
+        width: 18px;
+        height: 18px;
+      }
+}
+
+  @media(min-width: 880px) {
+    .ageClass{
+        position: relative;
+    }
+    .class-container h2{
+        display: flex;
+    }
+    .ageClass h3 {
+        padding: 0.2rem 0.4rem;
+    
+        border-radius: 3px;
+    
+        position: relative;
+    
+        align-items: center;
+    
+        font-family: 'Gilroy-SemiBold';
+    }
+
+    .feature-btn{
+        justify-content: center;
+    
+        position: relative;
+        right: unset;
+        bottom: unset;
+
+        margin-bottom: 7%;
+    }
+    .class-container {
+        width: auto;
+        justify-content: unset;
+    }
+    .includeBD svg{
+        width: 22px;
+        height: 22px;
+      }
+}

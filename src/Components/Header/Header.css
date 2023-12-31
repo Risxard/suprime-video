@@ -1,0 +1,10 @@
+header{
+    padding-top: calc(2 * var(--nav-height));
+}
+
+@media screen and (min-width: 880px) {
+    header{
+        padding-top: var(--nav-height);
+    }
+}
+

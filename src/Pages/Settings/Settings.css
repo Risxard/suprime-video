@@ -1,0 +1,187 @@
+.Settings{
+    width: 100%;
+    height: auto;
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: center;
+
+    padding-block: 2rem;
+
+    padding-inline: var(--inner-width);
+    
+    color: #FFFF;
+
+    background-color: #15161C;
+
+    border-top: solid 1px #363536;
+
+    gap: 1rem;
+}
+
+
+.settings-menu {
+    width: 20rem;
+    height: auto;
+
+
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    align-items: flex-start;
+
+    gap: 0.6rem;
+
+    list-style-type: none;
+}
+.settings-menu svg{
+    width: 1.2rem;
+    height: 1.2rem;
+
+    color: #737174;
+}
+
+.settings-menu li{
+    width: 100%;
+    border-bottom: solid 1px #363536;
+}
+
+.setting-options{
+    max-height: 0;
+    overflow: hidden;
+
+}
+
+.settings-menu li.active .show{
+    transform: rotateX(-180deg);
+}
+.settings-menu li.active .setting-options{
+    max-height: 200px;
+    transition: max-height 0.2s ease-in-out;
+}
+
+.show{
+    margin-left: auto;
+
+    transition: all 0.2s ease-in-out;
+}
+
+
+
+.settings-menu a{
+    width: 100%;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+
+    gap: 0.5rem;
+
+    padding: 5px 15px;
+    border-radius: 3px;
+
+    transition: all 0.3s ease-in-out;
+
+    cursor: pointer;
+
+    text-decoration: none;
+    color: #FFF;
+}
+.settings-menu a input{
+    display: none;
+}
+
+.settings-menu a p{
+    font-family: 'Gilroy-Regular';
+    font-size: 0.9rem;
+}
+.settings-menu a::selection{
+    font-family: 'Gilroy-Bold';
+    font-size: 1rem;
+    font-weight: 600;
+    background-color: #363536;
+}
+
+
+.settings-menu a:hover{
+    background-color: #363536;
+}
+
+
+
+.settings-content{
+    width: auto;
+
+    padding: 1rem;
+    font-family: 'Gilroy-bold';
+    font-size: 16px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+
+}
+.settings-content h2{
+    border-bottom: solid 1px #363536;
+}
+
+
+.formater{
+    display: flex;
+    flex-direction: column;
+
+    gap: 0.5rem;
+}
+
+.inputContent{
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+}
+
+
+
+
+.image-user-container{
+    width: 6rem;
+    height: 6rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+
+    align-self: center;
+    cursor: pointer;
+
+    transition: all 0.3s ease-in-out;
+}
+
+.image-user-container p{
+    position: absolute;
+    border-radius: 50%;
+    text-align: center;
+
+    opacity: 0%;
+
+    transition: all 0.3s ease-in-out;
+}
+
+.image-user-container:hover img{
+    filter: blur(2px);
+}
+.image-user-container:hover p{
+    opacity: 100%;
+}
+
+
+
+
+.image-user-container img{
+    width: 100%;
+    height: 100%;
+}

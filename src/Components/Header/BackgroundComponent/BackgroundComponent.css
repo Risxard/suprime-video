@@ -1,0 +1,93 @@
+.BackgroundComponent-Container {
+    width: 100%;
+    min-height: 100vh;
+    overflow: hidden;
+
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.Bg-filter {
+    user-select: none;
+    z-index: 11;
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    padding: 0;
+    margin: 0;
+    top: 0;
+    left: 0;
+
+    background: rgb(10,7,11);
+    background: -moz-linear-gradient(0deg, rgba(10,7,11,1) 0%, rgba(10,7,11,0.7483368347338936) 58%, rgba(10,7,11,0.4682247899159664) 80%, rgba(10,7,11,0.44021358543417366) 92%, rgba(10,7,11,0) 100%);
+    background: -webkit-linear-gradient(0deg, rgba(10,7,11,1) 0%, rgba(10,7,11,0.7483368347338936) 58%, rgba(10,7,11,0.4682247899159664) 80%, rgba(10,7,11,0.44021358543417366) 92%, rgba(10,7,11,0) 100%);
+    background: linear-gradient(0deg, rgba(10,7,11,1) 0%, rgba(10,7,11,0.7483368347338936) 58%, rgba(10,7,11,0.4682247899159664) 80%, rgba(10,7,11,0.44021358543417366) 92%, rgba(10,7,11,0) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#0a070b",endColorstr="#0a070b",GradientType=1);
+}
+
+
+.Img-container {
+    width: 100%;
+    height: 100vh;
+    z-index: 11;
+    position: absolute;
+}
+
+.Img-container img {
+    width: 100%;
+    height: 100dvh;
+    object-fit: cover;
+}
+.BGground{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    object-fit: cover;
+    position: fixed;
+    left: 0;
+    top: 0;
+
+    animation: zoomInOut 2s ease-in-out infinite;
+
+    transform: scale(1.3);
+}
+
+
+@keyframes zoomInOut {
+    0%, 100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.2); /* ajuste conforme necessário */
+    }
+  }
+  
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+
+
+
+
+
+@media screen and (min-width: 1280px) {
+    .BackgroundComponent-Container .Menu-Slider {
+        display: none;
+    }
+    
+}
+@media screen and (max-width: 740px) {
+  .Img-container{
+    display: none;
+  }
+  .BGground{
+    display: none;
+  }
+}
