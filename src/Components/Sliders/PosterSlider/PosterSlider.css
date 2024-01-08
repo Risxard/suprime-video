@@ -4,9 +4,12 @@
 
     display: flex;
     justify-content: space-between;
+
 }
 .poster-slider{
     margin-bottom: 3rem;
+
+
 }
 
 .poster-section-title h2 {
@@ -34,13 +37,13 @@
 
     display: flex;
     align-items: center;
-
-
+    
+    margin-top: var(--backdrop-padding-top-slider);
 }
 
 
 .poster-slide-list {
-    z-index: 21;
+
     width: 100%;
     height: 385px;
 
@@ -216,17 +219,7 @@
 
 }
 
-.downloadCard {
-    position: absolute;
-    z-index: 21;
 
-    right: 18px;
-    bottom: 16px;
-
-    display: none;
-
-
-}
 
 
 .poster-card-btn {
@@ -237,7 +230,6 @@
     transform: translate(-50%, -50%);
 
     display: none;
-    z-index: 20;
 }
 
 
@@ -248,7 +240,7 @@
     -webkit-user-select: none;
     user-select: none;
 
-    z-index: 20;
+
 
     width: 100%;
     height: 100%;
@@ -262,7 +254,7 @@
 }
 
 .poster-item-title {
-    z-index: 21;
+
     left: 0;
     bottom: 0;
 
@@ -307,7 +299,7 @@
 .posterNextBtn {
     display: flex;
     transition: all 0.3s;
-    z-index: 22;
+    z-index: 11;
     align-self: center;
     position: absolute;
     right: 0;
@@ -324,7 +316,7 @@
 .posterPrevBtn {
     display: flex;
     transition: all 0.3s;
-    z-index: 22;
+    z-index: 11;
     align-self: center;
     position: absolute;
     width: 40px;
@@ -423,7 +415,7 @@
 
     .poster-slide-list {
         overflow-x: scroll;
-        z-index: 20;
+
         height: 210px;
         gap: 16px;
     }
@@ -437,7 +429,7 @@
 
 
         left: 0;
-        z-index: 20;
+
         bottom: 6px;
         text-align: left;
         padding: 8px;

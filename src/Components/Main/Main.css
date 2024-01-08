@@ -7,6 +7,8 @@ main{
     flex-direction: column;
     
     z-index: 5;
+
+    overflow-y: hidden;
 }
 
 .livecontent{

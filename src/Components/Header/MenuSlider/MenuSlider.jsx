@@ -8,6 +8,7 @@ import {Home} from 'lucide-react'
 var menuslider = () => {
   return (
     <ul className="Menu-Slider">
+      <span className="menu-filter" />
     <li>
       <NavLink to="/suprime-video/home" className="NavLinks">
         <Home/>

@@ -1,9 +1,9 @@
 import React from "react";
 
-import Background from "../../components/Header/BackgroundComponent/BackgroundComponent";
+import Background from "../../Components/Header/BackgroundComponent/BackgroundComponent";
 
 import "./LandingPage.css";
-import Footer from "../../components/Footer/Footer";
+import Footer from "../../Components/Footer/Footer";
 
 const LandingPage = (SectionData) => {
   return (

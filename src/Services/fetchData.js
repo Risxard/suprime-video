@@ -1,23 +1,16 @@
 import { useState, useEffect } from "react";
-import { guestApiKey } from "../../../Services/guestApi";
+import { guestApiKey } from "./guestApi";
+import axios from "axios";
 
-const usePerGenre = (SectionData) => {
+export const fetchData = async (language, selectedGenre, filterMode, filterScope, pageNumber) => {
   const [medias, setMedias] = useState([]);
 
   const APIKey = guestApiKey;
-
-  const language = SectionData.language;
-  const selectedGenre = SectionData.selectedGenre;
-  const filterMode =
-    SectionData.filterMode; /* Modo de Filtro: genre ou trending */
-  const filterScope =
-    SectionData.filterScope; /* Per genre options: movie or tv; Per Trending options: all, movie, tv, people. */
-  const pageNumber = SectionData.pageNumber;
   const api_path = "https://api.themoviedb.org/";
   const rawApiKey = `&api_key=${APIKey}`;
   const rawLanguage = `&language=${language}`;
 
-  const timeWindow = "day"; /* Time Window options: day or week */
+  const timeWindow = "day";
 
   let filtered;
 
@@ -103,44 +96,40 @@ const usePerGenre = (SectionData) => {
           filtered = selectedGenre;
       }
     }
-  }, [language]);
+  }, [language, selectedGenre, filterScope]);
 
   useEffect(() => {
-    const perGenreRaw = `
-    ${api_path}3/discover/${filterScope}?include_adult=false&include_video=false${rawLanguage}&page=${pageNumber}&sort_by=popularity.desc${rawApiKey}&with_genres=${filtered}`;
+    const fetchMediaData = async () => {
+      const perGenreRaw = `
+        ${api_path}3/discover/${filterScope}?include_adult=false&include_video=false${rawLanguage}&page=${pageNumber}&sort_by=popularity.desc${rawApiKey}&with_genres=${filtered}`;
 
-    const perTrendingRaw = `
-    ${api_path}3/trending/${filterScope}/${timeWindow}${rawLanguage}${rawApiKey}`;
+      const perTrendingRaw = `
+        ${api_path}3/trending/${filterScope}/${timeWindow}${rawLanguage}${rawApiKey}`;
 
-    const selectedRaw =
-      filterMode === "genre"
-        ? perGenreRaw
-        : filterMode === "trending"
-        ? perTrendingRaw
-        : "";
+      const selectedRaw =
+        filterMode === "genre"
+          ? perGenreRaw
+          : filterMode === "trending"
+            ? perTrendingRaw
+            : "";
 
-    if (language) {
-      fetch(selectedRaw)
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error("Network response was not ok");
-          }
-          return response.json();
-        })
-        .then((data) => {
-          const dataToFilter = data.results;
+      if (language) {
+        try {
+          const response = await axios.get(selectedRaw);
+          const dataToFilter = response.data.results;
           const dataFiltered = dataToFilter.filter(
             (obj) => obj.backdrop_path !== null && obj.backdrop_path !== ""
           );
           setMedias(dataFiltered);
-        })
-        .catch((error) => {
+        } catch (error) {
           console.error("Fetch error:", error);
-        });
-    }
-  }, [language, pageNumber]);
+        }
+      }
+    };
 
-  return { medias };
+    fetchMediaData();
+  }, [language, pageNumber, filterMode, filterScope, selectedGenre, filtered]);
+
+  return medias;
 };
 
-export default usePerGenre;

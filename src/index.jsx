@@ -6,16 +6,16 @@ import { Provider } from "react-redux";
 import store from './store/store.js'
 
 import App from './App.jsx'
-import Home from './pages/Home/Home.jsx'
-import Movie from './pages/MediaPlayer/Movie.jsx'
-import Movies from './pages/Movies/Movies.jsx'
-import Tv from './pages/MediaPlayer/Tv.jsx'
-import Search from './pages/Search/Search.jsx'
-import TvSeries from './pages/TvSeries/TvSeries.jsx'
-import LandingPage from './pages/LandingPage/LandingPage.jsx'
+import Home from './Pages/Home/Home'
+import Movie from './Pages/MediaPlayer/Movie.jsx'
+import Movies from './Pages/Movies/Movies.jsx'
+import Tv from './Pages/MediaPlayer/Tv.jsx'
+import Search from './Pages/Search/Search.jsx'
+import TvSeries from './Pages/TvSeries/TvSeries.jsx'
+import LandingPage from './Pages/LandingPage/LandingPage.jsx'
 
 import "./index.css";
-import Settings from "./pages/Settings/Settings.jsx";
+import Settings from "./Pages/Settings/Settings.jsx";
 
 const language = localStorage.getItem("country");
 const logged = localStorage.getItem("statusLog");

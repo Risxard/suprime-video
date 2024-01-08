@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { guestApiKey } from "../../../services/guestApi";
+import { guestApiKey } from "../../../Services/guestApi";
 
 const usePerGenre = (SectionData) => {
   const APIKey = guestApiKey;

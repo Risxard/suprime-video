@@ -4,20 +4,21 @@ import { connect } from "react-redux";
 import useHero from "../../hooks/Sliders/useHero/useHero.jsx";
 import useTop10 from "../../hooks/Sliders/useTop10/useTop10.jsx";
 
-import Top10Slider from "../../components/Sliders/Top10Slider/Top10Slider.jsx";
+import Top10Slider from "../../Components/Sliders/Top10Slider/Top10Slider.jsx";
 
 import SpinnerLoading from "/src/assets/svgs/SpinnerLoading.jsx";
 
 import { useIntersectionObserver } from "../../hooks/IntersectionObserver/useIntersationObserver.jsx";
 
-import { guestApiKey } from "../../services/guestApi.js";
+import { guestApiKey } from "../../Services/guestApi.js";
 
-import PosterSlider from "../../components/Sliders/PosterSlider/PosterSlider.jsx";
+import PosterSlider from "../../Components/Sliders/PosterSlider/PosterSlider.jsx";
 import { setSectionTitle } from "../../functions/Converter.js";
 
-import Header from "../../components/Header/Header.jsx";
+import Header from "../../Components/Header/Header.jsx";
 
 import "./Home.css";
+import BackdropSlider from "../../Components/Sliders/BackdropSlider/BackdropSlider.jsx";
 
 const Home = (SectionData) => {
   const [genresArray, setGenresArray] = useState([]);
@@ -46,8 +47,6 @@ const Home = (SectionData) => {
         setGenresArray(genres);
       });
   }, []);
-
-
 
   const filterMode = "genre";
   const filterScope = "tv";
@@ -90,16 +89,16 @@ const Home = (SectionData) => {
           ></PosterSlider>
 
           {genresArray.slice(0, visibleSections).map((genre) => (
-            <PosterSlider
+            <BackdropSlider
               key={genre.name}
               sectionTitle={setSectionTitle(genre.id, mediaType, language)}
-              idParam={genre.id}
               language={language}
               selectedGenre={genre.id}
               filterMode={filterMode}
               filterScope={filterScope}
-            ></PosterSlider>
+            ></BackdropSlider>
           ))}
+
         </section>
       </main>
 
@@ -111,7 +110,6 @@ const Home = (SectionData) => {
           visibility:
             visibleSections[0] < genresArray.length ? "visible" : "hidden",
         }}
-        
         xmlns="http://www.w3.org/2000/svg"
         xmlnsXlink="http://www.w3.org/1999/xlink"
         width="200px"

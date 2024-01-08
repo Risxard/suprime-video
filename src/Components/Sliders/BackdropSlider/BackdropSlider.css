@@ -1,362 +1,140 @@
-
-
-
-.SectionTitle {
-    width: 100%;
-    padding-inline: var(--inner-width);
-    padding-bottom: 40px;
-
-    display: flex;
-    justify-content: space-between;
+.SliderContainer {
+    margin-bottom: 24px;
 }
 
-.SectionTitle h2 {
-    font-family: 'Gilroy-Bold';
-    font-size: 32px;
-    line-height: 40px;
-    color: #FFFFFF;
+.SliderContent {
+    grid-column: left-start/right-end;
+    grid-row: 1;
+    z-index: 1;
+
+    overflow: visible;
 }
 
-.SliderContent{
-    width: 100%;
-    height: 300px;
-
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-
-    position: relative;
-
-
-}
-
-.Slider-Inner{
-    width: 100%;
-    height: auto;
-
-    display: flex;
-    align-items: center;
-
-
-    position: relative; 
-}
-
-
-
-.Slide-List{
-    z-index: 21;
-    width: 100%;
-    height: 300px;
-
+.Slide-List {
     overflow-x: scroll;
     overflow-y: hidden;
-
+    width: 100%;
+    align-items: flex-start;
+    
     display: flex;
     flex-direction: row;
-    
-    gap: 16px;
-
 
     position: relative;
-
-    padding-inline: var(--inner-width);
 
     scrollbar-width: none;
     scrollbar-color: transparent transparent;
-
     scroll-behavior: smooth;
+
+
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: var(--inner-width);
+    padding-inline: var(--inner-width);
+
+    margin-top: var(--backdrop-padding-top-slider);
 }
+
+
+
+
+
+
 .Slide-List::-webkit-scrollbar {
     width: 0;
     height: 0;
-  }
-
-
-
-
-
-.Slide-Item{
-    cursor: pointer;
-
-    width: 400px;
-    height: 240px;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    text-decoration: none;
-
 }
 
-.Slide-Item:hover .Card-inner{
-    background-color: #FFFFFF;
-    padding: 13px;
-
-    width: 400px;
-    height: 300px;
-
-    border-radius: 3px;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-
-    gap: 8px;
-}
-
-.Slide-Item:hover {
-
-    height: 280px;
-}
-
-
-
-.Slide-Item:hover .Info-Container,
-.Card-Btn{
-    display: flex;
-}
-
-.Slide-Item:hover .Card-Btn{
-    display: flex;
-}
-.Slide-Item:hover .downloadCard{
-    display: flex;
-}
-.Slide-Item:hover .ItemTitle{
-    display: flex;
-}
-
-
-.Card-inner{
-    width: 400px;
-    height: 240px;
-
-    border-radius: 3px;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-
-    gap: 8px;
-
-    position: relative;
-
-    transition: all 0.3s ease-in-out;
-}
-
-
-
-
-.backdrop{
-    width: 100%;
-    height: 100%;
-    border-radius: 3px;
-    object-fit: cover;
-}
-
-
-.Info-Container{
-    display: none;
-    flex-direction: column;
-    width: 100%;
-    height: 100%;
-
-    justify-content: space-between;
-
-    line-height: 24px;
-
-    transition: all 0.3s ease-in-out;
-
-    overflow: hidden;
-}
-
-.Info-Container h3{
-    font-family: 'Gilroy-SemiBold';
-    font-size: 16px;
-    color: #0A070B;
-}
-.Info-Container p{
-    font-family: 'Gilroy-Medium';
-    font-weight: 500;
-    font-size: 14px;
-    color: #4F4E50;
-}
-
-
-.Card-container{
-    width: 100%;
-    height: 240px;
-
-
-    position: relative;
-    border-radius: 3px;
-}
-
-.downloadCard{
-    width: 18px;
-    height: 18px;
-
-    position: absolute;
-    z-index: 21;
-    right: 15px;
-    bottom: 10px;
-    display: none;
-}
-
-
-.Card-Btn{
-
-    width: 5rem;
-    height: 5rem;
-    margin: 0;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-
-    display: none;
-
-    z-index: 11;
-}
-
-
-
-.bg-filter{
-    opacity: 75%;
-    
-    -webkit-user-select: none;
-    user-select: none;
-
-    z-index: 10;
-
-    width: 100%;
-    height: 100%;
-    position: absolute;
-
-    background: rgb(255,255,255);
-    background: linear-gradient(180deg, rgba(255,255,255,0) 35%, rgba(10,7,11,1) 75%);
-
-    border-radius: 3px;
-    
-}
-
-.ItemTitle{
-    z-index: 20;
-    left: 0;
-    bottom: 0;
-
-    position: absolute;
-
-    padding: 12px 16px;
-
-    display: flex;
-}
-
-
-.ItemTitle h2{
-    font-family: 'Gilroy-Regular';
-    font-style: normal;
-    font-weight: 600;
-    font-size: 20px;
-    line-height: 30px;
-
-    color: #FFFFFF;
-
-}
-
-.SliderContent:hover .Backdrop-PrevBtn {
+.SliderContent.hovered-class  .Backdrop-PrevBtn {
     opacity: 100%;
+    display: flex;
+    margin-bottom: 600px!important;
+    margin-top: 150px!important;
+    margin-top: var(--backdrop-padding-top-slider);
 }
 
-.SliderContent:hover .Backdrop-NextBtn {
+.SliderContent.hovered-class .Backdrop-NextBtn {
     opacity: 100%;
+    display: flex;
+    margin-bottom: 600px!important;
+    margin-top: 150px!important;
+    margin-top: var(--backdrop-padding-top-slider);
+
 }
 
 .Backdrop-PrevBtn {
     left: 0;
-    top: 25%;
+    border-radius: 0px 6px 6px 0px;
 }
+
 .Backdrop-NextBtn {
     right: 0;
-    top: 25%;
+    border-radius: 6px 0px 0px 6px;
 }
 
 .Backdrop-NextBtn,
-.Backdrop-PrevBtn{
+.Backdrop-PrevBtn {
     opacity: 0%;
-
-    display: flex;
-    transition: all 0.3s;
-    z-index: 22;
-    align-self: center;
-    position: absolute;
-    width: 40px;
-    height: auto;
-
-
+    display: none;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+
+    transition: all 0.3s;
+
+    position: absolute;
+    width: 45px;
+    height: calc(var(--dv-packshot-width)*.5625);
     filter: drop-shadow(5px 1px 10px rgba(0, 0, 0, 0.5));
+    z-index: 10;
+
+    background-color: rgba(0, 0, 0, 0.3);
 }
+
 
 
 
 .Backdrop-NextBtn:hover {
     cursor: pointer;
 
+
 }
-
-
-.Backdrop-PrevBtn:hover svg{
-    transform: scale(1.3);
-}
-
-.Backdrop-NextBtn:hover svg{
-    transform: scale(1.3);
-}
-
 .Backdrop-PrevBtn:hover {
     cursor: pointer;
 }
 
 
-.Backdrop-NextBtn svg {
-    width: 20px;
-    height: 20px;
-    transition: transform 0.3s ease-in-out;
+.Backdrop-PrevBtn:hover svg {
+    transform: scale(1.3);
+}
 
+.Backdrop-NextBtn:hover svg {
+    transform: scale(1.3);
+}
+
+
+
+.Backdrop-NextBtn svg {
+    width: 30px;
+    height: 30px;
+    transition: transform 0.3s ease-in-out;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-
-
-    
 }
 
 .Backdrop-PrevBtn svg {
-    width: 20px;
-    height: 20px;
+    width: 30px;
+    height: 30px;
     transition: transform 0.3s ease-in-out;
-
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
 
-
-.MovieContainer .SeeAll{
+.MovieContainer .SeeAll {
     display: none;
 }
-
-.skeleton{
-    animation: skeleton-loading 1s linear infinite alternate;
-}
-
 
 
 
@@ -364,136 +142,33 @@
     0% {
         background-color: hsla(300, 1%, 21%, 0.61);
     }
+
     100% {
         background-color: hsla(231, 14%, 10%, 0.308);
     }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-@media screen and (max-width: 768px) {
-    .SliderContent{
-        height: 166px;
+@media screen and (max-width: 880px) {
+    .SliderContainer {
+        margin-bottom: 36px;
     }
 
-    .Slide-Item{
-        min-width: 277px;
-        height: 166px;
+}
+@media screen and (min-width: 880px) {
+    .SliderContent.hovered-class .Slide-List {
+        padding-bottom: 600px!important;
+        padding-top: 150px!important;
     }
-    .Card-inner{
-        width: 277px;
-        height: 166px;
-    }
-    .Card-container{
-        width: 277px;
-        height: 166px;
-    }
-    .Slide-List {
-        overflow-x: scroll;
-        z-index: 20;
-        height: 166px;
-        gap: 16px;
+    .SliderContent.hovered-class {
+        margin-bottom: -600px!important;
+        margin-top: -150px!important;
     }
 
 
-
-
-
-.ItemTitle{
-    position: absolute;
-    display: flex;
-
-    left: 0;
-    z-index: 20;
-    bottom: 6px;
-    text-align: left;
-    padding: 8px;
 }
 
-
-.ItemTitle h2{
-    font-family: 'Gilroy-Regular';
-    font-style: normal;
-    font-weight: 600;
-    font-size: 14px;
-    line-height: 12px;
-
-    color: #FFFFFF;
-
-}
-
-.SectionTitle h2 {
-    font-size: 20px;
-    line-height: 32px;
-}
-
-.SectionTitle h3 {
-    font-weight: 600;
-    font-size: 14px;
-    line-height: 22px;
-}
-
-
-
-
-
-
-
-
-
-.Slide-Item:hover .Card-inner{
-    background-color: none;
-
-    padding: 0;
-
-    width: 150px;
-    height: 170px;
-
-    border-radius: 3px;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-
-    gap: 8px;
-
-}
-
-
-.Card-Btn{
-    justify-content: center;
-    align-items: center;
-    width: 50px;
-    height: 50px;
-}
-
-.Slide-Item:hover .downloadCard{
-    display: none;
-}
-.Slide-Item:hover .Info-Container{
-    display: none;
-}
-
-.Slide-Item:hover .bg-filter{
-    background: rgb(255,255,255);
-    background: linear-gradient(180deg, rgba(255,255,255,0) 35%, rgba(10,7,11,1) 75%);
-}
-
-
-.Backdrop-NextBtn,
-.Backdrop-PrevBtn{
-    display: none;
-}
-
-
+@media screen and (min-width: 1300px) {
+    .SliderContainer {
+        margin-bottom: 48px;
+    }
 }

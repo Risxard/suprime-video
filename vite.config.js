@@ -1,5 +1,3 @@
-
-
 export default {
   base: '/suprime-video', 
   server: {

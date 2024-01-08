@@ -390,6 +390,12 @@
 
 /* default style  close */
 
+.Menu-Slider .NavLinks{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-end;
+}
 
 
 .hamMenu{
@@ -409,7 +415,7 @@
 
     padding-inline: 0.7rem;
 
-    overflow-y: scroll;
+
 }
 .hamMenu.ativo,
 .hamMenu.ativo .hamMenu-ul{

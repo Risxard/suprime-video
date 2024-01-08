@@ -53,9 +53,7 @@
     overflow-y: hidden;
 
     scroll-snap-type: x mandatory;
-
     scroll-padding-inline: 5%;
-    padding-inline: ;
 
 
     -webkit-overflow-scrolling: touch;

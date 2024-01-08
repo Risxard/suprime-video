@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { guestApiKey } from "../../services/guestApi";
+import { guestApiKey } from "../../Services/guestApi";
 
 const useMediaClassification = ({ id, language, mediaType }) => {
   const [mediaClass, setMediaClass] = useState("");

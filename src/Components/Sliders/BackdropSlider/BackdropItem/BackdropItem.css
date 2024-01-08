@@ -1,0 +1,352 @@
+/* Slide Item Styles */
+.Slide-Item {
+    cursor: default;
+    display: flex;
+    flex-direction: column;
+
+    height: auto;
+    justify-content: center;
+
+    margin-right: var(--backdrop-gap-slider);
+
+
+    width: auto;
+    -webkit-font-smoothing: antialiased;
+
+    scroll-snap-align: start;
+
+}
+
+
+
+
+.backdropImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.Card-container {
+    width: var(--dv-packshot-width);
+    position: relative;
+    overflow: visible;
+
+}
+
+.Card-Btn {
+    overflow: visible;
+    width: 5rem;
+    height: 5rem;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+}
+
+.bg-filter {
+    opacity: 75%;
+    -webkit-user-select: none;
+    user-select: none;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 35%, rgba(10, 7, 11, 1) 75%);
+    border-radius: 8px;
+    overflow: visible;
+}
+
+.ItemTitle {
+    left: 0;
+    bottom: 0;
+    position: absolute;
+    padding: 12px 16px;
+    display: flex;
+}
+
+/* Backdrop Info Card Styles */
+.backdrop-info-card {
+    display: none;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    height: auto;
+    background-color: #000000;
+    position: absolute;
+    top: calc(100% - 5px);
+    left: 0;
+    border-radius: 0px 0px 8px 8px;
+    color: #ffffff;
+    overflow: visible;
+
+    padding-bottom: 16px;
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 4px;
+}
+
+.backdrop-info-card .ageClass {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1px;
+    text-align: center;
+}
+
+.backdrop-info-card h4 {
+    font-family: 'Ember-regular';
+    font-size: 0.7rem;
+    padding: 3px;
+    text-align: center;
+}
+
+.backdrop-info-card .class-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.backdrop-info-card .includeBD {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    font-family: 'Ember-bold';
+    gap: 4px;
+
+    font-size: 12px;
+}
+
+.backdrop-info-card .includeBD span {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.backdrop-info-card .includeBD svg {
+    color: #1A98FF;
+    width: 16px;
+    height: 16px;
+}
+
+
+
+.backdrop-info-card .backdrop-runtime-card {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 1rem;
+    font-family: 'Ember-regular';
+    font-size: 14px;
+    color: #B3B4B7;
+    overflow: visible;
+
+    margin-block: 8px;
+}
+
+.backdrop-info-card .media-title {
+    width: 100%;
+    padding-top: 0.3rem;
+    padding-bottom: 1rem;
+}
+
+.backdrop-info-card .media-title h2 {
+    font-family: 'Ember-regular';
+    font-size: 14px;
+}
+
+.backdrop-info-card .backdrop-overview-card {
+    margin-top: 0.5rem;
+    font-family: "Ember-medium";
+    font-size: 14px;
+    font-weight: 600;
+
+    letter-spacing: 0.32px;
+    line-height: 20px;
+    list-style-image: none;
+    list-style-position: outside;
+    list-style-type: none;
+
+    color: #aaa;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+
+.backdrop-info-card .featureBtns {
+    padding-block: 0.5rem;
+    gap: 8px;
+
+    justify-content: space-between;
+}
+
+.backdrop-info-card .featureBtns .align-btn {
+    width: auto;
+    height: auto;
+    gap: 8px;
+}
+
+.backdrop-info-card .featureBtns .align-btn img {
+    width: 47px;
+    height: 47px;
+
+    object-fit: contain;
+}
+
+.backdrop-info-card .featureBtns .playnow-btn .align-btn p {
+    font-size: 14px;
+}
+
+.backdrop-info-card .featureBtns .watchlist-btn {
+    width: 32px;
+    height: 32px;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    margin-right: 4px;
+}
+
+.backdrop-info-card .featureBtns .watchlist-btn svg {
+    stroke-width: 2;
+    width: 20px;
+}
+
+
+.backdrop-info-card .featureBtns .ban svg {
+    stroke-width: 2;
+    width: 16px;
+    height: 16px;
+}
+
+
+.backdrop-info-card .watchlist-btn::after {
+    font-size: 12px;
+    padding: 0.4rem 0.4rem;
+}
+
+.backdrop-info-card .ban::after {
+    content: 'hide this media';
+    position: absolute;
+    white-space: nowrap;
+}
+
+.backdrop-info-card .option-btns {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+
+
+    height: 39px;
+}
+
+.backdrop-info-card .align-btn {
+    gap: 0.5rem;
+}
+
+
+.skeleton {
+    animation: skeleton-loading 1s linear infinite alternate;
+}
+
+
+/* Media Queries */
+@media (min-width: 600px) {
+    /* .backdrop-info-card .includeBD svg {
+        width: 18px;
+        height: 18px;
+    } */
+}
+
+@media (min-width: 880px) {
+    .Slide-Item:hover {
+        -webkit-transform: scale(1.25);
+        transform: scale(1.25);
+        transition-delay: 0.3s;
+        transition-duration: 0.3s;
+        transition-property: -webkit-transform, transform;
+        transition-timing-function: cubic-bezier(0.2, 0.45, 0, 1);
+
+        z-index: 1;
+        border-radius: 8px 8px 0px 0px;
+    }
+
+    .backdropImage {
+        border-radius: 8px;
+    }
+
+    .Slide-Item:hover .backdropImage {
+        border-radius: 8px 8px 0px 0px;
+    }
+
+    .Slide-Item:hover .backdrop-info-card {
+        display: block;
+    }
+
+    .slide-list .Slide-Item:hover .slide-list {
+        height: 600px;
+    }
+
+    .Slide-Item:hover .ItemTitle {
+        display: flex;
+    }
+
+    .backdrop-info-card .featureBtns img {
+        width: 54px;
+        height: 54px;
+    }
+}
+
+@media (min-width: 1024px){
+    .backdrop-info-card .media-title h2 {
+        font-size: 18px;
+    }
+    .backdrop-info-card{
+        padding-top: 12px;
+    }
+}
+
+
+@media (min-width: 1300px) {
+
+    .backdrop-info-card .featureBtns {
+        padding-block: 0.8rem;
+    }
+    .backdrop-info-card .featureBtns .align-btn img {
+        width: 61px;
+        height: 61px;
+    }
+
+    .backdrop-info-card .featureBtns .watchlist-btn {
+        width: 42px;
+        height: 42px;
+
+        margin-right: 4px;
+    }
+    .backdrop-info-card .featureBtns .playnow-btn .align-btn p {
+        font-size: 18px;
+    }
+}
+
+@media (min-width: 1800px) {
+    .backdropImage {
+        border-radius: 12px;
+    }
+
+    .Slide-Item:hover .backdropImage {
+        border-radius: 12px 12px 0px 0px;
+    }
+    .backdrop-info-card .featureBtns .playnow-btn .align-btn p {
+        font-size: 18px;
+    }
+}

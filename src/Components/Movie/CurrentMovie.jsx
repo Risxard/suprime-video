@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import { guestApiKey } from "../../services/guestApi.js";
+import { guestApiKey } from "../../Services/guestApi.js";
 
 import { useParams } from "react-router-dom";
 import axios from "axios";
@@ -9,7 +9,7 @@ import Player from "./Player/Player.jsx";
 
 import MovieForYour from "../Movie/MoviesForYou/MoviesFor.jsx";
 
-import "../../pages/MediaPlayer/Movie.css";
+import "../../Pages/MediaPlayer/Movie.css";
 
 import MovieDetails from "./MoviesDetails/MovieDetails.jsx";
 

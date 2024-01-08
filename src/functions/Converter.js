@@ -1,4 +1,4 @@
-import genresTemplate from '../services/genres/genres.json'
+import genresTemplate from '../Services/genres/genres.json'
 
 
 export function runtimeConverter(minutos) {
@@ -141,3 +141,13 @@ export function bgDetect(classId) {
       return "none";
   }
 }
+
+
+export const filteredMediaType = (movie, mediaType) => {
+  const mediaTypeCheck = mediaType ? mediaType : null;
+  const alternativeMedia = movie.first_air_date ? "tv" : "movie";
+  const newMediaType =
+    mediaTypeCheck === null ? alternativeMedia : mediaTypeCheck;
+
+  return newMediaType;
+};

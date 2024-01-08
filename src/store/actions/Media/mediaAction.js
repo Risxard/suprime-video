@@ -1,6 +1,6 @@
 import mediaActionTypes from './mediaActionTypes';
 import Axios from 'axios';
-import { guestApiKey } from '../../../services/guestApi';
+import { guestApiKey } from '../../../Services/guestApi';
 
 const APIKey = guestApiKey;
 

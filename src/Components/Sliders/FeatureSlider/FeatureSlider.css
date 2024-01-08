@@ -39,14 +39,15 @@
     filter: brightness(10%);
 }
 
-#FeaturePrevBtn svg, #FeatureNextBtn svg{
+#FeaturePrevBtn svg, #FeatureNextBtn svg {
     width: 62px;
     height: 62px;
 
     transition: all 0.3s ease-in-out;
     transform: scale(0.8);
 }
-#FeaturePrevBtn:hover svg, #FeatureNextBtn:hover svg{
+
+#FeaturePrevBtn:hover svg, #FeatureNextBtn:hover svg {
     transform: scale(1);
 }
 
@@ -124,7 +125,7 @@
     -ms-overflow-style: none;
     scrollbar-width: none;
 
-    gap: 10px;
+    gap: 12px;
 
     scroll-behavior: smooth;
 }
@@ -136,7 +137,7 @@
 
 
 .slide {
-    border-radius: 6px;
+    border-radius: 8px;
     position: relative;
 
     width: 100%;
@@ -155,7 +156,6 @@
     scroll-snap-stop: always;
 
     flex-shrink: 0;
-
 }
 
 .slide img {
@@ -172,9 +172,8 @@
     object-position: top;
 
     transition: all 0.3s ease-in-out;
-
-
 }
+
 .filter {
     user-select: none;
     z-index: -1;
@@ -188,11 +187,11 @@
 
     border-radius: 6px;
 
-    background: rgb(0,0,0);
-    background: -moz-linear-gradient(90deg, rgba(0,0,0,1) 20%, rgba(0,0,0,0.7539390756302521) 35%, rgba(255,255,255,0) 53%);
-    background: -webkit-linear-gradient(90deg, rgba(0,0,0,1) 20%, rgba(0,0,0,0.7539390756302521) 35%, rgba(255,255,255,0) 53%);
-    background: linear-gradient(90deg, rgba(0,0,0,1) 20%, rgba(0,0,0,0.7539390756302521) 35%, rgba(255,255,255,0) 53%);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#000000",endColorstr="#ffffff",GradientType=1);
+    background: rgb(0, 0, 0);
+    background: -moz-linear-gradient(90deg, rgba(0, 0, 0, 1) 20%, rgba(0, 0, 0, 0.7539390756302521) 35%, rgba(255, 255, 255, 0) 53%);
+    background: -webkit-linear-gradient(90deg, rgba(0, 0, 0, 1) 20%, rgba(0, 0, 0, 0.7539390756302521) 35%, rgba(255, 255, 255, 0) 53%);
+    background: linear-gradient(90deg, rgba(0, 0, 0, 1) 20%, rgba(0, 0, 0, 0.7539390756302521) 35%, rgba(255, 255, 255, 0) 53%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#000000", endColorstr="#ffffff", GradientType=1);
 }
 
 
@@ -462,7 +461,11 @@
 
 
 
-
+@media(min-width: 600px) {
+    .slider{
+        gap: 16px;
+    }
+}
 
 
 
@@ -525,9 +528,11 @@
     }
 
 
-
-
+    .slider {
+        gap: 18px;
+    }
 }
+
 
 @media(min-width: 880px) {
     .feature-container {
@@ -546,8 +551,19 @@
     }
 }
 
+@media(min-width: 1280px) {
+    .slider {
+        gap: 20px;
+    }
+}
+@media(min-width: 1800px) {
+    .slide,
+    .slide img,
+    .filter{
+        border-radius: 12px;
+    }
 
-
+}
 
 
 .class-container {

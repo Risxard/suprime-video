@@ -121,7 +121,7 @@ const SearchComponent = () => {
                   key={response.id}
                   onClick={() => {
                     toggleClass();
-                    clearInput();
+
                   }}
                 >
                   <p>{response.title ? response.title : response.name}</p>

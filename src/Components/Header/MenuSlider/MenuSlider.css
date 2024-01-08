@@ -1,4 +1,4 @@
-.Menu-Slider{
+.Menu-Slider {
     display: flex;
     flex-direction: row;
     width: 100%;
@@ -8,7 +8,7 @@
     position: fixed;
 
     gap: 1rem;
-    
+
     z-index: 49;
 
     list-style-type: none;
@@ -16,30 +16,47 @@
 }
 
 
-.Menu-Slider li{
+.Menu-Slider li {
     display: flex;
     flex-direction: row;
     align-items: center;
 }
 
-.Menu-Slider svg{
+.Menu-Slider svg {
     width: 16px;
     height: 16px;
 }
 
-.Menu-Slider .NavLinks{
+.Menu-Slider .NavLinks {
     font-size: 16px;
     text-decoration: none;
     font-family: 'Ember-bold';
     color: #807E81;
 }
-.Menu-Slider .NavLinks.active{
+
+.Menu-Slider .NavLinks.active {
     color: #FFFFFF;
 }
+
 .Menu-Slider .NavLinks.active,
-.Menu-Slider .NavLinks:hover{
+.Menu-Slider .NavLinks:hover {
     background: none;
 }
+
+.menu-filter {
+    position: absolute;
+    left: 0;
+    top: 0;
+    padding-top: calc(var(--nav-height) * 3);
+
+    height: 48px;
+    width: 100%;
+
+    z-index: -100;
+
+    background: linear-gradient(180deg,#00050d,rgba(0,5,13,.9) 50%,rgba(0,5,13,.5) 80%,rgba(0,5,13,0));
+}
+
 
 @media screen and (min-width: 400px) {
     .Menu-Slider {
@@ -49,7 +66,7 @@
 }
 
 @media screen and (min-width: 600px) {
-    .Menu-Slider{
+    .Menu-Slider {
         font-size: 18px;
     }
 
@@ -60,4 +77,3 @@
         display: none;
     }
 }
-

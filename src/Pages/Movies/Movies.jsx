@@ -4,16 +4,16 @@ import { connect } from "react-redux";
 import useHero from "../../hooks/Sliders/useHero/useHero.jsx";
 import useTop10 from "../../hooks/Sliders/useTop10/useTop10.jsx";
 
-import Top10Slider from "../../components/Sliders/Top10Slider/Top10Slider.jsx";
+import Top10Slider from "../../Components/Sliders/Top10Slider/Top10Slider.jsx";
 
 import { useIntersectionObserver } from "../../hooks/IntersectionObserver/useIntersationObserver.jsx";
 
-import { guestApiKey } from "../../services/guestApi.js";
+import { guestApiKey } from "../../Services/guestApi.js";
 
-import PosterSlider from "../../components/Sliders/PosterSlider/PosterSlider.jsx";
+import PosterSlider from "../../Components/Sliders/PosterSlider/PosterSlider.jsx";
 import { setSectionTitle } from "../../functions/Converter.js";
 
-import Header from "../../components/Header/Header.jsx";
+import Header from "../../Components/Header/Header.jsx";
 
 import "./Movies.css";
 

@@ -1,7 +1,7 @@
 import React, { useEffect} from "react";
 import { Outlet } from 'react-router-dom';
-import Navigation from './components/Navigation/Navigation.jsx';
-import Footer from './components/Footer/Footer.jsx'
+import Navigation from './Components/Navigation/Navigation.jsx';
+import Footer from './Components/Footer/Footer.jsx'
 
 import toTOPbtn from './assets/svgs/buttons/toTOP.svg'
 

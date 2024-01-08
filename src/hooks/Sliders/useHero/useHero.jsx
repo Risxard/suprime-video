@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { guestApiKey } from "../../../services/guestApi";
+import { guestApiKey } from "../../../Services/guestApi";
 
 const useHero = (SectionData) => {
   const language = SectionData.language;

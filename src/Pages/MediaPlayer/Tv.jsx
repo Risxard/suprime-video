@@ -2,9 +2,9 @@ import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 import LoginPage from "../Login/Login";
-import CurrentTv from "../../components/Tv/CurrentTv";
-import BackdropSlider from "../../components/Sliders/BackdropSlider/BackdropSlider";
-import MenuSlider from "../../components/Header/MenuSlider/MenuSlider.jsx";
+import CurrentTv from "../../Components/Tv/CurrentTv";
+import BackdropSlider from "../../Components/Sliders/BackdropSlider/BackdropSlider";
+import MenuSlider from "../../Components/Header/MenuSlider/MenuSlider.jsx";
 
 import { connect } from "react-redux";
 import { getMediaDetails } from "../../store/actions/Media/mediaAction";

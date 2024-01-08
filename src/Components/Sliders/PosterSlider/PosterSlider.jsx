@@ -53,8 +53,8 @@ export default function PosterSlider(SectionData) {
 
   return (
     <section className="poster-slider">
-      <div className="poster-section-title">
-        <h2>{SectionTitle}</h2>
+      <div className="SectionTitle">
+        <h2><strong>Suprime</strong> {SectionTitle}</h2>
 
         <Link className="SeeAll">
           <h3>See all</h3>

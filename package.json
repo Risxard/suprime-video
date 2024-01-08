@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "homepage": "risxard.github.io/suprime-video/",
+  "homepage": "./suprime-video",
   "dependencies": {
     "@hookform/resolvers": "^3.3.2",
     "@reduxjs/toolkit": "^1.9.7",
@@ -34,7 +34,7 @@
     "deploy": "gh-pages -d dist",
     "start": "vite",
     "build": "vite build",
-    "dev": "vite --host",
+    "dev": "vite",
     "serve": "vite preview",
     "eject": "vite eject",
     "test": "vitest",

@@ -4,7 +4,7 @@ import "./FeatureSlider.css";
 
 import { genreConverter } from "../../../functions/Converter";
 
-import { guestApiKey } from "../../../services/guestApi";
+import { guestApiKey } from "../../../Services/guestApi";
 
 import FeatureItem from "./Components/FeatureItem.jsx";
 

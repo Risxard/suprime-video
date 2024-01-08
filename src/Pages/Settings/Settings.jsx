@@ -3,7 +3,7 @@ import React, {useState} from "react";
 import { Settings, User, ChevronDown, ShieldAlert} from "lucide-react";
 
 import LanguageSection from "../../Components/SectionOptions/LanguageSection.jsx";
-import ProfileSection from '../../components/SectionOptions/ProfileSection.jsx';
+import ProfileSection from '../../Components/SectionOptions/ProfileSection.jsx';
 import SecuritySection from '../../Components/SectionOptions/PasswordSection.jsx';
 import DeleteAccount from "../../Components/SectionOptions/DeleteAccount.jsx";
 

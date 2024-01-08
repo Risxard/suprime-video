@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { guestApiKey } from "../../services/guestApi.js";
+import { guestApiKey } from "../../Services/guestApi.js";
 import { useParams } from "react-router-dom";
 
 import "./Login.css";
-import SingIn from "../../components/Register/SingIn.jsx";
+import SingIn from "../../Components/Register/SingIn.jsx";
 import Background from "./Background.jpg";
 
 function LoginPage(SectionData) {

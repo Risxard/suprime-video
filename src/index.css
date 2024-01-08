@@ -85,6 +85,8 @@ body {
     height: auto;
 
     background: #00050D;
+
+    overflow-x: hidden;
 }
 
 
@@ -99,7 +101,7 @@ footer {
     padding-block: 24px;
     padding-inline: 5%;
 
-    border: solid #4F4E50;
+
     border-width: 5px 0px 0px 0px;
     gap: 24px;
 

@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
 
-import { guestApiKey } from "../../services/guestApi.js";
+import { guestApiKey } from "../../Services/guestApi.js";
 
 import { useParams } from "react-router-dom";
 import axios from "axios";
 
-import Player from "../../components/Movie/Player/Player.jsx";
+import Player from "../../Components/Movie/Player/Player.jsx";
 
 import MovieForYour from "../Movie/MoviesForYou/MoviesFor.jsx";
 
-import "../../pages/MediaPlayer/Movie.css";
+import "../../Pages/MediaPlayer/Movie.css";
 
 import TvDetails from "./TvDetails/TvDetails.jsx";
 

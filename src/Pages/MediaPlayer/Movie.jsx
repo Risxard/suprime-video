@@ -3,8 +3,8 @@ import { useParams } from "react-router-dom";
 
 import LoginPage from "../Login/Login";
 import CurrentMovie from "../../Components/Movie/CurrentMovie.jsx";
-import BackdropSlider from "../../components/Sliders/BackdropSlider/BackdropSlider";
-import MenuSlider from "../../components/Header/MenuSlider/MenuSlider.jsx";
+import BackdropSlider from "../../Components/Sliders/BackdropSlider/BackdropSlider";
+import MenuSlider from "../../Components/Header/MenuSlider/MenuSlider.jsx";
 
 import { connect } from "react-redux";
 import { getMediaDetails } from "../../store/actions/Media/mediaAction";

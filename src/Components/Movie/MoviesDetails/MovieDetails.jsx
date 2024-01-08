@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import "../../../pages/MediaPlayer/Movie.css";
+import "../../../Pages/MediaPlayer/Movie.css";
 
 import { dateConverter, genreConverter } from "../../../functions/Converter.js";
 import MovieOptions from "../../Movie/MovieOptions/MovieOptions.jsx";
