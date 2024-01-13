@@ -38,10 +38,20 @@ export const getMediaDetails = (mediaParam) => (dispatch) => {
 
   dispatch(mediaDetailsRequest());
 
-  
-  Axios.get(`https://api.themoviedb.org/3/${mediaType}/${id}?language=${lang}&api_key=${APIKey}&append_to_response=videos,similar`)
+
+  Axios.get(`https://api.themoviedb.org/3/${mediaType}/${id}?language=${lang}&api_key=${APIKey}&append_to_response=videos,similar,credits`)
     .then(res => {
       const initialData = res.data;
+
+
+      const credits = initialData.credits
+
+      const starring = credits.cast.slice(0, 3);
+      const directors = credits.crew.filter((person) => person.job === "Director");
+      const producers = credits.crew.filter((person) => person.job === "Producer");
+
+      console.log(producers)
+
       const initialSimilar = similarFilter(initialData.similar.results);
 
       const titleFiltered = mediaType === 'movie' ? initialData.title : initialData.name;
@@ -66,6 +76,9 @@ export const getMediaDetails = (mediaParam) => (dispatch) => {
         vote_average: initialData.vote_average,
         genres_Id: initialData.genres,
         similar: initialSimilar,
+        starring: starring,
+        directors: directors,
+        producers: producers,
       };
 
       dispatch(mediaDetailsSuccess(dados));

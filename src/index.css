@@ -2,12 +2,12 @@
 
 @font-face {
     font-family: 'Gilroy-Bold';
-    src: url(./layout/Fonts/EM-Gilroy/Gilroy-Bold.ttf) format('truetype');
+    src: url(./Layout/Fonts/EM-Gilroy/Gilroy-Bold.ttf) format('truetype');
 }
 
 @font-face {
     font-family: 'Gilroy-Regular';
-    src: url(./layout/Fonts/EM-Gilroy/Gilroy-Regular.ttf) format('truetype');
+    src: url(./Layout/Fonts/EM-Gilroy/Gilroy-Regular.ttf) format('truetype');
 }
 
 @font-face {
@@ -17,24 +17,24 @@
 
 @font-face {
     font-family: 'Gilroy-SemiBold';
-    src: url(./layout/Fonts/EM-Gilroy/Gilroy-SemiBold.ttf) format('OpenType');
+    src: url(./Layout/Fonts/EM-Gilroy/Gilroy-SemiBold.ttf) format('OpenType');
 }
 
 @font-face {
     font-family: 'Ember-regular';
-    src: url(./layout/Fonts/Ember/AmazonEmberDisplay_Rg.ttf) format('OpenType');
+    src: url(./Layout/Fonts/Ember/AmazonEmberDisplay_Rg.ttf) format('OpenType');
 }
 @font-face {
     font-family: 'Ember-bold';
-    src: url(./layout/Fonts/Ember/AmazonEmberDisplay_Bd.ttf) format('OpenType');
+    src: url(./Layout/Fonts/Ember/AmazonEmberDisplay_Bd.ttf) format('OpenType');
 }
 @font-face {
     font-family: 'Ember-medium';
-    src: url(./layout/Fonts/Ember/AmazonEmberDisplay_Md.ttf) format('OpenType');
+    src: url(./Layout/Fonts/Ember/AmazonEmberDisplay_Md.ttf) format('OpenType');
 }
 @font-face {
     font-family: 'Ember-light';
-    src: url(./layout/Fonts/Ember/AmazonEmberDisplay_Lt.ttf) format('OpenType');
+    src: url(./Layout/Fonts/Ember/AmazonEmberDisplay_Lt.ttf) format('OpenType');
 }
 
 
@@ -49,6 +49,8 @@
 html {
     width: 100%;
     height: auto;
+
+    scroll-behavior: smooth;
 }
 
 .SeeAll {
@@ -125,32 +127,6 @@ footer {
 
 }
 
-
-#btnTop {
-    width: 50px;
-    height: 50px;
-    position: fixed;
-    right: 0;
-    bottom: 60px;
-    background-color: #1A98FF;
-    border-radius: 4px 0px 0px 4px;
-
-    display: none;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
-    cursor: pointer;
-
-    z-index: 50;
-}
-
-#btnTop img {
-    width: 30px;
-    height: 30px;
-}
-
-
 header {
     width: 100%;
     height: auto;
@@ -159,4 +135,11 @@ header {
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.navNormal{
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
 }

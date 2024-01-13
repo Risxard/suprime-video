@@ -47,7 +47,8 @@ const SearchComponent = () => {
     }
   }, [isActive]);
 
-  const clearInput = () => {
+  const clearInput = (e) => {
+    e.stopPropagation();
     setInputValue("");
     if (inputRef.current) {
       inputRef.current.focus();
@@ -71,6 +72,7 @@ const SearchComponent = () => {
         })
         .then((data) => {
           const mediaArray = data.results.slice(0, 10);
+          console.log(mediaArray)
           setSearchResponse(mediaArray);
         })
         .catch((error) => {
@@ -108,7 +110,7 @@ const SearchComponent = () => {
             {inputValue === "" ? (
               ""
             ) : (
-              <span className="input-clear-btn" onClick={clearInput}>
+              <span className="input-clear-btn"  onClick={(e) => clearInput(e)}>
                 <p>Clear</p>
               </span>
             )}
@@ -119,10 +121,7 @@ const SearchComponent = () => {
                 <Link
                   to={`/suprime-video/${response.media_type}/${response.id}`}
                   key={response.id}
-                  onClick={() => {
-                    toggleClass();
-
-                  }}
+                  onClick={toggleClass}
                 >
                   <p>{response.title ? response.title : response.name}</p>
                 </Link>

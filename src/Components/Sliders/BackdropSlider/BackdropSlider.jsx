@@ -6,14 +6,16 @@ import { ChevronRight, ChevronLeft } from "lucide-react";
 import "./BackdropSlider.css";
 import Backdropitem from "./BackdropItem/BackdropItem";
 
-
 export default function BackdropSlider(SectionData) {
+  const [reloadSlider, setReloadSlider] = useState(1);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [filteredMedia, setFilteredMedia] = useState([]);
-  const [pageNumber, setPageNumber] = useState(1);
   const [isHovered, setIsHovered] = useState(false);
   const sliderRef = useRef(null);
   const [podeExecutar, setPodeExecutar] = useState(true);
+  let currentPage = 1;
+
+  const { id } = useParams();
 
   useEffect(() => {
     const handleResize = () => {
@@ -32,27 +34,38 @@ export default function BackdropSlider(SectionData) {
   const filterMode = SectionData.filterMode;
   const filterScope = SectionData.filterScope;
   const selectedGenre = SectionData.selectedGenre;
+  const suprimeTitle = SectionData.suprimeTitle;
+  const movieId = id;
+  const mediaType = SectionData.mediaType;
 
-  const mediasArray = usePerGenre({
+  const mediasPage1 = usePerGenre({
     language,
     filterMode,
     filterScope,
     selectedGenre,
-    pageNumber,
+    pageNumber: 1,
+    movieId,
+    mediaType,
+  });
+  const mediasPage2 = usePerGenre({
+    language,
+    filterMode,
+    filterScope,
+    selectedGenre,
+    pageNumber: 2,
+  });
+  const mediasPage3 = usePerGenre({
+    language,
+    filterMode,
+    filterScope,
+    selectedGenre,
+    pageNumber: 3,
   });
 
-  const updateNewMedias = () => {
-    setPageNumber((prevPageNumber) => {
-      const newPageNumber = prevPageNumber + 1;
-      console.log(newPageNumber);
-      return newPageNumber;
-    });
-  };
-
   useEffect(() => {
-    if (mediasArray.medias.length > 0) {
+    if (mediasPage1.medias.length > 0) {
       setFilteredMedia((prevFilteredMedia) => {
-        const uniqueMedias = mediasArray.medias.filter(
+        const uniqueMedias = mediasPage1.medias.filter(
           (newMedia) =>
             !prevFilteredMedia.some(
               (existingMedia) => existingMedia.id === newMedia.id
@@ -61,7 +74,7 @@ export default function BackdropSlider(SectionData) {
         return [...prevFilteredMedia, ...uniqueMedias];
       });
     }
-  }, [mediasArray.medias]);
+  }, [mediasPage1.medias]);
 
   const handleMouseEnter = () => {
     setIsHovered(true);
@@ -103,7 +116,35 @@ export default function BackdropSlider(SectionData) {
         const isAtEnd =
           slider.scrollLeft + slider.clientWidth >= slider.scrollWidth;
         if (isAtEnd) {
-          updateNewMedias();
+          switch (currentPage) {
+            case 1:
+              setFilteredMedia((prevFilteredMedia) => {
+                const uniqueMedias = mediasPage2.medias.filter(
+                  (newMedia) =>
+                    !prevFilteredMedia.some(
+                      (existingMedia) => existingMedia.id === newMedia.id
+                    )
+                );
+                return [...prevFilteredMedia, ...uniqueMedias];
+              });
+              currentPage++;
+              break;
+            case 2:
+              setFilteredMedia((prevFilteredMedia) => {
+                const uniqueMedias = mediasPage3.medias.filter(
+                  (newMedia) =>
+                    !prevFilteredMedia.some(
+                      (existingMedia) => existingMedia.id === newMedia.id
+                    )
+                );
+                return [...prevFilteredMedia, ...uniqueMedias];
+              });
+              currentPage++;
+              break;
+
+            default:
+              break;
+          }
         }
       }
     };
@@ -118,13 +159,13 @@ export default function BackdropSlider(SectionData) {
         slider.removeEventListener("scroll", handleScroll);
       }
     };
-  }, [sliderRef]);
+  }, [sliderRef, mediasPage2.medias, mediasPage3.medias]);
 
   return (
     <section className="SliderContainer">
       <section className="SectionTitle">
         <h2>
-          <strong>Suprime</strong> {SectionTitle}
+          {suprimeTitle ? <strong>Suprime</strong> : ""} {SectionTitle}
         </h2>
       </section>
 

@@ -16,6 +16,8 @@ const usePerGenre = (SectionData) => {
   const api_path = "https://api.themoviedb.org/";
   const rawApiKey = `&api_key=${APIKey}`;
   const rawLanguage = `&language=${language}`;
+  const mediaType = SectionData.mediaType;
+  const movieId = SectionData.movieId;
 
   const timeWindow = "day"; /* Time Window options: day or week */
 
@@ -112,11 +114,15 @@ const usePerGenre = (SectionData) => {
     const perTrendingRaw = `
     ${api_path}3/trending/${filterScope}/${timeWindow}${rawLanguage}${rawApiKey}`;
 
+    const recomendations = `${api_path}3/${mediaType}/${movieId}?append_to_response=recommendations%2Csimilar${rawLanguage}${rawApiKey}`;
+
     const selectedRaw =
       filterMode === "genre"
         ? perGenreRaw
         : filterMode === "trending"
         ? perTrendingRaw
+        : filterMode === "recomendations"
+        ? recomendations
         : "";
 
     if (language) {
@@ -128,11 +134,47 @@ const usePerGenre = (SectionData) => {
           return response.json();
         })
         .then((data) => {
-          const dataToFilter = data.results;
-          const dataFiltered = dataToFilter.filter(
-            (obj) => obj.backdrop_path !== null && obj.backdrop_path !== ""
-          );
-          setMedias(dataFiltered);
+          if (filterMode === "recomendations") {
+            const recommendations = data.recommendations.results;
+            const similar = data.similar.results;
+
+            const selectedMediaData =
+              recommendations.length > 0
+                ? recommendations
+                : similar.length > 0
+                ? similar
+                : [];
+
+            const dataFiltered = selectedMediaData.filter(
+              (obj) => obj.backdrop_path !== null && obj.backdrop_path !== ""
+            );
+
+            setMedias(dataFiltered);
+
+            if (dataFiltered.length <= 0) {
+              const alternativeUrl = `${api_path}3/discover/${mediaType}?${rawLanguage}&page=1&sort_by=popularity.desc&with_genres=${selectedGenre}${rawApiKey}`;
+
+              fetch(alternativeUrl)
+                .then((response) => {
+                  if (!response.ok) {
+                    throw new Error("Network response was not ok");
+                  }
+                  return response.json();
+                })
+                .then((data) => {
+
+                  setMedias(data.results);
+                });
+            }
+          } else {
+            const selectedMediaData = data.results;
+
+            const dataFiltered = selectedMediaData.filter(
+              (obj) => obj.backdrop_path !== null && obj.backdrop_path !== ""
+            );
+
+            setMedias(dataFiltered);
+          }
         })
         .catch((error) => {
           console.error("Fetch error:", error);

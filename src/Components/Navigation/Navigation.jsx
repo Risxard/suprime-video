@@ -54,7 +54,11 @@ var NavMenu = (SectionData) => {
 
   useEffect(() => {
     function ocultar() {
-      const navContainer = document.querySelector('.navLogada')
+
+      
+      const navLogada = document.querySelector('.navLogada')
+      const navNormal = document.querySelector('.navNormal')
+      const navContainer = navLogada ? navLogada : navNormal;
       const nav = document.getElementById("nav");
 
       // Verifica a largura da tela

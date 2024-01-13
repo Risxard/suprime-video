@@ -136,26 +136,6 @@ const FeatureItem = ({ movie, language, index }) => {
                 <Plus />
               </div>
             </span>
-            <div className="VoteRank">
-              <h3>{`${
-                movie.media_type === "movie"
-                  ? movie.release_date
-                    ? setDate(movie.release_date)
-                    : ""
-                  : movie.first_air_date
-                  ? setDate(movie.first_air_date)
-                  : ""
-              }`}</h3>
-
-              {movie.vote_average <= 0 ? (
-                ""
-              ) : (
-                <span>
-                  <VoteAvarage votes={movie.vote_average} />
-                  <h3>TMDB Rating</h3>
-                </span>
-              )}
-            </div>
           </span>
         </div>
       </div>

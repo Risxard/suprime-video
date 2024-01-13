@@ -6,7 +6,7 @@ import { Provider } from "react-redux";
 import store from './store/store.js'
 
 import App from './App.jsx'
-import Home from './Pages/Home/Home'
+import Home from './Pages/Home/Home.jsx'
 import Movie from './Pages/MediaPlayer/Movie.jsx'
 import Movies from './Pages/Movies/Movies.jsx'
 import Tv from './Pages/MediaPlayer/Tv.jsx'

@@ -18,6 +18,11 @@
     --dv-card-gap-number: calc(var(--dv-card-number) - 0.5);
 
     --dv-packshot-width: calc((var(--dv-screen-width) - var(--inner-width)*2 - var(--backdrop-gap-slider)*var(--dv-card-gap-number))/var(--dv-card-number)*1);
+
+
+
+
+
 }
 
 .SectionTitle {
@@ -95,5 +100,19 @@
 @media screen and (min-width: 1400px) {
     #root {
         --dv-card-number: 5;
+    }
+}
+
+
+@media (max-width: 37.49em) {
+    :root {
+        --dvui-spacing-100: 4px;
+        --dvui-spacing-200: 4px;
+        --dvui-spacing-300: 4px;
+        --dvui-spacing-400: 8px;
+        --dvui-spacing-500: 12px;
+        --dvui-spacing-600: 16px;
+        --dvui-spacing-700: 24px;
+        --dvui-spacing-800: 36px;
     }
 }

@@ -9,8 +9,8 @@ export function runtimeConverter(minutos) {
   const horas = Math.floor(minutos / 60);
   const minutosRestantes = minutos % 60;
 
-  const horasPlural = horas === 1 ? "h" : "h";
-  const minutosPlural = minutosRestantes === 1 ? "m" : "m";
+  const horasPlural = horas === 1 ? " h" : " h";
+  const minutosPlural = minutosRestantes === 1 ? " min" : " min";
 
   const resultado = `${horas}${horasPlural} ${minutosRestantes}${minutosPlural}`;
 

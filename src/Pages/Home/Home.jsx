@@ -27,6 +27,8 @@ const Home = (SectionData) => {
   const pageType = "all";
   const mediaType = "tv";
 
+
+
   const visibleSections = useIntersectionObserver();
 
   const APIKey = guestApiKey;
@@ -96,6 +98,7 @@ const Home = (SectionData) => {
               selectedGenre={genre.id}
               filterMode={filterMode}
               filterScope={filterScope}
+              suprimeTitle={true}
             ></BackdropSlider>
           ))}
 

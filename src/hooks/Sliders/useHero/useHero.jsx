@@ -23,7 +23,7 @@ const useHero = (SectionData) => {
           return response.json();
         })
         .then((data) => {
-          const moviesqtde = data.results.slice(0, 5);
+          const moviesqtde = data.results.slice(0, 10);
           setMovies(moviesqtde);
         })
         .catch((error) => {

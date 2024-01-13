@@ -4,13 +4,70 @@
     height: clamp(0rem, 50vw, 30rem);
 
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
 
     position: relative;
 
     margin-bottom: 2rem;
 }
+
+.radio-list {
+    display: flex;
+    flex-direction: row;
+}
+
+.feature-container .slider-control .radio-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+
+    margin-top: 8px;
+}
+
+.feature-container .slider-control .radio-item {
+    background-attachment: scroll;
+    background-clip: border-box;
+    background-color: rgba(255, 255, 255, 0.3);
+    background-image: none;
+    background-origin: padding-box;
+    background-position-x: 0%;
+    background-position-y: 0%;
+    background-repeat: repeat;
+    background-size: auto;
+    border-bottom-left-radius: 50%;
+    border-bottom-right-radius: 50%;
+    border-top-left-radius: 50%;
+    border-top-right-radius: 50%;
+    box-sizing: border-box;
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+    display: list-item;
+    font-family: "Amazon Ember", "Amazon Arabic Ember", Arial, sans-serif;
+    font-size: 20px;
+    font-weight: 500;
+    height: 6px;
+    width: 6px;
+    letter-spacing: normal;
+    line-height: 28px;
+    list-style-image: none;
+    list-style-position: outside;
+    list-style-type: none;
+    margin-right: 16px;
+    text-align: left;
+    text-size-adjust: 100%;
+
+    -webkit-font-smoothing: antialiased;
+}
+
+.feature-container .slider-control .radio-item.checked {
+    background-color: rgb(255, 255, 255);
+}
+.radio-list .radio-item:hover {
+    background: hsla(0,0%,100%,.6);
+}
+
+
 
 .feature-container a {
     text-decoration: none;
@@ -462,9 +519,18 @@
 
 
 @media(min-width: 600px) {
-    .slider{
+    .slider {
         gap: 16px;
     }
+
+    .feature-container .slider-control .radio-item {
+        width: 8px;
+        height: 8px;
+    }
+
+    .feature-container .slider-control .radio-list {
+        margin-top: 12px;
+      }
 }
 
 
@@ -528,9 +594,7 @@
     }
 
 
-    .slider {
-        gap: 18px;
-    }
+
 }
 
 
@@ -549,17 +613,21 @@
 
         color: #ffff;
     }
+
+    .slider {
+        gap: 24px;
+    }
 }
 
 @media(min-width: 1280px) {
-    .slider {
-        gap: 20px;
-    }
+
 }
+
 @media(min-width: 1800px) {
+
     .slide,
     .slide img,
-    .filter{
+    .filter {
         border-radius: 12px;
     }
 
