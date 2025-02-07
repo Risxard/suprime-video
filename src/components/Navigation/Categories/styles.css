@@ -1,0 +1,11 @@
+
+.dropdown-categories-list {
+    column-count: 2;
+    column-gap: 21px;
+}
+
+.dropdown-categories-list li {
+    break-inside: avoid;
+}
+
+

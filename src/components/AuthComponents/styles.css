@@ -1,0 +1,258 @@
+.Register-Container {
+    width: 100%;
+    min-width: 500px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+
+    padding: 60px 68px 40px;
+    
+}
+
+.reg-box {
+    width: 100%;
+    height: 3rem;
+
+    display: flex;
+    flex-direction: row;
+    background-color: #FFFFFF;
+    border-radius: 3px;
+    align-items: center;
+    justify-content: space-around;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+
+.reg-box svg {
+    width: 1.5rem;
+    height: 1.5rem;
+
+    margin-left: 1rem;
+}
+
+
+.returnBtn {
+    cursor: pointer;
+    width: 2.5rem;
+    height: 2.5rem;
+    color: '#FFFF';
+}
+
+.inputIcons {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #0A070B;
+}
+
+#country {
+    width: 30%;
+    display: flex;
+    margin-left: 24px;
+
+    border: none;
+    outline: none;
+    appearance: none;
+
+    background: none;
+    font-family: 'Gilroy-Regular';
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 22px;
+    color: #0A070B;
+}
+
+.name-input {
+    border: none;
+    outline: none;
+    width: 80%;
+    height: 70%;
+    margin-left: 10px;
+    padding-left: 24px;
+    border-left: 0.5px solid #00A8E1;
+
+    font-family: 'Gilroy-Medium';
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 22px;
+    color: #807E81;
+}
+
+.input-error::placeholder {
+    color: red;
+}
+
+
+
+
+.name-input.inputVal::-webkit-input-placeholder {
+    color: #F41B3B;
+}
+
+
+.error-message {
+    font-size: clamp(0.7rem, 2vw, 1rem);
+    color: #F41B3B;
+    text-align: left;
+}
+
+
+
+.reg-btn {
+    all: initial;
+    cursor: pointer;
+    width: 100%;
+    height: 62px;
+
+    background: #00A8E1;
+    border-radius: 3px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
+}
+
+.reg-btn:hover{
+    opacity: 0.8;
+}
+
+.reg-btn:active {
+    opacity: 0.7;
+}
+
+
+#singUpBtn p {
+    color: #0A070B;
+}
+
+.reg-btn p {
+    user-select: none;
+    text-align: center;
+    font-family: 'Gilroy-SemiBold';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 22px;
+    color: #FFFFFF;
+}
+
+.reg-btns-container {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-wrap: row;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.rem-box {
+    font-family: 'Gilroy-Regular';
+    font-weight: 400;
+
+    align-self: flex-start;
+    display: flex;
+    flex-direction: row;
+    gap: 0.6rem;
+    font-size: 14px;
+    margin-block: 0.5rem;
+}
+
+.rem-box input, .rem-box label {
+    cursor: pointer;
+}
+
+.newTo {
+    font-family: 'Gilroy-Regular';
+    font-weight: 400;
+
+    align-self: flex-start;
+    align-items: center;
+    justify-content: space-between;
+    display: flex;
+    flex-direction: row;
+    gap: 0.6rem;
+    font-size: 14px;
+    margin-block: 0.5rem;
+
+    flex-wrap: wrap;
+}
+
+.newTo strong {
+    font-family: 'Gilroy-Regular';
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+@media only screen and (max-width: 740px) {
+    .Register-Container {
+        min-width: inherit;
+        padding: 40px 20px;
+        height: 100%;
+
+    }
+}
+
+.Intro-Container {
+    z-index: 20;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    color: #FFFF;
+
+    padding: var(--inner-width);
+}
+
+
+.H1-Container img{
+    width: 130px;
+    height: auto;
+}
+
+
+.H1-Container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    transition: all 0.5s ease-in-out;
+
+
+    gap: 1rem;
+}
+.H1-Container svg{
+    min-width: 15rem;
+    max-width: 26rem;
+    min-height: 3rem;
+    max-height: 10rem;
+}
+
+.H1-Container h1 {
+    font-family: 'Gilroy-Bold';
+    font-weight: 400;
+    font-size: clamp(3rem, 7vw, 10rem);
+    letter-spacing: -1.5px;
+    text-align: center;
+
+    text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.45);
+    color: #FFFF;
+
+
+}
+
+@media only screen and (max-width: 740px){
+    .Intro-Container {
+        width: 100%;
+        height: 100%;
+        padding-inline: 0;
+    }
+}

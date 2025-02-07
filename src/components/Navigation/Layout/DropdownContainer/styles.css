@@ -1,0 +1,242 @@
+.dropdown-container {
+    margin-top: 12px;
+    top: 100%;
+    right: 0;
+    position: absolute;
+    border-radius: 12px;
+    display: none;
+    flex-direction: row;
+    cursor: default;
+    text-wrap: nowrap;
+    padding: 21px;
+
+    background-color: rgba(25, 30, 37, .8);
+    -webkit-backdrop-filter: blur(16px);
+    backdrop-filter: blur(16px);
+}
+
+
+.dropdown-content-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+}
+
+.dropdown-container .dropdown-content-layout ul li{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.6rem;
+    cursor: pointer;
+    border-radius: 8px;
+    padding-inline: 14px;
+    padding-block: 9px;
+}
+
+.dropdown-content-layout li{
+    border-radius: 8px;
+
+    padding-inline: 14px;
+}
+
+.dropdown-content-layout>p{
+    font-family: 'Ember-regular';
+    text-transform: uppercase;
+    color: rgb(128, 128, 128);
+    font-size: 14px;
+    padding-inline: 14px;
+    padding-block: 8px;
+}
+
+.dropdown-container .dropdown-content-layout ul li p {
+    font-family: 'Ember-regular';
+    color: white;
+    font-size: 16px;
+}
+
+.dropdown-content-layout ul li a{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.6rem;
+    width: 100%;
+    height: 100%;
+}
+
+.dropdown-content-layout a{
+    text-decoration: none;
+    color: white;
+}
+.dropdown-content-layout ul li:hover p{
+    color: black;
+}
+li[data-hover="true"] .dropdown-container {
+    display: flex;
+}
+
+
+.dropdown-content-layout ul li .item-image-container img,
+.dropdown-content-layout ul li .item-image-container svg
+ {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
+
+.dropdown-content-layout ul li {
+
+}
+
+@media screen and (min-width: 449px){
+    .dropdown-container .dropdown-content-layout ul li p {
+        font-size: 18px;
+    }
+}
+
+
+@media screen and (max-width: 599px) {
+    .dropdown-content-layout ul li {
+        height: 42px;
+    }
+
+    .Card-avatar img {
+        width: 32px;
+        height: 32px;
+    }
+
+    .item-image-container {
+        width: 32px;
+        height: 32px;
+    }
+
+
+    .dropdown-content-layout>p{
+        padding-block: 6px;
+    }
+}
+@media screen and (min-width: 600px) {
+    .dropdown-content-layout ul li {
+        height: 48px;
+    }
+
+
+    .Card-avatar img {
+        width: 36px;
+        height: 36px;
+    }
+
+    .item-image-container {
+        width: 36px;
+        height: 36px;
+    }
+}
+
+
+@media screen and (max-width: 879px) {
+    .dropdown-content-layout>p,
+    .dropdown-profiles-section>p {
+        font-size: 12px;
+        padding-block: 7px;
+    }
+
+    #UserMenu-container.active .dropdown-container {
+        display: flex;
+        overflow: auto;
+        max-height: calc(100vh - var(--nav-height) - (15px * 2) - 30px);
+    }
+
+    .dropdown-container {
+        flex-direction: column;
+        right: 21px;
+        padding: 15px;
+    }
+
+    .dropdown-container .dropdown-content-layout {
+        padding-left: 0px;
+    }
+
+
+}
+
+@media screen and (min-width: 880px) {
+    .dropdown-content-layout ul li {
+        height: 38px;
+    }
+
+    .drop-down-safe-area {
+        height: var(--nav-height);
+        width: 100%;
+        top: -30px;
+        left: 0;
+        position: absolute;
+    }
+
+    .dropdown-content-layout ul li:hover {
+        background-color: #FFFFFF;
+    }
+
+    .dropdown-container .dropdown-content-layout ul li p {
+        font-size: 14px;
+    }
+
+    .Card-avatar img {
+        width: 30px;
+        height: 30px;
+    }
+
+    .item-image-container {
+        width: 30px;
+        height: 30px;
+    }
+
+    #Card-Profile {
+        width: 500px;
+        height: auto;
+        flex-direction: row;
+        padding: 2rem;
+    }
+
+    #Card-Profile:hover {
+        display: flex;
+    }
+}
+
+@media screen and (min-width: 1280px) {
+    .dropdown-content-layout ul li {
+        height: 42px;
+    }
+
+
+    .Card-avatar img {
+        width: 33px;
+        height: 33px;
+    }
+
+    .item-image-container {
+        width: 33px;
+        height: 33px;
+    }
+}
+
+@media screen and (min-width: 1400px) {
+    .user-name {
+        display: flex;
+    }
+
+    .Card-avatar img {
+        width: 33px;
+        height: 33px;
+    }
+
+    .item-image-container {
+        width: 33px;
+        height: 33px;
+    }
+
+    .dropdown-container .dropdown-content-layout ul li p {
+        font-size: 16px;
+    }
+}

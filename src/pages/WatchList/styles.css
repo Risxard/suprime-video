@@ -1,0 +1,36 @@
+.watchlistPage {
+    margin-top: var(--nav-height);
+    color: white;
+
+
+}
+
+.filter-watchlist {
+    display: flex;
+    justify-content: flex-end;
+    padding-inline: var(--inner-width);
+}
+
+.watchlistPage .filters-btns-container {
+    padding: 0;
+
+}
+
+.watchlistPage .inner-btn {
+    margin-right: 12px;
+}
+
+.watchlistPage .inner-btn ul {
+    right: 0;
+}
+
+.watchlistPage .inner-btn ul li {
+    text-wrap: nowrap;
+}
+
+
+@media screen and (min-width: 880px) {
+    .filter-watchlist {
+        justify-content: space-between;
+    }
+}
