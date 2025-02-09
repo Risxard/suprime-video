@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-import "./../Categories.css";
+import "../styles.css";
 import BackdropSlider from "../../../Components/Sliders/BackdropSlider/BackdropSlider";
 import { setSectionTitle } from "../../../functions/Converter";
 import { getDiscover } from "../../../Services/callFunctions/getDiscover";

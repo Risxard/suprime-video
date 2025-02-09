@@ -15,7 +15,7 @@ const EditProfilesItens = ({ imageProfile, onPicSelector }) => {
   const [dataChange, setDataChange] = useState(false);
   const { profileId } = useParams();
   const profiles = useSelector((state) => state.auth.profiles);
-  const userId = useSelector((state) => state.auth.user.uid);
+  const userId = useSelector((state) => state.auth.user);
   const selectedProfile = profiles.find((profile) => profile.id === profileId);
   const [inputName, setInputName] = useState(selectedProfile?.name || "");
 
@@ -203,7 +203,6 @@ const EditProfilesItens = ({ imageProfile, onPicSelector }) => {
           Cancel
         </a>
         <span
-          href=""
           className="edit-options-li-btn"
           data-changes={dataChange}
           onClick={() => handleUpdateProfile()}

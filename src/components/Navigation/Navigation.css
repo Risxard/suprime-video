@@ -1,7 +1,7 @@
 .Navigation {
     display: flex;
     width: 100%;
-    padding-inline: 0px;
+    padding-inline: calc(var(--inner-width) - var(--nav-content-padding));
     box-sizing: border-box;
     height: var(--nav-height);
     position: fixed;
@@ -36,18 +36,15 @@
 .nav-content {
     width: 100%;
     height: 100%;
-
     z-index: 50;
     display: flex;
     justify-content: center;
     align-items: center;
-
-
     border-radius: 0 0 12px 12px;
-
     transition: background-color .1s linear;
 
-    padding-inline: 21px;
+    padding-inline: var(--nav-content-padding);
+
 }
 
 .suprime-logo-titles {
@@ -631,10 +628,11 @@ media query MobileFirst Open*/
     .NavLogo h2 {
         display: inline;
         text-wrap: nowrap;
-        font-size: clamp(0px, 3vw, 16px);
+        font-size: 16px;
     }
 
 }
+
 @media screen and (max-width: 448px) {
 
     .nav-standalone {
@@ -647,10 +645,15 @@ media query MobileFirst Open*/
         align-items: center;
     }
 
-    .nav-standalone .NavLogo{
+    .nav-standalone .NavLogo {
         display: none;
     }
 
+}
+@media screen and (max-width: 599px) {
+    .Navigation {
+        --nav-content-padding: 12px;
+    }
 }
 
 @media screen and (min-width: 600px) {
@@ -660,6 +663,10 @@ media query MobileFirst Open*/
 
     .NavLogo {
         margin-right: 24px;
+    }
+
+    .Navigation {
+        --nav-content-padding: 15px;
     }
 }
 
@@ -677,6 +684,10 @@ media query MobileFirst Open*/
 @media screen and (max-width: 879px) {
     .NavLogoOut {
         display: flex;
+    }
+
+    .Navigation{
+        padding-inline: 0px;
     }
 
 
@@ -759,8 +770,9 @@ media query MobileFirst Open*/
     }
 
     .Navigation {
-        padding-inline: 26px;
+        --nav-content-padding: 18px;
     }
+
 }
 
 
@@ -796,7 +808,7 @@ media query MobileFirst Open*/
 
 @media screen and (min-width: 1280px) {
     .Navigation {
-        padding-inline: 23px;
+        --nav-content-padding: 21px;
     }
 
     .NavLogo h2 {
@@ -824,18 +836,19 @@ media query MobileFirst Open*/
         padding-left: 14px;
         padding-right: 14px;
     }
+
 }
 
 
 @media screen and (min-width: 1400px) {
     .Navigation {
-        padding-inline: 51px;
         height: 66px;
     }
 
     .nav-content p {
         font-size: 16px;
     }
+
 }
 
 

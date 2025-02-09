@@ -14,7 +14,7 @@ import {
 import SearchMediaList from "./SearchMediaList/SearchMediaList.jsx";
 import SpinnerLoading from "../../assets/svgs/SpinnerLoading.jsx";
 
-import { connect } from "react-redux";
+import { useSelector } from "react-redux";
 
 const Search = (props) => {
   const [pageNumber, setPageNumber] = useState(1);
@@ -30,7 +30,7 @@ const Search = (props) => {
   const { searchKey } = useParams();
 
   const parts = searchKey.split("=");
-  const language = props.language;
+  const language = useSelector((state) => state.lang.language);
 
   const key = parts[0];
   const value = parts[1];
@@ -49,7 +49,6 @@ const Search = (props) => {
   const multiRaw = `https://api.themoviedb.org/3/search/multi?query=${value}&include_adult=false${rawLanguage}&page=${pageNumber}${rawApiKey}`;
 
   const selectedRaw = key === "person" ? personRaw : multiRaw;
-  
 
   useEffect(() => {
     if (
@@ -324,9 +323,4 @@ const Search = (props) => {
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    language: state.lang.dataLang,
-  };
-};
-export default connect(mapStateToProps)(Search);
+export default Search;

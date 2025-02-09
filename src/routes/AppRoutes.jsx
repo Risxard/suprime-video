@@ -9,6 +9,7 @@ import {
   TvSeries,
   MediaPlayer,
   ProfilesPage,
+  Categories,
 } from "../pages";
 
 import PrivateLayout from "../App";
@@ -18,6 +19,7 @@ import Movie from "../pages/MediaPlayer/Movie";
 import PageTest from "../pages/PageTest";
 import EditingProfiles from "../pages/Profiles/Components/EditingProfiles";
 import CreateNewProfilePage from "../pages/Profiles/Components/CreateProfile/CreateNewProfile";
+import Search from "../pages/Search";
 
 const AppRoutes = () => {
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
@@ -40,14 +42,19 @@ const AppRoutes = () => {
     { path: "/detail/movie/:id", element: <Movie /> },
     { path: "/detail/tv/:key", element: <MediaDetail /> },
     { path: "/mediaplayer/:id", element: <MediaPlayer /> },
+    { path: "/search/:searchKey", element: <Search /> },
+    { path: "/categories/:genreId", element: <Categories /> },
     { path: "/tv-series", element: <TvSeries /> },
     { path: "/pageTest", element: <PageTest /> },
   ];
 
   const privateStandalone = [
     { path: "/profiles", element: <ProfilesPage /> },
-    { path: "/profiles/editing&profileId/:profileId", element: <EditingProfiles /> },
-    { path: "/profiles/create", element: <CreateNewProfilePage/> },
+    {
+      path: "/profiles/editing&profileId/:profileId",
+      element: <EditingProfiles />,
+    },
+    { path: "/profiles/create", element: <CreateNewProfilePage /> },
   ];
 
   return (

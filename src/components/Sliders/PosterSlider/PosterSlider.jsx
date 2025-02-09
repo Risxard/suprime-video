@@ -22,15 +22,21 @@ export default function PosterSlider(SectionData) {
   const [medias, setMedias] = useState([]);
   const { sectionTitle } = SectionData;
 
+
+
   const language = useSelector((state) => state.lang.language);
 
   const sliderRef = useRef(null);
   const posterRef = useRef(null);
 
   async function getMedias(SectionData) {
+    
     const mediasArray = await getPerGenres(SectionData);
+
+
     setMedias(mediasArray.slice(0, 20));
   }
+
   useEffect(() => {
     getMedias(SectionData);
   }, []);

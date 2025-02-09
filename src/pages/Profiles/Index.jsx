@@ -8,10 +8,9 @@ import NavStandalone from "../../components/Navigation/NavStandalone.jsx";
 
 const ProfilesPage = () => {
   const [editMode, setEditMode] = useState(false);
-
   const dispatch = useDispatch();
   const profilesList = useSelector((state) => state.auth.profiles);
-  const userId = useSelector((state) => state.auth.user.uid);
+  const userId = useSelector((state) => state.auth.user);
 
 
   useEffect(() => {

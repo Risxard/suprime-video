@@ -51,19 +51,6 @@ const createNewProfile = async (userId, profileName, newImage) => {
     }
 };
 
-// Função para atualizar um perfil
-const updateProfile = async (userId, profileId, updatedPreferences) => {
-    try {
-        const profileRef = doc(db, "users", userId, "profiles", profileId);
-        await updateDoc(profileRef, updatedPreferences);
-        console.log("Perfil atualizado com sucesso!");
-        return true
-    } catch (error) {
-        console.error("Erro ao atualizar perfil:", error.message);
-        return false
-    }
-};
-
 // Função para excluir um perfil
 const deleteProfile = async (userId, profileId) => {
     try {
@@ -95,12 +82,6 @@ const deleteProfile = async (userId, profileId) => {
 };
 
 
-const switchCurrentProfile = () =>{
-
-    const allProfiles = localStorage.getItem('@AuthSV:profiles');
-}
-
-
 const getAllProfiles = async (userId, dispatch) => {
     try {
       // Referência ao documento do usuário
@@ -119,7 +100,7 @@ const getAllProfiles = async (userId, dispatch) => {
       const { name } = userData;
   
       // Referência à coleção de perfis do usuário
-      const profilesRef = collection(userRef, "profiles");
+      const profilesRef = collection(db, "users", userId, "profiles");
   
       // Busca todos os documentos na coleção de perfis
       const querySnapshot = await getDocs(profilesRef);
@@ -152,7 +133,18 @@ const getAllProfiles = async (userId, dispatch) => {
     }
   };
 
-
+// Função para atualizar um perfil
+const updateProfile = async (userId, profileId, updatedPreferences) => {
+    try {
+        const profileRef = doc(db, "users", userId, "profiles", profileId);
+        await updateDoc(profileRef, updatedPreferences);
+        console.log("Perfil atualizado com sucesso!");
+        return true
+    } catch (error) {
+        console.error("Erro ao atualizar perfil:", error.message);
+        return false
+    }
+};
 
 
 

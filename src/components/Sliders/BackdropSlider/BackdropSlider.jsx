@@ -7,15 +7,20 @@ import { getPerGenres } from "../../../Services/callFunctions/getPerGenres";
 
 export default function BackdropSlider(props) {
   const sliderRef = useRef(null);
-  const { receivingMode, language, sectionTitle, suprimeTitle, dataReceived } =
-    props;
+  const {
+    receivingMode,
+    language,
+    sectionTitle,
+    suprimeTitle,
+    dataReceived,
+    selectedGenre,
+  } = props;
 
   const dataFiltered = dataReceived ? dataReceived : [];
 
   const [medias, setMedias] = useState(dataFiltered);
 
   const sliderContentRef = useRef(null);
-  
 
   async function getMedias(props) {
     const mediasArray = await getPerGenres(props);
@@ -29,14 +34,13 @@ export default function BackdropSlider(props) {
   }, [props]);
 
   const handleMouseEnter = () => {
-    if(sliderContentRef.current){
+    if (sliderContentRef.current) {
       sliderContentRef.current.classList.add("hovered-class");
     }
-
   };
 
   const handleMouseLeave = () => {
-    if(sliderContentRef.current){
+    if (sliderContentRef.current) {
       sliderContentRef.current.classList.remove("hovered-class");
     }
   };
@@ -76,7 +80,6 @@ export default function BackdropSlider(props) {
       }
     };
   }, [sliderRef]);
-  
 
   return (
     <section className="SliderContainer">

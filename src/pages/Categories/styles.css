@@ -1,5 +1,5 @@
 .CategoriesPage {
-    margin-top: var(--nav-height);
+    padding-top: var(--nav-height);
     color: white;
 
     display: flex;

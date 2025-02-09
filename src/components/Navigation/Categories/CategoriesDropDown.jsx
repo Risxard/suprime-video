@@ -12,57 +12,57 @@ const Categorieschildren = () => {
 
         <ul className="dropdown-categories-list">
           <li>
-            <Link to="/categories/action-adventure">
+            <Link to="/categories/28">
               <p>Action and Adventure</p>
             </Link>
           </li>
           <li>
-            <Link to="/categories/anime">
+            <Link to="/categories/16">
               <p>Anime</p>
             </Link>
           </li>
           <li>
-            <Link to="/categories/comedy">
+            <Link to="/categories/35">
               <p>Comedy</p>
             </Link>
           </li>
           <li>
-            <Link to="/categories/documentary">
+            <Link to="/categories/99">
               <p>Documentary</p>
             </Link>
           </li>
           <li>
-            <Link to="/categories/drama">
+            <Link to="/categories/18">
               <p>Drama</p>
             </Link>
           </li>
           <li>
-            <Link to="/categories/fantasy">
+            <Link to="/categories/14">
               <p>Fantasy</p>
             </Link>
           </li>
           <li>
-            <Link to="/categories/horror">
+            <Link to="/categories/27">
               <p>Horror</p>
             </Link>
           </li>
           <li>
-            <Link to="/categories/kids">
+            <Link to="/categories/10751">
               <p>Kids</p>
             </Link>
           </li>
           <li>
-            <Link to="/categories/mystery-thrillers">
+            <Link to="/categories/9648">
               <p>Mystery and Thrillers</p>
             </Link>
           </li>
           <li>
-            <Link to="/categories/romance">
+            <Link to="/categories/10749">
               <p>Romance</p>
             </Link>
           </li>
           <li>
-            <Link to="/categories/science-fiction">
+            <Link to="/categories/878">
               <p>Science Fiction</p>
             </Link>
           </li>
@@ -74,32 +74,32 @@ const Categorieschildren = () => {
 
         <ul>
           <li>
-            <Link to="/categories/made-for-you">
+            <Link to="">
               <p>Made for you</p>
             </Link>
           </li>
           <li>
-            <Link to="/categories/new-and-upcoming">
+            <Link to="">
               <p>New and upcoming</p>
             </Link>
           </li>
           <li>
-            <Link to="/categories/home-premiere">
+            <Link to="">
               <p>Home Premiere</p>
             </Link>
           </li>
           <li>
-            <Link to="/categories/critically-acclaimed">
+            <Link to="">
               <p>Critically acclaimed</p>
             </Link>
           </li>
           <li>
-            <Link to="/categories/lgbtqiap">
+            <Link to="">
               <p>LGBTQIAP+</p>
             </Link>
           </li>
           <li>
-            <Link to="/categories/black-voices">
+            <Link to="">
               <p>Black voices</p>
             </Link>
           </li>

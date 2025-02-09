@@ -1,128 +1,88 @@
+.footer-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    font-family: 'Ember-medium';
+
+
+}
+
+.footer-container ul {
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.footer-container ul li {
+    padding-right: 4px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer-container ul li {
+    padding-inline: 4px;
+
+}
+
+
+
+.footer-container ul li:hover a {
+    color: #90dffe;
+}
+
+.footer-container ul li a {
+    color: #79b8f3;
+    text-decoration: none;
+    transition: color .2s ease-in-out;
+    white-space: nowrap;
+}
+
+
 .footer-logo {
     display: flex;
     align-items: center;
     justify-content: center;
-
-    width: 50%;
-
-    font-family: 'ember-bold';
-    font-size: 16px;
-    color: #FFFFFF;
+    height: 42px;
 }
 
-
-.footer-menu-container {
-    height: auto;
-    width: 380px;
-
-
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.footer-menu-container a {
-    width: auto;
-    font-family: 'Gilroy-SemiBold';
-    font-weight: 500;
-    font-size: 16px;
-    line-height: 24px;
-    color: #FFFFFF;
-
-
-    text-align: center;
-
-
-    list-style: none;
-    text-decoration: none;
-    white-space: nowrap;
-
-}
-
-.Help-container {
-    border: solid #4F4E50;
-    border-width: 0px 1px 0px 1px;
-
-    padding-inline: 56px;
-}
-
-.List-container {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    align-items: center;
-
-
+.footer-logo img {
     width: 100%;
-
-
-    padding-block: 20px;
+    height: 100%;
 }
 
-
-.footer-social-container ul {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-}
-
-.footer-social-container ul li {
-    list-style: none;
-    padding: 0px 37px 0px 37px;
-}
-
-
-.footer-social-container h2 {
-    white-space: nowrap;
-    font-family: 'Gilroy-Regular';
-    font-style: normal;
-    font-weight: 600;
-    font-size: 14px;
-    line-height: 24px;
-
-    color: #807E81;
-    cursor: unset;
-
-}
-
-.github-social {
-    border: solid #4F4E50;
-    border-width: 0px 0px 0px 1px;
-
-
-}
-.linkedin-social svg{
-    width: 30px;
-    height: 30px;
-    cursor: pointer;
-}
-
-.github-social svg{
-    width: 30px;
-    height: 30px;
-    cursor: pointer;
-}
-
-
-.Rights{
-    width: 100%;
-    display: flex;
-    justify-content: center;
-}
-
-.Rights p {
-    font-family: 'Gilroy-Regular';
-    font-size: clamp(14px, 3vw, 16px);
-    font-weight: 400;
-    line-height: 24px;
-
-    color: #FFFFFF;
+.Rights {
+    color: #8197a4;
+    display: inline-block;
+    padding: 4px;
 }
 
 
 @media screen and (max-width: 799px) {
-    .List-container{
+    .List-container {
         justify-content: center;
+    }
+}
+
+@media screen and (max-width: 1039px) {
+    .footer-container, .footer-container a {
+        font-weight: 500;
+        font-size: 13px;
+        line-height: 16px;
+    }
+}
+
+@media screen and (min-width: 1040px) {
+    .footer-container{
+        font-weight: 500;
+        font-size: 15px;
+        line-height: 20px;
     }
 }

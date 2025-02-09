@@ -83,12 +83,12 @@ const SearchMediaList = (props) => {
                   )
                   .slice(0, visibleSections)
                   .map((array) => (
-                    <SearchItem key={array.id} mediaInfo={array} />
+                    <SearchItem key={array.id} movie={array} />
                   ))
               : filteredMedias
                   .slice(0, visibleSections)
                   .map((array) => (
-                    <SearchItem key={array.id} mediaInfo={array} />
+                    <SearchItem key={array.id} movie={array} />
                   ))}
           </ul>
         </div>

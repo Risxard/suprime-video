@@ -7,7 +7,7 @@ export const getPerGenres = (SectionData) => {
     const APIKey = guestApiKey;
     const api_path = "https://api.themoviedb.org/";
     const rawApiKey = `&api_key=${APIKey}`;
-    const rawLanguage = `&language=${language}`;
+    const rawLanguage = `language=${language}`;
     const baseWithout = "&without_genres=";
     const timeWindow = SectionData.timeWindow ? SectionData.timeWindow : "day";
     const pageNumber = SectionData.pageNumber ? SectionData.timeWindow : 1;
@@ -17,6 +17,7 @@ export const getPerGenres = (SectionData) => {
 
     let filtered;
     let medias;
+
 
 
     if (filterScope === "movie") {
@@ -133,14 +134,16 @@ export const getPerGenres = (SectionData) => {
 
 
 
+
+
     const perGenreRaw = `
-${api_path}3/discover/${filterScope}?include_adult=false&include_video=false${rawLanguage}&page=${pageNumber}&sort_by=${sortBy ? sortBy : "popularity.desc"}${rawApiKey}&with_genres=${filtered}`;
+${api_path}3/discover/${filterScope}?include_adult=false&include_video=false&${rawLanguage}&page=${pageNumber}&sort_by=${sortBy ? sortBy : "popularity.desc"}${rawApiKey}&with_genres=${filtered}`;
 
     const perTrendingRaw = `
-${api_path}3/trending/${filterScope}/${timeWindow}${rawLanguage}${rawApiKey}`;
+${api_path}3/trending/${filterScope}/${timeWindow}?${rawLanguage}${rawApiKey}`;
 
-    const recomendations = mediaType && movieId ? `${api_path}3/${mediaType}/${movieId}?append_to_response=recommendations%2Csimilar${rawLanguage}${rawApiKey}` : "";
-    
+    const recomendations = mediaType && movieId ? `${api_path}3/${mediaType}/${movieId}?append_to_response=recommendations%2Csimilar&${rawLanguage}${rawApiKey}` : "";
+
 
     const selectedRaw =
         filterMode === "genre"
@@ -151,8 +154,6 @@ ${api_path}3/trending/${filterScope}/${timeWindow}${rawLanguage}${rawApiKey}`;
                     ? recomendations
                     : "";
 
-
-    
 
 
 

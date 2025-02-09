@@ -53,6 +53,7 @@ export default function Backdropitem({ movie, mediaType, language }) {
             loading="lazy"
           />
         </Link>
+
         <span className="backdrop-info-card">
           <span className="media-title">
             <h2>{mediaTitle}</h2>
@@ -91,13 +92,13 @@ export default function Backdropitem({ movie, mediaType, language }) {
               </div>
             </Link>
             <div className="option-btns">
-              <span className="watchlist-btn watchlist-btn">
+              <span className="featureBtn-item">
                 <div className="align-btn">
                   <Plus />
                 </div>
               </span>
 
-              <span className="watchlist-btn trailer-btn">
+              <span className="featureBtn-item trailer-btn">
                 <div className="align-btn">
                   <svg
                     className="fbl-icon _30dE3d _1a_Ljt"
@@ -125,7 +126,7 @@ export default function Backdropitem({ movie, mediaType, language }) {
                 </div>
               </span>
 
-              <span className="watchlist-btn ban">
+              <span className="featureBtn-item ban">
                 <div className="align-btn">
                   <Ban />
                 </div>
@@ -190,6 +191,7 @@ export default function Backdropitem({ movie, mediaType, language }) {
           </div>
           <span className="backdrop-overview-card">{movie.overview}</span>
         </span>
+        
       </div>
     </li>
   );

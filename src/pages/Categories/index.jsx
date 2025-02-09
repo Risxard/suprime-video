@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
-import { connect } from "react-redux";
+import { useSelector } from "react-redux";
 
 import "./styles.css";
 import GenreList from "./Components/GenreList";
 import { genreConverter } from "../../functions/Converter";
 
-const Categories = (props) => {
+const Categories = () => {
   const [filter, setFilter] = useState(1);
   const { genreId } = useParams();
-  const language = "pt-br";
+  const language = useSelector((state) => state.lang.language);
   const CategoriesName = genreConverter(parseInt(genreId), language, "movie");
 
   const handleSetFilter = (filter) => {
@@ -48,7 +48,5 @@ const Categories = (props) => {
     </div>
   );
 };
-
-
 
 export default Categories;

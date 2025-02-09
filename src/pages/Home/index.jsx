@@ -47,7 +47,7 @@ const Home = (SectionData) => {
         {/* <Top10Slider></Top10Slider> */}
 
         <section className="home-main-section">
-          {/* <PosterSlider
+          <PosterSlider
             suprimeTitle={true}
             sectionTitle={"The week's most popular"}
             idParam={58}
@@ -55,7 +55,7 @@ const Home = (SectionData) => {
             filterMode={"trending"}
             filterScope={"all"}
             timeWindow={"week"}
-          ></PosterSlider> */}
+          ></PosterSlider>
 
           <SlideDistributor language={language} mediaType={mediaType}/>
         </section>

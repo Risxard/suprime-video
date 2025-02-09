@@ -97,7 +97,6 @@ footer {
     padding-block: 24px;
     padding-inline: 24px;
 
-    gap: 8px;
     z-index: 10;
 }
 
@@ -126,3 +125,5 @@ footer {
     display: flex;
     justify-content: center;
 }
+
+

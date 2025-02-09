@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <h1 align="center"> Suprime Video</h1>
 
 
@@ -6,6 +7,14 @@ Bem-vindo ao repositório do Suprime Video! Este projeto é um catálogo de film
 
 Com o Suprime Video, você pode:
 
+=======
+# Suprime Video
+
+Bem-vindo ao repositório do Suprime Video! Este projeto é um catálogo de filmes inspirado em uma plataforma de streaming de vídeo. O objetivo é proporcionar uma experiência de usuário intuitiva e agradável, permitindo que você explore e descubra novos títulos com facilidade.
+
+Com o Suprime Video, você pode:
+
+>>>>>>> 5e862ab (updates)
 - Pesquisar e navegar por diversas categorias
 - Acessar o conteúdo em múltiplos dispositivos
 - Descobrir novos títulos recomendados
