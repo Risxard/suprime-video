@@ -1,22 +1,48 @@
 import React, { useEffect, useState } from "react";
 import "./styles.css";
-import PosterSlider from "../../Components/Sliders/PosterSlider/PosterSlider";
 import { useSelector } from "react-redux";
+import {
+  getWatchlist,
+  addToWatchlist,
+} from "../../services/firebase/profilesManager";
 
 const PageTest = () => {
-  const language = useSelector((state) => state.lang.language);
+  const profileId = "q2rxgsz2hx9R2qdJn2SW";
+  const userId = useSelector((state) => state.auth.user);
+  const [watchlist, setWatchlist] = useState([]);
+
+  useEffect(() => {
+    const fetchWatchlist = async () => {
+      try {
+        const list = await getWatchlist(userId, profileId);
+        setWatchlist(list);
+        console.log(list);
+      } catch (error) {
+        console.error("Error fetching watchlist:", error);
+      }
+    };
+
+    fetchWatchlist();
+  }, [userId, profileId]);
+
+  const handleToWatchlist = async (userId, profileId, mediaType, mediaId) => {
+    try {
+      const list = await addToWatchlist(userId, profileId, mediaType, mediaId);
+    } catch (error) {
+      console.error("Error adding to watchlist:", error);
+    }
+  };
+
+  const mediaType = "movie";
+  const mediaId = 14;
 
   return (
     <div className="page-test-container">
-      <PosterSlider
-        suprimeTitle={true}
-        sectionTitle={"The week's most popular"}
-        selectedGenre={28}
-        language={language}
-        filterMode={"trending"}
-        filterScope={"all"}
-        timeWindow={"week"}
-      ></PosterSlider>
+      <button
+        onClick={() => handleToWatchlist(userId, profileId, mediaType, mediaId)}
+      >
+        Call it
+      </button>
     </div>
   );
 };

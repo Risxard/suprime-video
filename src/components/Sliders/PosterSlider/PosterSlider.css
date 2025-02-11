@@ -28,7 +28,7 @@
 .poster-content {
     --dv-column-margin: var(--inner-width);
     --dv-carousel-min-target: 44px;
-    --dv-screen-width: 100vw;
+    --dv-screen-width: Max(100vw);
     --dv-supercarousel-card-number: var(--override-dv-supercarousel-card-number, 2);
     --dv-carousel-column-gap: 12px;
     --supercarousel-height: calc(((var(--dv-screen-width) - 2*var(--inner-width) - (var(--dv-supercarousel-card-number) - 1)*var(--dv-carousel-column-gap))/var(--dv-supercarousel-card-number))/0.66667);
@@ -262,6 +262,18 @@
         --dv-carousel-min-target: 48px;
     }
 }
+
+@media screen and (min-width: 1800px) {
+    .poster-content {
+        --dv-supercarousel-card-number: var(--override-dv-supercarousel-card-number, 6);
+        --dv-carousel-column-gap: 24px;
+        --grid-template-columns: repeat(2, calc(var(--inner-width) - var(--dv-carousel-column-gap)));
+        --dv-carousel-min-target: 48px;
+    }
+}
+
+
+
 
 
 

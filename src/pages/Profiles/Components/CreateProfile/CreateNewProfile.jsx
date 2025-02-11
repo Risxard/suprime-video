@@ -60,7 +60,7 @@ const CreateNewProfilePage = () => {
 const CreateAProfile = ({ imageProfile, onPicSelector }) => {
   const [dataChange, setDataChange] = useState(false);
   const profiles = useSelector((state) => state.auth.profiles);
-  const userId = useSelector((state) => state.auth.user.uid);
+  const userId = useSelector((state) => state.auth.user);
   const [inputName, setInputName] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 

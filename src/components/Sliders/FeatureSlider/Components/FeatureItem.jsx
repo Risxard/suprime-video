@@ -11,6 +11,8 @@ import Player from "../../../MediaDetail/Player/Player";
 import "./FeatureItem.css";
 import useGetVideoKey from "../../../../hooks/GetVideoKey/useGetVideoKeys";
 import getLogoImages from "../../../../hooks/ApiCalls/useFetchImages";
+import { addToWatchlist } from "../../../../services/firebase/profilesManager";
+import { useSelector } from "react-redux";
 
 const FeatureItem = ({ movie, language }) => {
   const [isVisible, setIsVisible] = useState(false);
@@ -25,15 +27,13 @@ const FeatureItem = ({ movie, language }) => {
   };
 
   const targetRef = useRef();
-
   const image_path = "https://image.tmdb.org/t/p/original/";
-
   const id = movie.id;
   const mediaType = movie.media_type;
-
+  const userId = useSelector((state) => state.auth.user);
+  const profileId = useSelector((state) => state.auth.currentProfile.id);
   const mediaClass = useMediaClassification({ id, language, mediaType });
   const bgClass = bgDetect(mediaClass);
-
   const videoSource = useGetVideoKey(id, language, mediaType);
   const videoKey = videoSource.videoKey;
 
@@ -108,6 +108,8 @@ const FeatureItem = ({ movie, language }) => {
 
 
 
+
+  
   return (
     <li className={`slide no-video ${isVisible ? "targetVisible" : ""}`}>
       <span className="animationTarget" ref={targetRef}>
@@ -140,7 +142,6 @@ const FeatureItem = ({ movie, language }) => {
             <p>{movie.overview}</p>
           </span>
         </div>
-
 
         <div className="feature-btn">
           <span className="featureBtns">
@@ -178,11 +179,16 @@ const FeatureItem = ({ movie, language }) => {
               </div>
             </Link>
             <span className="feature-options-btn">
-              <span className="watchlist-btn">
+              <span
+                className="watchlist-btn"
+                onClick={() => handleToWatchlist(userId, profileId, mediaType, id)}
+              >
                 <div className="align-btn">
                   <Plus />
+                  {/* <Check/> */}
                 </div>
               </span>
+
               <Link
                 to={`/detail/${movie.media_type}/${movie.id}`}
                 className="details-btn"
@@ -265,7 +271,10 @@ const FeatureItem = ({ movie, language }) => {
         ""
       )}
 
-      <Link to={`/detail/${movie.media_type}/${movie.id}`} className={`filter`}></Link>
+      <Link
+        to={`/detail/${movie.media_type}/${movie.id}`}
+        className={`filter`}
+      ></Link>
 
       {targetRef.current &&
       startVideo &&

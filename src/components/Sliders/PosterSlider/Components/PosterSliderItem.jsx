@@ -41,7 +41,7 @@ export default function PosterSliderItem(props) {
       <article className="poster-item">
         <div className="poster-inner">
           <Link
-            to={`/${mediaType}/${media.id}`}
+            to={`/detail/${mediaType}/${media.id}`}
             className="poster-poster-path skeleton"
           >
             <img src={posterImageSrc} alt="media image" loading="lazy" />

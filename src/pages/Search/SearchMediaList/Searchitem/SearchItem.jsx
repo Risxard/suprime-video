@@ -39,7 +39,7 @@ const SearchItem = (movie) => {
 
   return (
     <li>
-      <Link to={`/detail/${mediaType}/${movie.id}`} className="Card-container">
+      <Link to={`/detail/${mediaType}/${answer.id}`} className="Card-container">
         <img
           className="skeleton backdropImage"
           src={`${image_path}${answer.backdrop_path}`}

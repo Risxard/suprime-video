@@ -15,6 +15,8 @@
 
 }
 
+
+
 .poster-item {
     overflow: hidden;
     height: var(--supercarousel-height);
@@ -41,7 +43,7 @@
     text-align: left;
     text-size-adjust: 100%;
     -webkit-font-smoothing: antialiased;
-    
+
     cursor: default;
     position: relative;
 
@@ -77,11 +79,15 @@
 }
 
 
-.poster-item img {
+.poster-backdrop-img {
     position: absolute;
     left: 0;
     top: 0;
     border-radius: 8px;
+
+    width: 100%;
+    height: 100%;
+
 }
 
 .poster-poster-path {
@@ -101,7 +107,7 @@
     transition-delay: 0.3s;
 }
 
-.poster-poster-path img{
+.poster-poster-path img {
     width: 100%;
     height: 100%;
 }
@@ -116,6 +122,8 @@
     width: var(--supercarousel-expanded-card-width);
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-end;
 
     opacity: 0;
     visibility: hidden;
@@ -131,10 +139,9 @@
     transition: opacity .5s cubic-bezier(.2, .45, 0, 1) ease-in-out;
     transition-delay: 0.3s;
 }
-.poster-backdrop-info img{
-    width: 100%;
-    height: 100%;
-}
+
+
+
 .poster-video-inner {
     position: absolute;
     bottom: 0;
@@ -142,7 +149,6 @@
     width: 100%;
     height: 100%;
     margin: 0;
-
     opacity: 0;
 }
 
@@ -177,21 +183,22 @@
 
     background-color: black;
     opacity: 60%;
+
+    position: absolute;
 }
 
 .poster-item .poster-backdrop-btn {
-    bottom: 0;
-    left: 0;
-
-    position: absolute;
-
     z-index: 2;
-
-    padding: 24px;
-
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
+
+
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-bottom: 16px;
+
+    position: relative;
 }
 
 
@@ -200,7 +207,7 @@
 .poster-item .posterBtns {
     display: flex;
     flex-direction: row;
-    opacity: 0;
+    opacity: 1;
     gap: 36px;
     margin-block: 24px;
     z-index: 2;
@@ -211,10 +218,51 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-
     gap: 8px;
+    position: relative;
+
+    z-index: 1;
+
 }
 
+.poster-options-btn .watchlist-btn::after{
+    padding: 8px 12px;
+    font-family: 'Ember-bold';
+    font-size: 18px;
+    border-radius: 8px;
+
+    position: relative;
+}
+.poster-options-btn .watchlist-btn:hover::after{
+    content: 'Watchlist';
+    position: absolute;
+    white-space: nowrap;
+    color: black;
+    background-color: white;
+    top: 120%;
+
+
+}
+
+
+.poster-options-btn .details-btn::after{
+    padding: 8px 12px;
+    font-family: 'Ember-bold';
+    font-size: 18px;
+    border-radius: 8px;
+    position: relative;
+
+}
+
+.poster-options-btn .details-btn:hover::after{
+    content: 'Details';
+    position: absolute;
+    white-space: nowrap;
+    color: black;
+    background-color: white;
+    top: 120%;
+
+}
 
 
 .poster-item .class-container {
@@ -226,42 +274,115 @@
 .poster-item .class-container .includeBD {
     display: flex;
     flex-direction: row;
+    align-items: center;
+    justify-content: center;
 
+    font-family: 'Ember-regular';
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 18px;
+
+    z-index: 1;
+
+}
+.poster-item .class-container .includeBD span{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
 }
 
 .poster-item .class-container .includeBD svg {
     color: #1392F9;
-    stroke: red;
+
+
+    width: 18px;
+    height: 18px;
 }
 
 
 .poster-item .watchlist-btn, .poster-item .details-btn {
-    background-color: rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 55px;
+    width: 55px;
+    background-color: hsla(0, 0%, 100%, .2);
+    border-radius: 10000px;
 }
 
-
-.poster-item .poster-info-title a {
-    text-decoration: none;
+.poster-item .watchlist-btn svg, .poster-item .details-btn svg{
+    height: 30px;
+    width: 30px;
 }
+
+.poster-item .watchlist-btn:hover svg, .poster-item .details-btn:hover svg{
+    background-color: white;
+    color: #00050d;
+}
+.poster-item .watchlist-btn:hover, .poster-item .details-btn:hover{
+    background-color: white;
+    color: #00050d;
+
+    cursor: pointer;
+}
+
 
 
 .poster-info-title {
+    width: auto;
+    height: auto;
     transition-delay: 0.4s;
+
+    display: flex;
+
+    justify-content: flex-start;
+    align-items: flex-start;
 }
 
 .poster-info-title h2 {
-    display: inline;
+    display: flex;
     font-family: 'Ember-bold';
     font-style: normal;
     font-weight: 600;
     font-size: 32px;
-
     text-transform: capitalize;
-
     margin-bottom: 1px;
-
     color: #ffff;
 }
+.poster-intro-logo{
+    display: block;
+}
+.poster-info-title .poster-intro-logo img {
+
+    height: auto;
+    max-height: 6.25vw;
+    max-width: calc(var(--supercarousel-expanded-card-width)* .4);
+    width: auto;
+
+
+}
+
+
+.poster-item .playnow-btn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 18px;
+    background: hsla(0, 0%, 100%, .2);
+    border-radius: 8px;
+    min-height: 60px;
+}
+
+.poster-item .playnow-btn:hover{
+    background-color: white;
+}
+.poster-item .playnow-btn:hover p, .poster-item .playnow-btn:hover svg{
+    color: #00050d;
+}
+
+
+
 
 .poster-item .ageClass {
     display: flex;
@@ -301,6 +422,11 @@ html:not([dir=rtl]) .poster-slide-list li:not(:last-child) {
     margin-right: var(--dv-carousel-column-gap);
 }
 
+
+
+
+
+
 @media screen and (min-width: 600px) {
     .poster-intro .ageClass h3 {
         padding: 0.2rem 0.4rem;
@@ -316,13 +442,14 @@ html:not([dir=rtl]) .poster-slide-list li:not(:last-child) {
 
 }
 
-@media screen and (max-width: 599px){
+@media screen and (max-width: 599px) {
     .poster-slide-list[align="default-start"] li:nth-child(2n+1) {
         scroll-snap-align: start;
         scroll-snap-stop: always;
     }
 }
-@media screen and (max-width: 879px){
+
+@media screen and (max-width: 879px) {
     .poster-slide-list[align="default-start"] li:nth-child(3n+1) {
         scroll-snap-align: start;
         scroll-snap-stop: always;
@@ -364,7 +491,7 @@ html:not([dir=rtl]) .poster-slide-list li:not(:last-child) {
 @media screen and (min-width: 880px) {
 
 
-    .poster-slide-list li[data-active-card=true], .poster-slide-list li[data-active-card=true] .poster-item{
+    .poster-slide-list li[data-active-card=true], .poster-slide-list li[data-active-card=true] .poster-item {
         width: var(--supercarousel-expanded-card-width);
     }
 
@@ -382,10 +509,8 @@ html:not([dir=rtl]) .poster-slide-list li:not(:last-child) {
         transition-delay: 0.3s;
     }
 
-    .poster-slide-list li[data-active-card=true] .animationIn {
+    .poster-slide-list li[data-active-card=true] {
         opacity: 1;
-        transform: translate(0);
-        -webkit-transform: translate(0);
         transition-delay: 0.4s;
     }
 
@@ -421,6 +546,13 @@ html:not([dir=rtl]) .poster-slide-list li:not(:last-child) {
 }
 
 @media screen and (min-width: 1280px) {
+    .poster-item .poster-backdrop-btn {
+        padding-left: 24px;
+        padding-right: 24px;
+        padding-bottom: 24px;
+    }
+
+
     .poster-info-title h2 {
         font-size: 40px;
 
@@ -432,6 +564,23 @@ html:not([dir=rtl]) .poster-slide-list li:not(:last-child) {
 
         color: #ffff;
     }
+
+
+    .poster-item .playnow-btn{
+        padding: 8px 21px;
+        min-height: 62px;
+    }
+
+    .poster-item .watchlist-btn, .poster-item .details-btn {
+        height: 61px;
+        width: 61px;
+    }
+    
+    .poster-item .watchlist-btn svg, .poster-item .details-btn svg{
+        height: 33px;
+        width: 33px;
+    }
+
 
 }
 

@@ -7,7 +7,7 @@ const IncludeBd = (props) => {
   const mediaType = props.mediaType;
 
   return (
-    <div className="class-container animationIn">
+    <div className="class-container">
       <span className="includeBD">
         <span>
           <svg
@@ -33,7 +33,7 @@ const IncludeBd = (props) => {
             </svg>
           </svg>
         </span>
-        <h3>included with Suprime</h3>
+        <p>included with Suprime</p>
       </span>
 
       <MediaClass language={language} id={id} mediaType={mediaType} />
