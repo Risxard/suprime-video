@@ -20,10 +20,14 @@ const EditProfilesItens = ({ imageProfile, onPicSelector }) => {
   const [inputName, setInputName] = useState(selectedProfile?.userInfoData?.name || "");
 
   useEffect(() => {
-    if (selectedProfile) {
-      setInputName(selectedProfile.name);
+    if (selectedProfile?.userInfoData?.name) {
+      setInputName(selectedProfile.userInfoData.name);
     }
   }, [selectedProfile]);
+
+
+
+
 
   const handleInputChange = (e) => {
     setInputName(e.target.value);
