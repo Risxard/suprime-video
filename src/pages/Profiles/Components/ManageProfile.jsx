@@ -28,9 +28,9 @@ const ManageProfileSelect = ({ profileList }) => {
               >
                 <span className="profile-picture-container">
                   <div className="picture-container">
-                    <img src={profile.img?.url} alt={profile.name} />
+                    <img src={profile.userInfoData.img?.url} alt={profile.userInfoData.name} />
                   </div>
-                  <p>{profile.name}</p>
+                  <p>{profile.userInfoData.name}</p>
                 </span>
                 <span className={`edit-btn active`}>
                   <svg

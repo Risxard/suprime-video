@@ -164,8 +164,8 @@ const UserMenu = () => {
     >
       <button className="user-display-container" onClick={toggleClasse}>
         <span className="Card-avatar">
-          {currentProfile.img ? (
-            <img src={currentProfile.img.url} alt="Avatar" />
+          {currentProfile.userInfoData.img ? (
+            <img src={currentProfile.userInfoData.img.url} alt="Avatar" />
           ) : null}
         </span>
       </button>

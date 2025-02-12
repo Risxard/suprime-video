@@ -24,11 +24,13 @@ const createNewProfile = async (userId, profileName, newImage) => {
 
         // Define os dados para o novo perfil com base nas preferências principais
         const newProfile = {
-            name: profileName,
-            theme: mainPreferences.theme || "light", // Tema padrão, caso não encontrado
-            language: mainPreferences.language || "pt-BR", // Linguagem padrão, caso não encontrado
-            img: {
-                url: newImage ? newImage : "https://m.media-amazon.com/images/G/02/CerberusPrimeVideo-FN38FSBD/adult-2.png"
+            userInfoData: {
+                name: profileName,
+                theme: mainPreferences.theme || "light", // Tema padrão, caso não encontrado
+                language: mainPreferences.language || "pt-BR", // Linguagem padrão, caso não encontrado
+                img: {
+                    url: newImage ? newImage : "https://m.media-amazon.com/images/G/02/CerberusPrimeVideo-FN38FSBD/adult-2.png"
+                },
             },
             watchlist: {
                 movie: [],
@@ -116,12 +118,13 @@ const getAllProfiles = async (userId, dispatch) => {
         }
 
         // Mapeia os documentos retornados para um array de objetos
-        const profiles = querySnapshot.docs.map((doc) => ({
-            id: doc.id,
-            ...doc.data(),
-        }));
-
-
+        const profiles = querySnapshot.docs.map((doc) => {
+            const data = doc.data();
+            return {
+                id: doc.id,
+                userInfoData: data.userInfoData,
+            };
+        });
 
         // Atualiza o Redux
         dispatch(userProfiles({ profiles }));
@@ -204,12 +207,25 @@ const addToWatchlist = async (userId, profileId, mediaType, mediaId) => {
 const updateProfile = async (userId, profileId, updatedPreferences) => {
     try {
         const profileRef = doc(db, "users", userId, "profiles", profileId);
-        await updateDoc(profileRef, updatedPreferences);
+        const profileDoc = await getDoc(profileRef);
+
+        if (!profileDoc.exists()) {
+            console.error("Perfil não encontrado!");
+            return false;
+        }
+
+        const profileData = profileDoc.data();
+        const updatedUserInfoData = {
+            ...profileData.userInfoData,
+            ...updatedPreferences
+        };
+
+        await updateDoc(profileRef, { userInfoData: updatedUserInfoData });
         console.log("Perfil atualizado com sucesso!");
-        return true
+        return true;
     } catch (error) {
         console.error("Erro ao atualizar perfil:", error.message);
-        return false
+        return false;
     }
 };
 

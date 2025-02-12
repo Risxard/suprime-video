@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import NavStandalone from "../../../components/Navigation/NavStandalone.jsx";
 import { useParams } from "react-router-dom";
 import "../styles.css";
@@ -17,7 +17,7 @@ const EditProfilesItens = ({ imageProfile, onPicSelector }) => {
   const profiles = useSelector((state) => state.auth.profiles);
   const userId = useSelector((state) => state.auth.user);
   const selectedProfile = profiles.find((profile) => profile.id === profileId);
-  const [inputName, setInputName] = useState(selectedProfile?.name || "");
+  const [inputName, setInputName] = useState(selectedProfile?.userInfoData?.name || "");
 
   useEffect(() => {
     if (selectedProfile) {
@@ -80,7 +80,7 @@ const EditProfilesItens = ({ imageProfile, onPicSelector }) => {
         >
           <img
             className="editing-profiles-image"
-            src={imageProfile ? imageProfile : selectedProfile?.img.url}
+            src={imageProfile ? imageProfile : selectedProfile?.userInfoData.img.url}
             alt="Profile"
           />
 

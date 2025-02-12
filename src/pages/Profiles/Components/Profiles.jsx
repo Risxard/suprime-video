@@ -21,6 +21,7 @@ const Profiles = ({ profileList }) => {
     return 0;
   });
 
+
   return (
     <>
       <h1>Who's watching?</h1>
@@ -31,13 +32,13 @@ const Profiles = ({ profileList }) => {
               <li
                 key={profile.id}
                 onClick={() => handleSetUserProfile(profile)}
-                className={currentProfile.id == profile.id ? "active" : ""}
+                className={currentProfile && currentProfile.id == profile.id ? "active" : ""}
               >
                 <span className="profile-picture-container">
                   <div className="picture-container">
-                    <img src={profile.img?.url} alt={profile.name} />
+                    <img src={profile.userInfoData.img?.url} alt={profile.userInfoData.name} />
                   </div>
-                  <p>{profile.name}</p>
+                  <p>{profile.userInfoData.name}</p>
                 </span>
                 <span className={`edit-btn`}>
                   <svg
