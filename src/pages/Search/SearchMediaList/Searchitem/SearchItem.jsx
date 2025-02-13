@@ -1,6 +1,6 @@
 import React from "react";
 
-import { MoreVertical } from "lucide-react";
+import { Check, MoreVertical } from "lucide-react";
 import {
   runtimeConverter,
   dateConverter,
@@ -13,6 +13,8 @@ import { Plus, Ban } from "lucide-react";
 import { filteredMediaType } from "../../../../functions/Converter";
 import useMediaClassification from "../../../../hooks/MediaClassification/useMediaClassification";
 import { bgDetect } from "../../../../functions/Converter";
+import { useDispatch, useSelector } from "react-redux";
+import { addToWatchlist } from "../../../../services/firebase/profilesManager";
 
 const SearchItem = (movie) => {
   const answer = movie.movie;
@@ -26,15 +28,27 @@ const SearchItem = (movie) => {
   const mediaDates =
     newMediaType === "movie" ? answer.release_date : answer.first_air_date;
   const mediaRuntime = newMediaType === "movie" ? answer.runtime : null;
-
   const mediaType = newMediaType;
-
   const mediaClass = useMediaClassification({
     id,
     language,
     mediaType,
   });
   const bgClass = bgDetect(mediaClass);
+
+  const userId = useSelector((state) => state.auth.user);
+  const profileId = useSelector((state) => state.auth.currentProfile.id);
+  const watchlist = useSelector((state) => state.auth.watchList);
+  const isInWatchlist = watchlist?.[mediaType]?.includes(id);
+  const dispatch = useDispatch();
+
+  const handleToWatchlist = async (userId, profileId, mediaType, mediaId) => {
+    try {
+      await addToWatchlist(userId, profileId, mediaType, mediaId, dispatch);
+    } catch (error) {
+      console.error("Error adding to watchlist:", error);
+    }
+  };
 
   return (
     <li>
@@ -47,12 +61,12 @@ const SearchItem = (movie) => {
         />
       </Link>
 
-
-
       <Link to={`/detail/${mediaType}/${movie.id}`} className="info-card">
         <span>
           <span className="info-card-mediaTitle">{mediaTitle}</span>
-          <span className="info-card-mediaDates">{dateConverter(mediaDates)}</span>
+          <span className="info-card-mediaDates">
+            {dateConverter(mediaDates)}
+          </span>
         </span>
       </Link>
       <span className="more-btn">
@@ -97,9 +111,14 @@ const SearchItem = (movie) => {
             </div>
           </Link>
           <div className="option-btns">
-            <span className="featureBtn-item">
+            <span
+              className="featureBtn-item"
+              onClick={() =>
+                handleToWatchlist(userId, profileId, mediaType, id)
+              }
+            >
               <div className="align-btn">
-                <Plus />
+              {isInWatchlist ? <Check /> : <Plus />}
               </div>
             </span>
 

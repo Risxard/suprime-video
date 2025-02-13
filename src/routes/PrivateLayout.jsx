@@ -24,15 +24,17 @@ const PrivateLayout = ({ isAuthenticated }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const fetchWatchlist = async () => {
-      try {
-        await getWatchlist(userId, currentProfile.id, dispatch);
-      } catch (error) {
-        console.error("Error fetching watchlist:", error);
-      }
-    };
-
-    fetchWatchlist();
+    if(userId){
+      const fetchWatchlist = async () => {
+        try {
+          await getWatchlist(userId, currentProfile.id, dispatch);
+        } catch (error) {
+          console.error("Error fetching watchlist:", error);
+        }
+      };
+  
+      fetchWatchlist();
+    }
   }, [userId, currentProfile]);
 
   return (

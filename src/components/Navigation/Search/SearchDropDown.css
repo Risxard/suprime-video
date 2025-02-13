@@ -285,7 +285,8 @@
         height: 64px;
     }
     .search-input-inner{
-        max-width: 1140px;
+        max-width: 1475px;
+        width: 80%;
     }
 }
 

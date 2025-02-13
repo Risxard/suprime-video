@@ -16,8 +16,8 @@ const Profiles = ({ profileList }) => {
   };
 
   const sortedProfiles = [...profileList].sort((a, b) => {
-    if (a.id == currentProfile.id) return -1;
-    if (b.id !== currentProfile.id) return 1;
+    if (currentProfile && a.id == currentProfile.id) return -1;
+    if (currentProfile && b.id == currentProfile.id) return 1;
     return 0;
   });
 

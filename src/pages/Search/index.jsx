@@ -223,16 +223,20 @@ const Search = (props) => {
       case "movieFilter":
         if (movieFilter === false) {
           setMovieFilter(true);
+          toggleFilterChecked(2);
         } else {
           setMovieFilter(false);
+          toggleFilterChecked(2);
         }
         break;
 
       case "tvFilter":
         if (tvFilter === false) {
           setTvFilter(true);
+          toggleFilterChecked(2);
         } else {
           setTvFilter(false);
+          toggleFilterChecked(2);
         }
         break;
       default:
@@ -260,11 +264,79 @@ const Search = (props) => {
             </button>
           </div>
 
+          <div className="search-filters-modal">
+            <div className="inner-btn genre-filter">
+              <button
+                className="filter-btn"
+                onClick={() => toggleFilterChecked(1)}
+              >
+                {selectedGenres
+                  ? `${genreConverter(selectedGenres, "en-US", "movie")}`
+                  : "Genre"}
+                <ChevronDown />
+              </button>
+              <ul>
+                {genresTemplate.movie.en_us
+                  .filter(
+                    (genre) =>
+                      genre.name !== "TV Movie" &&
+                      genre.name !== "Animation" &&
+                      genre.name !== "Western"
+                  )
+                  .map((genre) => {
+                    return (
+                      <li
+                        key={genre.id}
+                        className={`${
+                          selectedGenres === genre.id ? "selected-filter" : ""
+                        }`}
+                        onClick={() => {
+                          selectedGenres === genre.id
+                            ? setSelectedGenres(null)
+                            : setSelectedGenres(genre.id);
+                          toggleFilterChecked(0);
+                          handleSetModal();
+                        }}
+                      >
+                        {genre.name}
+                      </li>
+                    );
+                  })}
+              </ul>
+            </div>
+            <div className="inner-btn content-type-filter">
+              <button
+                className="filter-btn"
+                onClick={() => toggleFilterChecked(2)}
+              >
+                Content Type
+                {(() => {
+                  let a = 0;
+                  movieFilter && a++;
+                  tvFilter && a++;
+                  return a !== 0 ? <p>{a}</p> : "";
+                })()}
+                <ChevronDown />
+              </button>
+              <ul>
+                <li onClick={() => { toggleContentType("movieFilter"); handleSetModal(); }}>
+                  {movieFilter ? <CheckSquare /> : <Square />}
+                  Movies
+                </li>
+                <li onClick={() => { toggleContentType("tvFilter"); handleSetModal(); }}>
+                  {tvFilter ? <CheckSquare /> : <Square />}
+                  Tv Shows
+                </li>
+              </ul>
+            </div>
+          </div>
+
           <div className="close-modal-cointainer">
             <button onClick={() => handleSetModal()}>Close</button>
           </div>
         </div>
       )}
+
       <div className="search-filters">
         <button
           className="filters-modal-btn filter-btn"
@@ -319,14 +391,12 @@ const Search = (props) => {
               onClick={() => toggleFilterChecked(2)}
             >
               Content Type
-              <p>
-                {(() => {
-                  let a = 0;
-                  movieFilter && a++;
-                  tvFilter && a++;
-                  return a !== 0 ? a : "";
-                })()}
-              </p>
+              {(() => {
+                let a = 0;
+                movieFilter && a++;
+                tvFilter && a++;
+                return a !== 0 ? <p>{a}</p> : "";
+              })()}
               <ChevronDown />
             </button>
             <ul>

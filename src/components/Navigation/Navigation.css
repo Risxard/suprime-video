@@ -42,9 +42,7 @@
     align-items: center;
     border-radius: 0 0 12px 12px;
     transition: background-color .1s linear;
-
     padding-inline: var(--nav-content-padding);
-
 }
 
 .suprime-logo-titles {
