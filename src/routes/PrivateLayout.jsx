@@ -2,7 +2,8 @@ import { Outlet, useNavigate } from "react-router-dom";
 import Navigation from "../Components/Navigation/Navigation";
 import Footer from "../Components/Footer/Footer";
 import { useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { getWatchlist } from "../services/firebase/profilesManager";
 
 const PrivateLayout = ({ isAuthenticated }) => {
   const language = "pt-br";
@@ -17,13 +18,32 @@ const PrivateLayout = ({ isAuthenticated }) => {
     }
   }, [isAuthenticated, currentProfile, navigate]);
 
+  const userId = useSelector((state) => state.auth.user);
+  const modal = useSelector((state) => state.modals.filterModal);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const fetchWatchlist = async () => {
+      try {
+        await getWatchlist(userId, currentProfile.id, dispatch);
+      } catch (error) {
+        console.error("Error fetching watchlist:", error);
+      }
+    };
+
+    fetchWatchlist();
+  }, [userId, currentProfile]);
+
   return (
     <>
       {isAuthenticated && currentProfile ? (
         <>
-          <Navigation language={language} />
+          {!modal && <Navigation language={language} />}
+
           <Outlet language={language} />
-          <Footer language={language} />
+
+          {!modal && <Footer language={language} />}
         </>
       ) : null}
     </>

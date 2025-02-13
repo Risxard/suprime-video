@@ -7,6 +7,9 @@ import { Link } from "react-router-dom";
 import { Plus, Check, AlertCircle } from "lucide-react";
 import useGetVideoKey from "../../../../../hooks/GetVideoKey/useGetVideoKeys";
 import getLogoImages from "../../../../../hooks/ApiCalls/useFetchImages/";
+import { addToWatchlist } from "../../../../../services/firebase/profilesManager";
+
+import { useDispatch, useSelector } from "react-redux";
 
 export default function PosterBackdropInfo({
   propsChildren,
@@ -18,7 +21,13 @@ export default function PosterBackdropInfo({
   const videoKey = videoSource.videoKey;
   const [logoImage, setLogoImage] = useState("");
   const image_path = "https://image.tmdb.org/t/p/original/";
+  const userId = useSelector((state) => state.auth.user);
+  const profileId = useSelector((state) => state.auth.currentProfile.id);
+  const watchlist = useSelector((state) => state.auth.watchList);
+  const isInWatchlist = watchlist?.[mediaType]?.includes(id);
+  const dispatch = useDispatch();
 
+  
   useEffect(() => {
     if ((id, mediaType, language)) {
       getLogoImages(id, mediaType, language)
@@ -31,9 +40,22 @@ export default function PosterBackdropInfo({
     }
   }, [id, mediaType, language]);
 
+  const handleToWatchlist = async (userId, profileId, mediaType, mediaId) => {
+    try {
+      await addToWatchlist(userId, profileId, mediaType, mediaId, dispatch);
+    } catch (error) {
+      console.error("Error adding to watchlist:", error);
+    }
+  };
+
   return (
     <div className={`poster-backdrop-info`}>
-      <img src={backDropImageSrc} alt="media image" loading="lazy" className="poster-backdrop-img" />
+      <img
+        src={backDropImageSrc}
+        alt="media image"
+        loading="lazy"
+        className="poster-backdrop-img"
+      />
 
       {isHovered && innerWidth > 880 ? (
         <VideoComponent
@@ -103,18 +125,26 @@ export default function PosterBackdropInfo({
           </Link>
 
           <span className="poster-options-btn">
-            <span className="watchlist-btn">
+            <span
+              className="watchlist-btn"
+              onClick={() =>
+                handleToWatchlist(userId, profileId, mediaType, id)
+              }
+            >
               <div className="align-btn">
-                <Plus />
+                {isInWatchlist ? <Check /> : <Plus />}
               </div>
             </span>
-            <Link to={`/detail/${mediaType}/${media.id}`} className="details-btn">
+
+            <Link
+              to={`/detail/${mediaType}/${media.id}`}
+              className="details-btn"
+            >
               <div className="align-btn">
                 <AlertCircle />
               </div>
             </Link>
           </span>
-
         </span>
 
         <IncludeBd language={language} id={id} mediaType={mediaType} />

@@ -4,11 +4,13 @@ import thunk from 'redux-thunk'
 import languageReducer from './language/index';
 import authReducer from './auth/index';
 import getIdSlice from './slices/getMediaId';
+import modalsSlice from './slices/modals';
 
 const reducer = combineReducers({
   getId: getIdSlice,
   lang: languageReducer,
-  auth: authReducer
+  auth: authReducer,
+  modals: modalsSlice,
 })
 
 

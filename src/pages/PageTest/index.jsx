@@ -1,33 +1,33 @@
 import React, { useEffect, useState } from "react";
 import "./styles.css";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   getWatchlist,
   addToWatchlist,
 } from "../../services/firebase/profilesManager";
+import { setCurrentWatchlist } from "../../store/auth";
 
 const PageTest = () => {
-  const profileId = "q2rxgsz2hx9R2qdJn2SW";
+  const currentProfileId = useSelector((state) => state.auth.currentProfile.id);
   const userId = useSelector((state) => state.auth.user);
-  const [watchlist, setWatchlist] = useState([]);
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const fetchWatchlist = async () => {
       try {
-        const list = await getWatchlist(userId, profileId);
-        setWatchlist(list);
-        console.log(list);
+        await getWatchlist(userId, currentProfileId, dispatch);
       } catch (error) {
         console.error("Error fetching watchlist:", error);
       }
     };
 
     fetchWatchlist();
-  }, [userId, profileId]);
+  }, [userId, currentProfileId]);
 
   const handleToWatchlist = async (userId, profileId, mediaType, mediaId) => {
     try {
-      const list = await addToWatchlist(userId, profileId, mediaType, mediaId);
+      const list = await addToWatchlist(userId, profileId, mediaType, mediaId, dispatch);
     } catch (error) {
       console.error("Error adding to watchlist:", error);
     }
@@ -39,7 +39,9 @@ const PageTest = () => {
   return (
     <div className="page-test-container">
       <button
-        onClick={() => handleToWatchlist(userId, profileId, mediaType, mediaId)}
+        onClick={() =>
+          handleToWatchlist(userId, currentProfileId, mediaType, mediaId)
+        }
       >
         Call it
       </button>

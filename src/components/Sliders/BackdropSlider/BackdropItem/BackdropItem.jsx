@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import { Link } from "react-router-dom";
 
-import { Plus, Ban } from "lucide-react";
+import { Plus, Ban, Check } from "lucide-react";
 
 import "./BackdropItem.css";
 import {
@@ -14,6 +14,8 @@ import {
 import useMediaClassification from "../../../../hooks/MediaClassification/useMediaClassification";
 import playBtn from "../../../../assets/Buttons/playMovieBtn.svg";
 import { fetchMediaClassification } from "./fetchMediaClassification";
+import { addToWatchlist } from "../../../../services/firebase/profilesManager";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function Backdropitem({ movie, mediaType, language }) {
   const [mediaClass, setMediaClass] = useState();
@@ -23,9 +25,13 @@ export default function Backdropitem({ movie, mediaType, language }) {
   const mediaDates =
     newMediaType === "movie" ? movie.release_date : movie.first_air_date;
   const mediaRuntime = newMediaType === "movie" ? movie.runtime : null;
-
   const image_path = "https://image.tmdb.org/t/p/original/";
   const id = movie.id;
+  const userId = useSelector((state) => state.auth.user);
+  const profileId = useSelector((state) => state.auth.currentProfile.id);
+  const watchlist = useSelector((state) => state.auth.watchList);
+  const isInWatchlist = watchlist?.[mediaType]?.includes(id);
+  const dispatch = useDispatch();
 
   const bgClass = bgDetect(mediaClass);
 
@@ -36,8 +42,13 @@ export default function Backdropitem({ movie, mediaType, language }) {
     // }
   }
 
-
-
+  const handleToWatchlist = async (userId, profileId, mediaType, mediaId) => {
+    try {
+      await addToWatchlist(userId, profileId, mediaType, mediaId, dispatch);
+    } catch (error) {
+      console.error("Error adding to watchlist:", error);
+    }
+  };
   return (
     <li
       className="Slide-Item"
@@ -45,7 +56,10 @@ export default function Backdropitem({ movie, mediaType, language }) {
       onMouseEnter={() => handleMediaClass()}
     >
       <div className="Slide-item-container">
-        <Link to={`/detail/${mediaType}/${movie.id}`} className="Card-container">
+        <Link
+          to={`/detail/${mediaType}/${movie.id}`}
+          className="Card-container"
+        >
           <img
             className="skeleton backdropImage"
             src={`${image_path}${movie.backdrop_path}`}
@@ -92,9 +106,14 @@ export default function Backdropitem({ movie, mediaType, language }) {
               </div>
             </Link>
             <div className="option-btns">
-              <span className="featureBtn-item">
+              <span
+                className="featureBtn-item"
+                onClick={() =>
+                  handleToWatchlist(userId, profileId, mediaType, id)
+                }
+              >
                 <div className="align-btn">
-                  <Plus />
+                  {isInWatchlist ? <Check /> : <Plus />}
                 </div>
               </span>
 
@@ -191,7 +210,6 @@ export default function Backdropitem({ movie, mediaType, language }) {
           </div>
           <span className="backdrop-overview-card">{movie.overview}</span>
         </span>
-        
       </div>
     </li>
   );

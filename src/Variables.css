@@ -20,9 +20,6 @@
     --dv-packshot-width: calc((var(--dv-screen-width) - var(--inner-width)*2 - var(--backdrop-gap-slider)*var(--dv-card-gap-number))/var(--dv-card-number)*1);
 }
 
-
-
-
 .SectionTitle {
     display: flex;
     justify-content: space-between;

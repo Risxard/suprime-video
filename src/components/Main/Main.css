@@ -2,12 +2,9 @@ main{
     background: var(--color-background);
     width: 100%;
     height: auto;
-
     display: flex;
     flex-direction: column;
-    
     z-index: 5;
-
     overflow-y: hidden;
 }
 

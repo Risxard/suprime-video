@@ -79,9 +79,9 @@ const UserMenuChildren = () => {
                   onClick={() => handleSetUserProfile(profile)}
                 >
                   <span className="item-image-container">
-                    <img src={profile.img.url} alt="Avatar" />
+                    <img src={profile.userInfoData.img.url} alt="Avatar" />
                   </span>
-                  <p>{profile.name}</p>
+                  <p>{profile.userInfoData.name}</p>
                 </li>
               ))
             : null}

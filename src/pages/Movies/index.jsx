@@ -41,7 +41,7 @@ const Movie = (SectionData) => {
 
   return (
     <div className="Movies">
-      <Header pageType={pageType}/>
+      {/* <Header pageType={pageType}/> */}
 
       <main>
         {/* <Top10Slider></Top10Slider> */}
@@ -57,7 +57,7 @@ const Movie = (SectionData) => {
             timeWindow={"week"}
           ></PosterSlider> */}
 
-          <SlideDistributor language={language} mediaType={mediaType}/>
+          {/* <SlideDistributor language={language} mediaType={mediaType}/> */}
         </section>
       </main>
 

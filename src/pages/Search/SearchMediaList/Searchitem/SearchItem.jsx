@@ -17,7 +17,6 @@ import { bgDetect } from "../../../../functions/Converter";
 const SearchItem = (movie) => {
   const answer = movie.movie;
 
-  console.log(movie);
   const id = answer.id;
   const image_path = "https://image.tmdb.org/t/p/original/";
   const language = localStorage.getItem("country");

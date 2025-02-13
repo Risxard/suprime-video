@@ -25,6 +25,7 @@ const ManageProfileSelect = ({ profileList }) => {
               <li
                 key={profile.id}
                 onClick={() => handleNavigateToEditProfile(profile.id)}
+                className={currentProfile && currentProfile.id == profile.id ? "active" : ""}
               >
                 <span className="profile-picture-container">
                   <div className="picture-container">

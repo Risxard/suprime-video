@@ -8,6 +8,7 @@ const initialState = {
   user: JSON.parse(localStorage.getItem("@AuthFirebase:user")) || null,
   profiles: JSON.parse(localStorage.getItem("@AuthSV:profiles")) || [],
   currentProfile: JSON.parse(localStorage.getItem("@AuthSV:currentProfile")),
+  watchList: JSON.parse(localStorage.getItem("@AuthSV:watchlist")) || [],
 };
 
 const authSlice = createSlice({
@@ -20,13 +21,13 @@ const authSlice = createSlice({
       state.user = action.payload.user;
       localStorage.setItem("@AuthFirebase:token", action.payload.token);
       localStorage.setItem("@AuthFirebase:user", JSON.stringify(action.payload.user.uid));
-      
+
       if (!state.currentProfile) {
-      const mainProfile = state.profiles.find(profile => profile.isMain);
-      if (mainProfile) {
-        localStorage.setItem("@AuthSV:currentProfile", JSON.stringify(mainProfile));
-        state.currentProfile = mainProfile;
-      }
+        const mainProfile = state.profiles.find(profile => profile.isMain);
+        if (mainProfile) {
+          localStorage.setItem("@AuthSV:currentProfile", JSON.stringify(mainProfile));
+          state.currentProfile = mainProfile;
+        }
       }
     },
     logout(state) {
@@ -48,6 +49,10 @@ const authSlice = createSlice({
       localStorage.setItem("@AuthSV:currentProfile", JSON.stringify(action.payload));
       state.currentProfile = action.payload;
     },
+    setCurrentWatchlist(state, action) {
+      localStorage.setItem("@AuthSV:watchlist", JSON.stringify(action.payload));
+      state.watchList = action.payload;
+    },
     checkAuth(state) {
       const token = state.token;
       const user = state.user;
@@ -58,5 +63,5 @@ const authSlice = createSlice({
   },
 });
 
-export const { loginSuccess, logout, checkAuth, userProfiles, setCurrentProfile } = authSlice.actions;
+export const { loginSuccess, logout, checkAuth, userProfiles, setCurrentProfile, setCurrentWatchlist } = authSlice.actions;
 export default authSlice.reducer;

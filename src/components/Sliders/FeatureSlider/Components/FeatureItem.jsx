@@ -12,7 +12,7 @@ import "./FeatureItem.css";
 import useGetVideoKey from "../../../../hooks/GetVideoKey/useGetVideoKeys";
 import getLogoImages from "../../../../hooks/ApiCalls/useFetchImages";
 import { addToWatchlist } from "../../../../services/firebase/profilesManager";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const FeatureItem = ({ movie, language }) => {
   const [isVisible, setIsVisible] = useState(false);
@@ -21,6 +21,7 @@ const FeatureItem = ({ movie, language }) => {
   const [userInPage, setUserInPage] = useState(true);
   const [logoImage, setLogoImage] = useState("");
   const [isMuted, setIsMuted] = useState(true);
+  const dispatch = useDispatch();
 
   const handleMuteToggle = () => {
     setIsMuted((prevIsMuted) => !prevIsMuted);
@@ -36,6 +37,8 @@ const FeatureItem = ({ movie, language }) => {
   const bgClass = bgDetect(mediaClass);
   const videoSource = useGetVideoKey(id, language, mediaType);
   const videoKey = videoSource.videoKey;
+  const watchlist = useSelector((state) => state.auth.watchList);
+  const isInWatchlist = watchlist?.[mediaType]?.includes(id);
 
   useEffect(() => {
     const options = {
@@ -106,10 +109,14 @@ const FeatureItem = ({ movie, language }) => {
     }
   }, [movie.id, movie.media_type, language]);
 
+  const handleToWatchlist = async (userId, profileId, mediaType, mediaId) => {
+    try {
+      await addToWatchlist(userId, profileId, mediaType, mediaId, dispatch);
+    } catch (error) {
+      console.error("Error adding to watchlist:", error);
+    }
+  };
 
-
-
-  
   return (
     <li className={`slide no-video ${isVisible ? "targetVisible" : ""}`}>
       <span className="animationTarget" ref={targetRef}>
@@ -181,11 +188,12 @@ const FeatureItem = ({ movie, language }) => {
             <span className="feature-options-btn">
               <span
                 className="watchlist-btn"
-                onClick={() => handleToWatchlist(userId, profileId, mediaType, id)}
+                onClick={() =>
+                  handleToWatchlist(userId, profileId, mediaType, id)
+                }
               >
                 <div className="align-btn">
-                  <Plus />
-                  {/* <Check/> */}
+                  {isInWatchlist ? <Check /> : <Plus />}
                 </div>
               </span>
 

@@ -3,7 +3,13 @@ import React, { useEffect, useMemo, useState } from "react";
 import "./styles.css";
 import { useParams } from "react-router-dom";
 
-import { ChevronDown, MoreVertical, Square, CheckSquare } from "lucide-react";
+import {
+  ChevronDown,
+  MoreVertical,
+  Square,
+  CheckSquare,
+  X,
+} from "lucide-react";
 import { guestApiKey } from "../../Services/guestApi.js";
 import { useIntersectionObserver } from "../../hooks/IntersectionObserver/useIntersationObserver.jsx";
 import genresTemplate from "../../Services/genres/genres.json";
@@ -14,7 +20,8 @@ import {
 import SearchMediaList from "./SearchMediaList/SearchMediaList.jsx";
 import SpinnerLoading from "../../assets/svgs/SpinnerLoading.jsx";
 
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { toggleFilterModal } from "../../store/slices/modals.js";
 
 const Search = (props) => {
   const [pageNumber, setPageNumber] = useState(1);
@@ -234,10 +241,38 @@ const Search = (props) => {
     }
   };
 
+  const dispatch = useDispatch();
+
+  const handleSetModal = () => {
+    dispatch(toggleFilterModal());
+  };
+
+  const modal = useSelector((state) => state.modals.filterModal);
+
   return (
-    <div className="Search-Page">
+    <div className="Search-Page" data-open-modal={modal}>
+      {modal && (
+        <div className="searchModal">
+          <div className="filter-tab">
+            <span>Filters</span>
+            <button onClick={() => handleSetModal()}>
+              <X />
+            </button>
+          </div>
+
+          <div className="close-modal-cointainer">
+            <button onClick={() => handleSetModal()}>Close</button>
+          </div>
+        </div>
+      )}
       <div className="search-filters">
-        <button className="filters-modal-btn filter-btn">Filters</button>
+        <button
+          className="filters-modal-btn filter-btn"
+          onClick={() => handleSetModal()}
+        >
+          Filters
+        </button>
+
         <div className="filters-btns-container">
           <div className="inner-btn genre-filter">
             <button
