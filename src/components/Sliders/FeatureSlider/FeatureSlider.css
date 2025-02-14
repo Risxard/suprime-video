@@ -63,6 +63,8 @@
     transition: .2s linear, width .2s linear, height .2s linear, -webkit-margin-end .2s linear;
     transition: .2s linear, width .2s linear, height .2s linear, margin-inline-end .2s linear;
     transition: .2s linear, width .2s linear, height .2s linear, margin-inline-end .2s linear, -webkit-margin-end .2s linear;
+
+
 }
 
 .feature-container .slider-control .radio-item.checked {

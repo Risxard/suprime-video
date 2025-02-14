@@ -92,6 +92,7 @@ const FeatureSlider = ({ mediasData }) => {
     }
   };
 
+
   const updateRadioItems = () => {
     const radioItems = document.getElementsByClassName("radio-item");
     for (let i = 0; i < radioItems.length; i++) {
