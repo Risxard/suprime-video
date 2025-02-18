@@ -1,0 +1,36 @@
+.hamMenu-dropdown{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    left: 0;
+    top: 100%;
+
+    height: auto;
+    width: auto;
+
+    padding: 18px;
+}
+
+.hamMenu-dropdown:before{
+    -webkit-backdrop-filter: blur(16px);
+    backdrop-filter: blur(16px);
+    background: rgba(25, 30, 37, .8);
+    border-radius: 12px;
+    bottom: 0;
+    content: "";
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: -1;
+
+
+}
+
+
+
+
+.hamMenu-dropdown .NavigationLinks{
+    display: flex;
+    flex-direction: column;
+}

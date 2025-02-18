@@ -16,9 +16,19 @@ import { useMatch } from "react-router-dom";
 import SubscriptionsSvg from "./Subscription/SubscriptionsSvg.jsx";
 import CategoriesDropDown from "./Categories/CategoriesDropDown.jsx";
 import MyStuffsDropDown from "./MyStuffs/MyStuffsDropDown.jsx";
+import HamMenu from "./HamMenu/HamMenu.jsx";
 
 var NavMenu = (SectionData) => {
   const [isSectionOptionsOpen, setIsSectionOptionsOpen] = useState(false);
+  const [toggleBtn, setToggleBtn] = useState(false);
+
+  function handleToggleBtn() {
+    setToggleBtn(true);
+  }
+
+  useEffect(() => {
+    handleToggleBtn();
+  }, [toggleBtn]);
 
   const homeMatch = useMatch("/home");
   const moviesMatch = useMatch("/movies");
@@ -68,26 +78,12 @@ var NavMenu = (SectionData) => {
       <div className="nav-container">
         <div className="nav-content">
           <div>
-            <div className="hamMenu">
-              <p onTouchEnd={() => addClass()} className="btnMenu">
-                Menu
+            <div className="hamMenu-container">
+              <button onClick={() => handleToggleBtn()} className="btnMenu">
+                <p>Menu</p>
                 <ChevronDown color="white" className="hamMenuChevron" />
-              </p>
-              <div className="hamMenu-ul">
-                <span className="hamMenu-li">
-                  <Home />
-                  <p>Home</p>
-                </span>
-                <span className="hamMenu-li">
-                  <Layers3 />
-                  <p>Categories</p>
-                  <ChevronDown />
-                </span>
-                <span className="hamMenu-li">
-                  <Youtube />
-                  <p>My Stuff</p>
-                </span>
-              </div>
+              </button>
+              <HamMenu isOpen={toggleBtn} />
             </div>
 
             <NavLink to="/home" className="NavLogo">
@@ -196,7 +192,5 @@ var NavMenu = (SectionData) => {
     </nav>
   );
 };
-
-
 
 export default NavMenu;

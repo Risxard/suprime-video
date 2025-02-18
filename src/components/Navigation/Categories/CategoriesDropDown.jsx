@@ -4,7 +4,7 @@ import DropdownContainer from "../Layout/DropdownContainer/Index";
 
 import './styles.css'
 
-const Categorieschildren = () => {
+export const Categorieschildren = () => {
   return (
     <>
       <div className="dropdown-content-layout">

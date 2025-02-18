@@ -327,47 +327,46 @@
 
 
 
-.hamMenu {
+.hamMenu-container {
     display: none;
     align-items: center;
     justify-content: center;
     gap: 1px;
-
+    width: auto;
     height: 100%;
+    padding-inline: 0.7rem;
 
+    position: relative;
+}
+
+
+
+
+
+.btnMenu {
     font-family: 'Gilroy-bold';
     font-style: bold;
     font-weight: 600;
     font-size: 16px;
     line-height: 22px;
     color: #fff;
-
-    padding-inline: 0.7rem;
-
-
 }
 
-.hamMenu.ativo,
-.hamMenu.ativo .hamMenu-ul {
-    display: flex;
-    background: #191E25;
-}
-
-.hamMenu .hamMenuChevron {
+.hamMenu-container .hamMenu-containerChevron {
     transition: all 0.3s ease-in-out;
 }
 
-.hamMenu.ativo .hamMenuChevron {
+.hamMenu-container.ativo .hamMenu-containerChevron {
     transform: rotate(180deg);
 }
 
 
-.hamMenu svg {
+.hamMenu-container svg {
     width: 1rem;
     height: 1rem;
 }
 
-.hamMenu-ul {
+.hamMenu-container-ul {
     width: 100%;
     height: 100vh;
 
@@ -384,7 +383,7 @@
     background: #191E25;
 }
 
-.hamMenu-li {
+.hamMenu-container-li {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -392,12 +391,10 @@
 
     width: 100%;
     padding-inline: 1.6rem;
-
     font-family: 'Gilroy-Regular';
-
+    font-size: 14px;
     font-weight: 600;
     font-size: 1rem;
-
     color: #aaa;
 }
 
@@ -407,10 +404,26 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-
     gap: 4px;
-
     user-select: none;
+    border-radius: 8px;
+    padding-inline: 12px;
+    background: none;
+    border: 0;
+
+    color: white;
+
+    max-height: 38px;
+}
+
+.btnMenu:hover{
+    background-color: white;
+    color: #000000;
+    cursor: pointer;
+}
+.btnMenu:hover svg{
+    stroke: #000000;
+    transform: rotateX(180deg);
 }
 
 
@@ -648,15 +661,20 @@ media query MobileFirst Open*/
     }
 
 }
+
 @media screen and (max-width: 599px) {
     .Navigation {
         --nav-content-padding: 12px;
     }
+
+    .btnMenu {
+        font-size: 16px;
+    }
 }
 
 @media screen and (min-width: 600px) {
-    .hamMenu p {
-        font-size: 16px;
+    .btnMenu {
+        font-size: 18px;
     }
 
     .NavLogo {
@@ -668,9 +686,9 @@ media query MobileFirst Open*/
     }
 }
 
-@media screen and (min-width: 800px) {
-    .hamMenu p {
-        font-size: 19px;
+@media screen and (min-width: 880px) {
+    .btnMenu {
+        font-size: 14px;
     }
 
     .nav-content>div {
@@ -684,7 +702,7 @@ media query MobileFirst Open*/
         display: flex;
     }
 
-    .Navigation{
+    .Navigation {
         padding-inline: 0px;
     }
 
@@ -781,7 +799,7 @@ media query MobileFirst Open*/
         display: none;
     }
 
-    .hamMenu {
+    .hamMenu-container {
         display: flex;
     }
 }
