@@ -24,11 +24,11 @@ Espero que você aproveite ao máximo esta plataforma!
 
 1. Clone o repositório:
     ```bash
-    git clone https://github.com/seu-usuario/suprime-video.git
+    git clone https://github.com/seu-usuario/acaiwavePlus.git
     ```
 2. Navegue até o diretório do projeto:
     ```bash
-    cd suprime-video
+    cd acaiwavePlus
     ```
 3. Instale as dependências:
     ```bash
