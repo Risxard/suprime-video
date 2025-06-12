@@ -1,0 +1,350 @@
+{
+    "signUpNow": "Sign Up Now",
+    "loginPage": {
+        "title": "Sign In",
+        "subtitle": "Enter your email address and password to get started. If you are already an Açaíwave+ subscriber, use the email associated with your account.",
+        "emailAdress": "Email Address",
+        "password": "Password",
+        "loginEnterBtn": "Sign In",
+        "loginSignInBtn": "Signing In...",
+        "dontHaveAccount": "Don't have an account?",
+        "signUp": "Sign Up",
+        "forgotPassword": "Forgot password?",
+        "errors": {
+            "emailInvalid": "Invalid email address",
+            "emailRequired": "Email is required",
+            "passwordMin": "Password must be at least 6 characters",
+            "passwordMax": "Password cannot exceed 25 characters",
+            "passwordRequired": "Password is required"
+        }
+    },
+    "registerPage": {
+        "title": "Register",
+        "subTitle": "Enter your name, email address, and password to create your account.",
+        "firstName": "First Name",
+        "yourEmail": "Your Email",
+        "yourPassword": "Your Password",
+        "confirmPassword": "Confirm Your Password",
+        "registerBtn": "Register",
+        "registeringBtn": "Registering...",
+        "haveAccount": "Already have an account?",
+        "signInNow": "Sign In Now",
+        "errors": {
+            "nameMin": "Name must be at least 3 characters",
+            "emailInvalid": "Invalid email format",
+            "emailMin": "Email must be at least 6 characters",
+            "passwordMin": "Password must be at least 6 characters",
+            "confirmPasswordMin": "Password confirmation is required",
+            "passwordsNotMatch": "Passwords must match!"
+        }
+    },
+    "forgotPasswordPage": {
+        "introMessage1": {
+            "title": "Password Reset Email Sent!",
+            "subTitle": "If there is a registered email, you will receive a link to reset your password."
+        },
+        "introMessage2": {
+            "title": "Recover Password",
+            "subTitle": "Enter your registered email and, if there is a registered email, you will receive a link to reset your password."
+        },
+        "emailAdress": "Email Address",
+        "sendBtn": "Send",
+        "sendingBtn": "Sending...",
+        "haveAccount": "Already have an account?",
+        "signUp": "Sign Up",
+        "errors": {
+            "emailInvalid": "Invalid email address",
+            "emailRequired": "Email is required"
+        }
+    },
+    "emailVerificationPage": {
+        "title": "Verification Email Sent!",
+        "subTitle": "We have sent a verification link to your email. Please check your inbox.",
+        "subTitle2": "Didn't find the email? Try checking your spam or junk folder."
+    },
+    "navigation": {
+        "menu": {
+            "home": "Home",
+            "movies": "Movies",
+            "tvShows": "TV Shows",
+            "sports": "Sports",
+            "liveTv": "Live TV",
+            "subscriptions": "Subscriptions",
+            "categories": "Categories",
+            "myStuffs": "My Stuff",
+            "browser": "Browse",
+            "browseAll": "Browse All"
+        },
+        "search": {
+            "placeholder": "Search",
+            "button": "Clear"
+        },
+        "categories": {
+            "genres": {
+                "title": "Genres",
+                "actionAndAdventure": "Action & Adventure",
+                "anime": "Anime",
+                "comedy": "Comedy",
+                "documentary": "Documentary",
+                "drama": "Drama",
+                "fantasy": "Fantasy",
+                "horror": "Horror",
+                "kids": "Kids",
+                "mysteryAndThriller": "Mystery & Thriller",
+                "romance": "Romance",
+                "scienceFiction": "Science Fiction"
+            },
+            "featuredCollections": {
+                "title": "Featured Collections",
+                "madeForYou": "Made for You",
+                "newAndUpcoming": "New and Upcoming",
+                "homePremiere": "Home Premiere",
+                "criticallyAcclaimed": "Critically Acclaimed",
+                "lgbtqiap": "LGBTQIAP+",
+                "blackVoices": "Black Voices"
+            }
+        },
+        "yourAccount": {
+            "all": "All",
+            "watchlist": "Watchlist",
+            "purchasesRentals": "Purchases & Rentals"
+        },
+        "accountMenu": {
+            "yourAccount": {
+                "title": "Your Account",
+                "help": "Help",
+                "watchAnywhere": "Watch Anywhere",
+                "AccountSettings": "Account & Settings",
+                "signOut": "Sign Out"
+            },
+            "profiles": {
+                "title": "Profiles",
+                "addNew": "Add New",
+                "manageProfiles": "Manage Profiles",
+                "learnMore": "Learn More"
+            }
+        }
+    },
+    "footer": {
+        "links": {
+            "termsAndPrivacy": "Terms and Privacy Notice",
+            "feedback": "Send us Feedback",
+            "help": "Help"
+        },
+        "copyright": "© 2024-2025, Richardson Souza, Inc. or its affiliates"
+    },
+    "settingsPage": {
+        "title": "Account & Settings",
+        "profileDescription": "The following information applies to the profile of",
+        "successMessage": "Your setting has been saved",
+        "errorMessage": "Sorry, an error occurred. Please try again later.",
+        "labels": {
+            "yourAccount": "Your Account",
+            "playback": "Playback",
+            "language": "Language"
+        },
+        "yourAccount": {
+            "changePassword": {
+                "title": "Change Password",
+                "description": "An email with a password reset link will be sent to the email registered to your account.",
+                "button": "Change Password",
+                "statusMessages": {
+                    "sendingBtn": "Sending...",
+                    "emailSuccess": "Email sent successfully!"
+                }
+            },
+            "deleteMyAccount": {
+                "title": "Delete My Account",
+                "description": "All your data will be permanently deleted from Açaíwave+.",
+                "button": "Delete My Account"
+            }
+        },
+        "playback": {
+            "playbackReprodution": {
+                "title": "Auto-Playing Trailers",
+                "description": "Automatically play trailers while browsing the catalog using a web browser."
+            }
+        },
+        "language": {
+            "websiteLanguage": {
+                "title": "Website Language",
+                "description": "New profiles will use this language as the default.",
+                "button": "Change"
+            },
+            "streamingLanguage": {
+                "title": "Profile Language",
+                "description": "Change preferred audio and subtitle languages for personalized recommendations.",
+                "button": "Change",
+                "saveButton": "Save Changes",
+                "profileLanguage": "Profile Language"
+            }
+        }
+    },
+    "watchlistPage": {
+        "title": "Watchlist",
+        "buttons": {
+            "all": "All",
+            "moviesLang": "Movies",
+            "tvShowsLang": "TV Shows",
+            "mostRecent": "Most Recent Addition",
+            "orderAz": "Title A-Z",
+            "orderZa": "Title Z-A"
+        },
+        "emptyMessage": {
+            "title": "Your Watchlist is Empty",
+            "description": "Add <0>TV shows</0> and <1>movies</1> you want to watch later by clicking Add to Watchlist.",
+            "button": "Browse All"
+        }
+    },
+    "searchPage": {
+        "buttons": {
+            "contentType": {
+                "title": "Content Type",
+                "movies": "Movies",
+                "tvShows": "TV Shows"
+            },
+            "genre": {
+                "title": "Genre"
+            },
+            "infoLabels": {
+                "resultsFor": "Results for",
+                "moreVideos": "More to Explore",
+                "notFound1": "We couldn't find any matches for",
+                "notFound2": "Browse our most popular series and movies."
+            }
+        }
+    },
+    "detailPage": {
+        "labelButtons": {
+            "related": "Related",
+            "details": "Details"
+        },
+        "costumersAlsoWatch": "Customers Also Watched",
+        "moreInfo": {
+            "title": "Learn More",
+            "audioLanguage": {
+                "title": "Audio Language"
+            },
+            "subtitles": {
+                "title": "Subtitles"
+            },
+            "directors": {
+                "title": "Directors"
+            },
+            "producers": {
+                "title": "Producers"
+            },
+            "starring": {
+                "title": "Starring"
+            },
+            "studio": {
+                "title": "Studio"
+            },
+            "termsOfUse": {
+                "message1": "By clicking play, you agree to our ",
+                "message2": "Terms of Use."
+            },
+            "feedback": {
+                "title": "Feedback",
+                "sendFeedback": "Send us Feedback"
+            },
+            "support": {
+                "title": "Support",
+                "getHelp": "Get Help"
+            }
+        }
+    },
+    "profilesPage": {
+        "buttonAdd": "Add New Profile",
+        "selectProfile": {
+            "title": "Who's Watching?",
+            "button1": "Edit Profile"
+        },
+        "manageProfile": {
+            "title": "Manage Profile",
+            "button": "Save"
+        },
+        "newProfile": {
+            "title": "New Profile",
+            "changeImageProfile": "Change Profile Image",
+            "cancelButton": "Cancel",
+            "saveButton": "Save Changes",
+            "placeHolderNameInput": "Enter Name"
+        },
+        "editProfile": {
+            "title": "Edit Profile",
+            "changeImageProfile": "Change Profile Image",
+            "cancelButton": "Cancel",
+            "saveButton": "Save Changes",
+            "placeHolderNameInput": "Enter Name",
+            "profilePinAndLocks": {
+                "title": "Profile PIN and Locks",
+                "description": "Lock your profile with a profile PIN.",
+                "button": "Manage"
+            },
+            "streamingLanguages": {
+                "title": "Profile Language",
+                "description": "Change preferred audio and subtitle languages for personalized recommendations.",
+                "button": "Manage"
+            },
+            "removeProfile": {
+                "title": "Remove Profile",
+                "description": "Remove this profile from Açaíwave+.",
+                "button": "Remove"
+            }
+        }
+    },
+    "categoriesPage": {
+        "buttons": {
+            "all": "All",
+            "movies": "Movies",
+            "tvShows": "TV Shows"
+        },
+        "sectionTitles": {
+            "movies": "Movies",
+            "tvShows": "TV Shows",
+            "popularMovies": "Popular Movies",
+            "popularTvShows": "Popular TV Shows"
+        }
+    },
+    "errorPage": {
+        "title": "There's nothing here...",
+        "description": "There's nothing at this web address. Let's find something great to watch instead.",
+        "button": "Go to Açaíwave+ Home"
+    },
+    "buttons": {
+        "radioButtons": {
+            "on": "On",
+            "off": "Off"
+        },
+        "optionsButtons": {
+            "watchlist": "Watchlist",
+            "details": "Details",
+            "hideMediaMovie": "Hide this Movie",
+            "hideMediaSerie": "Hide this Series",
+            "play1": "Watch Now",
+            "play2": "Play",
+            "trailer": "Watch Trailer",
+            "download": "Download",
+            "like": "Like",
+            "dislike": "Not for Me",
+            "share": "Share"
+        }
+    },
+    "components": {
+        "includeWithAcaiwave": {
+            "title": "Included with Açaíwave+"
+        }
+    },
+    "sectionTitles": {
+        "bestOfTheWeek": "Best of the Week",
+        "recommendedSeries": "Series We Think You'll Like",
+        "recommendedSeries2": "Recommended Series",
+        "recommendedMovies": "Movies We Think You'll Like",
+        "recommendedMovies2": "Recommended Movies",
+        "recomendedTvAndSeries": "Best Series and Movies",
+        "originalsAndExclusives": "Featured Originals & Exclusives",
+        "top10MoviesTMDB": "Top 10 Movies on TMDB",
+        "top10TvShowsTMDB": "Top 10 TV Shows on TMDB"
+    }
+}

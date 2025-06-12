@@ -1,0 +1,14 @@
+export { default as Login } from "./Login";
+export { default as Register } from "./Register";
+export { default as Home } from "./Home";
+export { default as Movies } from "./Movies";
+export { default as TvSeries } from "./TvSeries";
+export { default as DetailsPage } from "./DetailsPage/DetailsPage";
+export { default as ProfilesPage } from "./Profiles";
+export { default as Categories } from "./Categories";
+export { default as WatchlistPage } from "./WatchList/index";
+export { default as SettingsPage } from "./Settings/index";
+export { default as Pagetest } from "./PageTest/index";
+export { default as ErrorPage } from "./ErrorPage/index";
+export { default as EmailVerificationPage } from "./EmailVerification/index";
+export { default as FortgetPasswordPage } from "./FortgotPasswordPage/index";

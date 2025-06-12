@@ -1,0 +1,15 @@
+.page-test-container{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.page-test-container h1{
+    color: white;
+    font-size: 3rem;
+}
+
+.page-test-container h1:hover span{
+    color: rgb(233, 139, 154);
+}

@@ -1,0 +1,206 @@
+.movie-options-modal-overlay {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(51, 51, 51, .6);
+}
+
+.movie-options-modal-container {
+    width: 100%;
+    height: 100%;
+    padding-inline: var(--inner-width);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.movie-options-dialog {
+    background-color: #00050d;
+}
+
+
+
+
+.movie-options-dialog-header {
+    border-bottom: 1px solid #33373d;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+
+.XSvg {
+    width: 100px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    color: rgb(153, 153, 153);
+}
+
+.movie-options-dialog-header-title {
+    display: flex;
+    align-items: center;
+}
+
+.draggable-resize-button-container {
+    padding: 4px;
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+.draggable-resize-button {
+    background-color: #33373d;
+    border-radius: 10000px;
+    display: block;
+    height: 4px;
+    width: 32px;
+}
+
+
+
+.movie-options-dialog-main {
+    display: flex;
+    flex-direction: column;
+    color: white;
+    padding: 16px 24px;
+}
+
+
+.movie-options-dialog-main ul {
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+}
+
+.movie-options-dialog-main ul li {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+
+}
+
+.movie-options-dialog-main ul li > *{
+    width: 100%;
+    height: 100%;
+    padding-block: 12px;
+    padding-right: 12px;
+}
+
+.movie-options-dialog-main ul li a{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    font-family: 'Ember-medium';
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.28px;
+    line-height: 17px;
+    color: white;
+    text-decoration: none;
+}
+
+.movie-options-dialog-main ul li button{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    font-family: 'Ember-medium';
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.28px;
+    line-height: 17px;
+    color: white;
+    background: none;
+    border: none;
+}
+
+.movie-options-dialog-main ul li span {
+    margin-left: 8px;
+}
+
+.movie-options-dialog-header {
+    padding: 15px 30px;
+    display: flex;
+    flex-direction: row;
+}
+
+.movie-options-dialog-header h2 {
+    font-family: 'Ember-bold';
+    font-weight: 700;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    color: white;
+}
+
+
+
+
+@media (max-width: 599px) {
+    .draggable-resize-button-container {
+        display: flex;
+    }
+
+    .movie-options-modal-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        padding: 0;
+    }
+
+    .movie-options-dialog-header {
+        padding: 12px 24px;
+    }
+
+    .movie-options-dialog-header h2 {
+        font-size: 18px;
+        letter-spacing: 0.36px;
+        line-height: 22px;
+    }
+
+    .movie-options-dialog {
+        border-top-right-radius: 12px;
+        border-top-left-radius: 12px;
+        position: fixed;
+        width: 100%;
+        bottom: 0;
+        left: 0;
+
+        height: initial;
+    }
+    
+
+    .XSvg {
+        margin-left: auto;
+    }
+}
+
+@media (min-width: 600px) {
+    .movie-options-modal-container{
+        align-items: center;
+        justify-content: center;
+    }
+    .movie-options-dialog {
+        height: auto !important;
+        max-width: 525px;
+        width: 100%;
+
+        border-top-right-radius: 12px;
+        border-top-left-radius: 12px;
+        border-bottom-right-radius: 12px;
+        border-bottom-left-radius: 12px;
+    }
+
+    .movie-options-dialog-main ul li a{
+        font-size: 16px;
+        letter-spacing: 0.32px;
+        line-height: 17px;
+    }
+    
+}

@@ -1,0 +1,90 @@
+.watchlistPage {
+    padding-top: var(--nav-height);
+    color: white;
+}
+
+.filter-watchlist {
+    display: flex;
+    justify-content: flex-end;
+    padding-inline: var(--inner-width);
+}
+
+.watchlistPage .filters-btns-container {
+    padding: 0;
+
+}
+
+.watchlistPage .inner-btn {
+    margin-right: 12px;
+}
+
+.watchlistPage .inner-btn ul {
+    right: 0;
+}
+
+.watchlistPage .inner-btn ul li {
+    text-wrap: nowrap;
+}
+
+
+
+.watchlistPage a {
+    text-decoration: none;
+}
+
+.column-container-items {
+    min-height: 800px;
+}
+
+
+
+.empty-watchlist {
+    width: 100%;
+    height: auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    font-family: 'Ember-regular';
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: 0.16px;
+    line-height: 22px;
+}
+
+.empty-watchlist a {
+    color: #fff;
+    text-decoration: underline;
+}
+
+.empty-watchlist a:hover {
+    color: #90dffe;
+}
+
+
+
+@media screen and (min-width: 600px) {
+    .empty-watchlist {
+        font-size: 18px;
+        font-weight: 400;
+        letter-spacing: 0.18px;
+        line-height: 25px;
+    }
+}
+
+@media screen and (min-width: 880px) {
+    .filter-watchlist {
+        justify-content: space-between;
+    }
+}
+
+@media screen and (min-width: 1280px) {
+    .empty-watchlist {
+        font-size: 20px;
+        font-weight: 400;
+        letter-spacing: 0.2px;
+        line-height: 28px;
+    }
+}

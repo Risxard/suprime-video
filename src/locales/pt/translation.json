@@ -1,0 +1,350 @@
+{
+  "signUpNow": "Cadastre-se agora",
+  "loginPage": {
+    "title": "Entrar",
+    "subtitle": "Digite seu endereço de e-mail e senha para começar. Se você já é assinante do Açaíwave+, use o e-mail associado à sua conta.",
+    "emailAdress": "Endereço de e-mail",
+    "password": "Senha",
+    "loginEnterBtn": "Entrar",
+    "loginSignInBtn": "Entrando...",
+    "dontHaveAccount": "Não tem uma conta?",
+    "signUp": "Cadastre-se",
+    "forgotPassword": "Esqueceu a senha?",
+    "errors": {
+      "emailInvalid": "Endereço de e-mail inválido",
+      "emailRequired": "O e-mail é obrigatório",
+      "passwordMin": "A senha precisa ter no mínimo 6 caracteres",
+      "passwordMax": "A senha não pode exceder 25 caracteres",
+      "passwordRequired": "A senha é obrigatória"
+    }
+  },
+  "registerPage": {
+    "title": "Registrar",
+    "subTitle": "Digite seu nome, endereço de e-mail e senha para criar sua conta.",
+    "firstName": "Nome",
+    "yourEmail": "Seu e-mail",
+    "yourPassword": "Sua senha",
+    "confirmPassword": "Confirmar sua senha",
+    "registerBtn": "Cadastrar",
+    "registeringBtn": "Cadastrando...",
+    "haveAccount": "Já tem uma conta?",
+    "signInNow": "Entrar agora",
+    "errors": {
+      "nameMin": "O nome precisa ter no mínimo 3 caracteres",
+      "emailInvalid": "Formato de e-mail inválido",
+      "emailMin": "O e-mail precisa ter no mínimo 6 caracteres",
+      "passwordMin": "A senha precisa ter no mínimo 6 caracteres",
+      "confirmPasswordMin": "A confirmação de senha é obrigatória",
+      "passwordsNotMatch": "As senhas precisam ser iguais!"
+    }
+  },
+  "forgotPasswordPage": {
+    "introMessage1": {
+      "title": "Email de alteração de senha enviado!",
+      "subTitle": "Se houver um e-mail cadastrado, você receberá um link para alterar sua senha."
+    },
+    "introMessage2": {
+      "title": "Recuperar senha",
+      "subTitle": "Entre com o e-mail cadastrado e, se houver um e-mail registrado, você receberá um link para alterar sua senha."
+    },
+    "emailAdress": "Endereço de e-mail",
+    "sendBtn": "Enviar",
+    "sendingBtn": "Enviando...",
+    "haveAccount": "Já tem uma conta?",
+    "signUp": "Cadastre-se",
+    "errors": {
+      "emailInvalid": "Endereço de e-mail inválido",
+      "emailRequired": "O e-mail é obrigatório"
+    }
+  },
+  "emailVerificationPage": {
+    "title": "Email de verificação enviado!",
+    "subTitle": "Enviamos um link de verificação para o seu e-mail. Por favor, acesse sua caixa de entrada.",
+    "subTitle2": "Não encontrou o e-mail? Tente procurar na pasta de spam ou lixo eletrônico."
+  },
+  "navigation": {
+    "menu": {
+      "home": "Início",
+      "movies": "Filmes",
+      "tvShows": "Séries",
+      "sports": "Esportes",
+      "liveTv": "TV ao vivo",
+      "subscriptions": "Assinaturas",
+      "categories": "Categorias",
+      "myStuffs": "Minha área",
+      "browser": "Explorar",
+      "browseAll": "Explorar tudo"
+    },
+    "search": {
+      "placeholder": "Buscar",
+      "button": "Limpar"
+    },
+    "categories": {
+      "genres": {
+        "title": "Gêneros",
+        "actionAndAdventure": "Ação e aventura",
+        "anime": "Anime",
+        "comedy": "Comédia",
+        "documentary": "Documentário",
+        "drama": "Drama",
+        "fantasy": "Fantasia",
+        "horror": "Terror",
+        "kids": "Infantis",
+        "mysteryAndThriller": "Suspense e mistério",
+        "romance": "Romance",
+        "scienceFiction": "Ficção científica"
+      },
+      "featuredCollections": {
+        "title": "Coleções em destaque",
+        "madeForYou": "Feito para você",
+        "newAndUpcoming": "Novidades e lançamentos",
+        "homePremiere": "Estreias em casa",
+        "criticallyAcclaimed": "Aclamados pela crítica",
+        "lgbtqiap": "LGBTQIAP+",
+        "blackVoices": "Vozes negras"
+      }
+    },
+    "yourAccount": {
+      "all": "Tudo",
+      "watchlist": "Sua Lista",
+      "purchasesRentals": "Compras e aluguéis"
+    },
+    "accountMenu": {
+      "yourAccount": {
+        "title": "Sua conta",
+        "help": "Ajuda",
+        "watchAnywhere": "Assista onde quiser",
+        "AccountSettings": "Conta e configurações",
+        "signOut": "Sair"
+      },
+      "profiles": {
+        "title": "Perfis",
+        "addNew": "Adicionar novo perfil",
+        "manageProfiles": "Gerenciar perfis",
+        "learnMore": "Saiba mais"
+      }
+    }
+  },
+  "footer": {
+    "links": {
+      "termsAndPrivacy": "Termos e Aviso de Privacidade",
+      "feedback": "Envie-nos feedback",
+      "help": "Ajuda"
+    },
+    "copyright": "© 2024-2025, Richardson Souza, Inc. ou suas afiliadas"
+  },
+  "settingsPage": {
+    "title": "Conta e configurações",
+    "profileDescription": "As seguintes informações se aplicam ao perfil de",
+    "successMessage": "Sua configuração foi salva",
+    "errorMessage": "Desculpe, ocorreu um erro. Tente novamente mais tarde.",
+    "labels": {
+      "yourAccount": "Sua conta",
+      "playback": "Reprodutor",
+      "language": "Idioma"
+    },
+    "yourAccount": {
+      "changePassword": {
+        "title": "Alterar senha",
+        "description": "Um e-mail com um link para redefinição de senha será enviado para o e-mail cadastrado na conta.",
+        "button": "Alterar senha",
+        "statusMessages": {
+          "sendingBtn": "Enviando...",
+          "emailSuccess": "E-mail enviado com sucesso!"
+        }
+      },
+      "deleteMyAccount": {
+        "title": "Excluir minha conta",
+        "description": "Todos os seus dados serão deletados permanentemente do Açaiwave+.",
+        "button": "Excluir minha conta"
+      }
+    },
+    "playback": {
+      "playbackReprodution": {
+        "title": "Trailers com reprodução automática",
+        "description": "Reproduza trailers automaticamente enquanto navega pelo catálogo com um navegador da Web."
+      }
+    },
+    "language": {
+      "websiteLanguage": {
+        "title": "Idioma do site",
+        "description": "Os novos perfis usarão este idioma como padrão inicial.",
+        "button": "Alterar"
+      },
+      "streamingLanguage": {
+        "title": "Idioma do perfil",
+        "description": "Altere os idiomas preferidos de áudio e legenda para recomendações personalizadas.",
+        "button": "Alterar",
+        "saveButton": "Salvar",
+        "profileLanguage": "Idioma do perfil"
+      }
+    }
+  },
+  "watchlistPage": {
+    "title": "Sua lista",
+    "buttons": {
+      "all": "Todos",
+      "moviesLang": "Filmes",
+      "tvShowsLang": "Séries",
+      "mostRecent": "Adição mais recente",
+      "orderAz": "Título A-Z",
+      "orderZa": "Título Z-A"
+    },
+    "emptyMessage": {
+      "title": "Sua lista está vazia",
+      "description": "Adicione <0>séries</0> e <1>filmes</1> a que deseja assistir mais tarde clicando em Adicionar à Lista.",
+      "button": "Explorar tudo"
+    }
+  },
+  "searchPage": {
+    "buttons": {
+      "contentType": {
+        "title": "Tipo de conteúdo",
+        "movies": "Filmes",
+        "tvShows": "Séries"
+      },
+      "genre": {
+        "title": "Gênero"
+      },
+      "infoLabels": {
+        "resultsFor": "Resultados para",
+        "moreVideos": "Mais para explorar",
+        "notFound1": "Não encontramos nenhuma correspondência para",
+        "notFound2": "Navegue por nossas séries e filmes mais populares."
+      }
+    }
+  },
+  "detailPage": {
+    "labelButtons": {
+      "related": "Relacionados",
+      "details": "Detalhes"
+    },
+    "costumersAlsoWatch": "Os clientes também assistiram",
+    "moreInfo": {
+      "title": "Saiba mais",
+      "audioLanguage": {
+        "title": "Idioma de áudio"
+      },
+      "subtitles": {
+        "title": "Legendas"
+      },
+      "directors": {
+        "title": "Diretores"
+      },
+      "producers": {
+        "title": "Produtores"
+      },
+      "starring": {
+        "title": "Elenco"
+      },
+      "studio": {
+        "title": "Estúdio"
+      },
+      "termsOfUse": {
+        "message1": "Ao clicar em reproduzir, você concorda com nossos ",
+        "message2": "Termos de Uso."
+      },
+      "feedback": {
+        "title": "Feedback",
+        "sendFeedback": "Envie-nos feedback"
+      },
+      "support": {
+        "title": "Suporte",
+        "getHelp": "Obter ajuda"
+      }
+    }
+  },
+  "profilesPage": {
+    "buttonAdd": "Adicionar novo perfil",
+    "selectProfile": {
+      "title": "Quem está assistindo?",
+      "button1": "Editar perfil"
+    },
+    "manageProfile": {
+      "title": "Gerenciar perfil",
+      "button": "Salvar"
+    },
+    "newProfile": {
+      "title": "Novo perfil",
+      "changeImageProfile": "Alterar imagem do perfil",
+      "cancelButton": "Cancelar",
+      "saveButton": "Salvar alterações",
+      "placeHolderNameInput": "Inserir nome"
+    },
+    "editProfile": {
+      "title": "Editar perfil",
+      "changeImageProfile": "Alterar imagem do perfil",
+      "cancelButton": "Cancelar",
+      "saveButton": "Salvar alterações",
+      "placeHolderNameInput": "Inserir nome",
+      "profilePinAndLocks": {
+        "title": "PIN e bloqueios do perfil",
+        "description": "Bloqueie seu perfil com um PIN do perfil.",
+        "button": "Gerenciar"
+      },
+      "streamingLanguages": {
+        "title": "Idioma do perfil",
+        "description": "Altere os idiomas preferidos de áudio e legenda para recomendações personalizadas.",
+        "button": "Gerenciar"
+      },
+      "removeProfile": {
+        "title": "Remover perfil",
+        "description": "Remova este perfil do Açaíwave+.",
+        "button": "Remover"
+      }
+    }
+  },
+  "categoriesPage": {
+    "buttons": {
+      "all": "Todos",
+      "movies": "Filmes",
+      "tvShows": "Séries"
+    },
+    "sectionTitles": {
+      "movies": "Filmes",
+      "tvShows": "Séries",
+      "popularMovies": "Filmes populares",
+      "popularTvShows": "Séries populares"
+    }
+  },
+  "errorPage": {
+    "title": "Não tem nada aqui...",
+    "description": "Não há nada neste endereço da web. Vamos encontrar um ótimo vídeo para assistir em vez disso.",
+    "button": "Ir para a página inicial do Açaíwave+"
+  },
+  "buttons": {
+    "radioButtons": {
+      "on": "Ativado",
+      "off": "Desativado"
+    },
+    "optionsButtons": {
+      "watchlist": "Lista",
+      "details": "Detalhes",
+      "hideMediaMovie": "Ocultar esse filme",
+      "hideMediaSerie": "Ocultar essa série",
+      "play1": "Assista agora",
+      "play2": "Reproduzir",
+      "trailer": "Assistir ao trailer",
+      "download": "Baixar",
+      "like": "Curtir",
+      "dislike": "Não é pra mim",
+      "share": "Compartilhar"
+    }
+  },
+  "components": {
+    "includeWithAcaiwave": {
+      "title": "Incluído no Açaíwave+"
+    }
+  },
+  "sectionTitles": {
+    "bestOfTheWeek": "Os melhores da semana",
+    "recommendedSeries": "Séries que achamos que você vai gostar",
+    "recommendedSeries2": "Séries recomendadas",
+    "recommendedMovies": "Filmes que achamos que você vai gostar",
+    "recommendedMovies2": "Filmes recomendados",
+    "recomendedTvAndSeries": "Melhores séries e filmes",
+    "originalsAndExclusives": "Originais e exclusivos em destaque",
+    "top10MoviesTMDB": "Top 10 filmes no TMDB",
+    "top10TvShowsTMDB": "Top 10 séries no TMDB"
+  }
+}

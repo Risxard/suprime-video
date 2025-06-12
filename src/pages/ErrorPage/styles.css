@@ -1,0 +1,188 @@
+.error-page {
+    padding: 84px;
+    color: white;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+
+    min-height: 85vh;
+}
+
+
+.error-page nav {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+
+
+
+.error-page div h2 {
+    color: white;
+    font-family: 'Ember-bold';
+    font-size: 50px;
+    line-height: 56px;
+    padding-bottom: 84px;
+}
+
+.error-page div p {
+    color: white;
+    font-family: 'Ember-medium';
+    font-size: 20px;
+    line-height: 28px;
+    padding-bottom: 56px;
+}
+
+.error-page div a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: fit-content;
+    will-change: transform;
+    color: white;
+    font-family: 'Ember-medium';
+    font-size: 20px;
+    line-height: 28px;
+    padding-inline: 21px;
+    padding-block: 8px;
+    background: hsla(0, 0%, 100%, .2);
+    text-decoration: none;
+    border-radius: 8px;
+    min-height: 62px;
+    transition: all .2s ease-in-out;
+}
+
+.error-page div a:hover {
+    background: #fff;
+    color: #00050d;
+    -webkit-transform: none;
+    transform: none;
+}
+
+@media screen and (max-width: 448px) {
+    .error-page .nav-standalone .NavLogo {
+        display: flex;
+    }
+}
+
+@media (max-width: 599px) {
+    .error-page {
+        padding: 48px;
+    }
+
+    .error-page div h2 {
+        font-size: 28px;
+        line-height: 31px;
+        padding-bottom: 48px;
+        letter-spacing: 0.28px;
+    }
+
+    .error-page div p {
+        font-size: 16px;
+        line-height: 22px;
+        padding-bottom: 32px;
+    }
+
+    .error-page div a {
+        font-size: 16px;
+        line-height: 19px;
+        padding-inline: 12px;
+        padding-block: 5px;
+
+        min-height: 48px;
+    }
+}
+
+
+
+@media (min-width: 600px) {
+    .error-page {
+        padding: 60px;
+    }
+
+    .error-page div h2 {
+        font-size: 32px;
+        line-height: 36px;
+        padding-bottom: 60px;
+
+        letter-spacing: 0.32px;
+    }
+
+    .error-page div p {
+        font-size: 18px;
+        line-height: 25px;
+        padding-bottom: 40px;
+    }
+
+    .error-page div a {
+        font-size: 18px;
+        line-height: 22px;
+        padding-inline: 15px;
+        padding-block: 5px;
+
+        min-height: 54px;
+    }
+}
+
+@media (max-width: 880px){
+    .error-page .nav-standalone{
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+
+
+@media (min-width: 880px) {
+    .error-page {
+        padding: 72px;
+    }
+
+    .error-page div h2 {
+        font-size: 36px;
+        line-height: 40px;
+        padding-bottom: 72px;
+        letter-spacing: normal;
+    }
+
+    .error-page div p {
+        font-size: 18px;
+        line-height: 25px;
+        padding-bottom: 48px;
+    }
+
+    .error-page div a {
+        font-size: 18px;
+        line-height: 22px;
+        padding-inline: 18px;
+        padding-block: 8px;
+
+        min-height: 60px;
+    }
+}
+
+
+
+@media (min-width: 1280px) {
+    .error-page {
+        padding: 84px;
+
+    }
+
+    .error-page div h2 {
+        font-size: 50px;
+        line-height: 56px;
+        padding-bottom: 84px;
+    }
+
+    .error-page div p {
+        font-size: 20px;
+        line-height: 28px;
+        padding-bottom: 56px;
+    }
+}

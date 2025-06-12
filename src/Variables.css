@@ -1,0 +1,158 @@
+#root {
+    --nav-height: 48px;
+    --inner-width: 24px;
+    --color-background: #0A070B;
+
+
+    /* backdrop slide */
+    --backdrop-gap-slider: 12px;
+    --backdrop-height-slider: 600px;
+    --backdrop-padding-top-slider: 8px;
+    --backdrop-margin-bottom-slider: calc(-415px);
+
+
+
+    --dv-screen-width: 100vw;
+    --dv-card-number: 1.5;
+    --dv-card-gap-number: calc(var(--dv-card-number) - 0.5);
+
+    --dv-packshot-width: calc((var(--dv-screen-width) - var(--inner-width)*2 - var(--backdrop-gap-slider)*var(--dv-card-gap-number))/var(--dv-card-number)*1);
+}
+
+.SectionTitle {
+    display: flex;
+    justify-content: space-between;
+
+    width: 100%;
+
+    padding-inline: var(--inner-width);
+    padding-bottom: 8px;
+}
+
+.SectionTitle h2 {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    font-family: 'Ember-bold';
+    font-size: 16px;
+    color: #FFFFFF;
+
+    margin-right: 8px;
+}
+
+.SectionTitle h2 svg {
+    color: white;
+    margin-left: 12px;
+
+    width: 33px;
+    height: 33px;
+}
+
+.SectionTitle strong {
+    color: #1a98ff;
+    margin-right: 4px;
+}
+
+
+@media screen and (min-width: 447px) {
+    #root {
+        --dv-card-number: 2;
+    }
+}
+
+@media (max-width: 599px) {
+    :root {
+        --dvui-spacing-100: 4px;
+        --dvui-spacing-200: 4px;
+        --dvui-spacing-300: 4px;
+        --dvui-spacing-400: 8px;
+        --dvui-spacing-500: 12px;
+        --dvui-spacing-600: 16px;
+        --dvui-spacing-700: 24px;
+        --dvui-spacing-800: 36px;
+    }
+}
+
+@media screen and (min-width: 680px) {
+    #root {
+        --backdrop-gap-slider: 16px;
+        --dv-card-gap-number: calc(var(--dv-card-number) - 1);
+        --dv-card-number: 3;
+        --inner-width: 32px;
+    }
+
+    .SectionTitle h2 {
+        font-size: 18px;
+        margin-right: 16px;
+    }
+}
+
+@media screen and (min-width: 880px) {
+
+    #root {
+        --inner-width: 44px;
+        --nav-height: 60px;
+        --dv-card-number: 4;
+        --backdrop-padding-top-slider: 12px;
+    }
+
+    .SectionTitle {
+        padding-bottom: 12px;
+    }
+
+    .SectionTitle strong {
+        margin-right: 8px;
+    }
+
+    .SectionTitle h2 {
+        margin-right: 24px;
+    }
+}
+
+@media screen and (min-width: 900px) {
+    #root {
+        --backdrop-gap-slider: 24px;
+    }
+}
+
+@media screen and (min-width: 1280px) {
+    #root {
+        --inner-width: 44px;
+        --backdrop-padding-top-slider: 16px;
+    }
+
+    .SectionTitle h2 {
+        font-size: 20px;
+        margin-right: 36px;
+    }
+
+
+    .SectionTitle {
+        padding-bottom: 16px;
+    }
+
+    .SectionTitle strong {
+        margin-right: 12px;
+    }
+}
+
+@media screen and (min-width: 1400px) {
+    #root {
+        --inner-width: 72px;
+        --dv-card-number: 5;
+        --nav-height: 66px;
+    }
+}
+
+@media screen and (min-width: 1800px) {
+    #root {
+        --dv-card-number: 6;
+    }
+}
+
+@media screen and (min-width: 2400px) {
+    #root {
+        --inner-width: 104px;
+    }
+}

@@ -1,0 +1,58 @@
+.Register {
+    font-family: 'Gilroy-SemiBold';
+    width: 100%;
+    min-height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    color: #fff;
+    text-decoration: none;
+
+    font-size: clamp(28px, 5vw, 78px);
+    text-decoration: none;
+
+    padding-top: var(--nav-height);
+}
+.Register footer {
+    bottom: 0;
+    background: none;
+}
+
+
+@supports (height: 100dvh) {
+    .Register {
+        min-height: 100dvh;
+    }
+}
+
+
+.Register a:hover {
+
+    color: #fff;
+}
+
+.Register span {
+
+    bottom: 0;
+}
+
+
+.Register .BackgroundComponent-Container {
+    width: 100%;
+    height: 100%;
+
+    color: #fff;
+}
+
+.Register .BackgroundComponent-Container h1 {
+    color: #fff;
+}
+
+.Register .section {
+    z-index: 12;
+    width: 100%;
+    height: auto;
+}

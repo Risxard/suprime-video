@@ -1,0 +1,240 @@
+
+
+.hamMenu-container[data-open="true"] .dropdown-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+.hamMenu-container>span {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hamMenu-container .dropdown-container {
+    overscroll-behavior: none;
+}
+
+
+
+
+
+.hamMenu-container .dropdown-content {
+    overflow-y: auto;
+    max-height: calc(90vh - var(--nav-height) - 15px * 2);
+    overscroll-behavior: contain;
+    flex-direction: column;
+}
+
+@supports (height: 100dvh) {
+    .hamMenu-container .dropdown-content {
+        max-height: calc(100dvh - var(--nav-height) - 15px * 2);
+    }
+}
+
+
+.hamMenu-dropdown {
+    display: flex;
+    flex-direction: row;
+    height: auto;
+    width: auto;
+
+}
+
+.hamMenu-container .drop-down-safe-area {
+    display: block;
+    list-style-type: none;
+    text-align: left;
+
+
+}
+
+
+.hamMenu-container .dropdown-container {
+    left: 0;
+    right: inherit;
+    overflow: visible;
+}
+
+
+
+.hamMenu-dropdown .suprime-logo-titles {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.hamMenu-dropdown .suprime-logo-titles div {
+    width: 100%;
+}
+
+
+.hamMenu-dropdown .NavigationLinks li {
+    margin-left: 5px;
+}
+
+.hamMenu-dropdown .NavigationLinks li {
+    margin-right: 5px;
+}
+
+.hamMenu-dropdown .NavigationLinks {
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.hamMenu-dropdown .NavigationLinks li {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.subscription-mobile a {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: 14px;
+    font-family: 'Ember-medium';
+    gap: 6px;
+    min-height: 42px;
+    letter-spacing: 0.49px;
+    font-weight: 500;
+
+    padding-left: 12px;
+
+    border-radius: 8px;
+}
+
+.subscription-mobile:hover a {
+    background-color: white;
+    color: black;
+}
+
+
+
+.hamMenu-dropdown li.active-page {
+    background: radial-gradient(50% 50% at 50% 0, rgba(var(--action-background-color, 255, 255, 255), .8) 0, transparent 100%), hsla(0, 0%, 100%, .2);
+    background-origin: border-box;
+    border-image: linear-gradient(90deg, hsla(0, 0%, 100%, 0) 10%, hsla(0, 0%, 100%, .3) 50%, hsla(0, 0%, 100%, 0) 90%) 1 / 2px;
+    border-image-width: 2px 0 0 0;
+    box-shadow: 0 -4px 16px 0 rgba(var(--action-background-color, 255, 255, 255), .2);
+}
+
+
+
+
+
+.hamMenu-categories-dropdown>p {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    gap: 10px;
+
+}
+
+
+.nav-links .dropdown-content-layout {
+    flex-direction: column;
+    position: relative;
+    padding-left: 20px;
+}
+
+
+.nav-links .dropdown-categories-list {
+    column-count: 1;
+    column-gap: 0px;
+}
+
+
+
+
+
+
+
+
+@media (max-width: 879px) {
+    .hamMenu-categories-dropdown {
+        display: flex;
+    }
+
+    .hamMenu-dropdown {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .hamMenu-dropdown>.dropdown-content-layout>p {
+        display: none;
+    }
+
+    .hamMenu-dropdown .dropdown-content-layout>p {
+        text-align: start;
+    }
+
+
+
+
+    .hamMenu-dropdown .dropdown-content-layout {
+        gap: 10px;
+    }
+
+
+    .suprime-logo-titles {
+        background-color: rgb(5, 120, 255);
+        border-radius: 8px;
+    }
+
+    .subscription-mobile {
+        background-color: hsla(0, 0%, 100%, .1);
+        border-radius: 8px;
+    }
+
+    .suprime-logo-titles div {
+        align-items: center;
+        justify-content: center;
+    }
+
+    .suprime-logo-titles div,
+    .subscription-mobile a {
+        min-height: 48px;
+    }
+
+
+    .subscription-mobile a {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        font-size: 18px;
+        font-family: 'Ember-medium';
+        gap: 6px;
+        letter-spacing: 0.49px;
+        font-weight: 500;
+        padding-left: 20px;
+        padding-right: 20px;
+        border-radius: 8px;
+    }
+
+    .subscription-mobile svg {
+        width: 20px;
+        height: 20px;
+    }
+
+}
+
+@media (min-width: 880px) {
+    .hamMenu-categories-dropdown {
+        display: none !important;
+    }
+
+
+}

@@ -1,0 +1,612 @@
+.poster-slide-list li {
+    width: calc(var(--supercarousel-height)*.66667);
+    height: var(--supercarousel-height);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-sizing: border-box;
+    transition-behavior: normal;
+    transition-delay: 0.3s;
+    transition-duration: 0.5s;
+    transition-property: width;
+    transition-timing-function: cubic-bezier(0.2, 0.45, 0, 1);
+
+
+}
+
+
+
+.poster-item {
+    overflow: hidden;
+    height: var(--supercarousel-height);
+    width: calc(var(--supercarousel-height)*.66667);
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    box-sizing: border-box;
+    color: rgb(255, 255, 255);
+    display: flex;
+    flex-direction: column;
+    font-family: "Amazon Ember", "Amazon Arabic Ember", Arial, sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    justify-content: center;
+    letter-spacing: normal;
+    line-height: 22px;
+    list-style-image: none;
+    list-style-position: outside;
+    list-style-type: disc;
+
+    overflow-wrap: break-word;
+    text-align: left;
+    text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+
+    cursor: default;
+    position: relative;
+
+    transition-behavior: normal;
+    transition-delay: 0.3s;
+    transition-duration: 0.5s;
+    transition-property: width;
+    transition-timing-function: cubic-bezier(0.2, 0.45, 0, 1);
+}
+
+
+.skeleton {
+    animation: skeleton-loading 1s linear infinite alternate;
+}
+
+@keyframes skeleton-loading {
+    0% {
+        background-color: hsla(300, 1%, 21%, 0.61);
+    }
+
+    100% {
+        background-color: hsla(231, 14%, 10%, 0.308);
+    }
+}
+
+
+
+.poster-inner {
+    width: var(--supercarousel-expanded-card-width);
+    height: var(--supercarousel-height);
+
+    display: flex;
+}
+
+
+.poster-backdrop-img {
+    position: absolute;
+    left: 0;
+    top: 0;
+    border-radius: 8px;
+
+    width: 100%;
+    height: 100%;
+
+}
+
+.poster-poster-path {
+    height: var(--supercarousel-height);
+    width: calc(var(--supercarousel-height)*.66667);
+
+    z-index: 1;
+
+    background-repeat: no-repeat;
+
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    position: relative;
+
+    transition: opacity .3s cubic-bezier(.2, .45, 0, 1);
+    transition-delay: 0.3s;
+}
+
+.poster-poster-path img {
+    width: 100%;
+    height: 100%;
+}
+
+.skeleton {
+    animation: skeleton-loading 1s linear infinite alternate;
+}
+
+
+.poster-backdrop-info {
+    height: 100%;
+    width: var(--supercarousel-expanded-card-width);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-end;
+
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    background-repeat: no-repeat;
+
+    background-position: center;
+    background-size: cover;
+
+    transition: opacity .5s cubic-bezier(.2, .45, 0, 1) ease-in-out;
+    transition-delay: 0.3s;
+}
+
+
+
+.poster-video-inner {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    opacity: 0;
+}
+
+.poster-slider-video-container {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    height: var(--supercarousel-height);
+    width: 100%;
+    z-index: 1;
+}
+
+.poster-slider-video-container .MoviePlayer {
+    padding: 0;
+}
+
+
+
+.poster-backdrop-info .mute-btn.startVideo {
+    z-index: 10;
+    opacity: 1;
+    visibility: visible;
+}
+
+
+
+.media-link {
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    z-index: 1;
+
+    background-color: black;
+    opacity: 60%;
+
+    position: absolute;
+}
+
+.poster-item .poster-backdrop-btn {
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+
+
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-bottom: 16px;
+
+    position: relative;
+}
+
+
+
+
+.poster-item .posterBtns {
+    display: flex;
+    flex-direction: row;
+    opacity: 1;
+    gap: 36px;
+    margin-block: 24px;
+    z-index: 2;
+    transition-delay: 0.4s;
+}
+
+.poster-item .poster-options-btn {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+    position: relative;
+
+    z-index: 1;
+
+}
+
+.poster-options-btn .watchlist-btn::after{
+    padding: 8px 12px;
+    font-family: 'Ember-bold';
+    font-size: 18px;
+    border-radius: 8px;
+
+    position: relative;
+}
+.poster-options-btn .watchlist-btn:hover::after{
+    content: attr(data-label);
+    position: absolute;
+    white-space: nowrap;
+    color: black;
+    background-color: white;
+    top: 120%;
+
+
+}
+
+
+.poster-options-btn .details-btn::after{
+    padding: 8px 12px;
+    font-family: 'Ember-bold';
+    font-size: 18px;
+    border-radius: 8px;
+    position: relative;
+
+}
+
+.poster-options-btn .details-btn:hover::after{
+    content: attr(data-label);
+    position: absolute;
+    white-space: nowrap;
+    color: black;
+    background-color: white;
+    top: 120%;
+
+}
+
+
+.poster-item .class-container {
+    display: flex;
+    flex-direction: row;
+    transition-delay: 0.4s;
+}
+
+.poster-item .class-container .includeBD {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    font-family: 'Ember-regular';
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 18px;
+
+    z-index: 1;
+
+}
+.poster-item .class-container .includeBD span{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.poster-item .class-container .includeBD svg {
+    color: #1392F9;
+
+
+    width: 18px;
+    height: 18px;
+}
+
+
+.poster-item .watchlist-btn, .poster-item .details-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 55px;
+    width: 55px;
+    background-color: hsla(0, 0%, 100%, .2);
+    border-radius: 10000px;
+}
+
+.poster-item .watchlist-btn svg, .poster-item .details-btn svg{
+    height: 30px;
+    width: 30px;
+}
+
+.poster-item .watchlist-btn:hover svg, .poster-item .details-btn:hover svg{
+    background-color: white;
+    color: #00050d;
+}
+.poster-item .watchlist-btn:hover, .poster-item .details-btn:hover{
+    background-color: white;
+    color: #00050d;
+
+    cursor: pointer;
+}
+
+
+
+.poster-info-title {
+    width: auto;
+    height: auto;
+    transition-delay: 0.4s;
+
+    display: flex;
+
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.poster-info-title h2 {
+    display: flex;
+    font-family: 'Ember-bold';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 32px;
+    text-transform: capitalize;
+    margin-bottom: 1px;
+    color: #ffff;
+}
+.poster-intro-logo{
+    display: block;
+}
+.poster-info-title .poster-intro-logo img {
+
+    height: auto;
+    max-height: 6.25vw;
+    max-width: calc(var(--supercarousel-expanded-card-width)* .4);
+    width: auto;
+
+
+}
+
+
+.poster-item .playnow-btn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 18px;
+    background: hsla(0, 0%, 100%, .2);
+    border-radius: 8px;
+    min-height: 60px;
+}
+
+.poster-item .playnow-btn:hover{
+    background-color: white;
+}
+.poster-item .playnow-btn:hover p, .poster-item .playnow-btn:hover svg{
+    color: #00050d;
+}
+
+
+
+
+.poster-item .ageClass {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    padding: 1px;
+    text-align: center;
+}
+
+.poster-item .ageClass h3 {
+    font-size: 0.7rem;
+    padding: 0.2rem 0.4rem;
+    border-radius: 3px;
+
+    align-items: center;
+    text-align: center;
+    align-self: center;
+
+    font-family: 'Ember-regular';
+}
+
+
+.poster-item .class-container {
+    align-items: center;
+}
+
+.poster-item .includeBD {
+    margin-right: 16px;
+    gap: 8px;
+    justify-content: center;
+    align-items: center;
+}
+
+html:not([dir=rtl]) .poster-slide-list li:not(:last-child) {
+    margin-right: var(--dv-carousel-column-gap);
+}
+
+
+
+
+
+
+@media screen and (min-width: 600px) {
+    .poster-intro .ageClass h3 {
+        padding: 0.2rem 0.4rem;
+
+        border-radius: 3px;
+
+        position: relative;
+
+        align-items: center;
+
+        font-family: 'Gilroy-SemiBold';
+    }
+
+}
+
+@media screen and (max-width: 599px) {
+    .poster-slide-list[align="default-start"] li:nth-child(2n+1) {
+        scroll-snap-align: start;
+        scroll-snap-stop: always;
+    }
+}
+
+@media screen and (max-width: 879px) {
+    .poster-slide-list[align="default-start"] li:nth-child(3n+1) {
+        scroll-snap-align: start;
+        scroll-snap-stop: always;
+    }
+}
+
+
+
+@media screen and (max-width: 1399px) {
+
+    .poster-slide-list[align="default-start"] li:nth-child(4n+1) {
+        scroll-snap-align: start;
+        scroll-snap-stop: always;
+    }
+
+    .poster-slide-list[align="left-one-two"] li:nth-child(4n+1) {
+        scroll-snap-align: start;
+
+    }
+
+    .poster-slide-list[align="left-two-three"] li:nth-child(4n+2) {
+        scroll-snap-align: start;
+
+    }
+
+    .poster-slide-list[align="right-three-two"] li:nth-child(4n+3) {
+        scroll-snap-align: end;
+
+    }
+
+    .poster-slide-list[align="right-four-three"] li:nth-child(4n+4) {
+        scroll-snap-align: end;
+
+    }
+}
+
+
+
+@media screen and (min-width: 880px) {
+
+
+    .poster-slide-list li[data-active-card=true], .poster-slide-list li[data-active-card=true] .poster-item {
+        width: var(--supercarousel-expanded-card-width);
+    }
+
+
+
+
+    .poster-slide-list li[data-active-card=true] .poster-backdrop-info {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .poster-slide-list li[data-active-card=true] .poster-poster-path {
+        opacity: 0%;
+        transition: opacity .5s cubic-bezier(.2, .45, 0, 1);
+        transition-delay: 0.3s;
+    }
+
+    .poster-slide-list li[data-active-card=true] {
+        opacity: 1;
+        transition-delay: 0.4s;
+    }
+
+
+    .poster-slide-list li[data-active-card=true] .posterBtns, .poster-slide-list li[data-active-card=true] .poster-info-title {
+        transition: opacity .3s cubic-bezier(.2, .45, 0, 1) .2s, transform .3s cubic-bezier(.2, .45, 0, 1) .2s, -webkit-transform .3s cubic-bezier(.2, .45, 0, 1) .2s;
+        transition-delay: 0.4s;
+    }
+
+    .poster-slide-list li[data-active-card=true] .class-container {
+        transition: opacity .3s cubic-bezier(.2, .45, 0, 1) .3s, transform .3s cubic-bezier(.2, .45, 0, 1) .3s, -webkit-transform .3s cubic-bezier(.2, .45, 0, 1) .3s;
+        transition-delay: 0.6s;
+    }
+
+
+
+
+    .poster-item .ageClass {
+        position: relative;
+    }
+
+    .poster-item.ageClass h3 {
+        padding: 0.2rem 0.4rem;
+
+        border-radius: 3px;
+
+        position: relative;
+
+        align-items: center;
+
+        font-family: 'Gilroy-SemiBold';
+    }
+}
+
+@media screen and (min-width: 1280px) {
+    .poster-item .poster-backdrop-btn {
+        padding-left: 24px;
+        padding-right: 24px;
+        padding-bottom: 24px;
+    }
+
+
+    .poster-info-title h2 {
+        font-size: 40px;
+
+        display: inline;
+
+        text-transform: capitalize;
+
+        margin-bottom: 1px;
+
+        color: #ffff;
+    }
+
+
+    .poster-item .playnow-btn{
+        padding: 8px 21px;
+        min-height: 62px;
+    }
+
+    .poster-item .watchlist-btn, .poster-item .details-btn {
+        height: 61px;
+        width: 61px;
+    }
+    
+    .poster-item .watchlist-btn svg, .poster-item .details-btn svg{
+        height: 33px;
+        width: 33px;
+    }
+
+
+}
+
+@media screen and (min-width: 1400px) {
+    .poster-slide-list[align="default-start"] li:nth-child(5n+1) {
+        scroll-snap-align: start;
+        scroll-snap-stop: always;
+    }
+
+    .poster-slide-list[align="left-one-two-three"] li:nth-child(5n+1) {
+        scroll-snap-align: start;
+        scroll-snap-stop: always;
+    }
+
+    .poster-slide-list[align="right-four-three-two"] li:nth-child(5n+4) {
+        scroll-snap-align: end;
+        scroll-snap-stop: always;
+    }
+
+    .poster-slide-list[align="right-five-four-three"] li:nth-child(5n+5) {
+        scroll-snap-align: end;
+        scroll-snap-stop: always;
+    }
+
+    .poster-slide-list[align="left-two-three-four"] li:nth-child(5n+2) {
+        scroll-snap-align: start;
+        scroll-snap-stop: always;
+    }
+}

@@ -1,0 +1,5 @@
+.video-is-playing{
+    opacity: 1;
+    transition: opacity .5s ease-in-out;
+    transition-delay: 2s;
+}

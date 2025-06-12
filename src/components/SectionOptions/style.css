@@ -1,0 +1,34 @@
+.formater select{
+    width: 100%;
+
+    background-color: #f7f7f7;
+    color: #333;
+
+    height: 2rem;
+
+    border: 0;
+    border-radius: 0;
+
+}
+.formater option{
+    border-radius: 0;
+}
+
+.settings-content .reg-btn{
+    background-color: #1884F7;
+}
+.settings-content .reg-btn:active{
+    background-color: #10539a;
+    
+    transform: translateY(0.2rem);
+}
+
+.accept{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    gap: 0.5rem;
+
+    font-size: 14px;
+}

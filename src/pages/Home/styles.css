@@ -1,0 +1,44 @@
+
+
+.Home{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+}
+
+
+
+
+.feature-background{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: -20;
+}
+
+.feature-filter-background{
+    left: 0;
+    top: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+
+    background-image: linear-gradient(hsla(285, 20%, 4%, 0.792) 10% , hsla(285, 20%, 4%, 0.866) 20%,hsla(285, 20%, 4%, 0.931) 30%, #0a070bfa 50%);
+
+}
+.feature-background img{
+    left: 0;
+    top: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
