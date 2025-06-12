@@ -8,7 +8,6 @@ export { default as ProfilesPage } from "./Profiles";
 export { default as Categories } from "./Categories";
 export { default as WatchlistPage } from "./WatchList/index";
 export { default as SettingsPage } from "./Settings/index";
-export { default as Pagetest } from "./PageTest/index";
 export { default as ErrorPage } from "./ErrorPage/index";
 export { default as EmailVerificationPage } from "./EmailVerification/index";
 export { default as FortgetPasswordPage } from "./FortgotPasswordPage/index";

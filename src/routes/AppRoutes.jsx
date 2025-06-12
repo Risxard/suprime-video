@@ -12,7 +12,6 @@ import {
   Categories,
   WatchlistPage,
   SettingsPage,
-  Pagetest,
   ErrorPage,
   EmailVerificationPage,
   FortgetPasswordPage,
@@ -40,23 +39,43 @@ const AppRoutes = () => {
     },
     {
       path: "/register/done",
-      element: isAuthenticated ? <Navigate to="/home" /> : <EmailVerificationPage />,
+      element: isAuthenticated ? (
+        <Navigate to="/home" />
+      ) : (
+        <EmailVerificationPage />
+      ),
     },
     {
       path: "/verify",
-      element: isAuthenticated ? <Navigate to="/home" /> : <EmailVerificationPage />,
+      element: isAuthenticated ? (
+        <Navigate to="/home" />
+      ) : (
+        <EmailVerificationPage />
+      ),
     },
     {
       path: "/verify:ref",
-      element: isAuthenticated ? <Navigate to="/home" /> : <EmailVerificationPage />,
+      element: isAuthenticated ? (
+        <Navigate to="/home" />
+      ) : (
+        <EmailVerificationPage />
+      ),
     },
     {
       path: "/forgot",
-      element: isAuthenticated ? <Navigate to="/home" /> : <FortgetPasswordPage/>,
+      element: isAuthenticated ? (
+        <Navigate to="/home" />
+      ) : (
+        <FortgetPasswordPage />
+      ),
     },
     {
       path: "/forgot/:ref",
-      element: isAuthenticated ? <Navigate to="/home" /> : <FortgetPasswordPage />,
+      element: isAuthenticated ? (
+        <Navigate to="/home" />
+      ) : (
+        <FortgetPasswordPage />
+      ),
     },
   ];
 
@@ -73,8 +92,6 @@ const AppRoutes = () => {
     { path: "/settings/:id", element: <SettingsPage /> },
     { path: "/settings/:id/:ref", element: <SettingsPage /> },
     { path: "/settings", element: <Navigate to="/settings/your-account" /> },
-    { path: "/pagetest", element: <Pagetest /> },
-
   ];
 
   const privateStandalone = [
