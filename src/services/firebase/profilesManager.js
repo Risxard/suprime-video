@@ -8,7 +8,6 @@ const createNewProfile = async (userId, profileName, newImage) => {
         const userRef = doc(db, "users", userId);
         const profilesRef = collection(userRef, "profiles");
 
-        console.log(profilesRef)
 
         const querySnapshot = await getDocs(profilesRef);
         const isMainProfileExists = querySnapshot.empty;
@@ -269,13 +268,11 @@ const nameAccountUpdate = async (userId, newName) => {
 const sendResetPasswordEmail = async (email) => {
     const auth = getAuth();
     try {
-        console.log('chegou aqui'.email)
         await sendPasswordResetEmail(auth, email, {
-            url: "http://localhost:3000/preview/acaiwaveplus",
+            url: "https://richardsonsouza.com/preview/acaiwaveplus",
             handleCodeInApp: false,
         });
 
-        console.log("E-mail de redefinição de senha enviado com sucesso!");
     } catch (error) {
         console.error("Erro ao enviar e-mail de redefinição:", error.message);
         throw error;
@@ -290,7 +287,7 @@ const sendEmailVerificationLink = async (user) => {
 
     try {
         await sendEmailVerification(user, {
-            url: "http://localhost:3000/preview/acaiwaveplus",
+            url: "https://richardsonsouza.com/preview/acaiwaveplus",
             handleCodeInApp: false,
         });
 

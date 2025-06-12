@@ -60,7 +60,7 @@ function SignUp() {
     try {
       await createNewAccount(data);
       setLoading(false);
-      navigate("./done");
+      navigate("/");
     } catch (error) {
       setLoading(false);
     }
