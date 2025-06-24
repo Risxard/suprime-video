@@ -39,7 +39,7 @@ const FeatureItem = ({ movie, language }) => {
   const image_path = "https://image.tmdb.org/t/p/original/";
   const id = movie.id;
   const mediaType = movie.media_type;
-  const userId = useSelector((state) => state.auth.user);
+  const userId = useSelector((state) => state.auth.user.uid);
   const profileId = useSelector((state) => state.auth.currentProfile.id);
   const mediaClass = useMediaClassification({ id, language, mediaType });
   const bgClass = bgDetect(mediaClass);

@@ -6,12 +6,13 @@ import Profiles from "./Components/Profiles.jsx";
 import ManageProfileSelect from "./Components/ManageProfile.jsx";
 import NavStandalone from "../../components/Navigation/NavStandalone.jsx";
 import { useTranslation } from "react-i18next";
+import Cookies from "js-cookie";
 
 const ProfilesPage = () => {
   const [editMode, setEditMode] = useState(false);
   const dispatch = useDispatch();
   const profilesList = useSelector((state) => state.auth.profiles);
-  const userId = useSelector((state) => state.auth.user);
+  const userId = Cookies.get("user_uid");
   const { t } = useTranslation();
   const profilesPage = t("profilesPage");
 

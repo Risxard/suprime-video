@@ -156,7 +156,15 @@
             "deleteMyAccount": {
                 "title": "Delete My Account",
                 "description": "All your data will be permanently deleted from Açaíwave+.",
-                "button": "Delete My Account"
+                "deleteButton1": "Delete Account",
+                "confirmDelete": {
+                    "title": "Delete Account",
+                    "description": "Are you sure you want to delete your account? This action is irreversible and all your data will be lost!",
+                    "confirmButton": "Yes, delete my account",
+                    "cancelButton": "No, keep my account",
+                    "passwordConfirmation": "To confirm, enter your password.",
+                    "passwordPlaceholder": "Enter your password"
+                }
             }
         },
         "playback": {
@@ -176,7 +184,8 @@
                 "description": "Change preferred audio and subtitle languages for personalized recommendations.",
                 "button": "Change",
                 "saveButton": "Save Changes",
-                "profileLanguage": "Profile Language"
+                "profileLanguage": "Profile Language",
+                "notFullySupported": " Not fully supported yet, try English or Portuguese if you experience issues. "
             }
         }
     },
@@ -290,7 +299,13 @@
             "removeProfile": {
                 "title": "Remove Profile",
                 "description": "Remove this profile from Açaíwave+.",
-                "button": "Remove"
+                "button": "Remove",
+                "removeProfileModal": {
+                    "title": "Remove Profile",
+                    "description": "Removing this profile from Açaíwave+ will permanently delete it from your account. This action cannot be undone.",
+                    "cancelButton": "Keep Profile",
+                    "removeButton": "Remove Profile"
+                }
             }
         }
     },

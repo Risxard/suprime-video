@@ -15,16 +15,28 @@ import {
 } from "../../services/firebase/profilesManager";
 import CircleXIcon from "./CircleX";
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
+import { set } from "react-hook-form";
+import { logout } from "../../store/auth";
+import useDeleteAccount from "../../hooks/Auth/DeleteAccount";
 
 const SetYourAccountChildren = ({ editAccount }) => {
   const [isResetting, setIsResetting] = useState(false);
   const [resetSuccess, setResetSuccess] = useState(false);
   const [resetError, setResetError] = useState(null);
   const [emailAccount, setEmailAccount] = useState("");
+  const [confirmDelete, setConfirmeDelete] = useState(false);
+  const [password, setPassword] = useState("");
+  const { deleteAccount, loading, error, setError } = useDeleteAccount();
 
-  const userId = useSelector((state) => state.auth.user);
+  const { ref } = useParams();
 
+  const navigate = useNavigate();
+
+  const userId = useSelector((state) => state.auth.user.uid);
   const { t } = useTranslation();
+
   const yourAccount = t("settingsPage.yourAccount");
   const { changePassword, deleteMyAccount } = yourAccount;
 
@@ -60,73 +72,123 @@ const SetYourAccountChildren = ({ editAccount }) => {
     }
   };
 
+  const handleDeleteAccount = (value) => {
+    setConfirmeDelete(value);
+  };
+
+  function handleNavigate() {
+    handleDeleteAccount(false);
+    setError("");
+    setPassword("");
+    navigate("/settings/your-account");
+  }
+
+  const handleDelete = async () => {
+    const success = await deleteAccount(password);
+    if (success) {
+      alert("Sua conta foi excluída com sucesso.");
+    }
+  };
+
   return (
     <>
-      <div className="settings-options-children">
-        <h2>{changePassword.title}</h2>
-        <div>
-          <p>{changePassword.description}</p>
-          <button
-            className="settings-page-btn"
-            onClick={handleResetPassword}
-            disabled={isResetting}
-            style={{ opacity: isResetting ? 0.6 : 1 }}
-          >
-            {isResetting
-              ? changePassword.statusMessages.sendingBtn
-              : "Alterar senha"}
-          </button>
-          {resetSuccess && (
-            <span
-              className="success-message-settings"
-              style={{ marginLeft: 8 }}
-            >
-              {changePassword.statusMessages.emailSuccess}
-            </span>
-          )}
-          {resetError && (
-            <span className="error-message-settings" style={{ marginLeft: 8 }}>
-              {resetError}
-            </span>
-          )}
-        </div>
-      </div>
+      {ref === "deleteAccount" ? (
+        <div className={`settings-options-children`}>
+          <h2>{deleteMyAccount.title}</h2>
+          <div>
+            <p>
+              {confirmDelete
+                ? deleteMyAccount.confirmDelete.description
+                : deleteMyAccount.description}
+            </p>
+          </div>
 
-      <div className="settings-options-children">
-        <h2>{deleteMyAccount.title}</h2>
-        <div>
-          <p>{deleteMyAccount.description}</p>
-          <Link to="/settings/" className="settings-page-btn">
-            <svg
-              className="_22qEau"
-              viewBox="0 0 24 24"
-              height="24"
-              width="24"
-              role="img"
-              aria-hidden="true"
-            >
-              <title>External</title>
-              <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg">
-                <title>External</title>
-                <g
-                  fill="none"
-                  fillRule="evenodd"
-                  strokeLinecap="round"
-                  stroke="currentColor"
-                  strokeWidth="2"
+          <div className="language-radio-group-container delete-account-container">
+            {confirmDelete && (
+              <>
+                <label><p>{deleteMyAccount.confirmDelete.passwordConfirmation}</p></label>
+                <input
+                  type="password"
+                  placeholder={deleteMyAccount.confirmDelete.passwordPlaceholder}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  disabled={loading}
+                />
+              </>
+            )}
+
+            {error && <div style={{ color: "red" }}>{error}</div>}
+
+            <span className="delete-buttons">
+              {confirmDelete ? (
+                <>
+                  <button onClick={handleNavigate} disabled={loading}>
+                    {deleteMyAccount.confirmDelete.cancelButton}
+                  </button>
+                  <button onClick={handleDelete} disabled={loading}>
+                    {deleteMyAccount.confirmDelete.confirmButton}
+                  </button>
+                </>
+              ) : (
+                <button
+                  onClick={() => handleDeleteAccount(true)}
+                  disabled={loading}
                 >
-                  <path d="M11.828 12.314l7.779-7.778"></path>
-                  <path
-                    strokeLinejoin="round"
-                    d="M14.657 3.828h5.657v5.657M19 14v5H5V5h5"
-                  ></path>
-                </g>
-              </svg>
-            </svg>
-            <span>{deleteMyAccount.button}</span>
-          </Link>
+                  {deleteMyAccount.deleteButton1}
+                </button>
+              )}
+            </span>
+          </div>
         </div>
-      </div>
+      ) : (
+        <>
+          <div className="settings-options-children">
+            <h2>{changePassword.title}</h2>
+            <div>
+              <p>{changePassword.description}</p>
+              <button
+                className="settings-page-btn"
+                onClick={handleResetPassword}
+                disabled={isResetting}
+                style={{ opacity: isResetting ? 0.6 : 1 }}
+              >
+                {isResetting
+                  ? changePassword.statusMessages.sendingBtn
+                  : "Alterar senha"}
+              </button>
+              {resetSuccess && (
+                <span
+                  className="success-message-settings"
+                  style={{ marginLeft: 8 }}
+                >
+                  {changePassword.statusMessages.emailSuccess}
+                </span>
+              )}
+              {resetError && (
+                <span
+                  className="error-message-settings"
+                  style={{ marginLeft: 8 }}
+                >
+                  {resetError}
+                </span>
+              )}
+            </div>
+          </div>
+
+          <div className="settings-options-children">
+            <h2>{deleteMyAccount.title}</h2>
+            <div>
+              <p>{deleteMyAccount.description}</p>
+              <Link
+                to="/settings/your-account/deleteAccount"
+                className="settings-page-btn"
+              >
+                <span>{deleteMyAccount.deleteButton1}</span>
+              </Link>
+            </div>
+          </div>
+        </>
+      )}
     </>
   );
 };
@@ -215,13 +277,13 @@ const SetLanguageChildren = ({ lng, profileDescription }) => {
   };
 
   const dispatch = useDispatch();
-  const userId = useSelector((state) => state.auth.user);
+  const userId = useSelector((state) => state.auth.user.uid);
   const profileId = useSelector((state) => state.auth.currentProfile.id);
 
   const { ref } = useParams();
   const currentProfile = useSelector((state) => state.auth.currentProfile);
   const lang = i18next.language;
-
+  const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (userId && profileId && selectedOption && dispatch) {
@@ -233,8 +295,8 @@ const SetLanguageChildren = ({ lng, profileDescription }) => {
           dispatch
         );
         if (result) {
-          window.location.href = "/preview/acaiwaveplus/settings/language/";
           triggerSavedSettings();
+          window.location.reload();
         }
       } catch (error) {
         console.error("Error updating profile language:", error);
@@ -279,6 +341,16 @@ const SetLanguageChildren = ({ lng, profileDescription }) => {
                   defaultChecked={lang === "en-US"}
                 />
                 English
+              </label>
+              <label>
+                <input
+                  type="radio"
+                  name="language"
+                  value="es-ES"
+                  onChange={(e) => setSelectedOption(e.target.value)}
+                  defaultChecked={lang === "es-ES"}
+                />
+                Español {`(${lng.streamingLanguage.notFullySupported})`}
               </label>
             </span>
 

@@ -44,7 +44,7 @@ const SearchItem = ({ movie }) => {
   });
   const bgClass = bgDetect(mediaClass);
 
-  const userId = useSelector((state) => state.auth.user);
+  const userId = useSelector((state) => state.auth.user.uid);
   const profileId = useSelector((state) => state.auth.currentProfile.id);
   const watchlist = useSelector((state) => state.auth.watchList);
   const isInWatchlist = watchlist?.[mediaType]?.includes(id);

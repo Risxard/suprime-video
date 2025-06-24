@@ -411,6 +411,34 @@
 }
 
 
+.delete-account-container{
+    margin-top: 42px;
+}
+
+.delete-account-container input{
+    min-height: 48px;
+    width: 100%;
+    max-width: 300px;
+
+    padding: 8px;
+}
+
+
+.delete-buttons{
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+.delete-buttons button:hover {
+    opacity: 0.7;
+}
+.delete-buttons button:nth-child(2) {
+    background-color: rgb(206, 78, 78);
+}
+
+
+
+
 
 @media only screen and (max-width: 54.99em) {
     .tablist:after {

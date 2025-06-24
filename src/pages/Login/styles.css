@@ -14,7 +14,7 @@
     font-size: clamp(28px, 5vw, 78px);
     text-decoration: none;
 
-    padding-top: var(--nav-height);
+    padding-top: calc(var(--nav-height) * 2);
 }
 
 

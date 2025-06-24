@@ -1,8 +1,7 @@
 import React from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 import { X } from "lucide-react";
-
 
 import "./styles.css";
 import { useDispatch } from "react-redux";
@@ -11,7 +10,6 @@ import Player from "./Player/Player.jsx";
 
 const MediaPlayer = ({ propsKey }) => {
   const { id } = useParams();
-  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const handleExitClick = () => {

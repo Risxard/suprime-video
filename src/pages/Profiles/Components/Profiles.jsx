@@ -4,15 +4,17 @@ import { setCurrentProfile } from "../../../store/auth/index.js";
 import { Navigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import AddNew from "./CreateProfile/Addnew.jsx";
+import { useNavigate } from "react-router-dom";
 
 const Profiles = ({ profileList, profileLang }) => {
   const dispatch = useDispatch();
 
   const currentProfile = useSelector((state) => state.auth.currentProfile);
+  const navigate = useNavigate();
 
   const handleSetUserProfile = (profile) => {
     dispatch(setCurrentProfile(profile));
-    window.location.href = "/preview/acaiwaveplus/";
+    navigate("/");
   };
 
   const sortedProfiles = [...profileList].sort((a, b) => {
@@ -20,7 +22,6 @@ const Profiles = ({ profileList, profileLang }) => {
     if (currentProfile && b.id == currentProfile.id) return 1;
     return 0;
   });
-
 
   return (
     <>
@@ -32,11 +33,18 @@ const Profiles = ({ profileList, profileLang }) => {
               <li
                 key={profile.id}
                 onClick={() => handleSetUserProfile(profile)}
-                className={currentProfile && currentProfile.id == profile.id ? "active" : ""}
+                className={
+                  currentProfile && currentProfile.id == profile.id
+                    ? "active"
+                    : ""
+                }
               >
                 <span className="profile-picture-container">
                   <div className="picture-container">
-                    <img src={profile.userInfoData.img?.url} alt={profile.userInfoData.name} />
+                    <img
+                      src={profile.userInfoData.img?.url}
+                      alt={profile.userInfoData.name}
+                    />
                   </div>
                   <p>{profile.userInfoData.name}</p>
                 </span>

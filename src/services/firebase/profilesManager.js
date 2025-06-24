@@ -1,7 +1,8 @@
-import { doc, setDoc, updateDoc, deleteDoc, collection, getDocs, getDoc } from "firebase/firestore";
+import { doc, setDoc, updateDoc, deleteDoc, collection, getDocs, getDoc, getFirestore } from "firebase/firestore";
 import { db } from './firebaseconfig.js';
 import { setCurrentProfile, setCurrentWatchlist, userProfiles } from "../../store/auth/index.js";
-import { getAuth, sendEmailVerification, sendPasswordResetEmail } from "firebase/auth";
+import { deleteUser, getAuth, reauthenticateWithCredential, sendEmailVerification, sendPasswordResetEmail } from "firebase/auth";
+import { current } from "@reduxjs/toolkit";
 
 const createNewProfile = async (userId, profileName, newImage) => {
     try {
@@ -46,12 +47,11 @@ const createNewProfile = async (userId, profileName, newImage) => {
         return true
 
     } catch (error) {
-        console.error(error.message);
         return false
     }
 };
 
-const deleteProfile = async (userId, profileId) => {
+const deleteProfile = async (userId, profileId, currentProfile, dispatch) => {
     try {
         const userRef = doc(db, "users", userId);
         const profilesRef = collection(userRef, "profiles");
@@ -67,10 +67,14 @@ const deleteProfile = async (userId, profileId) => {
             return false;
         }
 
+        if (currentProfile && currentProfile.id === profileId) {
+            localStorage.removeItem("@AuthSV:currentProfile");
+            dispatch(setCurrentProfile(null));
+        }
+
         await deleteDoc(profileRef);
         return true;
     } catch (error) {
-        console.error(error.message);
         return false;
     }
 };
@@ -100,7 +104,6 @@ const fetchProfile = async (userId, profileId) => {
         if (!profileDoc.exists()) return null;
         return { ref: profileRef, data: profileDoc.data() };
     } catch (error) {
-        console.error("fetchProfile error:", error.message);
         return null;
     }
 };
@@ -131,7 +134,6 @@ const getAllProfiles = async (userId, dispatch) => {
 
         return profiles;
     } catch (error) {
-        console.error(error.message);
         throw error;
     }
 };
@@ -146,7 +148,6 @@ const getWatchlist = async (userId, profileId, dispatch) => {
 
         return watchlist;
     } catch (error) {
-        console.error(error.message);
         return false;
     }
 };
@@ -185,7 +186,6 @@ const addToWatchlist = async (userId, profileId, mediaType, mediaId, dispatch) =
 
         return true;
     } catch (error) {
-        console.error("addToWatchlist error:", error.message);
         return false;
     }
 };
@@ -210,7 +210,6 @@ const updateProfile = async (userId, profileId, updatedPreferences) => {
         await updateDoc(profileRef, { userInfoData: updatedUserInfoData });
         return true;
     } catch (error) {
-        console.error(error.message);
         return false;
     }
 };
@@ -219,6 +218,8 @@ const updateProfileLanguage = async (userId, profileId, newLanguage, dispatch) =
     try {
         const profile = await fetchProfile(userId, profileId);
         if (!profile) return false;
+
+
 
         const updatedUserInfoData = {
             ...profile.data.userInfoData,
@@ -237,7 +238,6 @@ const updateProfileLanguage = async (userId, profileId, newLanguage, dispatch) =
 
         return true;
     } catch (error) {
-        console.error("updateProfileLanguage error:", error.message);
         return false;
     }
 };
@@ -249,7 +249,6 @@ const fetchUserData = async (userId) => {
         if (!userDoc.exists()) return null;
         return userDoc.data();
     } catch (error) {
-        console.error("fetchUserData error:", error.message);
         return null;
     }
 }
@@ -260,7 +259,6 @@ const nameAccountUpdate = async (userId, newName) => {
         await updateDoc(userRef, { name: newName });
         return true;
     } catch (error) {
-        console.error("nameAccountUpdate error:", error.message);
         return false;
     }
 }
@@ -274,7 +272,6 @@ const sendResetPasswordEmail = async (email) => {
         });
 
     } catch (error) {
-        console.error("Erro ao enviar e-mail de redefinição:", error.message);
         throw error;
     }
 };
@@ -293,12 +290,9 @@ const sendEmailVerificationLink = async (user) => {
 
         return true;
     } catch (error) {
-        console.error("Erro ao enviar e-mail de verificação:", error.message);
         return false;
     }
 };
-
-
 
 
 
@@ -313,5 +307,5 @@ export {
     fetchUserData,
     nameAccountUpdate,
     sendResetPasswordEmail,
-    sendEmailVerificationLink
+    sendEmailVerificationLink,
 }

@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./UserMenu.css";
-import { Link, Navigate, useLocation } from "react-router-dom";
+import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logout, setCurrentProfile } from "../../../store/auth/index.js";
 import DropdownContainer from "../Layout/DropdownContainer/Index.jsx";
@@ -8,29 +8,39 @@ import { isMobile } from "react-device-detect";
 import { useTranslation } from "react-i18next";
 import { auth } from "../../../services/firebase/firebaseconfig.js";
 
-const UserMenuChildren = () => {
+const UserMenuChildren = ({ currentProfileData }) => {
+  const [sortedProfileList, setCurrentProfileList] = useState([]);
   const dispatch = useDispatch();
-  const currentProfile = useSelector((state) => state.auth.currentProfile);
+  const navigate = useNavigate();
+
+  const avatarButtonRef = useRef(null);
 
   const profilesList = useSelector((state) => state.auth.profiles);
   const validProfilesList = Array.isArray(profilesList) ? profilesList : [];
-  const filteredProfileList = validProfilesList.filter(
-    (profile) => profile.id !== currentProfile.id
-  );
 
-  const sortedProfilesList = [...filteredProfileList].sort((a, b) => {
-    if (a.id < b.id) {
-      return 1;
+  useEffect(() => {
+    const filteredProfileList = validProfilesList.filter(
+      (profile) => profile.id !== currentProfileData?.id
+    );
+
+    const sortedList = [...filteredProfileList].sort((a, b) => {
+      if (a.id < b.id) {
+        return 1;
+      }
+      if (a.id > b.id) {
+        return -1;
+      }
+      return 0;
+    });
+
+    if (sortedList) {
+      setCurrentProfileList(sortedList);
     }
-    if (a.id > b.id) {
-      return -1;
-    }
-    return 0;
-  });
+  }, [currentProfileData]);
 
   const handleSetUserProfile = (profile) => {
     dispatch(setCurrentProfile(profile));
-    window.location.href = "/";
+    window.location.reload();
   };
 
   const loggout = async () => {
@@ -75,8 +85,8 @@ const UserMenuChildren = () => {
       <div className="dropdown-content-layout">
         <p>{profiles.title}</p>
         <ul>
-          {sortedProfilesList.length > 0
-            ? sortedProfilesList.map((profile) => (
+          {sortedProfileList.length > 0
+            ? sortedProfileList.map((profile) => (
                 <li
                   className="user-div"
                   key={profile.id}
@@ -128,8 +138,20 @@ const UserMenuChildren = () => {
 
 const UserMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [currentProfileData, setCurrentProfileData] = useState(null);
+
   const avatarButtonRef = useRef(null);
   const currentProfile = useSelector((state) => state.auth.currentProfile);
+
+  function handleCurrentProfile(data) {
+    setCurrentProfileData(data);
+  }
+
+  useEffect(() => {
+    if (currentProfile) {
+      handleCurrentProfile(currentProfile);
+    }
+  }, [currentProfile]);
 
   const handleSetIsOpen = () => {
     if (isMobile) {
@@ -168,7 +190,7 @@ const UserMenu = () => {
     handleOffIsOpen();
   }, [location]);
 
-  return (
+  return currentProfileData ? (
     <li
       className="nav-bubble-btn"
       id="UserMenu-container"
@@ -183,17 +205,23 @@ const UserMenu = () => {
           onClick={() => handleSetIsOpen()}
         >
           <span className="Card-avatar">
-            {currentProfile.userInfoData.img ? (
-              <img src={currentProfile.userInfoData.img.url} alt="Avatar" />
+            {currentProfileData.userInfoData.img ? (
+              <img src={currentProfileData.userInfoData.img.url} alt="Avatar" />
             ) : null}
           </span>
         </button>
-        {isOpen && <DropdownContainer children={<UserMenuChildren />} />}
+        {isOpen && (
+          <DropdownContainer
+            children={
+              <UserMenuChildren currentProfileData={currentProfileData} />
+            }
+          />
+        )}
       </span>
 
       {isOpen && isMobile && <span className="focus-modal" />}
     </li>
-  );
+  ) : null;
 };
 
 export default UserMenu;

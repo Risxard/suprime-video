@@ -5,6 +5,7 @@ import "./SearchDropDown.css";
 import { guestApiKey } from "../../../Services/guestApi";
 import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 
 const SearchDropDown = () => {
   const [isActive, setIsActive] = useState(false);
@@ -96,12 +97,11 @@ const SearchDropDown = () => {
   }, [inputValue, language, rawApiKey, rawLanguage, api_path]);
 
   const filteredResponse = searchResponse.length > 0 ? searchResponse : [];
+  const navigate = useNavigate();
 
   const handleKeyDown = (e) => {
     if (e.key === "Enter" && inputValue.trim() !== "") {
-      window.location.href = `/preview/acaiwaveplus/search/kw=${encodeURIComponent(
-        inputValue
-      )}`;
+      navigate(`/search/kw=${encodeURIComponent(inputValue)}`);
       setInputValue("");
       setIsActive(false);
     }

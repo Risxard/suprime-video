@@ -1,20 +1,26 @@
 import { useDispatch, useSelector } from "react-redux";
 import AddNew from "./CreateProfile/Addnew";
+import { useNavigate } from "react-router-dom";
 
 const ManageProfileSelect = ({ profileList, profileLang }) => {
   const dispatch = useDispatch();
-  
+  const navigate = useNavigate();
   const currentProfile = useSelector((state) => state.auth.currentProfile);
 
-  const sortedProfiles = [...profileList].sort((a, b) => {
-    if (a.id == currentProfile.id) return -1;
-    if (b.id !== currentProfile.id) return 1;
-    return 0;
-  });
+  const sortedProfiles = currentProfile
+    ? [...profileList].sort((a, b) => {
+        if (a.id == currentProfile.id) return -1;
+        if (b.id == currentProfile.id) return 1;
+        return 0;
+      })
+    : [...profileList];
 
   const handleNavigateToEditProfile = (profileId) => {
-    window.location.href = `/preview/acaiwaveplus/profiles/editing&profileId/${profileId}`;
+    
+    navigate(`/profiles/editing&profileId/${profileId}`);
   };
+
+
 
   return (
     <>

@@ -20,7 +20,7 @@ export default function PosterBackdropInfo({
   const { media, id, language, mediaType } = propsChildren;
   const [logoImage, setLogoImage] = useState("");
   const image_path = "https://image.tmdb.org/t/p/original/";
-  const userId = useSelector((state) => state.auth.user);
+  const userId = useSelector((state) => state.auth.user.uid);
   const profileId = useSelector((state) => state.auth.currentProfile.id);
   const watchlist = useSelector((state) => state.auth.watchList);
   const isInWatchlist = watchlist?.[mediaType]?.includes(id);

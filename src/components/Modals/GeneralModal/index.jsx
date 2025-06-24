@@ -1,29 +1,25 @@
 import React, { useEffect, useRef } from "react";
-import "./styles.css";
-import XSvg from "./XSvg";
+import "../MovieOptionsModal/styles.css";
+import XSvg from "../MovieOptionsModal/XSvg";
 import { setGlobalModal } from "../../../store/slices/modals";
 import { useDispatch, useSelector } from "react-redux";
-import { Check, Film, Info, Play, Plus, PlusIcon } from "lucide-react";
-import { Link } from "react-router-dom";
-import { addToWatchlist } from "../../../services/firebase/profilesManager";
+import { deleteProfile } from "../../../services/firebase/profilesManager";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 
-const MovieOptionsModal = ({ props, mediaType }) => {
+const GeneralModal = ({ props }) => {
+  const { userId, profileId, currentProfile } = props;
   const globalModal = useSelector((state) => state.modals.globalModal);
-  const watchlist = useSelector((state) => state.auth.watchList);
-  const isInWatchlist = watchlist?.[props.media_type]?.includes(props.id);
-  const userId = useSelector((state) => state.auth.user.uid);
-  const profileId = useSelector((state) => state.auth.currentProfile.id);
-    const { t } = useTranslation();
-    const buttonsLang = t("buttons");
-    const { optionsButtons } = buttonsLang;
+  const { t } = useTranslation();
+  const profilesPage = t("profilesPage.editProfile");
+  const { removeProfile } = profilesPage;
+  const { removeProfileModal } = removeProfile;
+  const navigate = useNavigate();
 
   const dispatch = useDispatch();
   const handleSetGlobalModal = () => {
     dispatch(setGlobalModal(null));
   };
-
-  const mediaTypeClass = mediaType ? mediaType : props.media_type;
 
   const dialogRef = useRef(null);
 
@@ -108,13 +104,26 @@ const MovieOptionsModal = ({ props, mediaType }) => {
     }
   }, []);
 
-  const handleToWatchlist = async (userId, profileId, mediaType, mediaId) => {
-    try {
-      await addToWatchlist(userId, profileId, mediaType, mediaId, dispatch);
-    } catch (error) {
-      console.error("Error adding to watchlist:", error);
+  async function handleDeleteProfile(
+    userId,
+    profileId,
+    currentProfile,
+    dispatch
+  ) {
+    const result = await deleteProfile(
+      userId,
+      profileId,
+      currentProfile,
+      dispatch
+    );
+    if (result) {
+      handleSetGlobalModal();
+      navigate("/profiles");
+    } else {
+      console.error("Failed to delete profile");
+      return false;
     }
-  };
+  }
 
   return (
     <div className="movie-options-modal-overlay">
@@ -126,7 +135,7 @@ const MovieOptionsModal = ({ props, mediaType }) => {
 
           <div className="movie-options-dialog-header">
             <span className="movie-options-dialog-header-title">
-              <h2>{props.name || props.title}</h2>
+              <h2>{removeProfileModal.title}</h2>
             </span>
             <span className="XSvg" onClick={handleSetGlobalModal}>
               <XSvg />
@@ -135,43 +144,27 @@ const MovieOptionsModal = ({ props, mediaType }) => {
           <div className="movie-options-dialog-main">
             <ul>
               <li>
-                <Link
-                  to={`/detail/${mediaTypeClass}/${props.id}/play`}
-                  onClick={handleSetGlobalModal}
-                >
-                  <Film />
-                  <span>{optionsButtons.trailer}</span>
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to={`/detail/${mediaTypeClass}/${props.id}/play`}
-                  onClick={handleSetGlobalModal}
-                >
-                  <Play />
-                  <span>{optionsButtons.play1}</span>
-                </Link>
-              </li>
-              <li>
-                <button
-                  onClick={() =>
-                    handleToWatchlist(userId, profileId, mediaTypeClass, props.id)
-                  }
-                >
-                  {isInWatchlist ? <Check /> : <Plus />}
-                  <span>{optionsButtons.watchlist}</span>
-                </button>
-              </li>
-              <li>
-                <Link
-                  to={`/detail/${mediaTypeClass}/${props.id}`}
-                  onClick={handleSetGlobalModal}
-                >
-                  <Info />
-                  <span>{optionsButtons.details}</span>
-                </Link>
+                <p>{removeProfileModal.description}</p>
               </li>
             </ul>
+
+            <span className="movie-options-dialog-buttons">
+              <button onClick={handleSetGlobalModal}>
+                {removeProfileModal.cancelButton}
+              </button>
+              <button
+                onClick={() =>
+                  handleDeleteProfile(
+                    userId,
+                    profileId,
+                    currentProfile,
+                    dispatch
+                  )
+                }
+              >
+                {removeProfileModal.removeButton}
+              </button>
+            </span>
           </div>
         </div>
       </div>
@@ -179,4 +172,4 @@ const MovieOptionsModal = ({ props, mediaType }) => {
   );
 };
 
-export default MovieOptionsModal;
+export default GeneralModal;

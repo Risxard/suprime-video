@@ -60,8 +60,6 @@ function SignIn() {
     } else {
       setErrors({});
       await login(email, password);
-
-
     }
 
     setIsSubmitting(false);

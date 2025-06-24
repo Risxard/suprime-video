@@ -8,36 +8,19 @@ import { getAllProfiles } from "./services/firebase/profilesManager.js";
 import ScrollTopTop from "./functions/ScrollToTop.jsx";
 
 function App() {
-  const token = Cookies.get("@AuthToken");
-
-  useEffect(() => {
-    if (token) {
-      console.log("Token no Cookie: " + token);
-    }
-  }, []);
-
   const dispatch = useDispatch();
-  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
-  const userId = useSelector((state) => state.auth.user);
+  const user = useSelector((state) => state.auth.user);
+  const token = useSelector((state) => state.auth.token);
+  const isAuthenticated = !!user && !!token;
 
   const currentProfileId = useSelector(
     (state) => state.auth.currentProfile?.id
   );
 
-  const handleFetchAllProfiles = async () => {
-    // const profiles = await getAllProfiles(userId, dispatch);
-    // if (currentProfileId) {
-    //   const profile = profiles.find((p) => p.id === currentProfileId);
-    //   if (profile) {
-    //     dispatch(setCurrentProfile(profile));
-    //   }
-    // }
-    // return profiles;
-  };
+
 
   useEffect(() => {
     dispatch(checkAuth());
-    handleFetchAllProfiles();
   }, [dispatch]);
 
   return (

@@ -5,11 +5,18 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getWatchlist } from "../services/firebase/profilesManager";
 import GlobalMoldal from "../components/Modals/GlobalMoldal";
+import Cookies from "js-cookie";
+import i18n from "../i18n";
+import AuthListener from "../services/firebase/AuthListener";
 
 const PrivateLayout = ({ isAuthenticated }) => {
-  const language = "pt-br";
+  const language = i18n.language;
   const currentProfile = useSelector((state) => state.auth.currentProfile);
   const navigate = useNavigate();
+  const userId = Cookies.get("user_uid");
+  const modal = useSelector((state) => state.modals.filterModal);
+  const dispatch = useDispatch();
+
 
   useEffect(() => {
     if (!isAuthenticated) {
@@ -19,13 +26,10 @@ const PrivateLayout = ({ isAuthenticated }) => {
     }
   }, [isAuthenticated, currentProfile, navigate]);
 
-  const userId = useSelector((state) => state.auth.user);
-  const modal = useSelector((state) => state.modals.filterModal);
 
-  const dispatch = useDispatch();
 
   useEffect(() => {
-    if(userId){
+    if (userId && currentProfile) {
       const fetchWatchlist = async () => {
         try {
           await getWatchlist(userId, currentProfile.id, dispatch);
@@ -33,13 +37,14 @@ const PrivateLayout = ({ isAuthenticated }) => {
           console.error("Error fetching watchlist:", error);
         }
       };
-  
+
       fetchWatchlist();
     }
   }, [userId, currentProfile]);
 
   return (
     <>
+      <AuthListener />
       {isAuthenticated && currentProfile ? (
         <>
           {!modal && <Navigation language={language} />}

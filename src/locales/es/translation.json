@@ -1,0 +1,365 @@
+{
+    "signUpNow": "Regístrate ahora",
+    "loginPage": {
+        "title": "Iniciar sesión",
+        "subtitle": "Introduce tu correo electrónico y contraseña para comenzar. Si ya eres suscriptor de Açaíwave+, utiliza el correo asociado a tu cuenta.",
+        "emailAdress": "Correo electrónico",
+        "password": "Contraseña",
+        "loginEnterBtn": "Iniciar sesión",
+        "loginSignInBtn": "Iniciando sesión...",
+        "dontHaveAccount": "¿No tienes una cuenta?",
+        "signUp": "Regístrate",
+        "forgotPassword": "¿Olvidaste tu contraseña?",
+        "errors": {
+            "emailInvalid": "Correo electrónico inválido",
+            "emailRequired": "El correo electrónico es obligatorio",
+            "passwordMin": "La contraseña debe tener al menos 6 caracteres",
+            "passwordMax": "La contraseña no puede exceder los 25 caracteres",
+            "passwordRequired": "La contraseña es obligatoria"
+        }
+    },
+    "registerPage": {
+        "title": "Registrarse",
+        "subTitle": "Introduce tu nombre, correo electrónico y contraseña para crear tu cuenta.",
+        "firstName": "Nombre",
+        "yourEmail": "Tu correo electrónico",
+        "yourPassword": "Tu contraseña",
+        "confirmPassword": "Confirma tu contraseña",
+        "registerBtn": "Registrarse",
+        "registeringBtn": "Registrando...",
+        "haveAccount": "¿Ya tienes una cuenta?",
+        "signInNow": "Inicia sesión ahora",
+        "errors": {
+            "nameMin": "El nombre debe tener al menos 3 caracteres",
+            "emailInvalid": "Formato de correo inválido",
+            "emailMin": "El correo debe tener al menos 6 caracteres",
+            "passwordMin": "La contraseña debe tener al menos 6 caracteres",
+            "confirmPasswordMin": "La confirmación de la contraseña es obligatoria",
+            "passwordsNotMatch": "¡Las contraseñas deben coincidir!"
+        }
+    },
+    "forgotPasswordPage": {
+        "introMessage1": {
+            "title": "¡Correo de restablecimiento enviado!",
+            "subTitle": "Si hay un correo registrado, recibirás un enlace para restablecer tu contraseña."
+        },
+        "introMessage2": {
+            "title": "Recuperar contraseña",
+            "subTitle": "Introduce tu correo registrado y, si existe, recibirás un enlace para restablecer tu contraseña."
+        },
+        "emailAdress": "Correo electrónico",
+        "sendBtn": "Enviar",
+        "sendingBtn": "Enviando...",
+        "haveAccount": "¿Ya tienes una cuenta?",
+        "signUp": "Regístrate",
+        "errors": {
+            "emailInvalid": "Correo electrónico inválido",
+            "emailRequired": "El correo electrónico es obligatorio"
+        }
+    },
+    "emailVerificationPage": {
+        "title": "¡Correo de verificación enviado!",
+        "subTitle": "Hemos enviado un enlace de verificación a tu correo. Por favor, revisa tu bandeja de entrada.",
+        "subTitle2": "¿No encuentras el correo? Revisa tu carpeta de spam o correo no deseado."
+    },
+    "navigation": {
+        "menu": {
+            "home": "Inicio",
+            "movies": "Películas",
+            "tvShows": "Series",
+            "sports": "Deportes",
+            "liveTv": "TV en vivo",
+            "subscriptions": "Suscripciones",
+            "categories": "Categorías",
+            "myStuffs": "Mi contenido",
+            "browser": "Explorar",
+            "browseAll": "Explorar todo"
+        },
+        "search": {
+            "placeholder": "Buscar",
+            "button": "Limpiar"
+        },
+        "categories": {
+            "genres": {
+                "title": "Géneros",
+                "actionAndAdventure": "Acción y aventura",
+                "anime": "Anime",
+                "comedy": "Comedia",
+                "documentary": "Documental",
+                "drama": "Drama",
+                "fantasy": "Fantasía",
+                "horror": "Terror",
+                "kids": "Infantil",
+                "mysteryAndThriller": "Misterio y suspenso",
+                "romance": "Romance",
+                "scienceFiction": "Ciencia ficción"
+            },
+            "featuredCollections": {
+                "title": "Colecciones destacadas",
+                "madeForYou": "Hecho para ti",
+                "newAndUpcoming": "Nuevos y próximos",
+                "homePremiere": "Estreno en casa",
+                "criticallyAcclaimed": "Aclamados por la crítica",
+                "lgbtqiap": "LGBTQIAP+",
+                "blackVoices": "Voces negras"
+            }
+        },
+        "yourAccount": {
+            "all": "Todo",
+            "watchlist": "Lista de seguimiento",
+            "purchasesRentals": "Compras y alquileres"
+        },
+        "accountMenu": {
+            "yourAccount": {
+                "title": "Tu cuenta",
+                "help": "Ayuda",
+                "watchAnywhere": "Ver en cualquier lugar",
+                "AccountSettings": "Cuenta y configuración",
+                "signOut": "Cerrar sesión"
+            },
+            "profiles": {
+                "title": "Perfiles",
+                "addNew": "Agregar nuevo",
+                "manageProfiles": "Gestionar perfiles",
+                "learnMore": "Saber más"
+            }
+        }
+    },
+    "footer": {
+        "links": {
+            "termsAndPrivacy": "Términos y aviso de privacidad",
+            "feedback": "Envíanos tus comentarios",
+            "help": "Ayuda"
+        },
+        "copyright": "© 2024-2025, Richardson Souza, Inc. o sus afiliados"
+    },
+    "settingsPage": {
+        "title": "Cuenta y configuración",
+        "profileDescription": "La siguiente información corresponde al perfil de",
+        "successMessage": "Tu configuración ha sido guardada",
+        "errorMessage": "Lo sentimos, ocurrió un error. Por favor, inténtalo de nuevo más tarde.",
+        "labels": {
+            "yourAccount": "Tu cuenta",
+            "playback": "Reproducción",
+            "language": "Idioma"
+        },
+        "yourAccount": {
+            "changePassword": {
+                "title": "Cambiar contraseña",
+                "description": "Se enviará un correo con un enlace para restablecer la contraseña al correo registrado en tu cuenta.",
+                "button": "Cambiar contraseña",
+                "statusMessages": {
+                    "sendingBtn": "Enviando...",
+                    "emailSuccess": "¡Correo enviado exitosamente!"
+                }
+            },
+            "deleteMyAccount": {
+                "title": "Eliminar mi cuenta",
+                "description": "Todos tus datos serán eliminados permanentemente de Açaíwave+.",
+                "deleteButton1": "Eliminar cuenta",
+                "confirmDelete": {
+                    "title": "Eliminar cuenta",
+                    "description": "¿Estás seguro de que deseas eliminar tu cuenta? ¡Esta acción es irreversible y todos tus datos se perderán!",
+                    "confirmButton": "Sí, eliminar mi cuenta",
+                    "cancelButton": "No, conservar mi cuenta",
+                    "passwordConfirmation": "Para confirmar, introduce tu contraseña.",
+                    "passwordPlaceholder": "Introduce tu contraseña"
+                }
+            }
+        },
+        "playback": {
+            "playbackReprodution": {
+                "title": "Reproducción automática de tráilers",
+                "description": "Reproduce automáticamente los tráilers mientras navegas por el catálogo usando un navegador web."
+            }
+        },
+        "language": {
+            "websiteLanguage": {
+                "title": "Idioma del sitio web",
+                "description": "Los nuevos perfiles usarán este idioma como predeterminado.",
+                "button": "Cambiar"
+            },
+            "streamingLanguage": {
+                "title": "Idioma del perfil",
+                "description": "Cambia los idiomas preferidos de audio y subtítulos para recomendaciones personalizadas.",
+                "button": "Cambiar",
+                "saveButton": "Guardar cambios",
+                "profileLanguage": "Idioma del perfil",
+                "notFullySupported": " Aún no es totalmente compatible, prueba con inglés o portugués si tienes problemas. "
+            }
+        }
+    },
+    "watchlistPage": {
+        "title": "Lista de seguimiento",
+        "buttons": {
+            "all": "Todo",
+            "moviesLang": "Películas",
+            "tvShowsLang": "Series",
+            "mostRecent": "Adición más reciente",
+            "orderAz": "Título A-Z",
+            "orderZa": "Título Z-A"
+        },
+        "emptyMessage": {
+            "title": "Tu lista de seguimiento está vacía",
+            "description": "Agrega <0>series</0> y <1>películas</1> que quieras ver más tarde haciendo clic en Agregar a la lista de seguimiento.",
+            "button": "Explorar todo"
+        }
+    },
+    "searchPage": {
+        "buttons": {
+            "contentType": {
+                "title": "Tipo de contenido",
+                "movies": "Películas",
+                "tvShows": "Series"
+            },
+            "genre": {
+                "title": "Género"
+            },
+            "infoLabels": {
+                "resultsFor": "Resultados para",
+                "moreVideos": "Más para explorar",
+                "notFound1": "No pudimos encontrar coincidencias para",
+                "notFound2": "Explora nuestras series y películas más populares."
+            }
+        }
+    },
+    "detailPage": {
+        "labelButtons": {
+            "related": "Relacionado",
+            "details": "Detalles"
+        },
+        "costumersAlsoWatch": "Los clientes también vieron",
+        "moreInfo": {
+            "title": "Saber más",
+            "audioLanguage": {
+                "title": "Idioma de audio"
+            },
+            "subtitles": {
+                "title": "Subtítulos"
+            },
+            "directors": {
+                "title": "Directores"
+            },
+            "producers": {
+                "title": "Productores"
+            },
+            "starring": {
+                "title": "Protagonistas"
+            },
+            "studio": {
+                "title": "Estudio"
+            },
+            "termsOfUse": {
+                "message1": "Al hacer clic en reproducir, aceptas nuestros ",
+                "message2": "Términos de uso."
+            },
+            "feedback": {
+                "title": "Comentarios",
+                "sendFeedback": "Envíanos tus comentarios"
+            },
+            "support": {
+                "title": "Soporte",
+                "getHelp": "Obtener ayuda"
+            }
+        }
+    },
+    "profilesPage": {
+        "buttonAdd": "Agregar nuevo perfil",
+        "selectProfile": {
+            "title": "¿Quién está viendo?",
+            "button1": "Editar perfil"
+        },
+        "manageProfile": {
+            "title": "Gestionar perfil",
+            "button": "Guardar"
+        },
+        "newProfile": {
+            "title": "Nuevo perfil",
+            "changeImageProfile": "Cambiar imagen de perfil",
+            "cancelButton": "Cancelar",
+            "saveButton": "Guardar cambios",
+            "placeHolderNameInput": "Introduce el nombre"
+        },
+        "editProfile": {
+            "title": "Editar perfil",
+            "changeImageProfile": "Cambiar imagen de perfil",
+            "cancelButton": "Cancelar",
+            "saveButton": "Guardar cambios",
+            "placeHolderNameInput": "Introduce el nombre",
+            "profilePinAndLocks": {
+                "title": "PIN y bloqueos del perfil",
+                "description": "Protege tu perfil con un PIN.",
+                "button": "Gestionar"
+            },
+            "streamingLanguages": {
+                "title": "Idioma del perfil",
+                "description": "Cambia los idiomas preferidos de audio y subtítulos para recomendaciones personalizadas.",
+                "button": "Gestionar"
+            },
+            "removeProfile": {
+                "title": "Eliminar perfil",
+                "description": "Elimina este perfil de Açaíwave+.",
+                "button": "Eliminar",
+                "removeProfileModal": {
+                    "title": "Eliminar perfil",
+                    "description": "Eliminar este perfil de Açaíwave+ lo borrará permanentemente de tu cuenta. Esta acción no se puede deshacer.",
+                    "cancelButton": "Conservar perfil",
+                    "removeButton": "Eliminar perfil"
+                }
+            }
+        }
+    },
+    "categoriesPage": {
+        "buttons": {
+            "all": "Todo",
+            "movies": "Películas",
+            "tvShows": "Series"
+        },
+        "sectionTitles": {
+            "movies": "Películas",
+            "tvShows": "Series",
+            "popularMovies": "Películas populares",
+            "popularTvShows": "Series populares"
+        }
+    },
+    "errorPage": {
+        "title": "No hay nada aquí...",
+        "description": "No hay nada en esta dirección web. Mejor busquemos algo genial para ver.",
+        "button": "Ir a inicio de Açaíwave+"
+    },
+    "buttons": {
+        "radioButtons": {
+            "on": "Activado",
+            "off": "Desactivado"
+        },
+        "optionsButtons": {
+            "watchlist": "Lista de seguimiento",
+            "details": "Detalles",
+            "hideMediaMovie": "Ocultar esta película",
+            "hideMediaSerie": "Ocultar esta serie",
+            "play1": "Ver ahora",
+            "play2": "Reproducir",
+            "trailer": "Ver tráiler",
+            "download": "Descargar",
+            "like": "Me gusta",
+            "dislike": "No me interesa",
+            "share": "Compartir"
+        }
+    },
+    "components": {
+        "includeWithAcaiwave": {
+            "title": "Incluido con Açaíwave+"
+        }
+    },
+    "sectionTitles": {
+        "bestOfTheWeek": "Lo mejor de la semana",
+        "recommendedSeries": "Series que creemos que te gustarán",
+        "recommendedSeries2": "Series recomendadas",
+        "recommendedMovies": "Películas que creemos que te gustarán",
+        "recommendedMovies2": "Películas recomendadas",
+        "recomendedTvAndSeries": "Mejores series y películas",
+        "originalsAndExclusives": "Originales y exclusivos destacados",
+        "top10MoviesTMDB": "Top 10 películas en TMDB",
+        "top10TvShowsTMDB": "Top 10 series en TMDB"
+    }
+}

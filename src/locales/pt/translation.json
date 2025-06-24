@@ -156,7 +156,15 @@
       "deleteMyAccount": {
         "title": "Excluir minha conta",
         "description": "Todos os seus dados serão deletados permanentemente do Açaiwave+.",
-        "button": "Excluir minha conta"
+        "deleteButton1": "Excluir conta",
+        "confirmDelete" :{
+          "title": "Excluir conta",
+          "description": "Você tem certeza de que deseja excluir sua conta? Esta ação é irreversível e todos os seus dados serão perdidos!",
+          "confirmButton": "Sim, excluir minha conta",
+          "cancelButton": "Não, manter minha conta",
+          "passwordConfirmation": "Para confirmar, digite sua senha.",
+          "passwordPlaceholder": "Digite sua senha"
+        }
       }
     },
     "playback": {
@@ -176,7 +184,8 @@
         "description": "Altere os idiomas preferidos de áudio e legenda para recomendações personalizadas.",
         "button": "Alterar",
         "saveButton": "Salvar",
-        "profileLanguage": "Idioma do perfil"
+        "profileLanguage": "Idioma do perfil",
+        "notFullySupported": " Ainda não totalmente suportado, tente Inglês ou Português se apresentar problemas."
       }
     }
   },
@@ -290,7 +299,13 @@
       "removeProfile": {
         "title": "Remover perfil",
         "description": "Remova este perfil do Açaíwave+.",
-        "button": "Remover"
+        "button": "Remover",
+        "removeProfileModal": {
+          "title": "Remover perfil",
+          "description": "Remover este perfil do Açaíwave+ irá excluí-lo permanentemente da sua conta. Esta ação é irreversível.",
+          "cancelButton": "Manter perfil",
+          "removeButton": "Remover perfil"
+        }
       }
     }
   },

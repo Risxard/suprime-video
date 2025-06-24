@@ -85,28 +85,28 @@
 
 }
 
-.movie-options-dialog-main ul li > *{
+.movie-options-dialog-main ul li>* {
     width: 100%;
     height: 100%;
     padding-block: 12px;
     padding-right: 12px;
 }
 
-.movie-options-dialog-main ul li a{
+.movie-options-dialog-main ul li a,
+.movie-options-dialog-main ul li p {
     display: flex;
     flex-direction: row;
     align-items: center;
 
-    font-family: 'Ember-medium';
-    font-size: 14px;
-    font-weight: 500;
-    letter-spacing: 0.28px;
-    line-height: 17px;
+    font-family: 'Ember-regular';
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 22px;
     color: white;
     text-decoration: none;
 }
 
-.movie-options-dialog-main ul li button{
+.movie-options-dialog-main ul li button {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -139,10 +139,63 @@
     color: white;
 }
 
+.movie-options-dialog-buttons {
+    padding-block: 28px;
+}
+
+.movie-options-dialog-buttons button {
+    font-family: 'Ember-medium';
+    font-weight: 500;
+    font-size: 20px;
+    padding: 5px 12px;
+    border-radius: 8px;
+    border: none;
+    min-height: 62px;
+    min-width: 132px;
+}
+
+.movie-options-dialog-buttons button:not(:first-child) {
+    color: white;
+    background-color: #33373d;
+}
+
+
+.movie-options-dialog-buttons button:first-child {
+    color: white;
+    background: none;
+    box-shadow: inset 0 0 0 2px hsla(0, 0%, 100%, .35);
+}
+
+
+.movie-options-dialog-buttons button:hover {
+    color: black;
+    background: white;
+    box-shadow: inset 0 0 0 2px hsla(0, 0%, 100%, .35);
+}
 
 
 
 @media (max-width: 599px) {
+    .movie-options-dialog-buttons {
+        display: flex;
+        flex-direction: column;
+
+    }
+
+    .movie-options-dialog-buttons button:first-child {
+        margin-bottom: 16px;
+    }
+
+    .movie-options-dialog-buttons button {
+        width: 100%;
+        border-radius: 8px;
+        min-height: 48px;
+        font-size: 16px;
+
+        line-height: 19px;
+    }
+
+
     .draggable-resize-button-container {
         display: flex;
     }
@@ -174,7 +227,7 @@
 
         height: initial;
     }
-    
+
 
     .XSvg {
         margin-left: auto;
@@ -182,25 +235,109 @@
 }
 
 @media (min-width: 600px) {
-    .movie-options-modal-container{
+    .movie-options-dialog-buttons button {
+        min-height: 54px;
+        font-size: 18px;
+        padding: 5px 15px;
+        line-height: 22px;
+    }
+
+
+    .movie-options-dialog-buttons button:first-child {
+        margin-right: 28px;
+    }
+
+    .movie-options-modal-container {
         align-items: center;
         justify-content: center;
     }
+
     .movie-options-dialog {
         height: auto !important;
         max-width: 525px;
         width: 100%;
 
-        border-top-right-radius: 12px;
-        border-top-left-radius: 12px;
-        border-bottom-right-radius: 12px;
-        border-bottom-left-radius: 12px;
+        border-top-right-radius: 24px;
+        border-top-left-radius: 24px;
+        border-bottom-right-radius: 24px;
+        border-bottom-left-radius: 24px;
     }
 
-    .movie-options-dialog-main ul li a{
-        font-size: 16px;
-        letter-spacing: 0.32px;
-        line-height: 17px;
+    .movie-options-dialog-main ul li a,
+    .movie-options-dialog-main ul li p {
+        font-size: 18px;
+        letter-spacing: normal;
+        line-height: 25px;
     }
-    
+
+    .movie-options-dialog-main {
+        padding: 20px 30px;
+    }
+
+}
+
+@media (min-width: 880px) {
+
+    .movie-options-dialog-buttons button {
+        min-height: 60px;
+        font-size: 18px;
+        padding: 8px 18px;
+    }
+
+
+    .movie-options-dialog-header {
+        padding: 18px 36px;
+    }
+
+    .movie-options-dialog-header h2 {
+        font-size: 28px;
+        letter-spacing: 1.12px;
+        line-height: 39px;
+    }
+
+
+    .movie-options-dialog {
+        max-width: 725px;
+    }
+
+    .movie-options-dialog-main {
+        padding: 24px 36px;
+    }
+}
+
+@media (min-width: 1280px) {
+    .movie-options-dialog-buttons button {
+        min-height: 62px;
+        font-size: 20px;
+        padding: 8px 21px;
+        line-height: 23px;
+    }
+
+    .movie-options-dialog-main ul li a,
+    .movie-options-dialog-main ul li p {
+        font-size: 20px;
+        letter-spacing: normal;
+        line-height: 28px;
+    }
+
+
+    .movie-options-dialog-header {
+        padding: 21px 42px;
+    }
+
+    .movie-options-dialog-header h2 {
+        font-size: 32px;
+        letter-spacing: normal;
+        line-height: 36px;
+    }
+
+
+
+    .movie-options-dialog {
+        max-width: 925px;
+    }
+
+    .movie-options-dialog-main {
+        padding: 28px 42px;
+    }
 }

@@ -25,7 +25,9 @@ import CreateNewProfilePage from "../pages/Profiles/Components/CreateProfile/Cre
 import Search from "../pages/Search";
 
 const AppRoutes = () => {
-  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  const user = useSelector((state) => state.auth.user);
+  const token = useSelector((state) => state.auth.token);
+  const isAuthenticated = !!user && !!token;
   const currentProfile = useSelector((state) => state.auth.currentProfile);
 
   const publicRoutes = [
@@ -40,7 +42,7 @@ const AppRoutes = () => {
     {
       path: "/register/done",
       element: isAuthenticated ? (
-        <Navigate to="/home" />
+        <Navigate to="/" />
       ) : (
         <EmailVerificationPage />
       ),
@@ -48,7 +50,7 @@ const AppRoutes = () => {
     {
       path: "/verify",
       element: isAuthenticated ? (
-        <Navigate to="/home" />
+        <Navigate to="/" />
       ) : (
         <EmailVerificationPage />
       ),
@@ -56,26 +58,22 @@ const AppRoutes = () => {
     {
       path: "/verify:ref",
       element: isAuthenticated ? (
-        <Navigate to="/home" />
+        <Navigate to="/" />
       ) : (
         <EmailVerificationPage />
       ),
     },
     {
       path: "/forgot",
-      element: isAuthenticated ? (
-        <Navigate to="/home" />
-      ) : (
-        <FortgetPasswordPage />
-      ),
+      element: isAuthenticated ? <Navigate to="/" /> : <FortgetPasswordPage />,
     },
     {
       path: "/forgot/:ref",
-      element: isAuthenticated ? (
-        <Navigate to="/home" />
-      ) : (
-        <FortgetPasswordPage />
-      ),
+      element: isAuthenticated ? <Navigate to="/" /> : <FortgetPasswordPage />,
+    },
+    {
+      path: "/*",
+      element: !isAuthenticated ? <Navigate to="/" /> : <ErrorPage />,
     },
   ];
 
@@ -92,6 +90,10 @@ const AppRoutes = () => {
     { path: "/settings/:id", element: <SettingsPage /> },
     { path: "/settings/:id/:ref", element: <SettingsPage /> },
     { path: "/settings", element: <Navigate to="/settings/your-account" /> },
+    {
+      path: "/settings",
+      element: <Navigate to="/settings/your-account/:ref" />,
+    },
   ];
 
   const privateStandalone = [
@@ -101,6 +103,7 @@ const AppRoutes = () => {
       element: <EditingProfiles />,
     },
     { path: "/profiles/create", element: <CreateNewProfilePage /> },
+
   ];
 
   return (
@@ -126,7 +129,6 @@ const AppRoutes = () => {
           {privateStandalone.map(({ path, element }) => (
             <Route key={path} path={path} element={element} />
           ))}
-          <Route path="/*" element={<ErrorPage />} />
         </Route>
       </Routes>
     </BrowserRouter>

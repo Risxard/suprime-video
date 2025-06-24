@@ -10,19 +10,28 @@ import {
   updateProfile,
 } from "../../../services/firebase/profilesManager.js";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
+import { useDispatch } from "react-redux";
+import { setCurrentProfile } from "../../../store/auth/index.js";
+import GlobalMoldal from "../../../components/Modals/GlobalMoldal.jsx";
+import { setGlobalModal } from "../../../store/slices/modals.js";
+import GeneralModal from "../../../components/Modals/GeneralModal/index.jsx";
 
 const EditProfilesItens = ({ imageProfile, onPicSelector }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [dataChange, setDataChange] = useState(false);
   const { profileId } = useParams();
   const profiles = useSelector((state) => state.auth.profiles);
-  const userId = useSelector((state) => state.auth.user);
+  const currentProfile = useSelector((state) => state.auth.currentProfile);
+  const userId = Cookies.get("user_uid");
   const selectedProfile = profiles.find((profile) => profile.id === profileId);
   const [inputName, setInputName] = useState(
     selectedProfile?.userInfoData?.name || ""
   );
   const { t } = useTranslation();
   const profilesPage = t("profilesPage.editProfile");
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (selectedProfile?.userInfoData?.name) {
@@ -34,22 +43,12 @@ const EditProfilesItens = ({ imageProfile, onPicSelector }) => {
     setInputName(e.target.value);
     setDataChange(true);
   };
-
+  const navigate = useNavigate();
   useEffect(() => {
     if (imageProfile) {
       setDataChange(true);
     }
   }, [imageProfile]);
-
-  async function handleDeleteProfile(userId, profileId) {
-    const result = await deleteProfile(userId, profileId);
-    if (result) {
-      console.log("Profile deleted successfully");
-      window.location.href = "/preview/acaiwaveplus/profiles";
-    } else {
-      console.log("Failed to delete profile");
-    }
-  }
 
   async function handleUpdateProfile() {
     if (isSubmitting) return;
@@ -66,14 +65,23 @@ const EditProfilesItens = ({ imageProfile, onPicSelector }) => {
     const result = await updateProfile(userId, profileId, updatedPreferences);
 
     if (result) {
-      console.log("Profile updated successfully");
-      window.location.href = "/preview/acaiwaveplus/profiles";
+      navigate("/profiles");
     } else {
-      console.log("Failed to update profile");
+      return false;
     }
 
     setIsSubmitting(false);
   }
+
+  const handleSetGlobalModal = (userId, profileId, currentProfile) => {
+    if (userId && profileId && currentProfile) {
+      dispatch(
+        setGlobalModal(
+          <GeneralModal props={{ userId, profileId, currentProfile }} />
+        )
+      );
+    }
+  };
 
   return (
     <>
@@ -166,7 +174,13 @@ const EditProfilesItens = ({ imageProfile, onPicSelector }) => {
                 </div>
                 <button
                   className="edit-options-li-btn"
-                  onClick={() => handleDeleteProfile(userId, profileId)}
+                  onClick={() =>
+                    handleSetGlobalModal(
+                      userId,
+                      profileId,
+                      currentProfile
+                    )
+                  }
                 >
                   {profilesPage.removeProfile.button}
                 </button>
@@ -194,12 +208,22 @@ const EditProfilesItens = ({ imageProfile, onPicSelector }) => {
                 {profilesPage.streamingLanguages.button}
               </a>
             </li>
-            <li onClick={() => handleDeleteProfile(userId, profileId)}>
+            <li
+              onClick={() =>
+                handleSetGlobalModal(
+                  userId,
+                  profileId,
+                  currentProfile
+                )
+              }
+            >
               <div className="edit-options-li-info">
-              <span>{profilesPage.removeProfile.title}</span>
-              <p>{profilesPage.removeProfile.description}</p>
+                <span>{profilesPage.removeProfile.title}</span>
+                <p>{profilesPage.removeProfile.description}</p>
               </div>
-              <span className="edit-options-li-btn">{profilesPage.removeProfile.button}</span>
+              <span className="edit-options-li-btn">
+                {profilesPage.removeProfile.button}
+              </span>
               <ChevronRight />
             </li>
           </ul>

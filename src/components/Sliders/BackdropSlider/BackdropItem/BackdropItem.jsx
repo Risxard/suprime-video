@@ -30,7 +30,7 @@ export default function Backdropitem({ movie, mediaType, language }) {
   const mediaRuntime = newMediaType === "movie" ? movie.runtime : null;
   const image_path = "https://image.tmdb.org/t/p/original/";
   const id = movie.id;
-  const userId = useSelector((state) => state.auth.user);
+  const userId = useSelector((state) => state.auth.user.uid);
   const profileId = useSelector((state) => state.auth.currentProfile.id);
   const watchlist = useSelector((state) => state.auth.watchList);
   const isInWatchlist = watchlist?.[mediaType]?.includes(id);

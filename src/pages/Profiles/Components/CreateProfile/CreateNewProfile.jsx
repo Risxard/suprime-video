@@ -6,6 +6,8 @@ import NavStandalone from "../../../../components/Navigation/NavStandalone.jsx";
 
 import imageList from "../../assets/ImageList.json";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
 
 const CreateNewProfilePage = () => {
   const [picSelector, setPicSelector] = useState(false);
@@ -19,10 +21,8 @@ const CreateNewProfilePage = () => {
     setPicSelector(false);
   };
 
-
-    const { t } = useTranslation();
-    const profilesPage = t("profilesPage");
-
+  const { t } = useTranslation();
+  const profilesPage = t("profilesPage");
 
   return (
     <>
@@ -67,9 +67,10 @@ const CreateNewProfilePage = () => {
 const CreateAProfile = ({ imageProfile, onPicSelector, profilesPage }) => {
   const [dataChange, setDataChange] = useState(false);
   const profiles = useSelector((state) => state.auth.profiles);
-  const userId = useSelector((state) => state.auth.user);
+  const userId = Cookies.get("user_uid");
   const [inputName, setInputName] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const navigate = useNavigate();
 
   const handleInputChange = (e) => {
     const value = e.target.value;
@@ -77,18 +78,15 @@ const CreateAProfile = ({ imageProfile, onPicSelector, profilesPage }) => {
     setDataChange(value !== "");
   };
 
-
-
   async function handleCreateProfile(userId, inputName, imageProfile) {
     if (isSubmitting) return;
     setIsSubmitting(true);
     const result = await createNewProfile(userId, inputName, imageProfile);
     setIsSubmitting(false);
     if (result) {
-      console.log("Create Profile successfully");
-      window.location.href = "/preview/acaiwaveplus/profiles";
+      navigate("/profiles");
     } else {
-      console.log("Failed to Create a Profile");
+      return false
     }
   }
 
