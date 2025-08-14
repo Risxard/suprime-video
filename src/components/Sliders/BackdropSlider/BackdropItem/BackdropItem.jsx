@@ -14,15 +14,16 @@ import {
 import useMediaClassification from "../../../../hooks/MediaClassification/useMediaClassification";
 import playBtn from "../../../../assets/Buttons/playMovieBtn.svg";
 import { fetchMediaClassification } from "./fetchMediaClassification";
-import { addToWatchlist } from "../../../../services/firebase/profilesManager";
+import { updateWatchlist } from "../../../../services/firebase/profileServices";
 import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 import { setGlobalModal } from "../../../../store/slices/modals";
 import MovieOptionsModal from "../../../Modals/MovieOptionsModal/MovieOptionsModal";
+import LoadingIcon from "../../../../assets/svgs/LoadingIcon";
 
 export default function Backdropitem({ movie, mediaType, language }) {
   const [mediaClass, setMediaClass] = useState();
-
+  const [isLoading, setIsLoading] = useState(false);
   const newMediaType = filteredMediaType(movie, mediaType);
   const mediaTitle = newMediaType === "movie" ? movie.title : movie.name;
   const mediaDates =
@@ -30,7 +31,6 @@ export default function Backdropitem({ movie, mediaType, language }) {
   const mediaRuntime = newMediaType === "movie" ? movie.runtime : null;
   const image_path = "https://image.tmdb.org/t/p/original/";
   const id = movie.id;
-  const userId = useSelector((state) => state.auth.user.uid);
   const profileId = useSelector((state) => state.auth.currentProfile.id);
   const watchlist = useSelector((state) => state.auth.watchList);
   const isInWatchlist = watchlist?.[mediaType]?.includes(id);
@@ -53,11 +53,14 @@ export default function Backdropitem({ movie, mediaType, language }) {
     // }
   }
 
-  const handleToWatchlist = async (userId, profileId, mediaType, mediaId) => {
+  const handleToWatchlist = async (profileId, mediaType, mediaId, action) => {
+    setIsLoading(true);
     try {
-      await addToWatchlist(userId, profileId, mediaType, mediaId, dispatch);
+      await updateWatchlist(profileId, mediaType, mediaId, action, dispatch);
     } catch (error) {
       console.error("Error adding to watchlist:", error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -101,6 +104,8 @@ export default function Backdropitem({ movie, mediaType, language }) {
     window.addEventListener("touchmove", handleTouchMove, { once: true });
   };
 
+
+  const action = isInWatchlist ? "remove" : "add";
   return (
     <li
       className="Slide-Item"
@@ -164,11 +169,11 @@ export default function Backdropitem({ movie, mediaType, language }) {
                 className="featureBtn-item"
                 data-label={optionsButtons.watchlist}
                 onClick={() =>
-                  handleToWatchlist(userId, profileId, mediaType, id)
+                  handleToWatchlist(profileId, mediaType, id, action)
                 }
               >
                 <div className="align-btn">
-                  {isInWatchlist ? <Check /> : <Plus />}
+                  {isLoading ? <LoadingIcon /> : isInWatchlist ? <Check /> : <Plus />}
                 </div>
               </span>
 

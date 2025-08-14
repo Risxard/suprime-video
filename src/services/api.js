@@ -1,0 +1,42 @@
+import axios from "axios";
+import { getAuth } from "firebase/auth";
+
+const API_URL = import.meta.env.VITE_API_URL;
+
+const api = axios.create({
+  baseURL: API_URL,
+});
+
+// Interceptor para incluir token do Firebase
+api.interceptors.request.use(async (config) => {
+  const auth = getAuth();
+  const user = auth.currentUser;
+
+  if (user) {
+    try {
+      const token = await user.getIdToken();
+      config.headers.Authorization = `Bearer ${token}`;
+    } catch (error) {
+      console.error("Erro ao pegar token do Firebase:", error);
+    }
+  } else {
+    console.warn("Nenhum usuário logado no momento da requisição.");
+  }
+
+  return config;
+});
+
+// Interceptor para tratar erros de autenticação
+api.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (error.response?.status === 401) {
+      console.warn("Token inválido ou expirado. Redirecionando para login...");
+      // Aqui você pode redirecionar ou limpar estado:
+      // window.location.href = "/login";
+    }
+    return Promise.reject(error);
+  }
+);
+
+export default api;

@@ -1,15 +1,23 @@
 import React, { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 
-import { Plus, Check, AlertCircle, Volume1, VolumeX } from "lucide-react";
+import {
+  Plus,
+  Check,
+  AlertCircle,
+  Volume1,
+  VolumeX,
+  Loader,
+  Loader2,
+} from "lucide-react";
 
 import { setDate, bgDetect } from "../../../../functions/Converter";
 import useMediaClassification from "../../../../hooks/MediaClassification/useMediaClassification";
-
+import LoadingIcon from "../../../../assets/svgs/LoadingIcon";
 import "./FeatureItem.css";
 import useGetVideoKey from "../../../../hooks/GetVideoKey/useGetVideoKeys";
 import getLogoImages from "../../../../hooks/ApiCalls/useFetchImages";
-import { addToWatchlist } from "../../../../services/firebase/profilesManager";
+import { updateWatchlist } from "../../../../services/firebase/profileServices";
 import { useDispatch, useSelector } from "react-redux";
 import Player from "../../../MediaPlayer/Player/Player";
 import { useTranslation } from "react-i18next";
@@ -24,6 +32,8 @@ const FeatureItem = ({ movie, language }) => {
   const [userInPage, setUserInPage] = useState(true);
   const [logoImage, setLogoImage] = useState("");
   const [isMuted, setIsMuted] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
+
   const dispatch = useDispatch();
   const { t } = useTranslation();
 
@@ -116,11 +126,14 @@ const FeatureItem = ({ movie, language }) => {
     }
   }, [movie.id, movie.media_type, language]);
 
-  const handleToWatchlist = async (userId, profileId, mediaType, mediaId) => {
+  const handleToWatchlist = async (profileId, mediaType, mediaId, action) => {
+    setIsLoading(true);
     try {
-      await addToWatchlist(userId, profileId, mediaType, mediaId, dispatch);
+      await updateWatchlist(profileId, mediaType, mediaId, action, dispatch);
     } catch (error) {
       console.error("Error adding to watchlist:", error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -134,6 +147,8 @@ const FeatureItem = ({ movie, language }) => {
       once: true,
     });
   };
+
+  const action = isInWatchlist ? "remove" : "add";
 
   return (
     <li
@@ -211,11 +226,17 @@ const FeatureItem = ({ movie, language }) => {
                 className="watchlist-btn"
                 data-label={optionsButtons.watchlist}
                 onClick={() =>
-                  handleToWatchlist(userId, profileId, mediaType, id)
+                  handleToWatchlist(profileId, mediaType, id, action)
                 }
               >
                 <div className="align-btn">
-                  {isInWatchlist ? <Check /> : <Plus />}
+                  {isLoading ? (
+                    <LoadingIcon />
+                  ) : isInWatchlist ? (
+                    <Check />
+                  ) : (
+                    <Plus />
+                  )}
                 </div>
               </span>
 
@@ -232,8 +253,6 @@ const FeatureItem = ({ movie, language }) => {
           </span>
 
           <IncludeWithSuprime />
-
-
         </div>
       </div>
 

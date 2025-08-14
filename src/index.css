@@ -84,6 +84,30 @@ html:has(.global-modal-layout) {
     text-decoration: none;
 }
 
+
+
+.loading-icon {
+    animation: spin 1s linear infinite;
+    display: inline-block;
+}
+
+.watchlist-btn:hover .loading-icon stop, .featureBtn-item:hover .loading-icon stop {
+    stop-color: white;
+}
+
+.watchlist-btn:hover .loading-icon stop, .featureBtn-item:hover .loading-icon stop {
+    stop-color: #000;
+}
+
+
+
+@keyframes spin {
+    100% {
+        transform: rotate(-360deg);
+    }
+}
+
+
 .SeeAll h3 {
     display: block;
 }

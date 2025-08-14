@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Plus,
   Share2,
@@ -11,9 +11,11 @@ import {
 import { Link } from "react-router-dom";
 import { showPlayerModal } from "../../../store/slices/modals";
 import { useDispatch, useSelector } from "react-redux";
-import { addToWatchlist } from "../../../services/firebase/profilesManager";
+import { updateWatchlist } from "../../../services/firebase/profileServices";
+import LoadingIcon from "../../../assets/svgs/LoadingIcon";
 
 const MovieOptions = ({ mediaType, id, buttonsLang }) => {
+  const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
 
   const handleExitClick = () => {
@@ -25,14 +27,17 @@ const MovieOptions = ({ mediaType, id, buttonsLang }) => {
   const watchlist = useSelector((state) => state.auth.watchList);
   const isInWatchlist = watchlist?.[mediaType]?.includes(id);
 
-  const handleToWatchlist = async (userId, profileId, mediaType, mediaId) => {
+  const handleToWatchlist = async (profileId, mediaType, mediaId, action) => {
+    setIsLoading(true);
     try {
-      await addToWatchlist(userId, profileId, mediaType, mediaId, dispatch);
+      await updateWatchlist(profileId, mediaType, mediaId, action, dispatch);
     } catch (error) {
       console.error("Error adding to watchlist:", error);
+    } finally {
+      setIsLoading(false);
     }
   };
-
+  const action = isInWatchlist ? "remove" : "add";
   return (
     <div className="MovieBtns">
       <span
@@ -46,21 +51,34 @@ const MovieOptions = ({ mediaType, id, buttonsLang }) => {
       <span
         className="MovieBtn"
         data-name={buttonsLang.optionsButtons.watchlist}
-        onClick={() => handleToWatchlist(userId, profileId, mediaType, id)}
+        onClick={() =>
+          handleToWatchlist(
+            profileId,
+            mediaType,
+            id,
+            action
+          )
+        }
       >
-        {isInWatchlist ? <Check /> : <Plus />}
+        {isLoading ? <LoadingIcon /> : isInWatchlist ? <Check /> : <Plus />}
       </span>
 
       <div className="like-group-btn">
         <span className="like-btn" data-name={buttonsLang.optionsButtons.like}>
           <ThumbsUp />
         </span>
-        <span className="like-btn" data-name={buttonsLang.optionsButtons.dislike}>
+        <span
+          className="like-btn"
+          data-name={buttonsLang.optionsButtons.dislike}
+        >
           <ThumbsDown />
         </span>
       </div>
 
-      <span className="MovieBtn" data-name={buttonsLang.optionsButtons.download}>
+      <span
+        className="MovieBtn"
+        data-name={buttonsLang.optionsButtons.download}
+      >
         <Download />
       </span>
       <span className="MovieBtn" data-name={buttonsLang.optionsButtons.share}>

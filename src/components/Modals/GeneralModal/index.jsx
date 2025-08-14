@@ -3,7 +3,7 @@ import "../MovieOptionsModal/styles.css";
 import XSvg from "../MovieOptionsModal/XSvg";
 import { setGlobalModal } from "../../../store/slices/modals";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteProfile } from "../../../services/firebase/profilesManager";
+import { deleteProfile } from "../../../services/firebase/profileServices.js";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 

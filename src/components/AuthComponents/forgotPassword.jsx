@@ -3,7 +3,7 @@ import { X } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { z } from "zod";
 import "./styles.css";
-import { sendResetPasswordEmail } from "../../services/firebase/profilesManager";
+import { sendResetPasswordEmail } from "../../services/firebase/profileServices.js";
 import { useTranslation } from "react-i18next";
 
 function ForgetPassword() {

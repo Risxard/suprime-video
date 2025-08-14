@@ -8,11 +8,10 @@ import { setLanguage } from "../../store/language";
 import i18next from "i18next";
 import { useTranslation } from "react-i18next";
 import {
-  fetchUserData,
   updateProfileLanguage,
   nameAccountUpdate,
   sendResetPasswordEmail,
-} from "../../services/firebase/profilesManager";
+} from "../../services/firebase/profileServices";
 import CircleXIcon from "./CircleX";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
@@ -20,6 +19,7 @@ import Cookies from "js-cookie";
 import { set } from "react-hook-form";
 import { logout } from "../../store/auth";
 import useDeleteAccount from "../../hooks/Auth/DeleteAccount";
+import { userServices } from "../../services/firebase/userServices";
 
 const SetYourAccountChildren = ({ editAccount }) => {
   const [isResetting, setIsResetting] = useState(false);
@@ -33,8 +33,6 @@ const SetYourAccountChildren = ({ editAccount }) => {
   const { ref } = useParams();
 
   const navigate = useNavigate();
-
-  const userId = useSelector((state) => state.auth.user.uid);
   const { t } = useTranslation();
 
   const yourAccount = t("settingsPage.yourAccount");
@@ -42,19 +40,20 @@ const SetYourAccountChildren = ({ editAccount }) => {
 
   useEffect(() => {
     const fetchEmail = async () => {
-      if (!userId) return;
       try {
-        const userData = await fetchUserData(userId);
-        if (userData && userData.email) {
-          setEmailAccount(userData.email);
+        const data = await userServices.getUserData();
+
+        if (data && data.email) {
+          setEmailAccount(data);
         }
       } catch (error) {
         console.error("Erro ao buscar e-mail do usuário:", error);
         setEmailAccount("");
       }
     };
+
     fetchEmail();
-  }, [userId]);
+  }, []);
 
   const handleResetPassword = async () => {
     if (!emailAccount) return;
@@ -106,10 +105,14 @@ const SetYourAccountChildren = ({ editAccount }) => {
           <div className="language-radio-group-container delete-account-container">
             {confirmDelete && (
               <>
-                <label><p>{deleteMyAccount.confirmDelete.passwordConfirmation}</p></label>
+                <label>
+                  <p>{deleteMyAccount.confirmDelete.passwordConfirmation}</p>
+                </label>
                 <input
                   type="password"
-                  placeholder={deleteMyAccount.confirmDelete.passwordPlaceholder}
+                  placeholder={
+                    deleteMyAccount.confirmDelete.passwordPlaceholder
+                  }
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   disabled={loading}

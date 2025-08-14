@@ -1,7 +1,7 @@
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth, db } from './firebaseconfig';
 import { doc, setDoc } from 'firebase/firestore';
-import { createNewProfile } from './profilesManager';
+import { createNewProfile } from './profileServices.js';
 
 const createNewAccount = async (data) => {
   try {

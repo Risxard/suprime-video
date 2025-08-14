@@ -15,7 +15,8 @@ import {
   ErrorPage,
   EmailVerificationPage,
   FortgetPasswordPage,
-} from "../pages";
+  PageTest,
+} from "../pages/Index";
 
 import PrivateLayout from "../App";
 import PrivateStandalone from "./PrivateStandalone";
@@ -94,6 +95,10 @@ const AppRoutes = () => {
       path: "/settings",
       element: <Navigate to="/settings/your-account/:ref" />,
     },
+    {
+      path: "/pagetest",
+      element: <PageTest />,
+    },
   ];
 
   const privateStandalone = [
@@ -103,7 +108,6 @@ const AppRoutes = () => {
       element: <EditingProfiles />,
     },
     { path: "/profiles/create", element: <CreateNewProfilePage /> },
-
   ];
 
   return (

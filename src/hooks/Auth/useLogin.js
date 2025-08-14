@@ -2,7 +2,7 @@ import { useDispatch } from "react-redux";
 import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { auth } from "../../services/firebase/firebaseconfig";
 import { loginSuccess } from "../../store/auth/index";
-import { getAllProfiles, sendEmailVerificationLink } from "../../services/firebase/profilesManager.js";
+import { getAllProfiles, sendEmailVerificationLink } from "../../services/firebase/profileServices";
 import { useNavigate } from "react-router-dom";
 
 const useLogin = () => {
@@ -26,7 +26,7 @@ const useLogin = () => {
 
         const token = user.accessToken;
 
-        await getAllProfiles(user.uid, dispatch);
+        await getAllProfiles(dispatch);
         dispatch(loginSuccess({ token, user }));
       }
     } catch (err) {

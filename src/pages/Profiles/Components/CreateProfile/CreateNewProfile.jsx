@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { createNewProfile } from "../../../../services/firebase/profilesManager.js";
+import { createNewProfile } from "../../../../services/firebase/profileServices.js";
 import NavStandalone from "../../../../components/Navigation/NavStandalone.jsx";
 
 import imageList from "../../assets/ImageList.json";

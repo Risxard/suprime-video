@@ -1,22 +1,23 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./styles.css";
 import XSvg from "./XSvg";
 import { setGlobalModal } from "../../../store/slices/modals";
 import { useDispatch, useSelector } from "react-redux";
 import { Check, Film, Info, Play, Plus, PlusIcon } from "lucide-react";
 import { Link } from "react-router-dom";
-import { addToWatchlist } from "../../../services/firebase/profilesManager";
+import { updateWatchlist } from "../../../services/firebase/profileServices";
 import { useTranslation } from "react-i18next";
 
 const MovieOptionsModal = ({ props, mediaType }) => {
+  const [isLoading, setIsLoading] = useState(false);
   const globalModal = useSelector((state) => state.modals.globalModal);
   const watchlist = useSelector((state) => state.auth.watchList);
   const isInWatchlist = watchlist?.[props.media_type]?.includes(props.id);
   const userId = useSelector((state) => state.auth.user.uid);
   const profileId = useSelector((state) => state.auth.currentProfile.id);
-    const { t } = useTranslation();
-    const buttonsLang = t("buttons");
-    const { optionsButtons } = buttonsLang;
+  const { t } = useTranslation();
+  const buttonsLang = t("buttons");
+  const { optionsButtons } = buttonsLang;
 
   const dispatch = useDispatch();
   const handleSetGlobalModal = () => {
@@ -108,14 +109,19 @@ const MovieOptionsModal = ({ props, mediaType }) => {
     }
   }, []);
 
-  const handleToWatchlist = async (userId, profileId, mediaType, mediaId) => {
+  const handleToWatchlist = async (profileId, mediaType, mediaId, action) => {
+    setIsLoading(true);
     try {
-      await addToWatchlist(userId, profileId, mediaType, mediaId, dispatch);
+      await updateWatchlist(profileId, mediaType, mediaId, action, dispatch);
     } catch (error) {
       console.error("Error adding to watchlist:", error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
+
+  const action = isInWatchlist ? "remove" : "add";
   return (
     <div className="movie-options-modal-overlay">
       <div className="movie-options-modal-container">
@@ -155,10 +161,16 @@ const MovieOptionsModal = ({ props, mediaType }) => {
               <li>
                 <button
                   onClick={() =>
-                    handleToWatchlist(userId, profileId, mediaTypeClass, props.id)
+                    handleToWatchlist(
+                      userId,
+                      profileId,
+                      mediaTypeClass,
+                      props.id,
+                      action
+                    )
                   }
                 >
-                  {isInWatchlist ? <Check /> : <Plus />}
+                  {isLoading ? <LoadingIcon /> : isInWatchlist ? <Check /> : <Plus />}
                   <span>{optionsButtons.watchlist}</span>
                 </button>
               </li>

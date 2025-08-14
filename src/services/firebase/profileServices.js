@@ -3,6 +3,8 @@ import { db } from './firebaseconfig.js';
 import { setCurrentProfile, setCurrentWatchlist, userProfiles } from "../../store/auth/index.js";
 import { deleteUser, getAuth, reauthenticateWithCredential, sendEmailVerification, sendPasswordResetEmail } from "firebase/auth";
 import { current } from "@reduxjs/toolkit";
+import api from '../api.js';
+import { userServices } from "./userServices.js";
 
 const createNewProfile = async (userId, profileName, newImage) => {
     try {
@@ -79,110 +81,67 @@ const deleteProfile = async (userId, profileId, currentProfile, dispatch) => {
     }
 };
 
-const fetchUser = async (userId) => {
-    const userRef = doc(db, "users", userId);
-    const userDoc = await getDoc(userRef);
-    if (!userDoc.exists()) return null;
-    return userDoc.data();
+const getUserData = async () => {
+    const userDoc = await userServices.getUserData();
+    if (!userDoc) return null;
+    return userDoc;
 };
 
 
-const fetchProfiles = async (userId) => {
-    const profilesRef = collection(db, "users", userId, "profiles");
-    const querySnapshot = await getDocs(profilesRef);
-
-    return querySnapshot.docs.map((doc) => ({
-        id: doc.id,
-        userInfoData: doc.data().userInfoData,
-    }));
-};
-
-const fetchProfile = async (userId, profileId) => {
+const getProfileById = async (profileId) => {
     try {
-        const profileRef = doc(db, "users", userId, "profiles", profileId);
-        const profileDoc = await getDoc(profileRef);
-        if (!profileDoc.exists()) return null;
-        return { ref: profileRef, data: profileDoc.data() };
-    } catch (error) {
-        return null;
+        const data = await profileService.getById(profileId);
+
+        return data;
+    } catch (err) {
+        console.error("Erro ao buscar perfil:", err);
     }
 };
 
-const getProfileWatchlist = (profileData) => {
-    return profileData?.data?.watchlist || { movie: [], tv: [] };
-};
 
-const ensureAtLeastOneProfile = async (userId, name) => {
-    let profiles = await fetchProfiles(userId);
-    if (profiles.length === 0) {
-        await createNewProfile(userId, name);
-        profiles = await fetchProfiles(userId);
-    }
+const getAllProfiles = async (dispatch) => {
+  try {
+    const profiles = await profileService.getAll();
+    if (!profiles) return [];
+
+    dispatch(userProfiles({ profiles }));
+    localStorage.setItem("@AuthSV:profiles", JSON.stringify(profiles));
+
     return profiles;
+  } catch (error) {
+    console.error("Erro ao buscar perfis:", error);
+    throw error;
+  }
 };
 
 
-const getAllProfiles = async (userId, dispatch) => {
+const getWatchlist = async (profileId, dispatch) => {
     try {
-        const userData = await fetchUser(userId);
-        if (!userData) return [];
+        const data = await profileService.getWatchlist(profileId);
+        if (!data) return false;
 
-        const profiles = await ensureAtLeastOneProfile(userId, userData.name);
+        dispatch(setCurrentWatchlist(data));
 
-        dispatch(userProfiles({ profiles }));
-        localStorage.setItem("@AuthSV:profiles", JSON.stringify(profiles));
-
-        return profiles;
-    } catch (error) {
-        throw error;
-    }
-};
-
-const getWatchlist = async (userId, profileId, dispatch) => {
-    try {
-        const profileData = await fetchProfile(userId, profileId);
-        if (!profileData) return false;
-
-        const watchlist = getProfileWatchlist(profileData);
-        dispatch(setCurrentWatchlist(watchlist));
-
-        return watchlist;
+        return data;
     } catch (error) {
         return false;
     }
 };
 
-const toggleMediaInWatchlist = (watchlist, mediaType, mediaId) => {
-    const list = watchlist[mediaType] || [];
-    const index = list.indexOf(mediaId);
 
-    if (index === -1) {
-        list.push(mediaId);
-    } else {
-        list.splice(index, 1);
-    }
-
-    return {
-        ...watchlist,
-        [mediaType]: list
-    };
-};
-
-const addToWatchlist = async (userId, profileId, mediaType, mediaId, dispatch) => {
+const updateWatchlist = async (profileId, mediaType, mediaId, action, dispatch) => {
     try {
-        const profile = await fetchProfile(userId, profileId);
-        if (!profile || !profile.data) return false;
+        const updatedProfile = await profileService.updateWatchlist(profileId, {
+            type: mediaType,
+            itemId: mediaId,
+            action: action,
+        });
 
-        const currentWatchlist = profile.data.watchlist || { movie: [], tv: [] };
+        if (!updatedProfile) return false;
 
-        if (!currentWatchlist[mediaType]) return false;
-
-        const updatedWatchlist = toggleMediaInWatchlist(currentWatchlist, mediaType, mediaId);
-
-        await updateDoc(profile.ref, { watchlist: updatedWatchlist });
-
-        await getWatchlist(userId, profileId, dispatch);
-
+        if (dispatch) {
+            await getWatchlist(profileId, dispatch);
+        }
 
         return true;
     } catch (error) {
@@ -216,7 +175,7 @@ const updateProfile = async (userId, profileId, updatedPreferences) => {
 
 const updateProfileLanguage = async (userId, profileId, newLanguage, dispatch) => {
     try {
-        const profile = await fetchProfile(userId, profileId);
+        const profile = await fetchProfile(profileId);
         if (!profile) return false;
 
 
@@ -241,17 +200,6 @@ const updateProfileLanguage = async (userId, profileId, newLanguage, dispatch) =
         return false;
     }
 };
-
-const fetchUserData = async (userId) => {
-    try {
-        const userRef = doc(db, "users", userId);
-        const userDoc = await getDoc(userRef);
-        if (!userDoc.exists()) return null;
-        return userDoc.data();
-    } catch (error) {
-        return null;
-    }
-}
 
 const nameAccountUpdate = async (userId, newName) => {
     try {
@@ -295,6 +243,44 @@ const sendEmailVerificationLink = async (user) => {
 };
 
 
+export const profileService = {
+    getAll: async () => {
+        const { data } = await api.get("/profiles");
+        return data;
+    },
+
+    getById: async (profileId) => {
+        const { data } = await api.get(`/profiles/${profileId}`);
+        return data;
+    },
+
+    create: async (profile) => {
+        const { data } = await api.post("/profiles", profile);
+        return data;
+    },
+
+    update: async (profileId, updates) => {
+        const { data } = await api.patch(`/profiles/${profileId}`, updates);
+        return data;
+    },
+
+    remove: async (profileId) => {
+        const { data } = await api.delete(`/profiles/${profileId}`);
+        return data;
+    },
+
+    getWatchlist: async (profileId) => {
+        const { data } = await api.get(`/profiles/${profileId}/watchlist`);
+        return data;
+    },
+
+    updateWatchlist: async (profileId, payload) => {
+        const { data } = await api.patch(`/profiles/${profileId}/watchlist`, payload);
+        return data;
+    },
+};
+
+
 
 export {
     createNewProfile,
@@ -302,9 +288,8 @@ export {
     deleteProfile,
     getAllProfiles,
     getWatchlist,
-    addToWatchlist,
+    updateWatchlist,
     updateProfileLanguage,
-    fetchUserData,
     nameAccountUpdate,
     sendResetPasswordEmail,
     sendEmailVerificationLink,

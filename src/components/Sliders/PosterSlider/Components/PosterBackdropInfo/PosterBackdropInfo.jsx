@@ -7,10 +7,11 @@ import { Link } from "react-router-dom";
 import { Plus, Check, AlertCircle } from "lucide-react";
 import useGetVideoKey from "../../../../../hooks/GetVideoKey/useGetVideoKeys";
 import getLogoImages from "../../../../../hooks/ApiCalls/useFetchImages/";
-import { addToWatchlist } from "../../../../../services/firebase/profilesManager";
+import { updateWatchlist } from "../../../../../services/firebase/profileServices";
 
 import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
+import LoadingIcon from "../../../../../assets/svgs/LoadingIcon";
 
 export default function PosterBackdropInfo({
   propsChildren,
@@ -25,7 +26,7 @@ export default function PosterBackdropInfo({
   const watchlist = useSelector((state) => state.auth.watchList);
   const isInWatchlist = watchlist?.[mediaType]?.includes(id);
   const dispatch = useDispatch();
-
+  const [isLoading, setIsLoading] = useState(false);
   const { t } = useTranslation();
   const buttonsLang = t("buttons");
   const { optionsButtons } = buttonsLang;
@@ -42,14 +43,18 @@ export default function PosterBackdropInfo({
     }
   }, [id, mediaType, language]);
 
-  const handleToWatchlist = async (userId, profileId, mediaType, mediaId) => {
+  const handleToWatchlist = async (profileId, mediaType, mediaId, action) => {
+    setIsLoading(true);
     try {
-      await addToWatchlist(userId, profileId, mediaType, mediaId, dispatch);
+      await updateWatchlist(profileId, mediaType, mediaId, action, dispatch);
     } catch (error) {
       console.error("Error adding to watchlist:", error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
+  const action = isInWatchlist ? "remove" : "add";
   return (
     <div className={`poster-backdrop-info`}>
       <img
@@ -131,11 +136,17 @@ export default function PosterBackdropInfo({
               className="watchlist-btn"
               data-label={optionsButtons.watchlist}
               onClick={() =>
-                handleToWatchlist(userId, profileId, mediaType, id)
+                handleToWatchlist(profileId, mediaType, id, action)
               }
             >
               <div className="align-btn">
-                {isInWatchlist ? <Check /> : <Plus />}
+                {isLoading ? (
+                  <LoadingIcon />
+                ) : isInWatchlist ? (
+                  <Check />
+                ) : (
+                  <Plus />
+                )}
               </div>
             </span>
 

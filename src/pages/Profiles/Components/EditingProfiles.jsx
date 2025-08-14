@@ -8,7 +8,7 @@ import imageList from "../assets/ImageList.json";
 import {
   deleteProfile,
   updateProfile,
-} from "../../../services/firebase/profilesManager.js";
+} from "../../../services/firebase/profileServices.js";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";

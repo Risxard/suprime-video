@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { Check, MoreVertical } from "lucide-react";
 import {
@@ -14,12 +14,14 @@ import { filteredMediaType } from "../../../../functions/Converter";
 import useMediaClassification from "../../../../hooks/MediaClassification/useMediaClassification";
 import { bgDetect } from "../../../../functions/Converter";
 import { useDispatch, useSelector } from "react-redux";
-import { addToWatchlist } from "../../../../services/firebase/profilesManager";
+import { updateWatchlist } from "../../../../services/firebase/profileServices";
 import { setGlobalModal } from "../../../../store/slices/modals";
 import MovieOptionsModal from "../../../../components/Modals/MovieOptionsModal/MovieOptionsModal";
 import { useTranslation } from "react-i18next";
+import LoadingIcon from "../../../../assets/svgs/LoadingIcon";
 
 const SearchItem = ({ movie }) => {
+  const [isLoading, setIsLoading] = useState(false);
   const id = movie.id;
   const image_path = "https://image.tmdb.org/t/p/original/";
   const language = localStorage.getItem("country");
@@ -50,18 +52,24 @@ const SearchItem = ({ movie }) => {
   const isInWatchlist = watchlist?.[mediaType]?.includes(id);
   const dispatch = useDispatch();
 
-  const handleToWatchlist = async (userId, profileId, mediaType, mediaId) => {
+  const handleToWatchlist = async (profileId, mediaType, mediaId, action) => {
+    setIsLoading(true);
     try {
-      await addToWatchlist(userId, profileId, mediaType, mediaId, dispatch);
+      await updateWatchlist(profileId, mediaType, mediaId, action, dispatch);
     } catch (error) {
       console.error("Error adding to watchlist:", error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
   const handleSetGlobalModal = (movie) => {
-    dispatch(setGlobalModal(<MovieOptionsModal props={movie} mediaType={mediaType}/>));
+    dispatch(
+      setGlobalModal(<MovieOptionsModal props={movie} mediaType={mediaType} />)
+    );
   };
 
+  const action = isInWatchlist ? "remove" : "add";
   return (
     <li>
       <Link to={`/detail/${mediaType}/${movie.id}`} className="Card-container">
@@ -130,15 +138,24 @@ const SearchItem = ({ movie }) => {
               className="featureBtn-item"
               data-label={optionsButtons.watchlist}
               onClick={() =>
-                handleToWatchlist(userId, profileId, mediaType, id)
+                handleToWatchlist(profileId, mediaType, id, action)
               }
             >
               <div className="align-btn">
-                {isInWatchlist ? <Check /> : <Plus />}
+                {isLoading ? (
+                  <LoadingIcon />
+                ) : isInWatchlist ? (
+                  <Check />
+                ) : (
+                  <Plus />
+                )}
               </div>
             </span>
 
-            <span className="featureBtn-item trailer-btn" data-label={optionsButtons.trailer}>
+            <span
+              className="featureBtn-item trailer-btn"
+              data-label={optionsButtons.trailer}
+            >
               <div className="align-btn">
                 <svg
                   className="fbl-icon _30dE3d _1a_Ljt"
@@ -166,7 +183,14 @@ const SearchItem = ({ movie }) => {
               </div>
             </span>
 
-            <span className="featureBtn-item ban" data-label={mediaType === "movie" ? optionsButtons.hideMediaMovie : optionsButtons.hideMediaSerie}>
+            <span
+              className="featureBtn-item ban"
+              data-label={
+                mediaType === "movie"
+                  ? optionsButtons.hideMediaMovie
+                  : optionsButtons.hideMediaSerie
+              }
+            >
               <div className="align-btn">
                 <Ban />
               </div>

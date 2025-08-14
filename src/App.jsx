@@ -4,7 +4,6 @@ import { checkAuth, setCurrentProfile } from "./store/auth/index.js";
 import Cookies from "js-cookie";
 import PrivateLayout from "./routes/PrivateLayout.jsx";
 import "./i18n";
-import { getAllProfiles } from "./services/firebase/profilesManager.js";
 import ScrollTopTop from "./functions/ScrollToTop.jsx";
 
 function App() {
