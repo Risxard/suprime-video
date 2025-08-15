@@ -21,6 +21,9 @@ const ProfilesPage = () => {
 
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
+
+
+        console.log(user)
         getAllProfiles(dispatch)
           .catch((err) => console.error("Erro ao buscar perfis:", err))
           .finally(() => setLoading(false));

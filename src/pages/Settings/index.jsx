@@ -20,12 +20,12 @@ import { set } from "react-hook-form";
 import { logout } from "../../store/auth";
 import useDeleteAccount from "../../hooks/Auth/DeleteAccount";
 import { userServices } from "../../services/firebase/userServices";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 const SetYourAccountChildren = ({ editAccount }) => {
   const [isResetting, setIsResetting] = useState(false);
   const [resetSuccess, setResetSuccess] = useState(false);
   const [resetError, setResetError] = useState(null);
-  const [emailAccount, setEmailAccount] = useState("");
   const [confirmDelete, setConfirmeDelete] = useState(false);
   const [password, setPassword] = useState("");
   const { deleteAccount, loading, error, setError } = useDeleteAccount();
@@ -38,37 +38,28 @@ const SetYourAccountChildren = ({ editAccount }) => {
   const yourAccount = t("settingsPage.yourAccount");
   const { changePassword, deleteMyAccount } = yourAccount;
 
-  useEffect(() => {
-    const fetchEmail = async () => {
-      try {
-        const data = await userServices.getUserData();
-
-        if (data && data.email) {
-          setEmailAccount(data);
-        }
-      } catch (error) {
-        console.error("Erro ao buscar e-mail do usuário:", error);
-        setEmailAccount("");
-      }
-    };
-
-    fetchEmail();
-  }, []);
 
   const handleResetPassword = async () => {
-    if (!emailAccount) return;
-    setIsResetting(true);
-    setResetError(null);
-    try {
-      await sendResetPasswordEmail(emailAccount);
-      setResetSuccess(true);
-      setTimeout(() => setResetSuccess(false), 5000);
-    } catch (error) {
-      setResetError(error.message || "Erro ao enviar e-mail.");
-      setTimeout(() => setResetError(null), 5000);
-    } finally {
-      setIsResetting(false);
-    }
+    const auth = getAuth();
+    const resetpw = onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        const email = user.email;
+        setIsResetting(true);
+        setResetError(null);
+        try {
+          await sendResetPasswordEmail(email);
+          setResetSuccess(true);
+          setTimeout(() => setResetSuccess(false), 5000);
+        } catch (error) {
+          setResetError(error.message || "Erro ao enviar e-mail.");
+          setTimeout(() => setResetError(null), 5000);
+        } finally {
+          setIsResetting(false);
+        }
+      }
+    });
+
+    return () => resetpw();
   };
 
   const handleDeleteAccount = (value) => {
