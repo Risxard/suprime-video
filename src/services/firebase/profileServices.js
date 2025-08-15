@@ -151,44 +151,28 @@ const updateWatchlist = async (profileId, mediaType, mediaId, action, dispatch) 
 
 
 
-const updateProfile = async (userId, profileId, updatedPreferences) => {
+const updateProfile = async (profileId, updatedPreferences) => {
     try {
-        const profileRef = doc(db, "users", userId, "profiles", profileId);
-        const profileDoc = await getDoc(profileRef);
-
-        if (!profileDoc.exists()) {
-            return false;
-        }
-
-        const profileData = profileDoc.data();
-        const updatedUserInfoData = {
-            ...profileData.userInfoData,
-            ...updatedPreferences
-        };
-
-        await updateDoc(profileRef, { userInfoData: updatedUserInfoData });
+        await profileService.update(profileId, {
+            userInfoData: updatedPreferences
+        });
         return true;
     } catch (error) {
+        console.error("Erro ao atualizar perfil:", error);
         return false;
     }
 };
 
-const updateProfileLanguage = async (userId, profileId, newLanguage, dispatch) => {
+
+const updateProfileLanguage = async (profileId, language, dispatch) => {
     try {
-        const profile = await fetchProfile(profileId);
-        if (!profile) return false;
 
+         const langUpdated = await profileService.update(profileId, {
+            "userInfoData.language": language
+        });
 
-
-        const updatedUserInfoData = {
-            ...profile.data.userInfoData,
-            language: newLanguage,
-        };
-
-        await updateDoc(profile.ref, { userInfoData: updatedUserInfoData });
-
-        if (dispatch) {
-            const profiles = await getAllProfiles(userId, dispatch);
+        if (langUpdated && dispatch) {
+            const profiles = await getAllProfiles(dispatch);
             const updatedProfile = profiles.find((p) => p.id === profileId);
             if (updatedProfile) {
                 dispatch(setCurrentProfile(updatedProfile));
@@ -197,9 +181,11 @@ const updateProfileLanguage = async (userId, profileId, newLanguage, dispatch) =
 
         return true;
     } catch (error) {
+        console.error("Erro ao atualizar linguagem:", error);
         return false;
     }
 };
+
 
 const nameAccountUpdate = async (userId, newName) => {
     try {

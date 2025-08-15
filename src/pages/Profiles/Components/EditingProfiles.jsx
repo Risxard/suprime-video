@@ -62,7 +62,7 @@ const EditProfilesItens = ({ imageProfile, onPicSelector }) => {
       updatedPreferences.name = inputName;
     }
 
-    const result = await updateProfile(userId, profileId, updatedPreferences);
+    const result = await updateProfile(profileId, updatedPreferences);
 
     if (result) {
       navigate("/profiles");

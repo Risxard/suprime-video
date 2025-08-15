@@ -283,7 +283,6 @@ const SetLanguageChildren = ({ lng, profileDescription }) => {
     if (userId && profileId && selectedOption && dispatch) {
       try {
         const result = await updateProfileLanguage(
-          userId,
           profileId,
           selectedOption,
           dispatch

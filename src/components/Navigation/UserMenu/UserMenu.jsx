@@ -2,11 +2,12 @@ import React, { useEffect, useRef, useState } from "react";
 import "./UserMenu.css";
 import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { logout, setCurrentProfile } from "../../../store/auth/index.js";
+import { logout, setCurrentProfile, setCurrentWatchlist } from "../../../store/auth/index.js";
 import DropdownContainer from "../Layout/DropdownContainer/Index.jsx";
 import { isMobile } from "react-device-detect";
 import { useTranslation } from "react-i18next";
 import { auth } from "../../../services/firebase/firebaseconfig.js";
+import i18next from "i18next";
 
 const UserMenuChildren = ({ currentProfileData }) => {
   const [sortedProfileList, setCurrentProfileList] = useState([]);
@@ -40,6 +41,8 @@ const UserMenuChildren = ({ currentProfileData }) => {
 
   const handleSetUserProfile = (profile) => {
     dispatch(setCurrentProfile(profile));
+    dispatch(setCurrentWatchlist(profile.watchlist));
+    i18next.changeLanguage(profile.userInfoData.language);
     window.location.reload();
   };
 
