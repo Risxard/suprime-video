@@ -6,10 +6,12 @@ import store from "./store/store.js";
 import "./index.css";
 
 import AppRoutes from "./routes/AppRoutes.jsx";
+import AuthListener from "./services/firebase/AuthListener.jsx";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Provider store={store}>
+    <AuthListener />
     <AppRoutes />
   </Provider>
 );

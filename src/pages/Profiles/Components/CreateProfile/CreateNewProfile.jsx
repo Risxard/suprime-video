@@ -67,7 +67,6 @@ const CreateNewProfilePage = () => {
 const CreateAProfile = ({ imageProfile, onPicSelector, profilesPage }) => {
   const [dataChange, setDataChange] = useState(false);
   const profiles = useSelector((state) => state.auth.profiles);
-  const userId = Cookies.get("user_uid");
   const [inputName, setInputName] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const navigate = useNavigate();
@@ -78,10 +77,15 @@ const CreateAProfile = ({ imageProfile, onPicSelector, profilesPage }) => {
     setDataChange(value !== "");
   };
 
-  async function handleCreateProfile(userId, inputName, imageProfile) {
+  async function handleCreateProfile(inputName, imageProfile) {
     if (isSubmitting) return;
     setIsSubmitting(true);
-    const result = await createNewProfile(userId, inputName, imageProfile);
+
+
+    const result = await createNewProfile(inputName, imageProfile);
+
+
+    
     setIsSubmitting(false);
     if (result) {
       navigate("/profiles");
@@ -159,7 +163,7 @@ const CreateAProfile = ({ imageProfile, onPicSelector, profilesPage }) => {
           href=""
           className="edit-options-li-btn"
           data-changes={dataChange}
-          onClick={() => handleCreateProfile(userId, inputName, imageProfile)}
+          onClick={() => handleCreateProfile(inputName, imageProfile)}
         >
           {profilesPage.saveButton}
         </span>

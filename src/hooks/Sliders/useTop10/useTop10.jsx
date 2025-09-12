@@ -1,35 +1,32 @@
 import { useState, useEffect } from "react";
-import { guestApiKey } from "../../../Services/guestApi";
+import { tmdbService } from "../../../services/tmdb/tmdbServices";
 
-const useTop10 = (SectionData) => {
-  const language = SectionData.language;
-  const pageType = SectionData.pageType;
-
+const useTop10 = ({
+  language,
+  pageType,
+  page,
+  timeWindow,
+  append_to_response,
+}) => {
   const [movies, setMovies] = useState([]);
 
-  const APIKey = guestApiKey;
-
   useEffect(() => {
-    const apiUrl = `https://api.themoviedb.org/3/trending/${pageType}/day?language=${language}&page=1&api_key=${APIKey}&append_to_response=details`;
-
-    if (language) {
-      fetch(apiUrl)
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error("Network response was not ok");
-          }
-          return response.json();
-        })
-        .then((data) => {
-          const moviesqtde = data.results.slice(0, 10);
-          setMovies(moviesqtde);
-
-        })
-        .catch((error) => {
-          console.error("Fetch error:", error);
+    const fetchTrending = async () => {
+      try {
+        const data = await tmdbService.fetchTrending({
+          pageType,
+          language,
+          page,
+          timeWindow,
         });
-    }
-  }, [language, pageType]);
+        setMovies(Array.isArray(data) ? data : data.results || []);
+      } catch (err) {
+        console.error("Erro ao buscar filmes:", err);
+      }
+    };
+
+    fetchTrending();
+  }, [language, pageType, page, timeWindow, append_to_response]);
 
   return { movies };
 };

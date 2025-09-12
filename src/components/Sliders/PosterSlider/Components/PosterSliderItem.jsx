@@ -10,7 +10,7 @@ import { useDispatch } from "react-redux";
 export default function PosterSliderItem(props) {
   const [isHovered, setIsHovered] = useState(false);
   const slideRef = useRef(null);
-  const { media, id, language, mediaType, index } = props;
+  const { media, id, language, mediaType, index, original_language } = props;
   const image_path = "https://image.tmdb.org/t/p/original/";
 
   const dispatch = useDispatch();
@@ -40,7 +40,9 @@ export default function PosterSliderItem(props) {
   const posterImageSrc = `${image_path}${media.poster_path}`;
   const backDropImageSrc = `${image_path}${media.backdrop_path}`;
 
-  const propsChildren = { media, id, language, mediaType };
+  const propsChildren = { media, id, language, mediaType, original_language};
+
+
 
   const handleSetGlobalModal = (media) => {
     dispatch(setGlobalModal(<MovieOptionsModal props={media} />));
@@ -52,6 +54,7 @@ export default function PosterSliderItem(props) {
       once: true,
     });
   };
+
   return (
     <li
       ref={slideRef}

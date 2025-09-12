@@ -30,7 +30,6 @@ const FeatureItem = ({ movie, language }) => {
   const [startVideo, setStartVideo] = useState(false);
   const [startAnimationVideo, setStartAnimationVideo] = useState(false);
   const [userInPage, setUserInPage] = useState(true);
-  const [logoImage, setLogoImage] = useState("");
   const [isMuted, setIsMuted] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -48,12 +47,14 @@ const FeatureItem = ({ movie, language }) => {
   const targetRef = useRef();
   const image_path = "https://image.tmdb.org/t/p/original/";
   const id = movie.id;
+  const originalLanguage = movie.original_language;
   const mediaType = movie.media_type;
   const userId = useSelector((state) => state.auth.user.uid);
   const profileId = useSelector((state) => state.auth.currentProfile.id);
   const mediaClass = useMediaClassification({ id, language, mediaType });
   const bgClass = bgDetect(mediaClass);
-  const videoKey = useGetVideoKey(id, language, mediaType);
+  const videoKey = useGetVideoKey(id, language, mediaType, originalLanguage);
+  const logoImage = getLogoImages(id, mediaType, language, originalLanguage);
   const watchlist = useSelector((state) => state.auth.watchList);
   const isInWatchlist = watchlist?.[mediaType]?.includes(id);
 
@@ -114,18 +115,6 @@ const FeatureItem = ({ movie, language }) => {
     };
   }, []);
 
-  useEffect(() => {
-    if ((movie.id, movie.media_type, language)) {
-      getLogoImages(movie.id, movie.media_type, language)
-        .then((image) => {
-          setLogoImage(image);
-        })
-        .catch((error) => {
-          console.error("Error fetching logo image:", error);
-        });
-    }
-  }, [movie.id, movie.media_type, language]);
-
   const handleToWatchlist = async (profileId, mediaType, mediaId, action) => {
     setIsLoading(true);
     try {
@@ -150,6 +139,8 @@ const FeatureItem = ({ movie, language }) => {
 
   const action = isInWatchlist ? "remove" : "add";
 
+
+
   return (
     <li
       className={`slide no-video ${isVisible ? "targetVisible" : ""}`}
@@ -163,7 +154,7 @@ const FeatureItem = ({ movie, language }) => {
       <div className="feature-intro">
         <div className="feature-info-title">
           <Link to={`/detail/${movie.media_type}/${movie.id}`}>
-            {logoImage ? (
+            {logoImage && logoImage.file_path ? (
               <span className="feature-intro-logo">
                 <img
                   src={`${image_path}${logoImage.file_path}`}
@@ -173,7 +164,7 @@ const FeatureItem = ({ movie, language }) => {
             ) : (
               <>
                 {movie.title == null ? (
-                  <h2>{movie.name} </h2>
+                  <h2>{movie.name}</h2>
                 ) : (
                   <h2>{movie.title}</h2>
                 )}

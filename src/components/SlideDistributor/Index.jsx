@@ -1,30 +1,23 @@
-import { lazy, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { guestApiKey } from "../../Services/guestApi";
 import { useIntersectionObserver } from "../../hooks/IntersectionObserver/useIntersationObserver";
 import { setSectionTitle } from "../../functions/Converter";
+import SlideDistributorItem from "./SlideDistributorItem";
 
-const BackdropSlider = lazy(() =>
-  import("../Sliders/BackdropSlider/BackdropSlider")
-);
-
-const SlideDistributor = ({ language, mediaType }) => {
+const SlideDistributor = ({ language, mediaType, sliderMap = {}, defaultSlider }) => {
   const [genresArray, setGenresArray] = useState([]);
   const APIKey = guestApiKey;
   const api_path = "https://api.themoviedb.org/";
   const initialSections = 2;
-  const numberPeerVisible = 4;
-  const filterMode = "genre";
-  const filterScope = mediaType;
+  const numberPeerVisible = 2;
 
   useEffect(() => {
     const rawUrl = `${api_path}3/genre/${mediaType}/list?language=${language}&api_key=${APIKey}`;
 
-
     fetch(rawUrl)
       .then((response) => response.json())
       .then((data) => {
-        const genres = data.genres.slice(0, 6);
-
+        const genres = data.genres.slice(0, 15);
         setGenresArray(genres);
       });
   }, []);
@@ -33,20 +26,24 @@ const SlideDistributor = ({ language, mediaType }) => {
     initialSections,
     numberPeerVisible
   );
+
   return (
     <div>
-      {genresArray.slice(0, visibleSections).map((genre) => (
-        <BackdropSlider
-          key={genre.name}
-          sectionTitle={setSectionTitle(genre.id, mediaType, language)}
-          language={language}
-          selectedGenre={genre.id}
-          filterMode={filterMode}
-          filterScope={filterScope}
-          receivingMode={false}
-          pageNumber={3}
-        ></BackdropSlider>
-      ))}
+      {genresArray.slice(0, visibleSections).map((genre) => {
+        const SelectedSlider = sliderMap[genre.id] || defaultSlider;
+
+        return (
+          <SlideDistributorItem
+            key={genre.name}
+            Slider={SelectedSlider}
+            sectionTitle={setSectionTitle(genre.id, mediaType, language)}
+            language={language}
+            pageType={mediaType}
+            with_genres={genre.id}
+            page={1}
+          />
+        );
+      })}
 
       <svg
         id="InfiniteCheck"
@@ -55,7 +52,6 @@ const SlideDistributor = ({ language, mediaType }) => {
             visibleSections[0] < genresArray.length ? "visible" : "hidden",
         }}
         xmlns="http://www.w3.org/2000/svg"
-        xmlnsXlink="http://www.w3.org/1999/xlink"
         width="200px"
         height="200px"
         viewBox="0 0 100 100"

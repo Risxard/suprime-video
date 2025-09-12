@@ -56,6 +56,7 @@ html:has(#nav .focus-modal) {
     overflow: hidden;
     position: static;
     scrollbar-gutter: stable;
+
 }
 
 html:has(.global-modal-layout) {

@@ -63,8 +63,9 @@ const DetailsPage = () => {
   const similar = media?.similar;
   const vote_average = media?.vote_average;
   const genresId = media?.genres_Id;
+  const originalLanguage = media?.original_language;
 
-  const videoKey = useGetVideoKey(id, language, mediaType);
+  const videoKey = useGetVideoKey(id, language, mediaType, originalLanguage);
 
   const startVideo = videoKey;
 

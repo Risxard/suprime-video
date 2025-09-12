@@ -15,31 +15,20 @@ import {
   posterHandleEnterSectionHover,
   posterHandleLeaveSectionHover,
 } from "./scripts/posterScripts.js";
-import { use } from "react";
-import { useSelector } from "react-redux";
 
-  const PosterSlider = (SectionData) => {
-  const [medias, setMedias] = useState([]);
-  const { sectionTitle } = SectionData;
+const PosterSlider = ({ medias, sectionTitle, language}) => {
+  const [movies, setMovies] = useState([]);
 
-  const language = SectionData.language;
+  useEffect(() => {
+    if (medias) {
+      setMovies(medias);
+    }
+  }, [medias]);
 
   const sliderRef = useRef(null);
   const posterRef = useRef(null);
   const nextSliderBtnRef = useRef(null);
   const prevSliderBtnRef = useRef(null);
-
-  async function getMedias(SectionData) {
-    const mediasArray = await getPerGenres(SectionData);
-
-    setMedias(mediasArray.slice(0, 20));
-  }
-
-  useEffect(() => {
-    getMedias(SectionData);
-  }, []);
-
-
 
   return (
     <section
@@ -73,8 +62,8 @@ import { useSelector } from "react-redux";
           align={"default-start"}
           ref={sliderRef}
         >
-          {medias
-            ? medias.map((movie, index) => {
+          {movies
+            ? movies.map((movie, index) => {
                 const mediaLink = movie.first_air_date ? "tv" : "movie";
                 return (
                   <PosterSliderItem
@@ -83,6 +72,7 @@ import { useSelector } from "react-redux";
                     media={movie}
                     language={language}
                     mediaType={mediaLink}
+                    original_language={movie.original_language}
                     index={index}
                     handleCB={() =>
                       posterHandleCallback(index, sliderRef, posterRef)
@@ -111,6 +101,6 @@ import { useSelector } from "react-redux";
       </div>
     </section>
   );
-}
+};
 
-export default PosterSlider;
+export default PosterSlider

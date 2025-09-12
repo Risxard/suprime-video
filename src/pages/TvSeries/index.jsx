@@ -1,22 +1,23 @@
 import React, { useEffect, useState } from "react";
 import { connect, useSelector } from "react-redux";
-import { guestApiKey } from "../../Services/guestApi.js";
 import Header from "../../Components/Header/Header.jsx";
 import "./styles.css";
 import SlideDistributor from "../../components/SlideDistributor/Index.jsx";
 import BackdropSlider from "../../components/Sliders/BackdropSlider/BackdropSlider.jsx";
 import { useTranslation } from "react-i18next";
+import PosterSlider from "../../components/Sliders/PosterSlider/PosterSlider.jsx";
 import Top10Slider from "../../components/Sliders/Top10Slider/Top10Slider.jsx";
-import PosterSlider from "../../Components/Sliders/PosterSlider/PosterSlider.jsx";
+import { tvSliderMap } from "../../utils/sliderMaps.js";
+import { tmdbService } from "../../services/tmdb/tmdbServices.js";
 
 const TvSeries = (SectionData) => {
-  const [genresArray, setGenresArray] = useState([]);
-  const logged = localStorage.getItem("statusLog");
+  const [medias, setMedias] = useState([]);
+  const [mediasRecommendations, setMediasRecommendations] = useState([]);
+
   const language = useSelector((state) => state.lang.language);
   const pageType = "tv";
   const mediaType = "tv";
-
-  const APIKey = guestApiKey;
+  const timeWindow = "day";
 
   const api_path = "https://api.themoviedb.org/";
 
@@ -27,21 +28,56 @@ const TvSeries = (SectionData) => {
   const sectionTitles = t("sectionTitles");
   const { originalsAndExclusives, top10TvShowsTMDB } = sectionTitles;
 
+  useEffect(() => {
+    const fetchTrending = async () => {
+      try {
+        const data = await tmdbService.fetchTrending({
+          timeWindow: "week",
+          pageType: pageType,
+          language,
+          page: 3,
+        });
+        setMedias(Array.isArray(data) ? data : data.results || []);
+      } catch (err) {
+        console.error("Erro ao buscar trendings:", err);
+      }
+    };
+
+    fetchTrending();
+  }, [timeWindow, pageType, language]);
+
+  useEffect(() => {
+    const fetchRecommendations = async () => {
+      try {
+        const data = await tmdbService.fetchRecommendations({
+          mediaType: mediaType,
+          mediaId: 1396,
+          language,
+          page: 1,
+        });
+        setMediasRecommendations(
+          Array.isArray(data) ? data : data.results || []
+        );
+      } catch (err) {
+        console.error("Erro ao buscar Recommendations:", err);
+      }
+    };
+
+    fetchRecommendations();
+  }, []);
+
   return (
     <div className="TvSeries">
-      <Header pageType={pageType} />
+      <Header pageType={pageType} timeWindow={timeWindow} page={1} />
 
       <main>
         {/* <Top10Slider></Top10Slider> */}
 
         <section className="home-main-section">
           <BackdropSlider
-            sectionTitle={sectionTitles.recommendedMovies}
-            language={language}
-            recomendations={true}
-            mediaId={14}
-            mediaType={mediaType}
-          ></BackdropSlider>
+            sectionTitle={sectionTitles.recommendedSeries}
+            medias={mediasRecommendations}
+          />
 
           <Top10Slider
             language={language}
@@ -51,15 +87,16 @@ const TvSeries = (SectionData) => {
 
           <PosterSlider
             sectionTitle={originalsAndExclusives}
-            idParam={58}
+            medias={medias}
             language={language}
-            filterMode={"trending"}
-            filterScope={"tv"}
-            timeWindow={"week"}
-            pageNumber={3}
-          ></PosterSlider>
+          />
 
-          <SlideDistributor language={language} mediaType={mediaType} />
+          <SlideDistributor
+            language={language}
+            mediaType={mediaType}
+            defaultSlider={PosterSlider}
+            sliderMap={tvSliderMap}
+          />
         </section>
       </main>
 

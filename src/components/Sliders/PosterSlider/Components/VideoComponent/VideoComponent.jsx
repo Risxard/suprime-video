@@ -14,9 +14,10 @@ const videoComponent = (props) => {
   const isHovered = props.isHovered;
   const language = props.language;
   const mediaType = props.mediaType;
+  const originalLanguage = props.originalLanguage;
   const id = props.id;
 
-  const videoKey = useGetVideoKey(id, language, mediaType);
+  const videoKey = useGetVideoKey(id, language, mediaType, originalLanguage);
 
   useEffect(() => {
     const animationTimeOut = setTimeout(() => {

@@ -11,13 +11,14 @@ const AuthListener = () => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
       if (user && user.emailVerified) {
         const token = await user.getIdToken();
+        console.log(token)
         dispatch(loginSuccess({ user, token }));
       } else {
         dispatch(logout());
       }
     });
 
-    return () => unsubscribe();0
+    return () => unsubscribe();
   }, [dispatch]);
 
   return null;

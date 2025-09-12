@@ -38,9 +38,7 @@ export default function Top10SliderItem({ movie, mediaType, language, index }) {
   const [mediaClass, setMediaClass] = useState();
   const [isLoading, setIsLoading] = useState(false);
   const newMediaType = filteredMediaType(movie, mediaType);
-  const mediaTitle = newMediaType === "movie" ? movie.title : movie.name;
-  const mediaDates =
-    newMediaType === "movie" ? movie.release_date : movie.first_air_date;
+  const mediaDates = movie.release_date || movie.first_air_date;
   const mediaRuntime = newMediaType === "movie" ? movie.runtime : null;
   const image_path = "https://image.tmdb.org/t/p/original/";
   const id = movie.id;
@@ -159,7 +157,7 @@ export default function Top10SliderItem({ movie, mediaType, language, index }) {
 
         <span className="backdrop-info-card">
           <span className="media-title">
-            <h2>{mediaTitle}</h2>
+            <h2>{movie.title || movie.name}</h2>
           </span>
           <span className="featureBtns">
             <Link

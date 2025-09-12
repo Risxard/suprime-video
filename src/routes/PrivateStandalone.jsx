@@ -1,10 +1,7 @@
-import { Outlet } from "react-router-dom";
-import Footer from "../Components/Footer/Footer";
-import { useEffect } from "react";
-import NavStandalone from "../components/Navigation/NavStandalone";
+import { Outlet, useNavigate } from "react-router-dom";
 import GlobalMoldal from "../components/Modals/GlobalMoldal";
-import { useNavigate } from "react-router-dom";
-import AuthListener from "../services/firebase/AuthListener";
+import { useEffect } from "react";
+import Footer from "../components/Footer/Footer";
 
 const PrivateStandalone = ({ isAuthenticated }) => {
   const language = "pt-br";
@@ -12,24 +9,19 @@ const PrivateStandalone = ({ isAuthenticated }) => {
 
   useEffect(() => {
     if (!isAuthenticated) {
-      useEffect(() => {
-        if (!isAuthenticated) {
-          navigate("/");
-        }
-      }, [isAuthenticated, navigate]);
+      navigate("/");
     }
-  }, [isAuthenticated]);
+  }, [isAuthenticated, navigate]);
 
   return (
     <>
-      <AuthListener />
-      {isAuthenticated ? (
+      {isAuthenticated && (
         <>
-          <Outlet language={language} />
+          <Outlet context={{ language }} />
           <Footer language={language} />
           <GlobalMoldal />
         </>
-      ) : null}
+      )}
     </>
   );
 };

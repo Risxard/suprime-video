@@ -18,10 +18,8 @@ export default function PosterBackdropInfo({
   isHovered,
   backDropImageSrc,
 }) {
-  const { media, id, language, mediaType } = propsChildren;
-  const [logoImage, setLogoImage] = useState("");
+  const { media, id, language, mediaType, original_language } = propsChildren;
   const image_path = "https://image.tmdb.org/t/p/original/";
-  const userId = useSelector((state) => state.auth.user.uid);
   const profileId = useSelector((state) => state.auth.currentProfile.id);
   const watchlist = useSelector((state) => state.auth.watchList);
   const isInWatchlist = watchlist?.[mediaType]?.includes(id);
@@ -30,18 +28,8 @@ export default function PosterBackdropInfo({
   const { t } = useTranslation();
   const buttonsLang = t("buttons");
   const { optionsButtons } = buttonsLang;
-
-  useEffect(() => {
-    if ((id, mediaType, language)) {
-      getLogoImages(id, mediaType, language)
-        .then((image) => {
-          setLogoImage(image);
-        })
-        .catch((error) => {
-          console.error("Error fetching logo image:", error);
-        });
-    }
-  }, [id, mediaType, language]);
+  const originalLanguage = original_language;
+  const logoImage = getLogoImages(id, mediaType, language, originalLanguage);
 
   const handleToWatchlist = async (profileId, mediaType, mediaId, action) => {
     setIsLoading(true);
@@ -55,6 +43,10 @@ export default function PosterBackdropInfo({
   };
 
   const action = isInWatchlist ? "remove" : "add";
+
+
+  
+
   return (
     <div className={`poster-backdrop-info`}>
       <img
@@ -68,6 +60,7 @@ export default function PosterBackdropInfo({
         <VideoComponent
           language={language}
           mediaType={mediaType}
+          originalLanguage={originalLanguage}
           id={id}
           isHovered={isHovered}
         />
@@ -78,7 +71,7 @@ export default function PosterBackdropInfo({
       <div className="poster-backdrop-btn">
         <div className="poster-info-title">
           <span to={`/detail/${mediaType}/${media.id}`}>
-            {logoImage ? (
+            {logoImage && logoImage.file_path ? (
               <span className="poster-intro-logo">
                 <img
                   src={`${image_path}${logoImage.file_path}`}

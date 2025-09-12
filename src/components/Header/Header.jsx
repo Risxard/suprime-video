@@ -3,12 +3,15 @@ import "./Header.css";
 import FeatureSlider from "../Sliders/FeatureSlider/FeatureSlider";
 import useHero from "../../hooks/Sliders/useHero/useHero";
 import { useSelector } from "react-redux";
+import useNowPlaying from "../../hooks/Sliders/nowPlaying/useNowPlaying";
 
-const Header = ({pageType}) => {
+const Header = ({ pageType, page, timeWindow }) => {
   const [medias, setmedias] = useState([]);
   const language = useSelector((state) => state.lang.language);
 
-  const heroSlider = useHero({ language, pageType });
+
+
+  const heroSlider = useHero({ pageType, language, page, timeWindow });
 
   return (
     <header>

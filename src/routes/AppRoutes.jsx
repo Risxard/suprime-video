@@ -26,10 +26,16 @@ import CreateNewProfilePage from "../pages/Profiles/Components/CreateProfile/Cre
 import Search from "../pages/Search";
 
 const AppRoutes = () => {
-  const user = useSelector((state) => state.auth.user);
-  const token = useSelector((state) => state.auth.token);
+  const { user, token, currentProfile, loading } = useSelector((state) => state.auth);
   const isAuthenticated = !!user && !!token;
-  const currentProfile = useSelector((state) => state.auth.currentProfile);
+
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center h-screen text-xl font-bold">
+        Carregando...
+      </div>
+    );
+  }
 
   const publicRoutes = [
     {
@@ -42,27 +48,15 @@ const AppRoutes = () => {
     },
     {
       path: "/register/done",
-      element: isAuthenticated ? (
-        <Navigate to="/" />
-      ) : (
-        <EmailVerificationPage />
-      ),
+      element: isAuthenticated ? <Navigate to="/" /> : <EmailVerificationPage />,
     },
     {
       path: "/verify",
-      element: isAuthenticated ? (
-        <Navigate to="/" />
-      ) : (
-        <EmailVerificationPage />
-      ),
+      element: isAuthenticated ? <Navigate to="/" /> : <EmailVerificationPage />,
     },
     {
       path: "/verify:ref",
-      element: isAuthenticated ? (
-        <Navigate to="/" />
-      ) : (
-        <EmailVerificationPage />
-      ),
+      element: isAuthenticated ? <Navigate to="/" /> : <EmailVerificationPage />,
     },
     {
       path: "/forgot",
@@ -83,7 +77,6 @@ const AppRoutes = () => {
     { path: "/movies", element: <Movies /> },
     { path: "/detail/:mediaType/:id/", element: <DetailsPage /> },
     { path: "/detail/:mediaType/:id/:referrer", element: <DetailsPage /> },
-
     { path: "/search/:searchKey", element: <Search /> },
     { path: "/categories/:genreId", element: <Categories /> },
     { path: "/tv-series", element: <TvSeries /> },
@@ -95,10 +88,7 @@ const AppRoutes = () => {
       path: "/settings",
       element: <Navigate to="/settings/your-account/:ref" />,
     },
-    {
-      path: "/pagetest",
-      element: <PageTest />,
-    },
+    { path: "/pagetest", element: <PageTest /> },
   ];
 
   const privateStandalone = [
@@ -112,24 +102,25 @@ const AppRoutes = () => {
 
   return (
     <BrowserRouter basename="/preview/acaiwaveplus">
+      
       <Routes>
         {publicRoutes.map(({ path, element }) => (
           <Route key={path} path={path} element={element} />
         ))}
 
+        {/* Rotas privadas com Layout */}
         <Route element={<PrivateLayout isAuthenticated={isAuthenticated} />}>
           {privateRoutes.map(({ path, element }) => (
             <Route
               key={path}
               path={path}
-              element={!currentProfile ? <Navigate to="/" /> : element}
+              element={!currentProfile ? <Navigate to="/profiles" /> : element}
             />
           ))}
         </Route>
 
-        <Route
-          element={<PrivateStandalone isAuthenticated={isAuthenticated} />}
-        >
+        {/* Rotas privadas standalone */}
+        <Route element={<PrivateStandalone isAuthenticated={isAuthenticated} />}>
           {privateStandalone.map(({ path, element }) => (
             <Route key={path} path={path} element={element} />
           ))}

@@ -31,6 +31,7 @@ const fetchMediaDetails = async (mediaParam) => {
     const spokenLanguages = initialData.spoken_languages;
     const credits = initialData.credits;
     const studios = initialData.production_companies;
+    const originalLanguage = initialData.original_language;
 
     const starring = credits.cast.slice(0, 3);
     const directors = credits.crew.filter((person) => person.job === "Director");
@@ -65,6 +66,7 @@ const fetchMediaDetails = async (mediaParam) => {
       studios: studios,
       spoken_languages: spokenLanguages,
       subtitles: subtitles,
+      original_language: originalLanguage,
     };
   } catch (err) {
     throw new Error(err.message);

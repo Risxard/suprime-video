@@ -1,23 +1,17 @@
 import { useState, useEffect } from "react";
 import { tmdbService } from "../../../services/tmdb/tmdbServices";
 
-const useHero = ({
-  language,
-  pageType,
-  page,
-  timeWindow,
-  append_to_response,
-}) => {
+const useNowPlaying = ({ pageType, language, region, page }) => {
   const [movies, setMovies] = useState([]);
 
   useEffect(() => {
-    const fetchTrending = async () => {
+    const fetchNowPlaying = async () => {
       try {
-        const data = await tmdbService.fetchTrending({
+        const data = await tmdbService.fetchNowPlaying({
           pageType,
           language,
+          region,
           page,
-          timeWindow,
         });
         setMovies(Array.isArray(data) ? data : data.results || []);
       } catch (err) {
@@ -25,10 +19,10 @@ const useHero = ({
       }
     };
 
-    fetchTrending();
-  }, [language, pageType, page, timeWindow, append_to_response]);
+    fetchNowPlaying();
+  }, [pageType, language, region, page]);
 
   return { movies };
 };
 
-export default useHero;
+export default useNowPlaying;

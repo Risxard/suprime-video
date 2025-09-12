@@ -22,7 +22,7 @@ const createNewAccount = async (data) => {
       language: "pt-BR",
     });
 
-    await createNewProfile(userId, name);
+    await createNewProfile(name);
   } catch (error) {
     console.error("Erro ao criar conta:", error.message);
   }

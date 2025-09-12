@@ -4,6 +4,7 @@ import { genreConverter } from "../../../functions/Converter.js";
 import useTop10 from "../../../hooks/Sliders/useTop10/useTop10.jsx";
 import Top10SliderItem from "./Top10SliderItem/Top10SliderItem.jsx";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import useNowPlaying from "../../../hooks/Sliders/nowPlaying/useNowPlaying.jsx";
 
 const Top10Slider = (props) => {
   const [medias, setMedias] = useState([]);
@@ -11,7 +12,19 @@ const Top10Slider = (props) => {
   const sliderRef = useRef(null);
   const { language, sectionTitle, mediaType } = props;
 
-  const top10 = useTop10({ language, pageType: mediaType });
+  const timeWindow = "day";
+  const page = 1;
+
+  const region = language.includes("-") ? language.split("-")[1] : language;
+
+
+
+  const top10 = useNowPlaying({
+    pageType: mediaType,
+    language,
+    region,
+    page,
+  });
 
   useEffect(() => {
     if (top10.movies.length > 0) {
@@ -48,7 +61,6 @@ const Top10Slider = (props) => {
       sliderRef.current.scrollLeft -= gap * liWidth;
     }
   }
-
 
   function nextSlider() {
     const rootStyles = getComputedStyle(document.getElementById("root"));

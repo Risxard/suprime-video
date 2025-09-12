@@ -8,56 +8,91 @@ import BackdropSlider from "../../components/Sliders/BackdropSlider/BackdropSlid
 import { set } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import Top10Slider from "../../components/Sliders/Top10Slider/Top10Slider.jsx";
-import PosterSlider from "../../Components/Sliders/PosterSlider/PosterSlider.jsx";
+import PosterSlider from "../../components/Sliders/PosterSlider/PosterSlider.jsx";
+import RecommendationsSlider from "../../components/Sliders/RecommendationsSlider/index.jsx";
+import i18n from "../../i18n.js";
+import { tmdbService } from "../../services/tmdb/tmdbServices.js";
+import { movieSliderMap } from "../../utils/sliderMaps.js";
 
-const Movie = (SectionData) => {
-  const [genresArray, setGenresArray] = useState([]);
+const Movie = () => {
   const [medias, setMedias] = useState([]);
-  const logged = localStorage.getItem("statusLog");
-  const language = useSelector((state) => state.lang.language);
+  const [mediasRecommendations, setMediasRecommendations] = useState([]);
+  const language = i18n.language;
   const pageType = "movie";
   const mediaType = "movie";
-
-  const APIKey = guestApiKey;
-
-  const api_path = "https://api.themoviedb.org/";
-
-  const filterMode = "genre";
-  const filterScope = "movie";
+  const timeWindow = "day";
 
   const { t } = useTranslation();
   const sectionTitles = t("sectionTitles");
-  const { originalsAndExclusives, top10MoviesTMDB} = sectionTitles;
+  const { originalsAndExclusives, top10MoviesTMDB } = sectionTitles;
+
+  useEffect(() => {
+    const fetchTrending = async () => {
+      try {
+        const data = await tmdbService.fetchTrending({
+          timeWindow: "week",
+          pageType: "movie",
+          language,
+          page: 3,
+        });
+        setMedias(Array.isArray(data) ? data : data.results || []);
+      } catch (err) {
+        console.error("Erro ao buscar filmes:", err);
+      }
+    };
+
+    fetchTrending();
+  }, [timeWindow, pageType, language]);
+
+  useEffect(() => {
+    const fetchRecommendations = async () => {
+      try {
+        const data = await tmdbService.fetchRecommendations({
+          mediaType: "movie",
+          mediaId: 1035259,
+          language,
+          page: 1,
+        });
+        setMediasRecommendations(
+          Array.isArray(data) ? data : data.results || []
+        );
+      } catch (err) {
+        console.error("Erro ao buscar filmes:", err);
+      }
+    };
+
+    fetchRecommendations();
+  }, []);
 
   return (
     <div className="Movies">
-      <Header pageType={pageType} />
+      <Header pageType={pageType} timeWindow={timeWindow} page={1} />
 
       <main>
         <section className="home-main-section">
           <BackdropSlider
             sectionTitle={sectionTitles.recommendedMovies}
-            language={language}
-            recomendations={true}
-            mediaId={346698}
-            mediaType={mediaType}
-          ></BackdropSlider>
+            medias={mediasRecommendations}
+          />
+
           <Top10Slider
             language={language}
             mediaType={mediaType}
             sectionTitle={top10MoviesTMDB}
           />
+
           <PosterSlider
             sectionTitle={originalsAndExclusives}
-            idParam={58}
+            medias={medias}
             language={language}
-            filterMode={"trending"}
-            filterScope={"movie"}
-            timeWindow={"week"}
-            pageNumber={3}
-          ></PosterSlider>
+          />
 
-          <SlideDistributor language={language} mediaType={mediaType} />
+          <SlideDistributor
+            language={language}
+            mediaType={mediaType}
+            defaultSlider={PosterSlider}
+            sliderMap={movieSliderMap}
+          />
         </section>
       </main>
 

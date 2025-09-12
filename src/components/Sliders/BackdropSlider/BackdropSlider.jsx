@@ -4,89 +4,26 @@ import { ChevronRight, ChevronLeft } from "lucide-react";
 import "./BackdropSlider.css";
 import Backdropitem from "./BackdropItem/BackdropItem";
 import { getPerGenres } from "../../../Services/callFunctions/getPerGenres";
-import { guestApiKey } from "../../../Services/guestApi";
+import { tmdbService } from "../../../services/tmdb/tmdbServices";
+import i18n from "../../../i18n";
 
-const BackdropSlider = (props) => {
-  const [data, setData] = useState([]);
-  const [medias, setMedias] = useState([]);
+const BackdropSlider = ({medias, sectionTitle}) => {
+  const [movies, setMovies] = useState([]);
+
+  useEffect(() => {
+    if (medias) {
+      setMovies(medias);
+    }
+  }, [medias]);
+
+
 
   const sliderRef = useRef(null);
-  const {
-    receivingMode,
-    language,
-    sectionTitle,
-    dataReceived,
-    selectedGenre,
-    mediaId,
-    recomendations,
-    trending,
-    mediaType,
-  } = props;
-
-  const dataFiltered = dataReceived ? dataReceived : [];
-
-  const api_path = "https://api.themoviedb.org/";
-  useEffect(() => {
-    if (recomendations && mediaType && language && guestApiKey && mediaId) {
-
-
-      const fetchRecommendations = async () => {
-        try {
-          const response = await fetch(
-            `${api_path}3/${mediaType}/${mediaId}/recommendations?language=${language}&page=1&api_key=${guestApiKey}`
-          );
-          const data = await response.json();
-
-          setMedias(data.results);
-        } catch (error) {
-          console.error("Error fetching recommendations:", error);
-        }
-      };
-
-      fetchRecommendations();
-    }
-  }, [recomendations]);
-
-  useEffect(() => {
-    if (trending && mediaType && language && guestApiKey) {
-
-      const fetchTrending = async () => {
-        try {
-          const response = await fetch(
-            `${api_path}3/trending/all/day?language=${language}&page=1&api_key=${guestApiKey}`
-          );
-          const data = await response.json();
-
-          setMedias(data.results);
-        } catch (error) {
-          console.error("Error fetching recommendations:", error);
-        }
-      };
-
-      fetchTrending();
-    }
-  }, [trending]);
+  const language = i18n.language;
 
   const sliderContentRef = useRef(null);
   const prevSliderBtnRef = useRef(null);
   const nextSliderBtnRef = useRef(null);
-
-  async function getMedias(props) {
-    const mediasArray = await getPerGenres(props);
-    setMedias(mediasArray.slice(0, 20));
-  }
-
-  useEffect(() => {
-    if (receivingMode === false && !recomendations) {
-      getMedias(props);
-    }
-  }, [props]);
-
-  useEffect(() => {
-    if (dataFiltered.length > 0) {
-      setMedias(dataFiltered);
-    }
-  }, [dataFiltered]);
 
   const handleMouseEnter = () => {
     if (sliderContentRef.current) {
@@ -161,7 +98,11 @@ const BackdropSlider = (props) => {
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
-        <span className="Backdrop-PrevBtn off-btn" ref={prevSliderBtnRef} onClick={() => prevSlider()}>
+        <span
+          className="Backdrop-PrevBtn off-btn"
+          ref={prevSliderBtnRef}
+          onClick={() => prevSlider()}
+        >
           <ChevronLeft color="white" />
         </span>
         <span
@@ -175,7 +116,7 @@ const BackdropSlider = (props) => {
         </span>
 
         <ul className="Slide-List" ref={sliderRef}>
-          {medias.map((mediaItem) => {
+          {movies.map((mediaItem) => {
             const mediaType = mediaItem.first_air_date ? "tv" : "movie";
             const genre_ids_to_map = mediaItem.genre_ids.slice(0, 4);
             const genres = genre_ids_to_map.map((genre) =>
@@ -194,7 +135,6 @@ const BackdropSlider = (props) => {
       </div>
     </section>
   );
-}
-
+};
 
 export default BackdropSlider;

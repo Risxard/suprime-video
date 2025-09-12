@@ -18,18 +18,18 @@ import { updateWatchlist } from "../../../../services/firebase/profileServices";
 import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 import { setGlobalModal } from "../../../../store/slices/modals";
-import MovieOptionsModal from "../../../Modals/MovieOptionsModal/MovieOptionsModal";
 import LoadingIcon from "../../../../assets/svgs/LoadingIcon";
+import MovieOptionsModal from "../../../Modals/MovieOptionsModal/MovieOptionsModal";
 
 export default function Backdropitem({ movie, mediaType, language }) {
   const [mediaClass, setMediaClass] = useState();
   const [isLoading, setIsLoading] = useState(false);
   const newMediaType = filteredMediaType(movie, mediaType);
-  const mediaTitle = newMediaType === "movie" ? movie.title : movie.name;
+
   const mediaDates =
     newMediaType === "movie" ? movie.release_date : movie.first_air_date;
   const mediaRuntime = newMediaType === "movie" ? movie.runtime : null;
-  const image_path = "https://image.tmdb.org/t/p/original/";
+  const image_path = "https://image.tmdb.org/t/p/original";
   const id = movie.id;
   const profileId = useSelector((state) => state.auth.currentProfile.id);
   const watchlist = useSelector((state) => state.auth.watchList);
@@ -104,7 +104,6 @@ export default function Backdropitem({ movie, mediaType, language }) {
     window.addEventListener("touchmove", handleTouchMove, { once: true });
   };
 
-
   const action = isInWatchlist ? "remove" : "add";
   return (
     <li
@@ -128,7 +127,7 @@ export default function Backdropitem({ movie, mediaType, language }) {
 
         <span className="backdrop-info-card">
           <span className="media-title">
-            <h2>{mediaTitle}</h2>
+            <h2>{movie.title || movie.name}</h2>
           </span>
           <span className="featureBtns">
             <Link
@@ -173,7 +172,13 @@ export default function Backdropitem({ movie, mediaType, language }) {
                 }
               >
                 <div className="align-btn">
-                  {isLoading ? <LoadingIcon /> : isInWatchlist ? <Check /> : <Plus />}
+                  {isLoading ? (
+                    <LoadingIcon />
+                  ) : isInWatchlist ? (
+                    <Check />
+                  ) : (
+                    <Plus />
+                  )}
                 </div>
               </span>
 

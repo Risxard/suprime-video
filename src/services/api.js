@@ -7,7 +7,6 @@ const api = axios.create({
   baseURL: API_URL,
 });
 
-// Interceptor para incluir token do Firebase
 api.interceptors.request.use(async (config) => {
   const auth = getAuth();
   const user = auth.currentUser;
@@ -26,14 +25,11 @@ api.interceptors.request.use(async (config) => {
   return config;
 });
 
-// Interceptor para tratar erros de autenticação
 api.interceptors.response.use(
   (response) => response,
   (error) => {
     if (error.response?.status === 401) {
       console.warn("Token inválido ou expirado. Redirecionando para login...");
-      // Aqui você pode redirecionar ou limpar estado:
-      // window.location.href = "/login";
     }
     return Promise.reject(error);
   }

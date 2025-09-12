@@ -354,13 +354,10 @@
     display: block;
 }
 .poster-info-title .poster-intro-logo img {
-
     height: auto;
     max-height: 6.25vw;
     max-width: calc(var(--supercarousel-expanded-card-width)* .4);
     width: auto;
-
-
 }
 
 

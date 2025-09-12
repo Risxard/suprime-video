@@ -1,29 +1,33 @@
-import axios from 'axios';
-import { guestApiKey } from '../../../Services/guestApi';
+import { useState, useEffect } from "react";
+import { tmdbService } from "../../../services/tmdb/tmdbServices";
 
-const API_KEY = guestApiKey;
 
-const movieFetchImage = async (movieId, mediaType, language) => {
-    const response = await axios.get(`https://api.themoviedb.org/3/${mediaType}/${movieId}/images?include_image_language=en%2Cpt%2C${language}`, {
-        params: {
-            api_key: API_KEY
+export const getLogoImages = (mediaId, mediaType, language, originalLanguage) => {
+    const [logoImage, setLogoImage] = useState(null);
+
+    useEffect(() => {
+        if (mediaId && mediaType && language && originalLanguage) {
+
+            
+            const fetchLogoImage = async () => {
+                try {
+                    const data = await tmdbService.fetchMediaLogoImage({
+                        mediaId, mediaType, language, originalLanguage
+                    });
+
+
+
+                    setLogoImage(data);
+                } catch (error) {
+                    console.error("Error fetching logo image:", error);
+                }
+            };
+
+            fetchLogoImage();
         }
-    });
-    return response.data;
-}
+    }, [mediaId, mediaType, language, originalLanguage]);
 
-const getLogoImages = async (movieId, mediaType, language) => {
-    const dicLanguage = language === 'en-US' ? 'en' : 'pt';
-    const alternativeLanguage = dicLanguage === 'en' ? 'pt' : 'en';
-
-    const imagesData = await movieFetchImage(movieId, mediaType, language);
-    const logos = imagesData.logos || [];
-
-    const filteredMainLanguageLogos = logos.filter(logo => logo.iso_639_1 === dicLanguage);
-    const filteredAlternativeLanguageLogos = logos.filter(logo => logo.iso_639_1 === alternativeLanguage);
-    const selectedLogos = filteredMainLanguageLogos.length > 0 ? filteredMainLanguageLogos : filteredAlternativeLanguageLogos;
-    
-    return selectedLogos.length > 0 ? selectedLogos[0] : null;
-}
+    return logoImage;
+};
 
 export default getLogoImages;

@@ -1,0 +1,45 @@
+import api from "../api";
+
+export const tmdbService = {
+  fetchTrending: async ({ timeWindow, pageType, language, page }) => {
+    const { data } = await api.get("/api/tmdb/trending", {
+      params: { timeWindow, pageType, language, page },
+    });
+    return data;
+  },
+  fetchRecommendations: async ({ mediaType, mediaId, language, page }) => {
+    const { data } = await api.get("/api/tmdb/recommendations", {
+      params: { mediaType, mediaId, language, page },
+    });
+    return data;
+  },
+  fetchNowPlaying: async ({ pageType, language, region, page }) => {
+    const { data } = await api.get("/api/tmdb/now_playing", {
+      params: { pageType, language, region, page },
+    });
+    return data;
+  },
+  fetchPerGenres: async ({ pageType, language, with_genres, without_genres, page }) => {
+    const { data } = await api.get("/api/tmdb/perGenres", {
+      params: { pageType, language, with_genres, without_genres, page },
+    });
+    return data;
+  },
+
+
+
+
+  fetchVideoKey: async ({ mediaType, mediaId, language, originalLanguage }) => {
+    const { data } = await api.get("/api/tmdb/video", {
+      params: { mediaType, mediaId, language, originalLanguage },
+    });
+    return data;
+  },
+  fetchMediaLogoImage: async ({ mediaId, mediaType, language, originalLanguage }) => {
+    const { data } = await api.get("/api/tmdb/images/logos", {
+      params: { mediaId, mediaType, language, originalLanguage },
+    });
+    return data;
+  },
+};
+

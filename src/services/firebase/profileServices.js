@@ -6,52 +6,29 @@ import { current } from "@reduxjs/toolkit";
 import api from '../api.js';
 import { userServices } from "./userServices.js";
 
-const createNewProfile = async (userId, profileName, newImage) => {
+const createNewProfile = async (name, imgUrl) => {
+    if (!name) {
+        alert("Nome do perfil é obrigatório");
+        return false;
+    }
+
     try {
-        const userRef = doc(db, "users", userId);
-        const profilesRef = collection(userRef, "profiles");
+        const data = { name: name, imgUrl: imgUrl || null };
 
+        await profileService.create(data);
 
-        const querySnapshot = await getDocs(profilesRef);
-        const isMainProfileExists = querySnapshot.empty;
-
-        const mainPreferenceRef = doc(db, "users", userId, "mainAccount", "settings");
-        const mainPreferenceSnapshot = await getDoc(mainPreferenceRef);
-
-        if (!mainPreferenceSnapshot.exists()) {
-            throw new Error("");
-        }
-
-        const mainPreferences = mainPreferenceSnapshot.data();
-
-        const newProfile = {
-            userInfoData: {
-                name: profileName,
-                theme: mainPreferences.theme || "light",
-                language: mainPreferences.language || "pt-BR",
-                img: {
-                    url: newImage ? newImage : "https://m.media-amazon.com/images/G/02/CerberusPrimeVideo-FN38FSBD/adult-2.png"
-                },
-            },
-            watchlist: {
-                movie: [],
-                tv: []
-            },
-        };
-
-        if (isMainProfileExists) {
-            newProfile.isMain = true;
-        }
-
-        const profileRef = doc(profilesRef);
-        await setDoc(profileRef, newProfile);
-
-        return true
-
+        return true;
     } catch (error) {
-        return false
+        if (error.response) {
+            alert(error.response.data.message);
+        } else {
+            alert("Ocorreu um erro ao criar o perfil");
+        }
+        return false;
     }
 };
+
+
 
 const deleteProfile = async (userId, profileId, currentProfile, dispatch) => {
     try {
@@ -81,37 +58,19 @@ const deleteProfile = async (userId, profileId, currentProfile, dispatch) => {
     }
 };
 
-const getUserData = async () => {
-    const userDoc = await userServices.getUserData();
-    if (!userDoc) return null;
-    return userDoc;
-};
-
-
-const getProfileById = async (profileId) => {
-    try {
-        const data = await profileService.getById(profileId);
-
-        return data;
-    } catch (err) {
-        console.error("Erro ao buscar perfil:", err);
-    }
-};
-
-
 const getAllProfiles = async (dispatch) => {
-  try {
-    const profiles = await profileService.getAll();
-    if (!profiles) return [];
+    try {
+        const profiles = await profileService.getAll();
+        if (!profiles) return [];
 
-    dispatch(userProfiles({ profiles }));
-    localStorage.setItem("@AuthSV:profiles", JSON.stringify(profiles));
+        dispatch(userProfiles({ profiles }));
+        localStorage.setItem("@AuthSV:profiles", JSON.stringify(profiles));
 
-    return profiles;
-  } catch (error) {
-    console.error("Erro ao buscar perfis:", error);
-    throw error;
-  }
+        return profiles;
+    } catch (error) {
+        console.error("Erro ao buscar perfis:", error);
+        throw error;
+    }
 };
 
 
@@ -167,7 +126,7 @@ const updateProfile = async (profileId, updatedPreferences) => {
 const updateProfileLanguage = async (profileId, language, dispatch) => {
     try {
 
-         const langUpdated = await profileService.update(profileId, {
+        const langUpdated = await profileService.update(profileId, {
             "userInfoData.language": language
         });
 
@@ -231,37 +190,37 @@ const sendEmailVerificationLink = async (user) => {
 
 export const profileService = {
     getAll: async () => {
-        const { data } = await api.get("/profiles");
+        const { data } = await api.get("/api/profiles");
         return data;
     },
 
     getById: async (profileId) => {
-        const { data } = await api.get(`/profiles/${profileId}`);
+        const { data } = await api.get(`/api/profiles/${profileId}`);
         return data;
     },
 
-    create: async (profile) => {
-        const { data } = await api.post("/profiles", profile);
+    create: async (body) => {
+        const { data } = await api.post("/api/profiles", body);
         return data;
     },
 
     update: async (profileId, updates) => {
-        const { data } = await api.patch(`/profiles/${profileId}`, updates);
+        const { data } = await api.patch(`/api/profiles/${profileId}`, updates);
         return data;
     },
 
     remove: async (profileId) => {
-        const { data } = await api.delete(`/profiles/${profileId}`);
+        const { data } = await api.delete(`/api/profiles/${profileId}`);
         return data;
     },
 
     getWatchlist: async (profileId) => {
-        const { data } = await api.get(`/profiles/${profileId}/watchlist`);
+        const { data } = await api.get(`/api/profiles/${profileId}/watchlist`);
         return data;
     },
 
     updateWatchlist: async (profileId, payload) => {
-        const { data } = await api.patch(`/profiles/${profileId}/watchlist`, payload);
+        const { data } = await api.patch(`/api/profiles/${profileId}/watchlist`, payload);
         return data;
     },
 };
