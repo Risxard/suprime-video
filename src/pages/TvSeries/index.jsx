@@ -3,12 +3,12 @@ import { connect, useSelector } from "react-redux";
 import Header from "../../Components/Header/Header.jsx";
 import "./styles.css";
 import SlideDistributor from "../../components/SlideDistributor/Index.jsx";
-import BackdropSlider from "../../components/Sliders/BackdropSlider/BackdropSlider.jsx";
 import { useTranslation } from "react-i18next";
 import PosterSlider from "../../components/Sliders/PosterSlider/PosterSlider.jsx";
 import Top10Slider from "../../components/Sliders/Top10Slider/Top10Slider.jsx";
 import { tvSliderMap } from "../../utils/sliderMaps.js";
 import { tmdbService } from "../../services/tmdb/tmdbServices.js";
+import BackdropSlider from "../../components/Sliders/BackdropSlider/BackdropSlider.jsx";
 
 const TvSeries = (SectionData) => {
   const [medias, setMedias] = useState([]);

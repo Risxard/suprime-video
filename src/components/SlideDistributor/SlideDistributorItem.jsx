@@ -14,6 +14,7 @@ const SlideDistributorItem = (props) => {
           language,
           with_genres,
           page,
+          sort_by: "popular.desc",
         });
         setMedias(Array.isArray(data) ? data : data.results || []);
       } catch (err) {

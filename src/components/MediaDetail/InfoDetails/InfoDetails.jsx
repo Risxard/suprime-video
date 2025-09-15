@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import BackdropSlider from "../../Sliders/BackdropSlider/BackdropSlider";
 import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 import i18next from "i18next";
 import "./styles.css";
+import { tmdbService } from "../../../services/tmdb/tmdbServices";
 
 const InfoDetails = (props) => {
+  const [mediasRecommendations, setMediasRecommendations] = useState([]);
   const sectionActived = props.sectionActived;
   const mediaType = props.mediaType;
   const language = i18next.language;
@@ -17,10 +19,32 @@ const InfoDetails = (props) => {
   const producers = props.producers;
   const starring = props.starring;
   const studios = props.studios;
+  const mediaId = props.mediaId;
+
 
   const { t } = useTranslation();
 
   const detailPage = t("detailPage");
+
+  useEffect(() => {
+    const fetchRecommendations = async () => {
+      try {
+        const data = await tmdbService.fetchRecommendations({
+          mediaType: mediaType,
+          mediaId: mediaId,
+          language,
+          page: 1,
+        });
+        setMediasRecommendations(
+          Array.isArray(data) ? data : data.results || []
+        );
+      } catch (err) {
+        console.error("Erro ao buscar filmes:", err);
+      }
+    };
+
+    fetchRecommendations();
+  }, []);
 
   return (
     <div className="info-details">
@@ -28,10 +52,7 @@ const InfoDetails = (props) => {
         <div className="recomendations-container">
           <BackdropSlider
             sectionTitle={detailPage.costumersAlsoWatch}
-            mediaType={mediaType}
-            recomendations={true}
-            language={language}
-            mediaId={props.mediaId}
+            medias={mediasRecommendations}
           />
         </div>
       )}

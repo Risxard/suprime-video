@@ -19,9 +19,9 @@ export const tmdbService = {
     });
     return data;
   },
-  fetchPerGenres: async ({ pageType, language, with_genres, without_genres, page }) => {
+  fetchPerGenres: async ({ pageType, language, with_genres, without_genres, sort_by, page }) => {
     const { data } = await api.get("/api/tmdb/perGenres", {
-      params: { pageType, language, with_genres, without_genres, page },
+      params: { pageType, language, with_genres, without_genres, sort_by, page },
     });
     return data;
   },
