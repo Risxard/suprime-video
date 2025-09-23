@@ -19,7 +19,7 @@ const useHero = ({
           page,
           timeWindow,
         });
-        setMovies(Array.isArray(data) ? data : data.results || []);
+        setMovies(Array.isArray(data) ? data : data.results.movies || []);
       } catch (err) {
         console.error("Erro ao buscar filmes:", err);
       }

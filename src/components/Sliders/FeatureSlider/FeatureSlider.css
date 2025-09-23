@@ -725,7 +725,7 @@
 @media(min-width: 1800px) {
 
     .slide,
-    .slide img,
+    .slide > img,
     .filter {
         border-top-left-radius: 12px;
         border-bottom-left-radius: 12px;

@@ -20,8 +20,8 @@
 
 
 .feature-container .ageClass img {
-    width: 24px;
-    height: auto;
+    max-width: 24px;
+    max-height: 24px;
 }
 
 
@@ -31,17 +31,20 @@
 }
 
 .SliderContent .ageClass img {
-    width: 24px;
-    height: auto;
+    max-width: auto;
+    max-height: 28px;
 }
 
 
 .description-and-genres .ageClass img {
-    width: 22px;
-    height: auto;
+    max-width: 22px;
+    max-height: 22px;
 }
 
-
+.description-and-genres .ageClass svg {
+    max-width: auto;
+    max-height: 22px;
+}
 
 
 

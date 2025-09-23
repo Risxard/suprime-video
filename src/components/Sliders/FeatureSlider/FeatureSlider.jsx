@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 import i18n from "../../../i18n.js";
 
 const FeatureSlider = ({ mediasData }) => {
-  const medias = mediasData?.movies || [];
+  const medias = mediasData || [];
 
   const language = i18n.language;
 

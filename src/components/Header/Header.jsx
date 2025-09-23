@@ -3,19 +3,21 @@ import "./Header.css";
 import FeatureSlider from "../Sliders/FeatureSlider/FeatureSlider";
 import useHero from "../../hooks/Sliders/useHero/useHero";
 import { useSelector } from "react-redux";
-import useNowPlaying from "../../hooks/Sliders/nowPlaying/useNowPlaying";
 
 const Header = ({ pageType, page, timeWindow }) => {
-  const [medias, setmedias] = useState([]);
   const language = useSelector((state) => state.lang.language);
-
-
 
   const heroSlider = useHero({ pageType, language, page, timeWindow });
 
+  const data = heroSlider.movies
+
+  const top10Hero = Array.isArray(data)
+    ? heroSlider.movies.slice(0, 10)
+    : [];
+
   return (
     <header>
-      <FeatureSlider mediasData={heroSlider} />
+      <FeatureSlider mediasData={top10Hero} />
     </header>
   );
 };

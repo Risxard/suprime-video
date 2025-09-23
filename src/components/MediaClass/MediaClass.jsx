@@ -29,7 +29,6 @@ const MediaClass = ({ id, language, mediaType }) => {
           src={badge}
           alt={`${region} ${mediaClass}`}
           title={titleText}
-          className="w-12 h-12 object-contain"
         />
       ) : (
         <span className="usAgeClass">{mediaClass}</span>
