@@ -381,27 +381,7 @@
 
 
 
-.poster-item .ageClass {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
 
-    padding: 1px;
-    text-align: center;
-}
-
-.poster-item .ageClass h3 {
-    font-size: 0.7rem;
-    padding: 0.2rem 0.4rem;
-    border-radius: 3px;
-
-    align-items: center;
-    text-align: center;
-    align-self: center;
-
-    font-family: 'Ember-regular';
-}
 
 
 .poster-item .class-container {
@@ -425,17 +405,6 @@ html:not([dir=rtl]) .poster-slide-list li:not(:last-child) {
 
 
 @media screen and (min-width: 600px) {
-    .poster-intro .ageClass h3 {
-        padding: 0.2rem 0.4rem;
-
-        border-radius: 3px;
-
-        position: relative;
-
-        align-items: center;
-
-        font-family: 'Gilroy-SemiBold';
-    }
 
 }
 
@@ -525,21 +494,7 @@ html:not([dir=rtl]) .poster-slide-list li:not(:last-child) {
 
 
 
-    .poster-item .ageClass {
-        position: relative;
-    }
 
-    .poster-item.ageClass h3 {
-        padding: 0.2rem 0.4rem;
-
-        border-radius: 3px;
-
-        position: relative;
-
-        align-items: center;
-
-        font-family: 'Gilroy-SemiBold';
-    }
 }
 
 @media screen and (min-width: 1280px) {

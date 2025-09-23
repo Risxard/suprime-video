@@ -6,10 +6,10 @@ import { useSelector } from "react-redux";
 import { ChevronDown } from "lucide-react";
 
 import { toggleFilterChecked } from "./scripts/watchlistScript";
-import { guestApiKey } from "../../Services/guestApi";
 import { Link, useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Trans } from "react-i18next";
+import { tmdbService } from "../../services/tmdb/tmdbServices";
 
 const WatchListPage = () => {
   const { filterId } = useParams();
@@ -27,39 +27,43 @@ const WatchListPage = () => {
   const { all, moviesLang, tvShowsLang, mostRecent, orderAz, orderZa } =
     watchlistButtonsPage;
 
-  const rawApiKey = `?api_key=${guestApiKey}`;
-
   useEffect(() => {
     const fetchMedia = async () => {
-      const fetchedMovies = watchlist.movie
-        ? await Promise.all(
-            watchlist.movie.map(async (id) => {
-              const response = await fetch(
-                `https://api.themoviedb.org/3/movie/${id}${rawApiKey}&language=${language}`
-              );
-              const data = await response.json();
-              return data;
-            })
-          )
-        : [];
+      try {
+        const fetchedMovies = watchlist.movie
+          ? await Promise.all(
+              watchlist.movie.map(async (id) => {
+                const data = await tmdbService.fetchMediaDetails({
+                  mediaType: "movie",
+                  mediaId: id,
+                  language,
+                });
+                return data; // já vem formatado do backend
+              })
+            )
+          : [];
 
-      const fetchedTVShows = watchlist.tv
-        ? await Promise.all(
-            watchlist.tv.map(async (id) => {
-              const response = await fetch(
-                `https://api.themoviedb.org/3/tv/${id}${rawApiKey}&language=${language}`
-              );
-              const data = await response.json();
-              return data;
-            })
-          )
-        : [];
+        const fetchedTVShows = watchlist.tv
+          ? await Promise.all(
+              watchlist.tv.map(async (id) => {
+                const data = await tmdbService.fetchMediaDetails({
+                  mediaType: "tv",
+                  mediaId: id,
+                  language,
+                });
+                return data;
+              })
+            )
+          : [];
 
-      setMedias({ movies: fetchedMovies, tv: fetchedTVShows });
+        setMedias({ movies: fetchedMovies, tv: fetchedTVShows });
+      } catch (err) {
+        console.error("Erro ao buscar watchlist:", err);
+      }
     };
 
     fetchMedia();
-  }, [watchlist]);
+  }, [watchlist, language]);
 
   const mostRecentSort = mostRecent;
   const azSort = orderAz;

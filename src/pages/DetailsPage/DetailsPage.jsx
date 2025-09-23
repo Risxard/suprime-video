@@ -42,6 +42,7 @@ const DetailsPage = () => {
           lang: language,
           type: mediaType,
         });
+
         setMedia(response);
       } catch (error) {
         console.error("Erro ao buscar os detalhes da mídia:", error);

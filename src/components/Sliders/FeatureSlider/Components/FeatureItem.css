@@ -1,36 +1,14 @@
 .feature-btn {
   width: 100%;
   justify-content: flex-start;
-
+  
 
   right: 1rem;
 
   margin-bottom: 0;
 }
 
-.feature-intro .ageClass {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 1px;
-  text-align: center;
-  right: 0;
 
-
-}
-
-.feature-intro .ageClass h3 {
-  font-size: 0.7rem;
-  padding: 0.3rem 0.4rem;
-  border-radius: 3px;
-
-  align-items: center;
-  text-align: center;
-  align-self: center;
-
-  font-family: 'Ember-regular';
-}
 
 
 .feature-intro .class-container {
@@ -279,34 +257,17 @@
     max-width: 36vw;
   }
 
-  .feature-intro .ageClass {
-    position: absolute;
-  }
 
   .feature-intro .class-container h2 {
     display: flex;
   }
 
-  .feature-intro .ageClass h3 {
-    padding: 0.2rem 0.4rem;
-
-    border-radius: 3px;
-
-    position: relative;
-
-    align-items: center;
-
-    font-family: 'Gilroy-SemiBold';
-  }
 
   .feature-intro .feature-btn {
     justify-content: center;
 
-    position: relative;
     right: unset;
     bottom: unset;
-
-
   }
 
   .feature-intro .includeBD svg {

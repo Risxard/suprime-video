@@ -1,62 +1,45 @@
-import React, { useState, useEffect } from "react";
-import { guestApiKey } from "../../Services/guestApi";
+import { useState, useEffect } from "react";
+import { tmdbService } from "../../services/tmdb/tmdbServices";
 
-const useMediaClassification = ({ id, language, mediaType}) => {
+const useMediaClassification = ({ id, language, mediaType }) => {
   const [mediaClass, setMediaClass] = useState("");
-  const APIKey = guestApiKey;
-
 
 
   useEffect(() => {
-    const movieUrl = `https://api.themoviedb.org/3/movie/${id}/release_dates?api_key=${APIKey}`;
-    const tvUrl = `https://api.themoviedb.org/3/tv/${id}/content_ratings?api_key=${APIKey}`;
-    const lang = localStorage.getItem("country");
+    if (!id || !language || !mediaType) return;
 
-    if (language) {
-      fetch(mediaType === "tv" ? tvUrl : movieUrl)
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error("Network response was not ok");
-          }
-          return response.json();
-        })
-        .then((data) => {
-          const dados = data.results;
-
-          let langTarget = language == "pt-BR" ? "BR" : "US";
-
-          const objetoEncontrado = dados.find(
-            (objeto) => objeto.iso_3166_1 === langTarget
-          );
-
-          if (objetoEncontrado !== undefined && mediaType === "movie") {
-            const releaseDates = objetoEncontrado.release_dates;
-
-            if (releaseDates && releaseDates.length > 0) {
-              const ultimoObjeto = releaseDates
-                .slice()
-                .reverse()
-                .find((obj) => obj.certification.trim() !== "");
-
-              if (ultimoObjeto) {
-                const certification = ultimoObjeto.certification;
-                setMediaClass(certification);
-              } else {
-              }
-            } else {
-            }
-          }
-          if (objetoEncontrado !== undefined && mediaType === "tv") {
-            const certification = objetoEncontrado.rating;
-            setMediaClass(certification);
-          } else {
-          }
-        })
-        .catch((error) => {
-          console.error("Fetch error:", error);
+    const fetchData = async () => {
+      try {
+        const data = await tmdbService.fetchClassification({
+          mediaType,
+          mediaId: Number(id),
+          language,
         });
-    }
-  }, [id, language]);
+
+        if (mediaType === "movie") {
+          const releaseDates = data?.release_dates ?? [];
+
+          const certification =
+            releaseDates
+              .slice()
+              .reverse()
+              .find((r) => r.certification.trim() !== "")
+              ?.certification ?? "";
+
+          setMediaClass(certification);
+        }
+
+        if (mediaType === "tv") {
+          setMediaClass(data?.rating ?? "");
+        }
+      } catch (err) {
+        console.error("Erro ao buscar classificação:", err);
+        setMediaClass("");
+      }
+    };
+
+    fetchData();
+  }, [id, language, mediaType]);
 
   return mediaClass;
 };

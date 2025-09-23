@@ -6,6 +6,8 @@ const SlideDistributorItem = (props) => {
 
   const { pageType, language, with_genres, page, sectionTitle, Slider } = props;
 
+
+
   useEffect(() => {
     const fetchPerGenres = async () => {
       try {
@@ -28,7 +30,7 @@ const SlideDistributorItem = (props) => {
   return (
     <div className="slide-distributor-item">
       {Slider ? (
-        <Slider medias={medias} sectionTitle={sectionTitle} />
+        <Slider medias={medias} sectionTitle={sectionTitle} language={language}/>
       ) : (
         <div>⚠ Nenhum slider recebido</div>
       )}

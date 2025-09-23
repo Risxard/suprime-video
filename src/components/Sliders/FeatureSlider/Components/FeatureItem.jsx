@@ -19,11 +19,15 @@ import useGetVideoKey from "../../../../hooks/GetVideoKey/useGetVideoKeys";
 import getLogoImages from "../../../../hooks/ApiCalls/useFetchImages";
 import { updateWatchlist } from "../../../../services/firebase/profileServices";
 import { useDispatch, useSelector } from "react-redux";
-import Player from "../../../MediaPlayer/Player/Player";
+
 import { useTranslation } from "react-i18next";
 import IncludeWithSuprime from "../../../utils/IncludeWithSuprime";
-import MovieOptionsModal from "../../../Modals/MovieOptionsModal/MovieOptionsModal";
+
 import { setGlobalModal } from "../../../../store/slices/modals";
+import MovieOptionsModal from "../../../Modals/MovieOptionsModal/MovieOptionsModal";
+import MediaClass from "../../../MediaClass/MediaClass";
+import Player from "../../../MediaPlayer/Player/Player";
+
 
 const FeatureItem = ({ movie, language }) => {
   const [isVisible, setIsVisible] = useState(false);
@@ -139,8 +143,6 @@ const FeatureItem = ({ movie, language }) => {
 
   const action = isInWatchlist ? "remove" : "add";
 
-
-
   return (
     <li
       className={`slide no-video ${isVisible ? "targetVisible" : ""}`}
@@ -150,7 +152,7 @@ const FeatureItem = ({ movie, language }) => {
         TRIGGER
         <input type="radio" checked={isVisible} onChange={() => {}} />
       </span>
-
+      <MediaClass language={language} id={id} mediaType={mediaType} />
       <div className="feature-intro">
         <div className="feature-info-title">
           <Link to={`/detail/${movie.media_type}/${movie.id}`}>

@@ -14,6 +14,7 @@ import playBtn from "../../../assets/svgs/buttons/playBtn.svg";
 import { Link } from "react-router-dom";
 import MovieOptions from "../../MediaDetail/MovieOptions/MovieOptions.js";
 import useMediaClassification from "../../../hooks/MediaClassification/useMediaClassification.jsx";
+import MediaClass from "../../MediaClass/MediaClass.jsx";
 
 var TvDetails = (SectionData) => {
   const mediaType = SectionData.mediaType;
@@ -75,7 +76,7 @@ var TvDetails = (SectionData) => {
 
         <div className="movie-details-container">
           <span className="movie-details-btns">
-            <Link  href={`/mediaplayer/${videoKey}`} className="play-btn">
+            <Link href={`/mediaplayer/${videoKey}`} className="play-btn">
               <svg
                 className="fbl-icon _30dE3d _1a_Ljt"
                 viewBox="0 0 24 24"
@@ -101,7 +102,7 @@ var TvDetails = (SectionData) => {
               </svg>
               Play
             </Link>
-            
+
             <span className="download-btn">
               <svg
                 className="fbl-icon _30dE3d _1a_Ljt"
@@ -141,7 +142,7 @@ var TvDetails = (SectionData) => {
             </span>
           </Link>
 
-          <MovieOptions videoKey={videoKey}/>
+          <MovieOptions videoKey={videoKey} />
         </div>
       </div>
 
@@ -153,27 +154,7 @@ var TvDetails = (SectionData) => {
           <p>{runtime ? runtimeConverter(runtime) : ""}</p>
           <p>{release_date ? dateConverter(release_date) : ""}</p>
 
-          {mediaClass ? (
-            <span
-              className="ageClass"
-              title=""
-              style={{
-                backgroundColor: language === "pt-BR" ? "#FFFFFF" : "noneF",
-              }}
-            >
-              <h3
-                style={{
-                  backgroundColor: bgClass,
-                  color: language === "pt-BR" ? "#FFFFFF" : "#E8ECEF",
-                  border: language === "en-US" ? "2px solid #E8ECEF" : "none",
-                }}
-              >
-                {mediaClass}
-              </h3>
-            </span>
-          ) : (
-            ""
-          )}
+          <MediaClass language={language} id={id} mediaType={mediaType} />
         </div>
         {genres.length > 0 && (
           <ul className="genres">

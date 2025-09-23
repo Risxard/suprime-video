@@ -1,208 +1,158 @@
-import React, { useEffect, useMemo, useState } from "react";
-
-import "./styles.css";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { useTranslation } from "react-i18next";
 
-import {
-  ChevronDown,
-  MoreVertical,
-  Square,
-  CheckSquare,
-  X,
-} from "lucide-react";
-import { guestApiKey } from "../../Services/guestApi.js";
+import { ChevronDown, CheckSquare, Square, X } from "lucide-react";
+
 import { useIntersectionObserver } from "../../hooks/IntersectionObserver/useIntersationObserver.jsx";
-import genresTemplate from "../../Services/genres/genres.json";
+import { toggleFilterModal } from "../../store/slices/modals.js";
+
 import {
   filteredMediaType,
   genreConverter,
 } from "../../functions/Converter.js";
+import genresTemplate from "../../Services/genres/genres.json";
+
 import SearchMediaList from "./SearchMediaList/SearchMediaList.jsx";
 import SpinnerLoading from "../../assets/svgs/SpinnerLoading.jsx";
 
-import { useDispatch, useSelector } from "react-redux";
-import { toggleFilterModal } from "../../store/slices/modals.js";
-import { useTranslation } from "react-i18next";
+import "./styles.css";
+import { tmdbService } from "../../services/tmdb/tmdbServices.js";
 
-const Search = (props) => {
+const Search = () => {
   const [pageNumber, setPageNumber] = useState(1);
   const [prevArray, setPrevArray] = useState([]);
-  const [toVisible, setToVisible] = useState(false);
   const [filteredMedias, setFilteredMedias] = useState([]);
   const [personNameInfo, setPersonNameInfo] = useState(null);
   const [selectedGenres, setSelectedGenres] = useState(null);
   const [movieFilter, setMovieFilter] = useState(false);
   const [tvFilter, setTvFilter] = useState(false);
+  const [toVisible, setToVisible] = useState(false);
+
   const { t } = useTranslation();
-
-  const searchPage = t("searchPage.buttons");
-  const recomendedTvAndSeries = t("sectionTitles.recomendedTvAndSeries");
-  const { contentType, genre, infoLabels } = searchPage;
-
   const { searchKey } = useParams();
-
-  const parts = searchKey.split("=");
   const language = useSelector((state) => state.lang.language);
+  const visibleSections = useIntersectionObserver();
+  const dispatch = useDispatch();
+  const modal = useSelector((state) => state.modals.filterModal);
 
-  const key = parts[0];
-  const value = parts[1];
-
+  const [key, value] = searchKey.split("=");
   const personKey = key === "person" ? value.split("&") : "";
-
   const personId = personKey[0];
-  const personName = personNameInfo ? personNameInfo : personKey[1];
+  const personName = personNameInfo ?? personKey[1];
 
-  const APIKey = guestApiKey;
-
-  const rawApiKey = `&api_key=${APIKey}`;
-  const rawLanguage = `&language=${language}`;
-
-  const personRaw = `https://api.themoviedb.org/3/person/${personId}?append_to_response=movie_credits%2Ctv_credits${rawLanguage}${rawApiKey}`;
-  const multiRaw = `https://api.themoviedb.org/3/search/multi?query=${value}&include_adult=false${rawLanguage}&page=${pageNumber}${rawApiKey}`;
-
-  const selectedRaw = key === "person" ? personRaw : multiRaw;
 
   useEffect(() => {
-    if (
-      (key === "person" && personId && rawApiKey) ||
-      (key === "kw" && value && pageNumber && rawApiKey)
-    ) {
-      if (pageNumber <= 5) {
-        fetch(selectedRaw)
-          .then((response) => {
-            if (!response.ok) {
-              throw new Error("Network response was not ok");
-            }
-            return response.json();
-          })
-          .then((data) => {
-            if (prevArray.length <= 0) {
-              if (key === "person") {
-                const movieArray = data.movie_credits;
-                const tvArray = data.tv_credits;
-                setPersonNameInfo(data.name);
-
-                const personMovies = [];
-                const personTv = [];
-                const uniqueIds = new Set();
-
-                movieArray.cast.forEach((item) => {
-                  if (item.backdrop_path !== null && !uniqueIds.has(item.id)) {
-                    personMovies.push(item);
-                    uniqueIds.add(item.id);
-                  }
-                });
-
-                tvArray.cast.forEach((item) => {
-                  if (item.backdrop_path !== null && !uniqueIds.has(item.id)) {
-                    personTv.push(item);
-                    uniqueIds.add(item.id);
-                  }
-                });
-
-                const combinedArray = [...personMovies, ...personTv];
-
-                setPrevArray(combinedArray);
-              } else {
-                const res = data.results.filter(
-                  (item) =>
-                    item.backdrop_path !== null && item.media_type !== "person"
-                );
-
-                setPrevArray(res);
-              }
-            } else {
-              if (key !== "person") {
-                const res = data.results.filter(
-                  (item) =>
-                    item.backdrop_path !== null && item.media_type !== "person"
-                );
-
-                const novosItens = res.filter((novoItem) => {
-                  return !prevArray.some(
-                    (itemExistente) => itemExistente.id === novoItem.id
-                  );
-                });
-                const resultadoConcatenacao = [...prevArray, ...novosItens];
-                setPrevArray(resultadoConcatenacao);
-              }
-            }
-          })
-          .catch((error) => {
-            console.error("Fetch error:", error);
+    const fetchData = async () => {
+      try {
+        if (key === "person" && personId) {
+          const data = await tmdbService.fetchSearchPerson({
+            person_id: personId,
+            language,
+            page: pageNumber,
           });
+
+          setPersonNameInfo(data.name);
+          const movieArray = data.movie_credits?.cast ?? [];
+          const tvArray = data.tv_credits?.cast ?? [];
+          const uniqueIds = new Set();
+
+          const combinedArray = [...movieArray, ...tvArray].filter((item) => {
+            if (item.backdrop_path && !uniqueIds.has(item.id)) {
+              uniqueIds.add(item.id);
+              return true;
+            }
+            return false;
+          });
+
+          setPrevArray((prev) =>
+            pageNumber === 1 ? combinedArray : [...prev, ...combinedArray]
+          );
+        } else if (key === "kw" && value) {
+          const data = await tmdbService.fetchSearchMulti({
+            query: value,
+            language,
+            page: pageNumber,
+          });
+
+          console.log("Requisição feita!:", "pagina:", pageNumber, data,);
+
+          const rawResults = Array.isArray(data) ? data : [];
+
+          const results = rawResults.filter(Boolean).filter((item) => {
+            const mediaType = (item?.media_type || "").toLowerCase();
+            const looksLikePerson =
+              mediaType === "person" ||
+              Object.prototype.hasOwnProperty.call(item, "known_for") ||
+              Object.prototype.hasOwnProperty.call(
+                item,
+                "known_for_department"
+              );
+
+            return !looksLikePerson && !!item?.backdrop_path;
+          });
+
+          setPrevArray((prev) =>
+            pageNumber === 1
+              ? results
+              : [
+                  ...prev,
+                  ...results.filter((r) => !prev.some((p) => p.id === r.id)),
+                ]
+          );
+        }
+      } catch (error) {
+        console.error("Erro na busca:", error);
       }
-    }
+    };
+
+    if (pageNumber <= 5) fetchData();
   }, [searchKey, pageNumber, language]);
 
+  // --- Filtros ---
   useEffect(() => {
-    if (prevArray.length > 0) {
-      let filterType = [];
+    if (!prevArray.length) return;
 
-      if (movieFilter && !tvFilter) {
-        if (key !== "person") {
-          const array = prevArray.filter(
-            (item) =>
-              item.backdrop_path !== null &&
-              item.media_type !== "person" &&
-              item.media_type !== "tv"
-          );
-
-          filterType = array;
-        } else {
-          const array = prevArray.filter(
-            (item) =>
-              item.backdrop_path !== null && filteredMediaType(item) !== "tv"
-          );
-
-          filterType = array;
-        }
-      } else if (tvFilter && !movieFilter) {
-        if (key !== "person") {
-          const array = prevArray.filter(
-            (item) =>
-              item.backdrop_path !== null &&
-              item.media_type !== "person" &&
-              item.media_type !== "movie"
-          );
-          filterType = array;
-        } else {
-          const array = prevArray.filter(
-            (item) =>
-              item.backdrop_path !== null && filteredMediaType(item) !== "movie"
-          );
-
-          filterType = array;
-        }
-      } else {
-        filterType = prevArray;
-      }
-
-      setFilteredMedias(filterType);
+    let filtered = prevArray;
+    if (movieFilter && !tvFilter) {
+      filtered = prevArray.filter(
+        (item) =>
+          item.backdrop_path &&
+          (key === "person"
+            ? filteredMediaType(item) !== "tv"
+            : item.media_type !== "tv")
+      );
+    } else if (tvFilter && !movieFilter) {
+      filtered = prevArray.filter(
+        (item) =>
+          item.backdrop_path &&
+          (key === "person"
+            ? filteredMediaType(item) !== "movie"
+            : item.media_type !== "movie")
+      );
     }
-  }, [prevArray, movieFilter, tvFilter, language]);
 
-  const visibleSections = useIntersectionObserver();
+    setFilteredMedias(filtered);
+  }, [prevArray, movieFilter, tvFilter, key]);
 
+  // --- Scroll infinito ---
   useEffect(() => {
     if (key !== "person" && prevArray.length > 0) {
       if (visibleSections[0] > filteredMedias.length && pageNumber < 5) {
-        setTimeout(() => {
-          setPageNumber(pageNumber + 1);
-        }, 3000);
+        const timer = setTimeout(() => setPageNumber((p) => p + 1), 3000);
+        return () => clearTimeout(timer);
       }
     }
-  }, []);
+  }, [visibleSections, filteredMedias, prevArray, key, pageNumber]);
+
 
   useEffect(() => {
-    if (visibleSections[0] > filteredMedias.length && prevArray.length > 0) {
-      setToVisible(false);
-    } else {
-      if (visibleSections[0] >= 21 && prevArray.length > 0) {
-        setToVisible(true);
-      }
-    }
-  }, [visibleSections, language]);
+    setToVisible(
+      !(visibleSections[0] > filteredMedias.length && prevArray.length > 0) &&
+        visibleSections[0] >= 21
+    );
+  }, [visibleSections, filteredMedias, prevArray]);
 
   const toggleFilterChecked = (filter) => {
     const contentTypeBtn = document.querySelector(".content-type-filter");
@@ -212,7 +162,6 @@ const Search = (props) => {
         genreFilterBtn.classList.toggle("selectedFilter");
         contentTypeBtn.classList.remove("selectedFilter");
         break;
-
       case 2:
         contentTypeBtn.classList.toggle("selectedFilter");
         genreFilterBtn.classList.remove("selectedFilter");
@@ -227,23 +176,12 @@ const Search = (props) => {
   const toggleContentType = (filter) => {
     switch (filter) {
       case "movieFilter":
-        if (movieFilter === false) {
-          setMovieFilter(true);
-          toggleFilterChecked(2);
-        } else {
-          setMovieFilter(false);
-          toggleFilterChecked(2);
-        }
+        setMovieFilter((prev) => !prev);
+        toggleFilterChecked(2);
         break;
-
       case "tvFilter":
-        if (tvFilter === false) {
-          setTvFilter(true);
-          toggleFilterChecked(2);
-        } else {
-          setTvFilter(false);
-          toggleFilterChecked(2);
-        }
+        setTvFilter((prev) => !prev);
+        toggleFilterChecked(2);
         break;
       default:
         console.log("Filter não reconhecido");
@@ -251,13 +189,13 @@ const Search = (props) => {
     }
   };
 
-  const dispatch = useDispatch();
-
   const handleSetModal = () => {
     dispatch(toggleFilterModal());
   };
 
-  const modal = useSelector((state) => state.modals.filterModal);
+  const searchPage = t("searchPage.buttons");
+  const recomendedTvAndSeries = t("sectionTitles.recomendedTvAndSeries");
+  const { contentType, genre, infoLabels } = searchPage;
 
   return (
     <div className="Search-Page" data-open-modal={modal}>
@@ -265,7 +203,7 @@ const Search = (props) => {
         <div className="searchModal">
           <div className="filter-tab">
             <span>Filters</span>
-            <button onClick={() => handleSetModal()}>
+            <button onClick={handleSetModal}>
               <X />
             </button>
           </div>
@@ -284,30 +222,28 @@ const Search = (props) => {
               <ul>
                 {genresTemplate.movie.en_us
                   .filter(
-                    (genre) =>
-                      genre.name !== "TV Movie" &&
-                      genre.name !== "Animation" &&
-                      genre.name !== "Western"
+                    (g) =>
+                      g.name !== "TV Movie" &&
+                      g.name !== "Animation" &&
+                      g.name !== "Western"
                   )
-                  .map((genre) => {
-                    return (
-                      <li
-                        key={genre.id}
-                        className={`${
-                          selectedGenres === genre.id ? "selected-filter" : ""
-                        }`}
-                        onClick={() => {
-                          selectedGenres === genre.id
-                            ? setSelectedGenres(null)
-                            : setSelectedGenres(genre.id);
-                          toggleFilterChecked(0);
-                          handleSetModal();
-                        }}
-                      >
-                        {genre.name}
-                      </li>
-                    );
-                  })}
+                  .map((g) => (
+                    <li
+                      key={g.id}
+                      className={
+                        selectedGenres === g.id ? "selected-filter" : ""
+                      }
+                      onClick={() => {
+                        setSelectedGenres((prev) =>
+                          prev === g.id ? null : g.id
+                        );
+                        toggleFilterChecked(0);
+                        handleSetModal();
+                      }}
+                    >
+                      {g.name}
+                    </li>
+                  ))}
               </ul>
             </div>
             <div className="inner-btn content-type-filter">
@@ -348,7 +284,7 @@ const Search = (props) => {
           </div>
 
           <div className="close-modal-cointainer">
-            <button onClick={() => handleSetModal()}>Close</button>
+            <button onClick={handleSetModal}>Close</button>
           </div>
         </div>
       )}
@@ -356,7 +292,7 @@ const Search = (props) => {
       <div className="search-filters">
         <button
           className="filters-modal-btn filter-btn"
-          onClick={() => handleSetModal()}
+          onClick={handleSetModal}
         >
           Filters
         </button>
@@ -375,29 +311,25 @@ const Search = (props) => {
             <ul>
               {genresTemplate.movie.en_us
                 .filter(
-                  (genre) =>
-                    genre.name !== "TV Movie" &&
-                    genre.name !== "Animation" &&
-                    genre.name !== "Western"
+                  (g) =>
+                    g.name !== "TV Movie" &&
+                    g.name !== "Animation" &&
+                    g.name !== "Western"
                 )
-                .map((genre) => {
-                  return (
-                    <li
-                      key={genre.id}
-                      className={`${
-                        selectedGenres === genre.id ? "selected-filter" : ""
-                      }`}
-                      onClick={() => {
-                        selectedGenres === genre.id
-                          ? setSelectedGenres(null)
-                          : setSelectedGenres(genre.id);
-                        toggleFilterChecked(0);
-                      }}
-                    >
-                      {genre.name}
-                    </li>
-                  );
-                })}
+                .map((g) => (
+                  <li
+                    key={g.id}
+                    className={selectedGenres === g.id ? "selected-filter" : ""}
+                    onClick={() => {
+                      setSelectedGenres((prev) =>
+                        prev === g.id ? null : g.id
+                      );
+                      toggleFilterChecked(0);
+                    }}
+                  >
+                    {g.name}
+                  </li>
+                ))}
             </ul>
           </div>
 

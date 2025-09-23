@@ -2,7 +2,6 @@ import React, { useEffect, useRef, useState } from "react";
 
 import "./PosterSlider.css";
 
-import { getPerGenres } from "../../../Services/callFunctions/getPerGenres.js";
 import PosterSliderItem from "./Components/PosterSliderItem.jsx";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 

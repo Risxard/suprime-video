@@ -1,18 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { connect, useSelector } from "react-redux";
-import { guestApiKey } from "../../Services/guestApi.js";
 import Header from "../../Components/Header/Header.jsx";
 import "./styles.css";
 import SlideDistributor from "../../components/SlideDistributor/Index.jsx";
-import BackdropSlider from "../../components/Sliders/BackdropSlider/BackdropSlider.jsx";
-import { set } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import Top10Slider from "../../components/Sliders/Top10Slider/Top10Slider.jsx";
 import PosterSlider from "../../components/Sliders/PosterSlider/PosterSlider.jsx";
-import RecommendationsSlider from "../../components/Sliders/RecommendationsSlider/index.jsx";
 import i18n from "../../i18n.js";
 import { tmdbService } from "../../services/tmdb/tmdbServices.js";
 import { movieSliderMap } from "../../utils/sliderMaps.js";
+import BackdropSlider from "../../Components/Sliders/BackdropSlider/BackdropSlider.jsx";
 
 const Movie = () => {
   const [medias, setMedias] = useState([]);

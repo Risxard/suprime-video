@@ -45,7 +45,7 @@ export default function PosterBackdropInfo({
   const action = isInWatchlist ? "remove" : "add";
 
 
-  
+
 
   return (
     <div className={`poster-backdrop-info`}>

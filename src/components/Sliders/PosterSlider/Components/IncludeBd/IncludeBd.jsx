@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import MediaClass from "../MediaClass/MediaClass";
+import MediaClass from "../../../../MediaClass/MediaClass";
 import { useTranslation } from "react-i18next";
 
 const IncludeBd = (props) => {

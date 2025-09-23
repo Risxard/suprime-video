@@ -18,6 +18,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { showPlayerModal } from "../../../store/slices/modals.js";
 import i18next from "i18next";
 import { useTranslation } from "react-i18next";
+import MediaClass from "../../MediaClass/MediaClass.jsx";
 
 var MovieDetails = (SectionData) => {
   const mediaType = SectionData.mediaType;
@@ -33,11 +34,12 @@ var MovieDetails = (SectionData) => {
   const { t } = useTranslation();
 
   const buttonsLang = t("buttons");
-  const langComponents= t("components");
+  const langComponents = t("components");
 
   const { id } = useParams();
 
   const mediaClass = useMediaClassification({ id, language, mediaType });
+
   const bgClass = bgDetect(mediaClass);
 
   const genre_ids_to_map = genresId || [];
@@ -144,7 +146,11 @@ var MovieDetails = (SectionData) => {
               {buttonsLang.optionsButtons.download}
             </span>
           </span>
-          <MovieOptions mediaType={mediaType} id={id} buttonsLang={buttonsLang}/>
+          <MovieOptions
+            mediaType={mediaType}
+            id={id}
+            buttonsLang={buttonsLang}
+          />
         </div>
       </div>
 
@@ -156,28 +162,7 @@ var MovieDetails = (SectionData) => {
           {runtime && <p>{runtimeConverter(runtime)}</p>}
           {release_date && <p>{dateConverter(release_date)}</p>}
 
-
-          {mediaClass ? (
-            <span
-              className="ageClass"
-              title=""
-              style={{
-                backgroundColor: language === "pt" ? "#FFFFFF" : "noneF",
-              }}
-            >
-              <h3
-                style={{
-                  backgroundColor: bgClass,
-                  color: language === "pt" ? "#FFFFFF" : "#E8ECEF",
-                  border: language === "en" ? "2px solid #E8ECEF" : "none",
-                }}
-              >
-                {mediaClass}
-              </h3>
-            </span>
-          ) : (
-            ""
-          )}
+          <MediaClass language={language} id={id} mediaType={mediaType} />
         </div>
         {genres.length > 0 && (
           <ul className="genres">

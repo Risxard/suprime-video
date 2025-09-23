@@ -107,14 +107,6 @@
     padding-top: 4px;
 }
 
-.backdrop-info-card .ageClass {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 1px;
-    text-align: center;
-}
 
 .backdrop-info-card h4 {
     font-family: 'Ember-regular';
@@ -169,11 +161,10 @@
     color: #B3B4B7;
     overflow: visible;
     margin-block: 15px;
+
+    gap: 11px;
 }
 
-.backdrop-info-card .backdrop-runtime-card:not(:last-child) {
-    margin-right: 11px;
-}
 
 .backdrop-info-card .media-title {
     width: 100%;

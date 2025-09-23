@@ -1,0 +1,60 @@
+.ageClass {
+    width: max-content;
+    height: max-content;
+    color: white;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.feature-container .ageClass {
+    position: absolute;
+    right: var(--inner-width);
+    bottom: 0px;
+    z-index: 10;
+
+    padding-bottom: 14px;
+}
+
+
+.feature-container .ageClass img {
+    width: 24px;
+    height: auto;
+}
+
+
+.poster-slider .ageClass img {
+    max-width: 22px;
+    max-height: auto;
+}
+
+.SliderContent .ageClass img {
+    width: 24px;
+    height: auto;
+}
+
+
+.description-and-genres .ageClass img {
+    width: 22px;
+    height: auto;
+}
+
+
+
+
+
+.usAgeClass {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-family: 'Ember-medium';
+    font-size: 16px;
+
+    background-color: #30343A;
+    padding: 6px 8px;
+    border-radius: 6px;
+
+}

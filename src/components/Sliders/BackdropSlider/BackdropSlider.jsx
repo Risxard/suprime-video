@@ -3,8 +3,6 @@ import { genreConverter } from "../../../functions/Converter";
 import { ChevronRight, ChevronLeft } from "lucide-react";
 import "./BackdropSlider.css";
 import Backdropitem from "./BackdropItem/BackdropItem";
-import { getPerGenres } from "../../../Services/callFunctions/getPerGenres";
-import { tmdbService } from "../../../services/tmdb/tmdbServices";
 import i18n from "../../../i18n";
 
 const BackdropSlider = ({medias, sectionTitle}) => {

@@ -13,13 +13,13 @@ import {
 } from "../../../../functions/Converter";
 import useMediaClassification from "../../../../hooks/MediaClassification/useMediaClassification";
 import playBtn from "../../../../assets/Buttons/playMovieBtn.svg";
-import { fetchMediaClassification } from "./fetchMediaClassification";
 import { updateWatchlist } from "../../../../services/firebase/profileServices";
 import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 import { setGlobalModal } from "../../../../store/slices/modals";
 import LoadingIcon from "../../../../assets/svgs/LoadingIcon";
 import MovieOptionsModal from "../../../Modals/MovieOptionsModal/MovieOptionsModal";
+import MediaClass from "../../../MediaClass/MediaClass";
 
 export default function Backdropitem({ movie, mediaType, language }) {
   const [mediaClass, setMediaClass] = useState();
@@ -258,27 +258,7 @@ export default function Backdropitem({ movie, mediaType, language }) {
             {dateConverter(mediaDates)}
 
             {mediaRuntime ? runtimeConverter(mediaRuntime) : ""}
-            {mediaClass ? (
-              <span
-                className="ageClass"
-                title=""
-                style={{
-                  backgroundColor: language === "pt" ? "#FFFFFF" : "noneF",
-                }}
-              >
-                <h4
-                  style={{
-                    backgroundColor: bgClass,
-                    color: language === "pt" ? "#FFFFFF" : "#E8ECEF",
-                    border: language === "en" ? "2px solid #E8ECEF" : "none",
-                  }}
-                >
-                  {mediaClass}
-                </h4>
-              </span>
-            ) : (
-              ""
-            )}
+            <MediaClass language={language} id={id} mediaType={mediaType} />
           </div>
           <span className="backdrop-overview-card">{movie.overview}</span>
         </span>

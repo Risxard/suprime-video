@@ -19,6 +19,7 @@ import { setGlobalModal } from "../../../../store/slices/modals";
 import MovieOptionsModal from "../../../../components/Modals/MovieOptionsModal/MovieOptionsModal";
 import { useTranslation } from "react-i18next";
 import LoadingIcon from "../../../../assets/svgs/LoadingIcon";
+import MediaClass from "../../../../components/MediaClass/MediaClass";
 
 const SearchItem = ({ movie }) => {
   const [isLoading, setIsLoading] = useState(false);
@@ -232,27 +233,7 @@ const SearchItem = ({ movie }) => {
           {movie.first_air_date && dateConverter(movie.first_air_date)}
 
           {movie.runtime && runtimeConverter(movie.runtime)}
-          {mediaClass ? (
-            <span
-              className="ageClass"
-              title=""
-              style={{
-                backgroundColor: language === "pt" ? "#FFFFFF" : "noneF",
-              }}
-            >
-              <h4
-                style={{
-                  backgroundColor: bgClass,
-                  color: language === "pt" ? "#FFFFFF" : "#E8ECEF",
-                  border: language === "en" ? "2px solid #E8ECEF" : "none",
-                }}
-              >
-                {mediaClass}
-              </h4>
-            </span>
-          ) : (
-            ""
-          )}
+          <MediaClass language={language} id={id} mediaType={mediaType} />
         </div>
         <span className="backdrop-overview-card">{movie.overview}</span>
       </span>

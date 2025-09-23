@@ -2,7 +2,7 @@
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
-import { firebaseApiKey, firebaseAppId, firebaseMessagingSenderId } from "../guestApi";
+import { firebaseApiKey, firebaseAppId, firebaseMessagingSenderId } from "../firebaseEnvs";
 
 const firebaseConfig = {
     apiKey: firebaseApiKey,

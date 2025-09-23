@@ -1,26 +1,35 @@
 import { useEffect, useState } from "react";
-import { guestApiKey } from "../../Services/guestApi";
 import { useIntersectionObserver } from "../../hooks/IntersectionObserver/useIntersationObserver";
 import { setSectionTitle } from "../../functions/Converter";
 import SlideDistributorItem from "./SlideDistributorItem";
+import { tmdbService } from "../../services/tmdb/tmdbServices";
+
 
 const SlideDistributor = ({ language, mediaType, sliderMap = {}, defaultSlider }) => {
   const [genresArray, setGenresArray] = useState([]);
-  const APIKey = guestApiKey;
-  const api_path = "https://api.themoviedb.org/";
+
   const initialSections = 2;
   const numberPeerVisible = 2;
 
-  useEffect(() => {
-    const rawUrl = `${api_path}3/genre/${mediaType}/list?language=${language}&api_key=${APIKey}`;
 
-    fetch(rawUrl)
-      .then((response) => response.json())
-      .then((data) => {
-        const genres = data.genres.slice(0, 15);
-        setGenresArray(genres);
-      });
-  }, []);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await tmdbService.fetchGenres({
+          pageType: mediaType,
+          language,
+        });
+
+        if (data) {
+          setGenresArray(data.slice(0, 15));
+        }
+      } catch (err) {
+        console.error("Erro ao buscar gêneros:", err);
+      }
+    };
+
+    fetchData();
+  }, [language, mediaType]);
 
   const visibleSections = useIntersectionObserver(
     initialSections,
@@ -34,7 +43,7 @@ const SlideDistributor = ({ language, mediaType, sliderMap = {}, defaultSlider }
 
         return (
           <SlideDistributorItem
-            key={genre.name}
+            key={genre.id}
             Slider={SelectedSlider}
             sectionTitle={setSectionTitle(genre.id, mediaType, language)}
             language={language}

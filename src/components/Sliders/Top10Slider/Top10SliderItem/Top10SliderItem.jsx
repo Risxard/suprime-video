@@ -33,6 +33,7 @@ import {
 
 import "./styles.css";
 import LoadingIcon from "../../../../assets/svgs/LoadingIcon";
+import MediaClass from "../../../MediaClass/MediaClass";
 
 export default function Top10SliderItem({ movie, mediaType, language, index }) {
   const [mediaClass, setMediaClass] = useState();
@@ -288,27 +289,7 @@ export default function Top10SliderItem({ movie, mediaType, language, index }) {
             {dateConverter(mediaDates)}
 
             {mediaRuntime ? runtimeConverter(mediaRuntime) : ""}
-            {mediaClass ? (
-              <span
-                className="ageClass"
-                title=""
-                style={{
-                  backgroundColor: language === "pt" ? "#FFFFFF" : "noneF",
-                }}
-              >
-                <h4
-                  style={{
-                    backgroundColor: bgClass,
-                    color: language === "pt" ? "#FFFFFF" : "#E8ECEF",
-                    border: language === "en" ? "2px solid #E8ECEF" : "none",
-                  }}
-                >
-                  {mediaClass}
-                </h4>
-              </span>
-            ) : (
-              ""
-            )}
+            <MediaClass language={language} id={id} mediaType={mediaType} />
           </div>
           <span className="backdrop-overview-card">{movie.overview}</span>
         </span>

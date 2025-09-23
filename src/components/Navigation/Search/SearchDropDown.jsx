@@ -1,11 +1,11 @@
-import React, { useState, useRef, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { Search, X } from "lucide-react";
+import React, { useState, useRef, useEffect, useCallback } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { Search } from "lucide-react";
 import "./SearchDropDown.css";
-import { guestApiKey } from "../../../Services/guestApi";
 import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router-dom";
+import debounce from "lodash.debounce";
+import { tmdbService } from "../../../services/tmdb/tmdbServices";
 
 const SearchDropDown = () => {
   const [isActive, setIsActive] = useState(false);
@@ -13,7 +13,6 @@ const SearchDropDown = () => {
   const [searchResponse, setSearchResponse] = useState([]);
 
   const { t } = useTranslation();
-
   const navigationSearch = t("navigation.search");
   const { placeholder, button } = navigationSearch;
 
@@ -21,7 +20,7 @@ const SearchDropDown = () => {
   const searchContainerRef = useRef(null);
 
   const language = useSelector((state) => state.lang.language);
-  const APIKey = guestApiKey;
+  const navigate = useNavigate();
 
   const toggleClass = (e) => {
     e.stopPropagation();
@@ -41,10 +40,7 @@ const SearchDropDown = () => {
     if (isActive) {
       document.addEventListener("click", handleDocumentClick);
     }
-
-    return () => {
-      document.removeEventListener("click", handleDocumentClick);
-    };
+    return () => document.removeEventListener("click", handleDocumentClick);
   }, [isActive]);
 
   useEffect(() => {
@@ -61,43 +57,41 @@ const SearchDropDown = () => {
     }
   };
 
-  const rawApiKey = `&api_key=${APIKey}`;
-  const rawLanguage = `&language=${language}`;
-  const api_path = "https://api.themoviedb.org/";
+  const fetchSearch = useCallback(
+    debounce(async (query) => {
+      if (!query || query.length < 2) {
+        setSearchResponse([]);
+        return;
+      }
+
+      try {
+        const data = await tmdbService.fetchSearchMulti({
+          query,
+          language,
+          page: 1,
+        });
+
+        const filteredMediaArray = data.filter(
+          (item) =>
+            !(item.media_type === "movie" || item.media_type === "tv") ||
+            item.backdrop_path !== null
+        );
+
+        const mediaArray = filteredMediaArray
+          .slice(0, 10)
+          .sort((a, b) => b.popularity - a.popularity);
+
+        setSearchResponse(mediaArray);
+      } catch (error) {
+        console.error("Erro ao buscar:", error);
+      }
+    }, 500),
+    [language]
+  );
 
   useEffect(() => {
-    const apiUrl = `${api_path}3/search/multi?query=${inputValue}&include_adult=false${rawLanguage}&page=1${rawApiKey}`;
-
-    if (language && inputValue !== "" && inputValue.length > 1) {
-      fetch(apiUrl)
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error("Network response was not ok");
-          }
-          return response.json();
-        })
-        .then((data) => {
-          const filteredMediaArray = data.results.filter(
-            (item) =>
-              !(item.media_type === "movie" || item.media_type === "tv") ||
-              item.backdrop_path !== null
-          );
-
-          const mediaArray = filteredMediaArray.slice(0, 10);
-          mediaArray.sort((a, b) => b.popularity - a.popularity);
-
-          setSearchResponse(mediaArray);
-        })
-        .catch((error) => {
-          console.error("Fetch error:", error);
-        });
-    } else {
-      setSearchResponse([]);
-    }
-  }, [inputValue, language, rawApiKey, rawLanguage, api_path]);
-
-  const filteredResponse = searchResponse.length > 0 ? searchResponse : [];
-  const navigate = useNavigate();
+    fetchSearch(inputValue);
+  }, [inputValue, fetchSearch]);
 
   const handleKeyDown = (e) => {
     if (e.key === "Enter" && inputValue.trim() !== "") {
@@ -108,9 +102,7 @@ const SearchDropDown = () => {
   };
 
   const highlightMatchingLetters = (text) => {
-    if (inputValue.length === 0) {
-      return <p>{text}</p>;
-    }
+    if (inputValue.length === 0) return <p>{text}</p>;
 
     const regex = new RegExp(`(${inputValue})`, "gi");
     return text.split(regex).map((part, index) => (
@@ -156,9 +148,9 @@ const SearchDropDown = () => {
                 )}
               </span>
 
-              {filteredResponse.length > 0 && (
+              {searchResponse.length > 0 && (
                 <ul className="search-response">
-                  {filteredResponse.map((response) => (
+                  {searchResponse.map((response) => (
                     <Link
                       to={`/search/${
                         response.media_type === "person"
