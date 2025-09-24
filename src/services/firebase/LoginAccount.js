@@ -15,9 +15,6 @@ const useLoginAccount = () => {
         const token = authUser.user.accessToken;
         const user = authUser.user;
 
-        console.log("Token:", token);
-        console.log("User:", user);
-
         dispatch(loginSuccess({ token, user }));
       }
     } catch (err) {

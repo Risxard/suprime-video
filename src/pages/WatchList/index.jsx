@@ -38,7 +38,7 @@ const WatchListPage = () => {
                   mediaId: id,
                   language,
                 });
-                return data; // já vem formatado do backend
+                return data;
               })
             )
           : [];

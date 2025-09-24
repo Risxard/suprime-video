@@ -26,7 +26,6 @@ const RecommendationsSlider = (props, sectionTitle) => {
     fetchRecommendations();
   }, []);
 
-  console.log(medias);
 
   return (
     <div className="recommendations-slider">

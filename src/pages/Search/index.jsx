@@ -76,8 +76,6 @@ const Search = () => {
             page: pageNumber,
           });
 
-          console.log("Requisição feita!:", "pagina:", pageNumber, data,);
-
           const rawResults = Array.isArray(data) ? data : [];
 
           const results = rawResults.filter(Boolean).filter((item) => {
@@ -184,7 +182,7 @@ const Search = () => {
         toggleFilterChecked(2);
         break;
       default:
-        console.log("Filter não reconhecido");
+
         break;
     }
   };
