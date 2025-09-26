@@ -3,35 +3,30 @@ import "./styles.css";
 import { profileService } from "../../services/firebase/profileServices";
 import { userServices } from "../../services/firebase/userServices";
 import { set } from "react-hook-form";
+import { useSelector } from "react-redux";
+import useHero from "../../hooks/Sliders/useHero/useHero";
+import HeroCarousel from "../../components/Sliders/HeroCarousel/HeroCarousel";
 
 const Pagetest = () => {
-  const [resultado, setResultado] = useState(0);
+  const pageType = "movie";
+  const page = 1;
+  const timeWindow = "day";
 
-  const handleFunction = (horario) => {
-    const horarioPronto = horario.split(":");
-    const horas = parseInt(horarioPronto[0]);
-    const minutos = parseInt(horarioPronto[1]);
-    const segundos = parseInt(horarioPronto[2]);
+  const language = useSelector((state) => state.lang.language);
 
-    const horasEmMinutos = 60 * horas;
-    const somaMinutosESegundos = parseInt(horasEmMinutos + minutos);
+  const heroSlider = useHero({ pageType, language, page, timeWindow });
 
-    const resultado = somaMinutosESegundos * 60 + segundos;
+  const data = heroSlider.movies;
 
-    return setResultado(resultado);
-  };
+  const top10Hero = Array.isArray(data) ? heroSlider.movies.slice(0, 15) : [];
 
   return (
-    <div className="pagetest" style={{ padding: "2rem" }}>
-      <div className="desafio-container">
-        <div className="display-bubbles">
-          <p>{resultado}</p>
+    <div className="pagetest">
+      <header>
+        <div>
+          <HeroCarousel mediasData={top10Hero} />
         </div>
-
-        <span className="bubble-btn">
-          <button onClick={() => handleFunction("00:01:0")}>Executar</button>
-        </span>
-      </div>
+      </header>
     </div>
   );
 };

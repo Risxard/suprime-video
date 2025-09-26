@@ -1,0 +1,116 @@
+.hero-carousel-Container {
+    position: relative;
+    display: flex;
+
+    flex-direction: column;
+
+    margin-left: calc(-1 * var(--inner-width));
+    width: calc(100% + (2 * var(--inner-width)) + 10px);
+
+    box-sizing: border-box;
+}
+
+.topra {
+    left: 0;
+    width: var(--inner-width);
+    height: 100%;
+    pointer-events: none;
+    position: absolute;
+    z-index: -1;
+    box-sizing: border-box;
+    display: block;
+    unicode-bidi: isolate;
+}
+
+
+
+.hero-carousel {
+    overflow: hidden;
+    flex: 1;
+}
+
+.hero-carousel-List {
+    display: flex;
+
+    padding: 2px var(--inner-width) 36px;
+    margin-left: -10px;
+    align-content: stretch;
+    overflow: hidden;
+    scroll-padding: 0 var(--inner-width);
+    overscroll-behavior-x: contain;
+    touch-action: pinch-zoom pan-y;
+    mask-image: linear-gradient(to right, #0000, #00000080 8px, #00000080 calc(var(--inner-width) * .85), #000 calc(var(--inner-width) + (10px * .85)), #000 calc(100% - calc(var(--inner-width) + (10px * .85))), #00000080 calc(100% - calc(var(--inner-width) * .85)), #00000080 calc(100% - 8px), #0000);
+    -webkit-mask-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, .5) 8px, rgba(0, 0, 0, .5) calc(var(--inner-width) * .85), rgba(0, 0, 0, 1) calc(var(--inner-width) + (10px * .85)), rgba(0, 0, 0, 1) calc(100% - calc(var(--inner-width) + (10px * .85))), rgba(0, 0, 0, .5) calc(100% - calc(var(--inner-width) * .85)), rgba(0, 0, 0, .5) calc(100% - 8px), rgba(0, 0, 0, 0));
+    -webkit-mask-composite: source-in;
+    mask-composite: intersect;
+
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+
+}
+
+.hero-carousel-List::-webkit-scrollbar {
+    display: none;
+}
+
+.heroPrevBtn,
+.heroNextBtn {
+    height: calc(100% - 16px);
+    line-height: normal;
+    width: var(--inner-width);
+    border: 0;
+    background-color: transparent;
+    transition-property: transform, opacity;
+    transition-duration: .5s, .35s;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    flex-direction: column;
+    display: flex;
+
+    opacity: 1;
+    cursor: pointer;
+    z-index: 2;
+    color: #fff;
+    -webkit-appearance: button;
+    text-transform: none;
+    overflow: visible;
+}
+
+.heroPrevBtn svg,
+.heroNextBtn svg {
+    width: 45px;
+    height: auto;
+}
+
+
+.heroPrevBtn {
+    left: 0;
+    top: 0;
+}
+
+.heroNextBtn {
+    right: 0;
+    top: 0;
+}
+
+.slider-dots {
+    display: flex;
+    justify-content: center;
+    margin-top: 16px;
+    gap: 8px;
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+    background: #ccc;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.dot.active {
+    background: #fff;
+    transform: scale(1.5);
+}

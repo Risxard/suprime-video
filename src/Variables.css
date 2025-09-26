@@ -1,7 +1,7 @@
 #root {
     --nav-height: 48px;
     --inner-width: 24px;
-    --color-background: #0A070B;
+    --color-background: #17171B;
 
 
     /* backdrop slide */
@@ -118,7 +118,7 @@
 
 @media screen and (min-width: 1280px) {
     #root {
-        --inner-width: 44px;
+        --inner-width: 58px;
         --backdrop-padding-top-slider: 16px;
     }
 
@@ -139,9 +139,9 @@
 
 @media screen and (min-width: 1400px) {
     #root {
-        --inner-width: 72px;
+        --inner-width: 71px;
         --dv-card-number: 5;
-        --nav-height: 66px;
+        --nav-height: 72px;
     }
 }
 

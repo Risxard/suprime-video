@@ -80,7 +80,7 @@
     list-style: none;
     overflow-x: scroll;
     overflow-y: hidden;
-    scroll-behavior: smooth;
+
     scrollbar-width: none;
     box-sizing: border-box;
     -webkit-overflow-scrolling: touch;

@@ -5,7 +5,6 @@
 
 #UserMenu-container .dropdown-content {
     max-height: calc(90vh - var(--nav-height) - 15px * 2);
-    overscroll-behavior: contain;
     flex-direction: column;
 }
 

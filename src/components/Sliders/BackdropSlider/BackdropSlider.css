@@ -19,7 +19,6 @@
     position: relative;
     scrollbar-width: none;
     scrollbar-color: transparent transparent;
-    scroll-behavior: smooth;
     -webkit-scroll-snap-type: x proximity;
     -ms-scroll-snap-type: x proximity;
     scroll-snap-type: x proximity;

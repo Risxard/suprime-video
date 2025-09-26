@@ -17,9 +17,6 @@
     justify-content: center;
 }
 
-.hamMenu-container .dropdown-container {
-    overscroll-behavior: none;
-}
 
 
 
@@ -28,7 +25,6 @@
 .hamMenu-container .dropdown-content {
     overflow-y: auto;
     max-height: calc(90vh - var(--nav-height) - 15px * 2);
-    overscroll-behavior: contain;
     flex-direction: column;
 }
 

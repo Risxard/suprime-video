@@ -732,12 +732,12 @@ media query MobileFirst Open*/
 
 
     .Navigation.active .nav-content {
-        background-color: #00050d;
+
         border-radius: 0 0 0px 0px;
     }
 
     .Navigation .nav-content {
-        background-color: #00050d;
+
         border-radius: 0 0 0px 0px;
     }
 
@@ -800,7 +800,7 @@ media query MobileFirst Open*/
         bottom: 0;
         -webkit-backdrop-filter: blur(16px);
         backdrop-filter: blur(16px);
-        background-color: rgba(25, 30, 37, .8);
+
         border-radius: 0 0 12px 12px;
         z-index: -1;
 
