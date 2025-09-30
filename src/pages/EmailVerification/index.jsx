@@ -6,6 +6,7 @@ import background from "../../assets/background.jpg";
 import Footer from "../../components/Footer/Footer";
 import { Link, useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import logo from "../../assets/acaiwaveLogo.png";
 
 function EmailVerificationPage() {
   const ref = useParams();
@@ -19,10 +20,10 @@ function EmailVerificationPage() {
     <div className="verifyPage">
       <nav className="NavBar-verifyPage">
         <Link to="/home" className="NavLogo">
-          <h2>
-            Açaíwave<span>+</span>
-          </h2>
+          <img src={logo} alt="acaiwaveplus logo" />
         </Link>
+
+        
         <Link to="./register" className="signUpNow">
           {signUpNow}
         </Link>

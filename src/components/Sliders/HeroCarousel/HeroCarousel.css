@@ -22,8 +22,6 @@
     unicode-bidi: isolate;
 }
 
-
-
 .hero-carousel {
     overflow: hidden;
     flex: 1;
@@ -90,21 +88,24 @@
 }
 
 .heroNextBtn {
-    right: 0;
+    right: 10px;
     top: 0;
 }
 
 .slider-dots {
     display: flex;
     justify-content: center;
-    margin-top: 16px;
+    position: absolute;
+    bottom: 0;
     gap: 8px;
+    justify-content: center;
+    width: 100%;
 }
 
 .dot {
     width: 8px;
     height: 8px;
-    background: #ccc;
+    background: rgb(147, 149, 156);
     border-radius: 50%;
     cursor: pointer;
     transition: all 0.3s;
@@ -112,5 +113,10 @@
 
 .dot.active {
     background: #fff;
-    transform: scale(1.5);
+}
+
+@media (min-width: 768px) {
+    .heroNextBtn {
+        right: 0;
+    }
 }

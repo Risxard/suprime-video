@@ -6,53 +6,20 @@
 }
 
 header{
-    overflow: visible;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+
+    width: 100%;
+    height: auto;
+
+    padding: 0 var(--inner-width);
+
+    overflow-x: clip;
+    overflow-y: visible;
+
+    position: relative;
+    box-sizing: border-box;
+
     margin-top: var(--nav-height);
-}
-
-@media screen and (min-width: 880px) {
-
-}
-
-
-.TvSeries header>h1, .Movies header>h1 {
-    font-family: 'ember-regular';
-    color: white;
-    font-size: 24px;
-    font-weight: 700;
-    text-rendering: optimizeLegibility;
-    -webkit-font-smoothing: antialiased;
-    padding-inline: var(--inner-width);
-    padding-block: 12px;
-    letter-spacing: .02em;
-
-}
-
-
-
-
-
-@media screen and (max-width: 879px) {
-    .TvSeries header, .Movies header {}
-}
-
-@media screen and (min-width: 600px) {
-    .TvSeries header>h1, .Movies header>h1 {
-        font-size: 28px;
-    }
-}
-
-@media screen and (min-width: 880px) {
-    .TvSeries header>h1, .Movies header>h1 {
-        font-size: 32px;
-        padding-block: 16px;
-    }
-}
-
-@media screen and (min-width: 1280px) {
-    .TvSeries header>h1, .Movies header>h1 {
-        font-size: 40px;
-        padding-block: 24px;
-        line-height: 45px;
-    }
 }

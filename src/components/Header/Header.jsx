@@ -3,6 +3,7 @@ import "./Header.css";
 import FeatureSlider from "../Sliders/FeatureSlider/FeatureSlider";
 import useHero from "../../hooks/Sliders/useHero/useHero";
 import { useSelector } from "react-redux";
+import HeroCarousel from "../Sliders/HeroCarousel/HeroCarousel";
 
 const Header = ({ pageType, page, timeWindow }) => {
   const language = useSelector((state) => state.lang.language);
@@ -17,7 +18,8 @@ const Header = ({ pageType, page, timeWindow }) => {
 
   return (
     <header>
-      <FeatureSlider mediasData={top10Hero} />
+      {/* <FeatureSlider mediasData={top10Hero} /> */}
+      <HeroCarousel mediasData={top10Hero}/>
     </header>
   );
 };

@@ -3,68 +3,103 @@ import { useEffect, useState } from "react";
 import { image_path } from "../../../../utils/sliderMaps";
 import "./HeroCarouselItem.css";
 import { tmdbService } from "../../../../services/tmdb/tmdbServices";
+import MediaClass from "../../../MediaClass/MediaClass";
+import { dateConverter, genreConverter } from "../../../../functions/Converter";
+import logo from "../../../../assets/acaiwaveLogo.png";
 
-const HeroCarouselItem = ({ movie, language }) => {
-  const [logoUrl, setLogoUrl] = useState(null);
+const HeroCarouselItem = ({ movie, language, active }) => {
+  const [posterAndLogo, setPosterAndLogo] = useState({});
 
   useEffect(() => {
     const fetchLogo = async () => {
       if (!movie?.id) return;
       try {
-        const res = await tmdbService.fetchMediaLogoImage({
+        const res = await tmdbService.fetchPosterAndLogo({
           mediaId: movie.id,
           mediaType: movie.media_type || "movie",
           language: language || "pt-BR",
           originalLanguage: movie.original_language || "en",
         });
 
-
-
-        const logosArray = res.logos || res;
-        if (logosArray?.length > 0) {
-          const filePath = logosArray[0].file_path;
-
-          console.log('hh')
-          setLogoUrl(`https://image.tmdb.org/t/p/w500${filePath}`);
-        }
+        setPosterAndLogo(res);
       } catch (err) {
         console.error("Erro ao buscar logo TMDB:", err);
       }
     };
 
-    fetchLogo();
+    if (movie && language) {
+      fetchLogo();
+    }
   }, [movie, language]);
 
   if (!movie) return null;
 
+  const release_date = movie?.release_date
+    ? movie?.release_date
+    : movie?.first_date;
+
+  const genreNames = (
+    movie.genre_ids?.map((id) =>
+      genreConverter(id, language, movie.media_type || "movie")
+    ) || []
+  ).slice(0, 3);
+
   return (
-    <div className="hero-carousel-Item">
+    <div className={`${active ? "active" : ""} hero-carousel-Item`}>
       <a href="">
         <div className="hero-carousel-Item-Container">
           <div className="hero-carousel-container-image">
-            <img
-              src={`${image_path}${movie.backdrop_path}`}
-              alt={movie.title || ""}
-            />
+            <picture>
+              <source
+                media="(max-width: 479px)"
+                srcSet={`${image_path}${posterAndLogo?.poster?.file_path}`}
+              />
+              <img
+                src={`${image_path}${movie.backdrop_path}`}
+                alt={movie.title || ""}
+              />
+            </picture>
           </div>
 
           <div className="hero-carousel-info-container">
             <div className="hero-carousel-info-content">
               <div className="hero-carousel-info-content-logo">
-                {logoUrl ? (
-                  <img src={logoUrl} alt={`${movie.title} logo`} />
+                {posterAndLogo?.logo?.file_path &&
+                posterAndLogo?.logo?.iso_3166_1 == null ? (
+                  <img
+                    src={`${image_path}${posterAndLogo?.logo?.file_path}`}
+                    alt={`${movie.title} logo`}
+                  />
                 ) : (
-                  <img src="https://placehold.co/400" alt="logo placeholder" />
+                  <div className="hero-carousel-info-content-logo-title">
+                    {movie.title || movie.name}
+                  </div>
                 )}
+              </div>
+              <div className="hero-carousel-info-content-text">
+                <div className="hero-carousel-info-content-text-1">
+                  {movie.original_title || movie.original_name}
+                </div>
+                <div className="hero-carousel-info-content-text-2">
+                  <MediaClass
+                    language={language}
+                    id={movie.id}
+                    mediaType={movie.media_type}
+                  />
+                  <span className="text-2-span">
+                    {release_date && `${dateConverter(release_date)} •`}{" "}
+                    {genreNames.join(", ")}
+                  </span>
+                </div>
               </div>
             </div>
 
-            <div className="channel-logo">
+            {/* <div className="channel-logo">
               <img
-                src="https://disney.images.edge.bamgrid.com/ripcut-delivery/v2/variant/disney/21d4cb22-e48e-4b8a-a618-ceeb9d4b67b0/compose?format=webp&width=480"
+                src={logo}
                 alt="channel logo espn"
               />
-            </div>
+            </div> */}
           </div>
         </div>
       </a>

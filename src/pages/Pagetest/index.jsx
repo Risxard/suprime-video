@@ -6,9 +6,10 @@ import { set } from "react-hook-form";
 import { useSelector } from "react-redux";
 import useHero from "../../hooks/Sliders/useHero/useHero";
 import HeroCarousel from "../../components/Sliders/HeroCarousel/HeroCarousel";
+import ChannelSection from "../../components/ChannelSection";
 
 const Pagetest = () => {
-  const pageType = "movie";
+  const pageType = "all";
   const page = 1;
   const timeWindow = "day";
 
@@ -27,6 +28,10 @@ const Pagetest = () => {
           <HeroCarousel mediasData={top10Hero} />
         </div>
       </header>
+
+      <main>
+        <ChannelSection />
+      </main>
     </div>
   );
 };

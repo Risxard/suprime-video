@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 import "./styles.css";
-import logo from "../../assets/acaiWaveLogoPurple.png";
+import logo from '../../assets/acaiwaveLogo.png';
 import SignIn from "../../Components/AuthComponents/SignIn";
 import background from "../../assets/background.jpg";
 import Footer from "../../components/Footer/Footer";
@@ -17,9 +17,7 @@ function Login() {
     <div className="Login">
       <nav className="NavBar-Login">
         <Link to="/home" className="NavLogo">
-          <h2>
-            Açaíwave<span>+</span>
-          </h2>
+          <img src={logo} alt="acaiwaveplus logo" />
         </Link>
         <Link to="./register" className="signUpNow">
           {signUpNow}

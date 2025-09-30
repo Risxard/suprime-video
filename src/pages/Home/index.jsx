@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Header from "../../Components/Header/Header.jsx";
+import Header from "../../components/Header/Header.jsx";
 import "./styles.css";
 import SlideDistributor from "../../components/SlideDistributor/Index.jsx";
 import i18n from "../../i18n.js";
@@ -65,10 +65,10 @@ const Home = () => {
 
       <main>
         <section className="home-main-section">
-          <BackdropSlider
+          {/* <BackdropSlider
             sectionTitle={componentsLang.recommendedMovies2}
             medias={mediasRecommendations}
-          />
+          /> */}
 
           <PosterSlider
             sectionTitle={originalsAndExclusives}
@@ -76,12 +76,12 @@ const Home = () => {
             language={language}
           />
 
-          <SlideDistributor
+          {/* <SlideDistributor
             language={language}
             mediaType={mediaType}
             defaultSlider={PosterSlider}
             sliderMap={movieSliderMap}
-          />
+          /> */}
         </section>
       </main>
     </div>

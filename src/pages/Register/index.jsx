@@ -1,12 +1,13 @@
 import React from "react";
 
 import "./styles.css";
-import logo from "../../assets/SuprimeVideo.png";
+
 import background from "../../assets/background.jpg";
 import { Link } from "react-router-dom";
 import Footer from "../../components/Footer/Footer";
 import { useTranslation } from "react-i18next";
 import SignUp from "../../components/AuthComponents/SignUp";
+import logo from '../../assets/acaiwaveLogo.png';
 
 function Register() {
   const { t } = useTranslation();
@@ -15,14 +16,12 @@ function Register() {
   return (
     <div className="Register">
       <div className="Login-Background">
-        <img src={background} alt="background" />
+        <img src={logo} alt="acaiwaveplus logo" />
       </div>
 
       <nav className="NavBar-Login">
         <Link to="/" className="NavLogo">
-          <h2>
-            Açaíwave<span>+</span>
-          </h2>
+          <img src={logo} alt="acaiwaveplus logo" />
         </Link>
         <Link to="/" className="signUpNow">
           {signInNow}

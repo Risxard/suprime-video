@@ -1,6 +1,6 @@
 #root {
-    --nav-height: 48px;
-    --inner-width: 24px;
+    --nav-height: 72px;
+    --inner-width: 40px;
     --color-background: #17171B;
 
 
@@ -88,11 +88,11 @@
     }
 }
 
-@media screen and (min-width: 880px) {
+@media screen and (min-width: 768px) {
 
     #root {
-        --inner-width: 44px;
-        --nav-height: 60px;
+        --inner-width: 56px;
+
         --dv-card-number: 4;
         --backdrop-padding-top-slider: 12px;
     }
@@ -116,9 +116,9 @@
     }
 }
 
-@media screen and (min-width: 1280px) {
+@media screen and (min-width: 1024px) {
     #root {
-        --inner-width: 58px;
+        --inner-width: 56px;
         --backdrop-padding-top-slider: 16px;
     }
 
@@ -137,11 +137,11 @@
     }
 }
 
-@media screen and (min-width: 1400px) {
+@media screen and (min-width: 1440px) {
     #root {
         --inner-width: 71px;
         --dv-card-number: 5;
-        --nav-height: 72px;
+
     }
 }
 

@@ -49,6 +49,14 @@ export const tmdbService = {
     });
     return data;
   },
+  fetchPosterAndLogo: async ({ mediaId, mediaType, language, originalLanguage }) => {
+    const { data } = await api.get("/api/tmdb/images/posterandlogo", {
+      params: { mediaId, mediaType, language, originalLanguage },
+    });
+    return data;
+  },
+
+
   fetchSearchMulti: async ({ query, language, page }) => {
     const { data } = await api.get("/api/tmdb/search/multi", {
       params: { query, language, page },

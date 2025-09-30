@@ -4,7 +4,7 @@ import "./Navigation.css";
 import Pesquisa from "./Search/SearchDropDown.jsx";
 import UserMenu from "./UserMenu/UserMenu";
 import LogoIcon from "../../assets/Logo.svg";
-
+import logo from "../../assets/acaiwaveLogo.png";
 import acaiWaveTitle from "../../assets/acaiWaveTitle.png";
 import SearchComponent from "./Search/SearchDropDown.jsx";
 
@@ -75,7 +75,7 @@ var NavMenu = () => {
             <HamMenu />
 
             <NavLink to="/home" className="NavLogo">
-              <h2>Açaíwave+</h2>
+              <img src={logo} alt="acaiwaveplus logo" />
             </NavLink>
 
             <ul className="NavigationLinks" id="nav-links">
@@ -129,7 +129,7 @@ var NavMenu = () => {
           </div>
 
           <NavLink to="/home" className="NavLogo NavLogoOut">
-            <h2>Açaíwave+</h2>
+            <img src={logo} alt="acaiwaveplus logo" />
           </NavLink>
 
           <span className="nav-user">

@@ -39,17 +39,117 @@
     font-family: 'Ember-light';
     src: url(./Layout/Fonts/Ember/AmazonEmberDisplay_Lt.ttf) format('OpenType');
 }
-/* @font-face {
-    font-family: 'Inspire';
-    src: url(./Layout/Fonts/inspire/Inspire.otf) format('OpenType');
-} */
+
+
+
+
+/* --- Inspire Black Italic --- */
+@font-face {
+    font-family: 'Inspire-BlackItalic';
+    src: url('../src/layout/Fonts/inspire/Inspire-BlackItalic.woff2') format('woff2'),
+        url('../src/layout/Fonts/inspire/Inspire-BlackItalic.woff') format('woff');
+    font-weight: 900;
+    font-style: italic;
+    font-display: swap;
+}
+
+/* --- Inspire Black --- */
+@font-face {
+    font-family: 'Inspire-Black';
+    src: url('../src/layout/Fonts/inspire/Inspire-Black.woff2') format('woff2'),
+        url('../src/layout/Fonts/inspire/Inspire-Black.woff') format('woff');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* --- Inspire Heavy Italic --- */
+@font-face {
+    font-family: 'Inspire-HeavyItalic';
+    src: url('../src/layout/Fonts/inspire/Inspire-HeavyItalic.woff2') format('woff2'),
+        url('../src/layout/Fonts/inspire/Inspire-HeavyItalic.woff') format('woff');
+    font-weight: 800;
+    font-style: italic;
+    font-display: swap;
+}
+
+/* --- Inspire Heavy --- */
+@font-face {
+    font-family: 'Inspire-Heavy';
+    src: url('../src/layout/Fonts/inspire/Inspire-Heavy.woff2') format('woff2'),
+        url('../src/layout/Fonts/inspire/Inspire-Heavy.woff') format('woff');
+    font-weight: 800;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* --- Inspire Medium Italic --- */
+@font-face {
+    font-family: 'Inspire-MediumItalic';
+    src: url('../src/layout/Fonts/inspire/Inspire-MediumItalic.woff2') format('woff2'),
+        url('../src/layout/Fonts/inspire/Inspire-MediumItalic.woff') format('woff');
+    font-weight: 500;
+    font-style: italic;
+    font-display: swap;
+}
+
+/* --- Inspire Medium --- */
+@font-face {
+    font-family: 'Inspire-Medium';
+    src: url('../src/layout/Fonts/inspire/Inspire-Medium.woff2') format('woff2'),
+        url('../src/layout/Fonts/inspire/Inspire-Medium.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* --- Inspire Roman Italic --- */
+@font-face {
+    font-family: 'Inspire-RomanItalic';
+    src: url('../src/layout/Fonts/inspire/Inspire-Italic.woff2') format('woff2'),
+        url('../src/layout/Fonts/inspire/Inspire-Italic.woff') format('woff');
+    font-weight: 400;
+    font-style: italic;
+    font-display: swap;
+}
+
+/* --- Inspire Roman --- */
+@font-face {
+    font-family: 'Inspire-Roman';
+    src: url('../src/layout/Fonts/inspire/Inspire-Roman.woff2') format('woff2'),
+        url('../src/layout/Fonts/inspire/Inspire-Roman.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* --- Inspire Light Italic --- */
+@font-face {
+    font-family: 'Inspire-LightItalic';
+    src: url('../src/layout/Fonts/inspire/Inspire-LightItalic.woff2') format('woff2'),
+        url('../src/layout/Fonts/inspire/Inspire-LightItalic.woff') format('woff');
+    font-weight: 300;
+    font-style: italic;
+    font-display: swap;
+}
+
+/* --- Inspire Light --- */
+@font-face {
+    font-family: 'Inspire-Light';
+    src: url('../src/layout/Fonts/inspire/Inspire-Light.woff2') format('woff2'),
+        url('../src/layout/Fonts/inspire/Inspire-Light.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+
+
 
 
 * {
-    margin: 0;
-    padding: 0;
-
     box-sizing: border-box;
+
 
 }
 
@@ -58,6 +158,11 @@ html {
     scroll-behavior: smooth;
     -webkit-text-size-adjust: 100%;
     line-height: 1.15;
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    color: white;
 }
 
 html:has(#nav .focus-modal) {
@@ -136,6 +241,17 @@ html:has(.global-modal-layout) {
 body {
     background: #17171B;
     overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+body, .hero-carousel-container-text {
+    -webkit-font-smoothing: antialiased;
+    /* Chrome, Safari */
+    -moz-osx-font-smoothing: grayscale;
+    /* Firefox */
+    text-rendering: optimizeLegibility;
+    /* kerning + ligatures */
 }
 
 footer {
