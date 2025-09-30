@@ -12,8 +12,7 @@ const HeroCarousel = ({ mediasData }) => {
 
   const [activeIndex, setActiveIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
-
-  
+  const [autoPlay, setAutoPlay] = useState(true);
   const touchStartX = useRef(0);
   const touchEndX = useRef(0);
 
@@ -28,8 +27,17 @@ const HeroCarousel = ({ mediasData }) => {
   const handleTouchEnd = () => {
     const deltaX = touchEndX.current - touchStartX.current;
     const threshold = 150;
-    if (deltaX > threshold) scrollPrev();
-    else if (deltaX < -threshold) scrollNext();
+    if (deltaX > threshold) {
+      cancelAutoPlay();
+      scrollPrev();
+    } else if (deltaX < -threshold) {
+      cancelAutoPlay();
+      scrollNext();
+    }
+  };
+
+  const cancelAutoPlay = () => {
+    setAutoPlay(false);
   };
 
   const getItemWidth = () => {
@@ -80,11 +88,13 @@ const HeroCarousel = ({ mediasData }) => {
 
   const scrollNext = () => {
     if (isAnimating) return;
+    cancelAutoPlay();
     scrollToIndex(activeIndex + 1);
   };
 
   const scrollPrev = () => {
     if (isAnimating) return;
+    cancelAutoPlay();
     scrollToIndex(activeIndex - 1);
   };
 
@@ -119,6 +129,16 @@ const HeroCarousel = ({ mediasData }) => {
     const itemWidth = getItemWidth();
     el.scrollLeft = itemWidth;
   }, [medias]);
+
+  useEffect(() => {
+    if (!autoPlay || medias.length === 0) return;
+
+    const interval = setInterval(() => {
+      scrollToIndex(activeIndex + 1);
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, [activeIndex, medias, autoPlay]);
 
   const extendedMedias = [medias[medias.length - 1], ...medias, medias[0]];
 
@@ -157,8 +177,6 @@ const HeroCarousel = ({ mediasData }) => {
               />
             );
           })}
-
-          
         </div>
       </div>
 
@@ -175,7 +193,10 @@ const HeroCarousel = ({ mediasData }) => {
           <span
             key={index}
             className={`dot ${index === activeIndex ? "active" : ""}`}
-            onClick={() => scrollToIndex(index)}
+            onClick={() => {
+              cancelAutoPlay();
+              scrollToIndex(index);
+            }}
           />
         ))}
       </div>

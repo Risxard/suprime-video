@@ -95,11 +95,13 @@
 .slider-dots {
     display: flex;
     justify-content: center;
+    align-items: center;
     position: absolute;
     bottom: 0;
     gap: 8px;
-    justify-content: center;
+
     width: 100%;
+    height: 36px;
 }
 
 .dot {

@@ -117,7 +117,7 @@
     display: flex;
     align-items: center;
     height: 100%;
-    
+
 }
 
 .channel-item-image-container img {
@@ -154,7 +154,12 @@
     .channels-group {
         flex-wrap: nowrap;
     }
+
     .channel-item:hover video {
-    opacity: 1;
-}
+        opacity: 1;
+    }
+
+    .channel-item {
+        padding: 8px 8px 8px;
+    }
 }

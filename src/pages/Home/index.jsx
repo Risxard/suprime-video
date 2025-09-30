@@ -8,6 +8,7 @@ import BackdropSlider from "../../components/Sliders/BackdropSlider/BackdropSlid
 import PosterSlider from "../../components/Sliders/PosterSlider/PosterSlider.jsx";
 import { tmdbService } from "../../services/tmdb/tmdbServices.js";
 import { movieSliderMap } from "../../utils/sliderMaps.js";
+import ChannelSection from "../../components/ChannelSection/index.jsx";
 
 const Home = () => {
   const [medias, setMedias] = useState([]);
@@ -65,6 +66,8 @@ const Home = () => {
 
       <main>
         <section className="home-main-section">
+          <ChannelSection/>
+          
           {/* <BackdropSlider
             sectionTitle={componentsLang.recommendedMovies2}
             medias={mediasRecommendations}

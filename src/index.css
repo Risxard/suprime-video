@@ -149,8 +149,8 @@
 
 * {
     box-sizing: border-box;
-
-
+    padding: 0;
+    margin: 0;
 }
 
 
@@ -239,11 +239,44 @@ html:has(.global-modal-layout) {
 }
 
 body {
-    background: #17171B;
+
     overflow-x: hidden;
     margin: 0;
     padding: 0;
 }
+
+.app-background{
+    background-color: rgb(23, 23, 27);
+    position: fixed;
+    height: 100vh;
+    top: 0px;
+    transition: opacity 200ms;
+    width: 100%;
+    z-index: -3;
+}
+
+
+.app-background:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    display: block;
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 18.4px;
+    user-select: none;
+    transition-property: opacity;
+    transition-duration: 0.5s;
+    transition-timing-function: ease;
+    transition-delay: 0s;
+    -webkit-font-smoothing: antialiased;
+}
+
 
 body, .hero-carousel-container-text {
     -webkit-font-smoothing: antialiased;
@@ -290,11 +323,12 @@ footer {
 
 main {
     padding-bottom: 600px;
+    padding-inline: var(--inner-width);
 }
 
 
 .focus-modal {
-    background: #00050d;
+    /* background: #00050d; */
     bottom: 0;
     left: 0;
     opacity: .8;

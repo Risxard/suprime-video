@@ -6,16 +6,16 @@ import GlobalMoldal from "../components/Modals/GlobalMoldal";
 import i18n from "../i18n";
 import Footer from "../components/Footer/Footer";
 import AuthListener from "../services/firebase/AuthListener";
+import Nav from "../components/Navigation/Nav";
 
 const PrivateLayout = () => {
-  const language = i18n.language;
   const modal = useSelector((state) => state.modals.filterModal);
 
   return (
     <>
-      {!modal && <Navigation language={language} />}
+      {!modal && <Nav />}
       <Outlet />
-      {!modal && <Footer language={language} />}
+      {!modal && <Footer />}
       <GlobalMoldal />
     </>
   );

@@ -2,8 +2,10 @@ import React from "react";
 import "./footer.css";
 import suprimevideologo from "../../assets/acaiwaveLogo.png";
 import { useTranslation } from "react-i18next";
+import i18n from "../../i18n";
 
-const Footer = (props) => {
+const Footer = () => {
+  const language = i18n.language;
   const { t } = useTranslation();
   const footerSection = t("footer");
 
@@ -25,9 +27,7 @@ const Footer = (props) => {
             <a href="">{footerSection.links.help}</a>
           </li>
         </ul>
-        <span className="Rights">
-        {footerSection.copyright}
-        </span>
+        <span className="Rights">{footerSection.copyright}</span>
       </div>
     </footer>
   );

@@ -114,13 +114,13 @@
         "title": "Sua conta",
         "help": "Ajuda",
         "watchAnywhere": "Assista onde quiser",
-        "AccountSettings": "Conta e configurações",
+        "AccountSettings": "configurações do Aplicativo",
         "signOut": "Sair"
       },
       "profiles": {
         "title": "Perfis",
-        "addNew": "Adicionar novo perfil",
-        "manageProfiles": "Gerenciar perfis",
+        "addNew": "Adicionar perfil",
+        "manageProfiles": "Editar perfil",
         "learnMore": "Saiba mais"
       }
     }

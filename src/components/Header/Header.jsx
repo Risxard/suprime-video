@@ -13,7 +13,7 @@ const Header = ({ pageType, page, timeWindow }) => {
   const data = heroSlider.movies
 
   const top10Hero = Array.isArray(data)
-    ? heroSlider.movies.slice(0, 10)
+    ? heroSlider.movies.slice(0, 15)
     : [];
 
   return (

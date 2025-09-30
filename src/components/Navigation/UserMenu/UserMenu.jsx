@@ -2,12 +2,19 @@ import React, { useEffect, useRef, useState } from "react";
 import "./UserMenu.css";
 import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { logout, setCurrentProfile, setCurrentWatchlist } from "../../../store/auth/index.js";
+import {
+  logout,
+  setCurrentProfile,
+  setCurrentWatchlist,
+} from "../../../store/auth/index.js";
 import DropdownContainer from "../Layout/DropdownContainer/Index.jsx";
 import { isMobile } from "react-device-detect";
 import { useTranslation } from "react-i18next";
 import { auth } from "../../../services/firebase/firebaseconfig.js";
 import i18next from "i18next";
+
+import holdimg from "../Icons/download.png";
+import AddProfile from "../Icons/AddProfile.jsx";
 
 const UserMenuChildren = ({ currentProfileData }) => {
   const [sortedProfileList, setCurrentProfileList] = useState([]);
@@ -56,86 +63,66 @@ const UserMenuChildren = ({ currentProfileData }) => {
   const navigationAccountMenu = t("navigation.accountMenu");
   const { yourAccount, profiles } = navigationAccountMenu;
 
+
   return (
-    <>
-      <div className="dropdown-content-layout">
-        <p>{yourAccount.title}</p>
-
-        <ul>
-          <li>
-            <Link to="/settings">
-              <p>{yourAccount.help}</p>
-            </Link>
-          </li>
-          <li>
-            <Link to="/settings">
-              <p>{yourAccount.watchAnywhere}</p>
-            </Link>
-          </li>
-          <li>
-            <Link to="/settings">
-              <p>{yourAccount.AccountSettings}</p>
-            </Link>
-          </li>
-          <li onClick={loggout}>
-            <Link>
-              <p>{yourAccount.signOut}</p>
-            </Link>
-          </li>
-        </ul>
-      </div>
-
-      <div className="dropdown-content-layout">
-        <p>{profiles.title}</p>
-        <ul>
-          {sortedProfileList.length > 0
-            ? sortedProfileList.map((profile) => (
-                <li
-                  className="user-div"
-                  key={profile.id}
-                  onClick={() => handleSetUserProfile(profile)}
-                >
-                  <span className="item-image-container">
-                    <img src={profile.userInfoData.img.url} alt="Avatar" />
-                  </span>
-                  <p>{profile.userInfoData.name}</p>
-                </li>
-              ))
-            : null}
-
-          <li className="user-div">
-            <a href="/preview/acaiwaveplus/profiles/create">
-              <span className="item-image-container">
-                <svg
-                  width="32"
-                  height="32"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <rect width="32" height="32" rx="16" fill="#33373D" />
-                  <path
-                    d="M22 15.334h-5.334v-5.333c0-.367-.3-.667-.666-.667-.367 0-.667.3-.667.667v5.333H10c-.367 0-.667.3-.667.667 0 .366.3.666.667.666h5.333v5.334c0 .366.3.666.667.666.366 0 .666-.3.666-.666v-5.334H22c.366 0 .666-.3.666-.666 0-.367-.3-.667-.666-.667Z"
-                    fill="#fff"
+    <div className="nav-menu-list-itens">
+      {sortedProfileList.length > 0
+        ? sortedProfileList.map((profile) => (
+            <li
+              className="nav-menu-item"
+              key={profile.id}
+              onClick={() => handleSetUserProfile(profile)}
+            >
+              <a href="">
+                <span className="nav-menu-profile-pic">
+                  <img
+                    src={profile.userInfoData.img.url}
+                    alt="profile avatar"
                   />
-                </svg>
-              </span>
-              <p>{profiles.addNew}</p>
-            </a>
-          </li>
+                </span>
+                <p>{profile.userInfoData.name}</p>
+              </a>
+            </li>
+          ))
+        : null}
 
-          <li className="user-div">
-            <Link to="./profiles">
-              <p>{profiles.manageProfiles}</p>
-            </Link>
-          </li>
-          <li className="user-div">
-            <Link to="./home">
-              <p>{profiles.learnMore}</p>
-            </Link>
-          </li>
-        </ul>
-      </div>
-    </>
+      <li className="nav-menu-item">
+        <a href="/preview/acaiwaveplus/profiles/create">
+          <span className="nav-menu-profile-pic">
+            <div className="add-profile">
+              <AddProfile />
+            </div>
+          </span>
+          <p>{profiles.addNew}</p>
+        </a>
+      </li>
+
+      <li className="nav-menu-item nopic">
+        <a href="">
+          <p>{profiles.manageProfiles}</p>
+        </a>
+      </li>
+      <li className="nav-menu-item nopic">
+        <a href="">
+          <p>Configuração do Aplicativo</p>
+        </a>
+      </li>
+      <li className="nav-menu-item nopic">
+        <a href="">
+          <p>Conta</p>
+        </a>
+      </li>
+      <li className="nav-menu-item nopic">
+        <a href="">
+          <p>{yourAccount.help}</p>
+        </a>
+      </li>
+      <li className="nav-menu-item nopic">
+        <a href="">
+          <p>{yourAccount.signOut}</p>
+        </a>
+      </li>
+    </div>
   );
 };
 
@@ -194,36 +181,35 @@ const UserMenu = () => {
   }, [location]);
 
   return currentProfileData ? (
-    <li
-      className="nav-bubble-btn"
-      id="UserMenu-container"
+    <ul
+      className={`nav-menu ${isOpen && "active"}`}
       data-mobile={isMobile}
       data-open={isOpen}
       onMouseEnter={() => setIsOpen(true)}
       onMouseLeave={() => setIsOpen(false)}
     >
-      <span ref={avatarButtonRef}>
-        <button
-          className="user-display-container"
-          onClick={() => handleSetIsOpen()}
-        >
-          <span className="Card-avatar">
+      <li
+        className="nav-menu-show-btn"
+        onClick={() => handleSetIsOpen()}
+        ref={avatarButtonRef}
+      >
+        <a>
+          {currentProfileData.userInfoData.name ? (
+            <p>{currentProfileData.userInfoData.name}</p>
+          ) : null}
+          <span className="nav-menu-profile-pic">
             {currentProfileData.userInfoData.img ? (
               <img src={currentProfileData.userInfoData.img.url} alt="Avatar" />
             ) : null}
           </span>
-        </button>
-        {isOpen && (
-          <DropdownContainer
-            children={
-              <UserMenuChildren currentProfileData={currentProfileData} />
-            }
-          />
-        )}
-      </span>
+        </a>
+      </li>
+      <div className="nav-menu-separator" />
+
+      <UserMenuChildren currentProfileData={currentProfileData} />
 
       {isOpen && isMobile && <span className="focus-modal" />}
-    </li>
+    </ul>
   ) : null;
 };
 
