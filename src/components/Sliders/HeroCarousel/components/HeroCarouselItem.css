@@ -9,6 +9,7 @@
 
 
 .hero-carousel-container-image {
+
     overflow: hidden;
     width: 100%;
     height: 100%;
@@ -49,22 +50,23 @@
 }
 
 .hero-carousel-Item.skeleton {
-  width: 100%;
-  height: 100%;
+    width: 100%;
+    height: 100%;
     mask-image: linear-gradient(to right, #0000, #00000080 8px, #00000080 calc(var(--basj100) * .85), #000 calc(var(--basj100) + (10px * .85)), #000 calc(100% - calc(var(--basj100) + (10px * .85))), #00000080 calc(100% - calc(var(--basj100) * .85)), #00000080 calc(100% - 8px), #0000);
     -webkit-mask-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, .5) 8px, rgba(0, 0, 0, .5) calc(var(--basj100) * .85), rgba(0, 0, 0, 1) calc(var(--basj100) + (10px * .85)), rgba(0, 0, 0, 1) calc(100% - calc(var(--basj100) + (10px * .85))), rgba(0, 0, 0, .5) calc(100% - calc(var(--basj100) * .85)), rgba(0, 0, 0, .5) calc(100% - 8px), rgba(0, 0, 0, 0));
     -webkit-mask-composite: source-in;
-  animation: skeleton-loading 1.5s infinite linear;
+    animation: skeleton-loading 1.5s infinite linear;
 
 }
 
 @keyframes skeleton-loading {
-  0% {
-    background-position: 200% 0;
-  }
-  100% {
-    background-position: -200% 0;
-  }
+    0% {
+        background-position: 200% 0;
+    }
+
+    100% {
+        background-position: -200% 0;
+    }
 }
 
 .hero-carousel-container-image img {

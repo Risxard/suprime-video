@@ -1,15 +1,14 @@
 import { useEffect, useState } from "react";
-
-import { image_path } from "../../../../utils/sliderMaps";
-import "./HeroCarouselItem.css";
-import { tmdbService } from "../../../../services/tmdb/tmdbServices";
-import MediaClass from "../../../MediaClass/MediaClass";
 import { dateConverter, genreConverter } from "../../../../functions/Converter";
-import logo from "../../../../assets/acaiwaveLogo.png";
+import { tmdbService } from "../../../../services/tmdb/tmdbServices";
+import "./GrandPosterCarouselItem.css";
+import MediaClass from "../../../MediaClass/MediaClass";
 import { NavLink } from "react-router-dom";
 
-const HeroCarouselItem = ({ movie, language, active }) => {
+const GrandPosterCarouselItem = ({ movie, language }) => {
   const [posterAndLogo, setPosterAndLogo] = useState({});
+
+  const image_path = "https://image.tmdb.org/t/p/original";
 
   useEffect(() => {
     const fetchLogo = async () => {
@@ -46,25 +45,19 @@ const HeroCarouselItem = ({ movie, language, active }) => {
   ).slice(0, 3);
 
   return (
-    <div className={`${active ? "active" : ""} hero-carousel-Item`}>
+    <div className="grandPoster-carousel-item">
       <NavLink to={`/detail/${movie.media_type}/${movie.id}`}>
-        <div className="hero-carousel-Item-Container">
-          <div className="hero-carousel-container-image">
-            <picture>
-              <source
-                media="(max-width: 479px)"
-                srcSet={`${image_path}${posterAndLogo?.poster?.file_path}`}
-              />
+        <div className="grandPoster-carousel-item-container">
+          <div className="grandPoster-carousel-item-image">
+            {posterAndLogo?.poster?.file_path ? (
               <img
-                src={`${image_path}${movie.backdrop_path}`}
+                src={`${image_path}${posterAndLogo?.poster?.file_path}`}
                 alt={movie.title || ""}
               />
-            </picture>
-          </div>
+            ) : null}
 
-          <div className="hero-carousel-info-container">
-            <div className="hero-carousel-info-content">
-              <div className="hero-carousel-info-content-logo">
+            <div className="grandPoster-carousel-item-info">
+              <div className="grandPoster-carousel-item-info-logo">
                 {posterAndLogo?.logo?.file_path &&
                 posterAndLogo?.logo?.iso_3166_1 == null ? (
                   <img
@@ -77,30 +70,18 @@ const HeroCarouselItem = ({ movie, language, active }) => {
                   </div>
                 )}
               </div>
-              <div className="hero-carousel-info-content-text">
-                <div className="hero-carousel-info-content-text-1">
-                  {movie.original_title || movie.original_name}
-                </div>
-                <div className="hero-carousel-info-content-text-2">
-                  <MediaClass
-                    language={language}
-                    id={movie.id}
-                    mediaType={movie.media_type}
-                  />
-                  <span className="text-2-span">
-                    {release_date && `${dateConverter(release_date)} •`}{" "}
-                    {genreNames.join(", ")}
-                  </span>
-                </div>
+              <div className="grandPoster-carousel-item-info-text">
+                <MediaClass
+                  language={language}
+                  id={movie.id}
+                  mediaType={movie.media_type}
+                />
+                <span className="grandPoster-carousel-text-content">
+                  {release_date && `${dateConverter(release_date)} • `}
+                  {genreNames.join(", ")}
+                </span>
               </div>
             </div>
-
-            {/* <div className="channel-logo">
-              <img
-                src={logo}
-                alt="channel logo espn"
-              />
-            </div> */}
           </div>
         </div>
       </NavLink>
@@ -108,4 +89,4 @@ const HeroCarouselItem = ({ movie, language, active }) => {
   );
 };
 
-export default HeroCarouselItem;
+export default GrandPosterCarouselItem;

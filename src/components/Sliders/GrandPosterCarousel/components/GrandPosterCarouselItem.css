@@ -1,0 +1,276 @@
+.grandPoster-carousel-item:first-of-type {
+    scroll-snap-align: start;
+    margin-left: 0px;
+}
+
+.grandPoster-carousel-item {
+    --card-caroulsel-number: 2;
+
+    transition-duration: .3s;
+    transition-property: width, display;
+    transition-timing-function:
+        ease-out;
+    width: calc(100% / var(--card-caroulsel-number));
+    height: auto;
+    scroll-snap-align: start;
+
+    flex-shrink: 0;
+    flex-grow: 0;
+    will-change: transform;
+}
+
+.grandPoster-carousel-item:hover .grandPoster-carousel-item-image {
+    transform: scale(1.03) translateZ(0) translateZ(0);
+}
+
+.grandPoster-carousel-item:hover .grandPoster-carousel-item-image:before {
+    opacity: 1;
+}
+
+
+.grandPoster-carousel-item a {
+    padding: 10px;
+
+    width: 100%;
+    transform: scale(1) translateZ(0px);
+    transition-property: transform;
+
+    display: block;
+    color: inherit;
+    text-decoration: inherit;
+
+    position: relative;
+
+    border-radius: 4px;
+
+    background-color: transparent;
+}
+
+.grandPoster-carousel-item .grandPoster-carousel-item-container {
+    width: 100%;
+    height: auto;
+    text-align: center;
+    transform: scale(1) translateZ(0px);
+    -webkit-font-smoothing: subpixel-antialiased;
+    position: relative;
+    aspect-ratio: 5 / 8;
+    cursor: pointer;
+    transition-timing-function: ease-out;
+
+    transition-duration: 0.3s;
+    border-radius: 4px;
+}
+
+.grandPoster-carousel-item .grandPoster-carousel-item-container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border-radius: inherit;
+    border-width: 3px;
+    border-style: solid;
+    border-color: transparent;
+    outline: 3px solid #FFFFFF;
+    outline-offset: 3px;
+    opacity: 0;
+    transition: opacity .3s ease;
+}
+
+
+.grandPoster-carousel-item .grandPoster-carousel-item-container::after {
+    content: "";
+    position: absolute;
+    box-shadow: 0 20px 24px #000c;
+    left: 12px;
+    width: calc(100% - 24px);
+    bottom: 10px;
+    height: 33px;
+    z-index: -1;
+
+}
+
+
+.grandPoster-carousel-item-image {
+    background: rgb(8, 8, 9);
+    height: 100%;
+    align-items: center;
+    position: absolute;
+    display: flex;
+    left: 0px;
+    bottom: 0px;
+    right: 0px;
+    top: 0px;
+    border-radius: 4px;
+
+    transition-duration: .3s;
+    transition-timing-function:
+        ease-out;
+    aspect-ratio: 5 / 8;
+}
+
+.grandPoster-carousel-item-image::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border-radius: inherit;
+    border-width: 3px;
+    border-style: solid;
+    border-color: transparent;
+    outline: 3px solid #FFFFFF;
+    outline-offset: 3px;
+    opacity: 0;
+    transition: opacity .3s ease;
+}
+
+
+
+.grandPoster-carousel-item-image::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 30%;
+    border-radius: 4px;
+    pointer-events: none;
+    background: linear-gradient(to top,
+            rgba(0, 0, 0, 1) 0%,
+
+            rgba(0, 0, 0, 1) 20%,
+
+            rgba(0, 0, 0, 0.7) 60%,
+
+            rgba(0, 0, 0, 0) 100%);
+    z-index: 2;
+}
+
+.grandPoster-carousel-item-image>img {
+    width: 100%;
+    max-height: 100%;
+    top: 0px;
+    right: 0px;
+    left: 0px;
+    transition-property: opacity;
+    position: absolute;
+    display: block;
+    opacity: 1;
+    transition-timing-function: ease-in-out;
+    transition-duration: 0.2s;
+    border-radius: 4px;
+    border-style: none;
+}
+
+.grandPoster-carousel-item-info {
+    position: absolute;
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    pointer-events: none;
+    bottom: 0;
+    align-items: center;
+}
+
+
+.grandPoster-carousel-item-info-logo {
+    display: flex;
+    max-width: 80%;
+    width: 100%;
+
+
+    align-items: center;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 8px;
+
+    position: relative;
+    z-index: 10;
+}
+
+.grandPoster-carousel-item-info-logo img {
+    width: 100%;
+    height: auto;
+
+    aspect-ratio: 3 / 1;
+    object-fit: contain;
+    border-style: none;
+    -webkit-font-smoothing: subpixel-antialiased;
+}
+
+
+
+.grandPoster-carousel-item-info-text {
+    width: 100%;
+    height: 42px;
+
+    position: relative;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    z-index: 10;
+
+    padding-bottom: 16px;
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 8px;
+
+
+
+}
+
+.grandPoster-carousel-item-info-text .ageClass {
+    margin-right: 8px;
+}
+
+.grandPoster-carousel-item-info-text .ageClass img {
+    width: 16px;
+    height: 16px;
+}
+
+.grandPoster-carousel-text-content {
+    display: block;
+    color: #fff;
+    font-family: 'Inspire-Roman', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: -.1px;
+    line-height: 1.5;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    -webkit-font-smoothing: subpixel-antialiased;
+    text-align: center;
+
+    max-width: 200px;
+}
+
+
+
+
+
+
+@media (min-width: 768px) {
+    .grandPoster-carousel-item {
+        --card-caroulsel-number: 3;
+    }
+}
+
+@media (min-width: 1024px) {
+    .grandPoster-carousel-item {
+        --card-caroulsel-number: 4;
+    }
+}
+
+@media (min-width: 1440px) {
+    .grandPoster-carousel-item {
+        --card-caroulsel-number: 5;
+    }
+}

@@ -324,6 +324,7 @@ footer {
 main {
     padding-bottom: 600px;
     padding-inline: var(--inner-width);
+    overflow: hidden;
 }
 
 

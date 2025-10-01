@@ -9,6 +9,7 @@ import PosterSlider from "../../components/Sliders/PosterSlider/PosterSlider.jsx
 import { tmdbService } from "../../services/tmdb/tmdbServices.js";
 import { movieSliderMap } from "../../utils/sliderMaps.js";
 import ChannelSection from "../../components/ChannelSection/index.jsx";
+import GrandPosterCarousel from "../../components/Sliders/GrandPosterCarousel/GrandPosterCarousel.jsx";
 
 const Home = () => {
   const [medias, setMedias] = useState([]);
@@ -30,7 +31,9 @@ const Home = () => {
           language,
           page: 3,
         });
-        setMedias(Array.isArray(data) ? data : data.results || []);
+
+        const items = Array.isArray(data) ? data : data.results || [];
+        setMedias(items.slice(0, 20));
       } catch (err) {
         console.error("Erro ao buscar filmes:", err);
       }
@@ -59,25 +62,24 @@ const Home = () => {
     fetchRecommendations();
   }, []);
 
-
   return (
     <div className="Home">
       <Header pageType={pageType} timeWindow={timeWindow} page={1} />
 
       <main>
         <section className="home-main-section">
-          <ChannelSection/>
-          
+          <ChannelSection />
+          <GrandPosterCarousel movies={medias} language={language} />
           {/* <BackdropSlider
             sectionTitle={componentsLang.recommendedMovies2}
             medias={mediasRecommendations}
           /> */}
 
-          <PosterSlider
+          {/* <PosterSlider
             sectionTitle={originalsAndExclusives}
             medias={medias}
             language={language}
-          />
+          /> */}
 
           {/* <SlideDistributor
             language={language}
@@ -87,6 +89,8 @@ const Home = () => {
           /> */}
         </section>
       </main>
+
+      <div className="app-background" />
     </div>
   );
 };

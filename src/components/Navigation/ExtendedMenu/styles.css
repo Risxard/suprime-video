@@ -7,7 +7,7 @@
     margin-left: -10px;
     margin-top: 0px;
     top: 60px;
-    left: 0;
+    right: 0;
     box-shadow: rgba(0, 0, 0, 0.3) 0px 2px 15px;
     visibility: hidden;
     list-style: none;
@@ -116,9 +116,15 @@
 
 }
 
+@media (min-width: 480px) {
+    .expand-menu-list-container {
+        left: 0;
+        right: inherit;
+    }
+}
 @media (min-width: 768px) {
-
     .extendedMenu {
         display: none;
+
     }
 }
