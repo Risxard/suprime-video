@@ -9,7 +9,7 @@ import CardLabel from "./assets/card-label";
 const GrandPosterCarouselItem = ({ movie, language, top10mode, topNumber }) => {
   const [posterAndLogo, setPosterAndLogo] = useState({});
 
-  const image_path = "https://image.tmdb.org/t/p/original";
+  const image_path = "https://image.tmdb.org/t/p/w500";
 
   useEffect(() => {
     const fetchLogo = async () => {

@@ -1,3 +1,43 @@
+footer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #0e0b14;
+    z-index: 1;
+    margin-top: 100px;
+}
+
+.Login footer {
+    background: white;
+    padding-top: 28px;
+    padding-bottom: 28px;
+
+    padding-inline: 40px;
+}
+.Login footer .footer-logo{
+    display: none;
+}
+
+.Login footer .footer-container ul {
+    width: 100%;
+    max-width: none;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.Login footer .footer-container ul li a,
+.footer-text,
+.Rights
+{
+    color: rgb(95 97 102) !important;
+}
+
+.Login footer .footer-container ul li:hover a {
+    color: rgb(0, 0, 0) !important;
+}
+
+
 .footer-container {
     display: flex;
     flex-direction: column;
@@ -19,7 +59,8 @@
     height: 38px;
 
 }
-.footer-logo a img{
+
+.footer-logo a img {
     width: 100%;
     height: 100%;
 }
@@ -35,7 +76,7 @@
     list-style: none;
 
     font-family: 'Inspire-Roman', sans-serif;
-    font-size: 12px;
+    font-size: 14px;
     letter-spacing: -.1px;
     line-height: 1.5;
 }

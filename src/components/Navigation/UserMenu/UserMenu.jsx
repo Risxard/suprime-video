@@ -117,7 +117,7 @@ const UserMenuChildren = ({ currentProfileData }) => {
           <p>{help}</p>
         </a>
       </li>
-      <li className="nav-menu-item nopic">
+      <li className="nav-menu-item nopic" onClick={() => loggout()}>
         <a href="">
           <p>{signOut}</p>
         </a>

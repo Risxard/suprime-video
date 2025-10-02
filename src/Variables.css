@@ -17,6 +17,9 @@
     --dv-card-gap-number: calc(var(--dv-card-number) - 0.5);
 
     --dv-packshot-width: calc((var(--dv-screen-width) - var(--inner-width)*2 - var(--backdrop-gap-slider)*var(--dv-card-gap-number))/var(--dv-card-number)*1);
+
+
+
 }
 
 

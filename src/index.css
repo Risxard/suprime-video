@@ -287,15 +287,7 @@ body, .hero-carousel-container-text {
     /* kerning + ligatures */
 }
 
-footer {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background: #0e0b14;
-    z-index: 1;
-    margin-top: 100px;
-}
+
 
 #InfiniteCheck {
     display: flex;

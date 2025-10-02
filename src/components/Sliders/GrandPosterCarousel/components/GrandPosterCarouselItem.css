@@ -138,6 +138,7 @@
     top: 30%;
     border-radius: 4px;
     pointer-events: none;
+    
     background: linear-gradient(to top,
             rgba(0, 0, 0, 1) 0%,
 
@@ -146,6 +147,7 @@
             rgba(0, 0, 0, 0.7) 60%,
 
             rgba(0, 0, 0, 0) 100%);
+
     z-index: 2;
 }
 

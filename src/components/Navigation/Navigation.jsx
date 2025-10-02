@@ -3,7 +3,7 @@ import React, { useEffect, useState, useRef } from "react";
 import "./Navigation.css";
 import Pesquisa from "./Search/SearchDropDown.jsx";
 import UserMenu from "./UserMenu/UserMenu";
-import LogoIcon from "../../assets/Logo.svg";
+
 import logo from "../../assets/acaiwaveLogo.png";
 import acaiWaveTitle from "../../assets/acaiWaveTitle.png";
 import SearchComponent from "./Search/SearchDropDown.jsx";

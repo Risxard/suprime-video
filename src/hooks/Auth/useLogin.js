@@ -16,7 +16,7 @@ const useLogin = () => {
 
       if (authUser) {
         const user = authUser.user;
-
+        console.log(email, password);
         if (!user.emailVerified) {
           await sendEmailVerificationLink(user);
           await auth.signOut();
@@ -25,9 +25,7 @@ const useLogin = () => {
         }
 
         const token = user.accessToken;
-
-
-
+        
 
         await getAllProfiles(dispatch);
         dispatch(loginSuccess({ token, user }));

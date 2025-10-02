@@ -75,72 +75,58 @@ function SignIn() {
   };
 
   return (
-    <form className="Register-Container" onSubmit={handleSubmit}>
-      <span className="reg-box-label">
-        <p>{emailAdress}</p>
-      </span>
-      <div className="reg-box">
-        <input
-          className="name-input"
-          type="email"
-          autoComplete="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
+<div className="login-container">
+      <div className="login-box">
+        {/* Logo */}
+        <h1 className="login-logo">
+          <span className="my">My</span>
+          <span className="disney">Disney</span>
+        </h1>
 
-        <span
-          className={`input-inner-Btn clearInput-Btn ${
-            isEmailActive && "active"
-          }`}
-          onClick={clearInput()}
-        >
-          <X className="inputIcons" />
-        </span>
-      </div>
-      {errors.email && <p className="error-message">{errors.email}</p>}
-
-      <span className="reg-box-label">
-        <p>{loginPage.password}</p>
-      </span>
-      <div className="reg-box">
-        <input
-          className="name-input"
-          type={showPassword ? "text" : "password"}
-          value={password}
-          autoComplete="new-password"
-          onChange={(e) => setPassword(e.target.value)}
-        />
-
-        <span className="input-inner-Btn" onClick={handleShowPassword}>
-          {showPassword === true ? (
-            <Eye className="inputIcons" />
-          ) : (
-            <EyeOff className="inputIcons" />
-          )}
-        </span>
-      </div>
-      {errors.password && <p className="error-message">{errors.password}</p>}
-      {error && (
-        <p className="error-message">
-          Credenciais inválidas. Verifique seu e-mail e senha.
+        {/* Título */}
+        <h2 className="login-title">Digite o seu e-mail para continuar</h2>
+        <p className="login-subtitle">
+          Entre no Disney+ com a sua conta MyDisney. Se você não tiver conta, precisará criar uma.
         </p>
-      )}
-      <div className="reg-btns-container">
-        <button type="submit" className="reg-btn">
-          {loading ? loginSignInBtn : loginEnterBtn}
-        </button>
+
+        {/* Formulário */}
+        <form onSubmit={handleSubmit} className="login-form">
+          <input
+            type="email"
+            placeholder="E-mail"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+            className="login-input"
+          />
+          <button type="submit" className="login-button">
+            Continuar
+          </button>
+        </form>
+
+        {/* Rodapé */}
+        <div className="login-footer">
+          <p className="footer-title">
+            O Disney+ faz parte das empresas do grupo Walt Disney
+          </p>
+          <p className="footer-text">
+            Com o MyDisney, você pode entrar em serviços e experiências das empresas do grupo Walt
+            Disney, como Disney+, ESPN, Walt Disney World e{" "}
+            <a href="#">muito mais</a>.
+          </p>
+
+          <div className="footer-logos">
+            <span>Disney</span>
+            <span>ABC</span>
+            <span>ESPN</span>
+            <span>Marvel</span>
+            <span>Star Wars</span>
+            <span>Hulu</span>
+            <span>National Geographic</span>
+          </div>
+        </div>
       </div>
-
-      <span className="signup-link">
-        <Link to="/register">
-          {dontHaveAccount} <span>{signUp}</span>
-        </Link>
-      </span>
-
-      <span className="forgetpassword">
-        <Link to="./forgot">{forgotPassword}</Link>
-      </span>
-    </form>
+    </div>
   );
 }
 

@@ -1,7 +1,7 @@
 import "./styles.css";
 import DropdownContainer from "../Layout/DropdownContainer/Index";
 import { Categorieschildren } from "../Categories/CategoriesDropDown";
-import suprimeTitle from "../../../assets/suprime-titles.png";
+
 import { Link, useLocation, useMatch } from "react-router-dom";
 import SubscriptionsSvg from "../Subscription/SubscriptionsSvg";
 import { useEffect, useState, useRef } from "react";
@@ -127,11 +127,7 @@ export const HamMenuChildren = () => {
 
       <div className="dropdown-content-layout">
         <p>{subscriptions}</p>
-        <span className="suprime-logo-titles">
-          <div>
-            <img src={suprimeTitle} alt="" />
-          </div>
-        </span>
+
 
         <span className="subscription-mobile">
           <Link to="/home">

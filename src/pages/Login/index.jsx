@@ -1,41 +1,87 @@
-import React, { useState, useEffect } from "react";
-
-import "./styles.css";
-import logo from '../../assets/acaiwaveLogo.png';
-import SignIn from "../../Components/AuthComponents/SignIn";
-import background from "../../assets/background.jpg";
-import Footer from "../../components/Footer/Footer";
+import { useState } from "react";
 import { Link } from "react-router-dom";
-import { useTranslation } from "react-i18next";
+import EmailSection from "./components/EmailSection";
+import PasswordSection from "./components/./PasswordSection";
+import LoaderOverlooping from "./assets/LoaderOverlooping";
+import LoginDialog from "./components/LoginDialog";
+import Footer from "../../components/Footer/Footer";
+import useLogin from "../../hooks/Auth/useLogin";
+import logo from "../../assets/acaiwaveLogo.png";
+import logoblack from "../../assets/acaiwaveLogoBlack.png";
+
+import './styles.css';
+
 function Login() {
-  const { t } = useTranslation();
-  const loginPage = t("loginPage");
-  const signUpNow = t("signUpNow");
-  const { title, subtitle } = loginPage;
+  const [email, setEmail] = useState("");
+  const [step, setStep] = useState("email");
+  const [showDialog, setShowDialog] = useState(false);
+  const { login, loading } = useLogin();
+
+
+  const handleEmailSubmit = (emailInput) => {
+    setEmail(emailInput);
+    setStep("password");
+  };
+
+  // Usuário envia senha
+  const handlePasswordSubmit = async (passwordInput) => {
+    try {
+
+      console.log('chegou aqui')
+      await login(email, passwordInput);
+
+    } catch (err) {
+      console.error(err);
+
+      setShowDialog(true);
+    }
+  };
+
+
+  const handleDialogConfirm = () => {
+    setShowDialog(false);
+    setStep("signup");
+  };
+
+  const handleDialogCancel = () => {
+    setShowDialog(false);
+    setEmail("");
+    setStep("email");
+  };
 
   return (
     <div className="Login">
-      <nav className="NavBar-Login">
-        <Link to="/home" className="NavLogo">
-          <img src={logo} alt="acaiwaveplus logo" />
-        </Link>
-        <Link to="./register" className="signUpNow">
-          {signUpNow}
-        </Link>
-      </nav>
+      {showDialog && (
+        <LoginDialog
+          email={email}
+          onConfirm={handleDialogConfirm}
+          onCancel={handleDialogCancel}
+        />
+      )}
 
-      <div className="Login-Intro">
-        <h2>{title}</h2>
-        <p>{subtitle}</p>
-      </div>
-      <div className="Login-Background">
-        <img src={background} alt="background" />
-      </div>
-      <div className="Intro-Container">
-        <div className="H1-Container"></div>
-        <SignIn />
-      </div>
+      <div className="login-container">
+        <Link to="/" className="login-logo">
+          <img src={logo} alt="logo" />
+        </Link>
 
+        <div className="login-box">
+          <Link to="/" className="login-logo-black">
+            <img src={logoblack} alt="logo black" />
+          </Link>
+
+          {loading ? (
+            <LoaderOverlooping />
+          ) : step === "email" ? (
+            <EmailSection onSubmit={handleEmailSubmit} />
+          ) : step === "password" ? (
+            <PasswordSection email={email} onSubmit={handlePasswordSubmit} />
+          ) : (
+            // <SignUpSection email={email} />
+            null
+          )}
+          
+        </div>
+      </div>
       <Footer />
     </div>
   );

@@ -1,6 +1,12 @@
 import { useEffect, useState } from "react";
 
-import { image_path } from "../../../../utils/sliderMaps";
+import {
+  image_path_154,
+  image_path_342,
+  image_path_500,
+  image_path_780,
+  image_path_original,
+} from "../../../../utils/sliderMaps";
 import "./HeroCarouselItem.css";
 import { tmdbService } from "../../../../services/tmdb/tmdbServices";
 import MediaClass from "../../../MediaClass/MediaClass";
@@ -45,7 +51,6 @@ const HeroCarouselItem = ({ movie, language, active }) => {
     ) || []
   ).slice(0, 3);
 
-
   return (
     <div className={`${active ? "active" : ""} hero-carousel-Item`}>
       <NavLink to={`/detail/${movie.media_type}/${movie.id}`}>
@@ -54,10 +59,10 @@ const HeroCarouselItem = ({ movie, language, active }) => {
             <picture>
               <source
                 media="(max-width: 479px)"
-                srcSet={`${image_path}${posterAndLogo?.poster?.file_path}`}
+                srcSet={`${image_path_780}${posterAndLogo?.poster?.file_path}`}
               />
               <img
-                src={`${image_path}${movie.backdrop_path}`}
+                src={`${image_path_original}${movie.backdrop_path}`}
                 alt={movie.title || ""}
               />
             </picture>
@@ -66,9 +71,9 @@ const HeroCarouselItem = ({ movie, language, active }) => {
           <div className="hero-carousel-info-container">
             <div className="hero-carousel-info-content">
               <div className="hero-carousel-info-content-logo">
-                {posterAndLogo?.logo?.file_path  ? (
+                {posterAndLogo?.logo?.file_path ? (
                   <img
-                    src={`${image_path}${posterAndLogo?.logo?.file_path}`}
+                    src={`${image_path_342}${posterAndLogo?.logo?.file_path}`}
                     alt={`${movie.title} logo`}
                   />
                 ) : (
