@@ -65,15 +65,11 @@
   "navigation": {
     "menu": {
       "home": "Início",
+      "search": "Pesquisa",
+      "myList": "Minha Lista",
       "movies": "Filmes",
       "tvShows": "Séries",
-      "sports": "Esportes",
-      "liveTv": "TV ao vivo",
-      "subscriptions": "Assinaturas",
-      "categories": "Categorias",
-      "myStuffs": "Minha área",
-      "browser": "Explorar",
-      "browseAll": "Explorar tudo"
+      "originals": "Originais"
     },
     "search": {
       "placeholder": "Buscar",
@@ -111,10 +107,10 @@
     },
     "accountMenu": {
       "yourAccount": {
-        "title": "Sua conta",
+        "editProfile": "Editar perfil",
+        "appSettings": "Configuração do Aplicativo",
+        "account": "Conta",
         "help": "Ajuda",
-        "watchAnywhere": "Assista onde quiser",
-        "AccountSettings": "configurações do Aplicativo",
         "signOut": "Sair"
       },
       "profiles": {
@@ -127,11 +123,19 @@
   },
   "footer": {
     "links": {
-      "termsAndPrivacy": "Termos e Aviso de Privacidade",
-      "feedback": "Envie-nos feedback",
-      "help": "Ajuda"
+      "privacyPolicy": "Política de Privacidade",
+      "termsOfUse": "Termos de Uso do AçaiWave+",
+      "brazilPrivacyNotice": "Aviso de Direitos de Privacidade do Brasil",
+      "cookiesPolicy": "Política de Cookies",
+      "dataProtectionBrazil": "Proteção de Dados no Brasil",
+      "subscriptionAgreement": "Contrato de Assinatura",
+      "help": "Ajuda",
+      "supportedDevices": "Dispositivos Compatíveis",
+      "aboutAcaiwaveplus": "Sobre o AçaiWave+",
+      "customAds": "Anúncios Personalizados",
+      "feedback": "Envie-nos Feedback"
     },
-    "copyright": "© 2024-2025, Richardson Souza, Inc. ou suas afiliadas"
+    "copyright": "© 2025, Richardson Souza, Inc. ou suas afiliadas"
   },
   "settingsPage": {
     "title": "Conta e configurações",
@@ -157,7 +161,7 @@
         "title": "Excluir minha conta",
         "description": "Todos os seus dados serão deletados permanentemente do Açaiwave+.",
         "deleteButton1": "Excluir conta",
-        "confirmDelete" :{
+        "confirmDelete": {
           "title": "Excluir conta",
           "description": "Você tem certeza de que deseja excluir sua conta? Esta ação é irreversível e todos os seus dados serão perdidos!",
           "confirmButton": "Sim, excluir minha conta",

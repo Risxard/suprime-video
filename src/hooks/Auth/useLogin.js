@@ -26,6 +26,9 @@ const useLogin = () => {
 
         const token = user.accessToken;
 
+
+
+
         await getAllProfiles(dispatch);
         dispatch(loginSuccess({ token, user }));
       }

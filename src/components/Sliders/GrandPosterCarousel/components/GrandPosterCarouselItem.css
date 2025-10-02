@@ -252,6 +252,18 @@
     max-width: 200px;
 }
 
+.grandPoster-info-content-logo-title {
+    font-family: 'Inspire-Heavy', sans-serif;
+
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: .11px;
+    line-height: 1.6;
+
+    text-align: center;
+
+    width: 100%;
+}
 
 
 

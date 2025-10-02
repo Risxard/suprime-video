@@ -45,6 +45,7 @@ const HeroCarouselItem = ({ movie, language, active }) => {
     ) || []
   ).slice(0, 3);
 
+
   return (
     <div className={`${active ? "active" : ""} hero-carousel-Item`}>
       <NavLink to={`/detail/${movie.media_type}/${movie.id}`}>
@@ -65,8 +66,7 @@ const HeroCarouselItem = ({ movie, language, active }) => {
           <div className="hero-carousel-info-container">
             <div className="hero-carousel-info-content">
               <div className="hero-carousel-info-content-logo">
-                {posterAndLogo?.logo?.file_path &&
-                posterAndLogo?.logo?.iso_3166_1 == null ? (
+                {posterAndLogo?.logo?.file_path  ? (
                   <img
                     src={`${image_path}${posterAndLogo?.logo?.file_path}`}
                     alt={`${movie.title} logo`}

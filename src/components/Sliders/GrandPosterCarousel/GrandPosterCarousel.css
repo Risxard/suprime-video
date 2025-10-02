@@ -44,11 +44,12 @@
 }
 
 .grandPosterNextBtn,
-.grandPosterPrevBtn{
+.grandPosterPrevBtn {
     opacity: 0;
 }
+
 .grandPosterNextBtn:hover,
-.grandPosterPrevBtn:hover{
+.grandPosterPrevBtn:hover {
     cursor: pointer;
     opacity: 1;
 }
@@ -105,9 +106,20 @@
 
 .grandPosterPrevBtn:disabled,
 .grandPosterNextBtn:disabled {
-  opacity: 0;
-  cursor: inherit;
+    opacity: 0;
+    cursor: inherit;
 
+}
+
+
+
+.section-title {
+    font-family: 'Inspire-Heavy', sans-serif;
+    font-size: 20px;
+    letter-spacing: .11px;
+    line-height: 1.4;
+
+    color: #dbdcde;
 }
 
 

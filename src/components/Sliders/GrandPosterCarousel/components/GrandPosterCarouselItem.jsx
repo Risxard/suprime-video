@@ -4,8 +4,9 @@ import { tmdbService } from "../../../../services/tmdb/tmdbServices";
 import "./GrandPosterCarouselItem.css";
 import MediaClass from "../../../MediaClass/MediaClass";
 import { NavLink } from "react-router-dom";
+import CardLabel from "./assets/card-label";
 
-const GrandPosterCarouselItem = ({ movie, language }) => {
+const GrandPosterCarouselItem = ({ movie, language, top10mode, topNumber }) => {
   const [posterAndLogo, setPosterAndLogo] = useState({});
 
   const image_path = "https://image.tmdb.org/t/p/original";
@@ -44,11 +45,15 @@ const GrandPosterCarouselItem = ({ movie, language }) => {
     ) || []
   ).slice(0, 3);
 
+
+
   return (
     <div className="grandPoster-carousel-item">
       <NavLink to={`/detail/${movie.media_type}/${movie.id}`}>
         <div className="grandPoster-carousel-item-container">
           <div className="grandPoster-carousel-item-image">
+            {top10mode && <CardLabel topNumber={topNumber} />}
+
             {posterAndLogo?.poster?.file_path ? (
               <img
                 src={`${image_path}${posterAndLogo?.poster?.file_path}`}
@@ -59,13 +64,13 @@ const GrandPosterCarouselItem = ({ movie, language }) => {
             <div className="grandPoster-carousel-item-info">
               <div className="grandPoster-carousel-item-info-logo">
                 {posterAndLogo?.logo?.file_path &&
-                posterAndLogo?.logo?.iso_3166_1 == null ? (
+                posterAndLogo?.poster?.iso_639_1 == "xx" ? (
                   <img
                     src={`${image_path}${posterAndLogo?.logo?.file_path}`}
                     alt={`${movie.title} logo`}
                   />
                 ) : (
-                  <div className="hero-carousel-info-content-logo-title">
+                  <div className="grandPoster-info-content-logo-title">
                     {movie.title || movie.name}
                   </div>
                 )}
@@ -76,9 +81,12 @@ const GrandPosterCarouselItem = ({ movie, language }) => {
                   id={movie.id}
                   mediaType={movie.media_type}
                 />
+
                 <span className="grandPoster-carousel-text-content">
-                  {release_date && `${dateConverter(release_date)} • `}
-                  {genreNames.join(", ")}
+                  {release_date &&
+                    `${dateConverter(release_date)} ${!top10mode ? "•" : ""} `}
+
+                  {!top10mode && genreNames.join(", ")}
                 </span>
               </div>
             </div>

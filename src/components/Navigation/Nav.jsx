@@ -1,5 +1,5 @@
 import { NavLink, Link } from "react-router-dom";
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect } from "react";
 import "./Navigation.css";
 import UserMenu from "./UserMenu/UserMenu";
 import logo from "../../assets/acaiwaveLogo.png";
@@ -9,19 +9,15 @@ import i18n from "../../i18n.js";
 import BrowseSvg from "./Icons/BrowseSvg.jsx";
 import WatchlistSvg from "./Icons/WatchlistSvg.jsx";
 import TvSvg from "./Icons/TvSvg.jsx";
-
 import StarSvg from "./Icons/StarSvg.jsx";
 import MoviesSvg from "./Icons/MoviesSvg.jsx";
 import ExtendedMenu from "./ExtendedMenu/index.jsx";
 
 var Nav = () => {
-  const language = i18n.language;
-
   const { t } = useTranslation();
 
   const navigationMenu = t("navigation.menu");
-  const { home, movies, tvShows, sports, liveTv, subscriptions } =
-    navigationMenu;
+  const { home, search, myList, movies, tvShows, originals } = navigationMenu;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -52,54 +48,43 @@ var Nav = () => {
             <ul className="NavigationLinks" id="nav-links">
               <li>
                 <Link to="/home">
-                  <span>
-                    <HomeSvg />
-                  </span>
+                  <span><HomeSvg /></span>
                   <p>{home}</p>
                 </Link>
               </li>
 
               <li>
                 <Link to="/search/kw=batman">
-                  <span>
-                    <BrowseSvg />
-                  </span>
-                  <p>Pesquisa</p>
+                  <span><BrowseSvg /></span>
+                  <p>{search}</p>
                 </Link>
               </li>
+
               <li>
-                <Link to="/tv-series">
-                  <span>
-                    <WatchlistSvg />
-                  </span>
-                  <p>Minha lista</p>
+                <Link to="/my-list">
+                  <span><WatchlistSvg /></span>
+                  <p>{myList}</p>
                 </Link>
               </li>
 
               <li>
                 <Link to="/movies">
-                  <span>
-                    <MoviesSvg />
-                  </span>
+                  <span><MoviesSvg /></span>
                   <p>{movies}</p>
                 </Link>
               </li>
 
               <li>
                 <Link to="/tv-series">
-                  <span>
-                    <TvSvg />
-                  </span>
+                  <span><TvSvg /></span>
                   <p>{tvShows}</p>
                 </Link>
               </li>
 
               <li>
-                <Link to="/tv-series">
-                  <span>
-                    <StarSvg />
-                  </span>
-                  <p>Originais</p>
+                <Link to="/originals">
+                  <span><StarSvg /></span>
+                  <p>{originals}</p>
                 </Link>
               </li>
             </ul>
@@ -107,7 +92,7 @@ var Nav = () => {
             <ExtendedMenu />
           </div>
 
-          <UserMenu></UserMenu>
+          <UserMenu />
         </div>
       </div>
     </nav>

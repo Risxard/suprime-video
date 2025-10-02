@@ -62,7 +62,7 @@ const UserMenuChildren = ({ currentProfileData }) => {
 
   const navigationAccountMenu = t("navigation.accountMenu");
   const { yourAccount, profiles } = navigationAccountMenu;
-
+  const { editProfile, appSettings, account, help, signOut } = yourAccount;
 
   return (
     <div className="nav-menu-list-itens">
@@ -99,27 +99,27 @@ const UserMenuChildren = ({ currentProfileData }) => {
 
       <li className="nav-menu-item nopic">
         <a href="">
-          <p>{profiles.manageProfiles}</p>
+          <p>{editProfile}</p>
         </a>
       </li>
       <li className="nav-menu-item nopic">
         <a href="">
-          <p>Configuração do Aplicativo</p>
+          <p>{appSettings}</p>
         </a>
       </li>
       <li className="nav-menu-item nopic">
         <a href="">
-          <p>Conta</p>
+          <p>{account} </p>
         </a>
       </li>
       <li className="nav-menu-item nopic">
         <a href="">
-          <p>{yourAccount.help}</p>
+          <p>{help}</p>
         </a>
       </li>
       <li className="nav-menu-item nopic">
         <a href="">
-          <p>{yourAccount.signOut}</p>
+          <p>{signOut}</p>
         </a>
       </li>
     </div>

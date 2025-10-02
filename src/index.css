@@ -245,7 +245,7 @@ body {
     padding: 0;
 }
 
-.app-background{
+.app-background {
     background-color: rgb(23, 23, 27);
     position: fixed;
     height: 100vh;
@@ -293,10 +293,8 @@ footer {
     flex-direction: column;
     align-items: center;
     background: #0e0b14;
-    padding-block: 24px;
-    padding-inline: 24px;
-
-    z-index: 10;
+    z-index: 1;
+    margin-top: 100px;
 }
 
 #InfiniteCheck {
@@ -322,7 +320,7 @@ footer {
 }
 
 main {
-    padding-bottom: 600px;
+
     padding-inline: var(--inner-width);
     overflow: hidden;
 }

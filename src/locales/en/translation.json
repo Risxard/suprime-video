@@ -1,15 +1,15 @@
 {
     "signUpNow": "Sign Up Now",
     "loginPage": {
-        "title": "Sign In",
+        "title": "Login",
         "subtitle": "Enter your email address and password to get started. If you are already an Açaíwave+ subscriber, use the email associated with your account.",
         "emailAdress": "Email Address",
         "password": "Password",
-        "loginEnterBtn": "Sign In",
+        "loginEnterBtn": "Login",
         "loginSignInBtn": "Signing In...",
         "dontHaveAccount": "Don't have an account?",
         "signUp": "Sign Up",
-        "forgotPassword": "Forgot password?",
+        "forgotPassword": "Forgot Password?",
         "errors": {
             "emailInvalid": "Invalid email address",
             "emailRequired": "Email is required",
@@ -21,7 +21,7 @@
     "registerPage": {
         "title": "Register",
         "subTitle": "Enter your name, email address, and password to create your account.",
-        "firstName": "First Name",
+        "firstName": "Name",
         "yourEmail": "Your Email",
         "yourPassword": "Your Password",
         "confirmPassword": "Confirm Your Password",
@@ -40,12 +40,12 @@
     },
     "forgotPasswordPage": {
         "introMessage1": {
-            "title": "Password Reset Email Sent!",
-            "subTitle": "If there is a registered email, you will receive a link to reset your password."
+            "title": "Password reset email sent!",
+            "subTitle": "If an email is registered, you will receive a link to reset your password."
         },
         "introMessage2": {
             "title": "Recover Password",
-            "subTitle": "Enter your registered email and, if there is a registered email, you will receive a link to reset your password."
+            "subTitle": "Enter your registered email and, if an email is registered, you will receive a link to reset your password."
         },
         "emailAdress": "Email Address",
         "sendBtn": "Send",
@@ -59,21 +59,17 @@
     },
     "emailVerificationPage": {
         "title": "Verification Email Sent!",
-        "subTitle": "We have sent a verification link to your email. Please check your inbox.",
-        "subTitle2": "Didn't find the email? Try checking your spam or junk folder."
+        "subTitle": "We sent a verification link to your email. Please check your inbox.",
+        "subTitle2": "Didn't receive the email? Try checking your spam or junk folder."
     },
     "navigation": {
         "menu": {
             "home": "Home",
+            "search": "Search",
+            "myList": "My List",
             "movies": "Movies",
             "tvShows": "TV Shows",
-            "sports": "Sports",
-            "liveTv": "Live TV",
-            "subscriptions": "Subscriptions",
-            "categories": "Categories",
-            "myStuffs": "My Stuff",
-            "browser": "Browse",
-            "browseAll": "Browse All"
+            "originals": "Originals"
         },
         "search": {
             "placeholder": "Search",
@@ -97,7 +93,7 @@
             "featuredCollections": {
                 "title": "Featured Collections",
                 "madeForYou": "Made for You",
-                "newAndUpcoming": "New and Upcoming",
+                "newAndUpcoming": "New & Upcoming",
                 "homePremiere": "Home Premiere",
                 "criticallyAcclaimed": "Critically Acclaimed",
                 "lgbtqiap": "LGBTQIAP+",
@@ -106,20 +102,20 @@
         },
         "yourAccount": {
             "all": "All",
-            "watchlist": "Watchlist",
+            "watchlist": "Your List",
             "purchasesRentals": "Purchases & Rentals"
         },
         "accountMenu": {
             "yourAccount": {
-                "title": "Your Account",
+                "editProfile": "Edit Profile",
+                "appSettings": "App Settings",
+                "account": "Account",
                 "help": "Help",
-                "watchAnywhere": "Watch Anywhere",
-                "AccountSettings": "Account & Settings",
                 "signOut": "Sign Out"
             },
             "profiles": {
                 "title": "Profiles",
-                "addNew": "Add New",
+                "addNew": "Add Profile",
                 "manageProfiles": "Manage Profiles",
                 "learnMore": "Learn More"
             }
@@ -127,16 +123,24 @@
     },
     "footer": {
         "links": {
-            "termsAndPrivacy": "Terms and Privacy Notice",
-            "feedback": "Send us Feedback",
-            "help": "Help"
+            "privacyPolicy": "Privacy Policy",
+            "termsOfUse": "AçaiWave+ Terms of Use",
+            "brazilPrivacyNotice": "Brazil Privacy Notice",
+            "cookiesPolicy": "Cookies Policy",
+            "dataProtectionBrazil": "Data Protection in Brazil",
+            "subscriptionAgreement": "Subscription Agreement",
+            "help": "Help",
+            "supportedDevices": "Supported Devices",
+            "aboutAcaiwaveplus": "About AçaiWave+",
+            "customAds": "Personalized Ads",
+            "feedback": "Send Feedback"
         },
-        "copyright": "© 2024-2025, Richardson Souza, Inc. or its affiliates"
+        "copyright": "© 2025, Richardson Souza, Inc. or its affiliates"
     },
     "settingsPage": {
         "title": "Account & Settings",
         "profileDescription": "The following information applies to the profile of",
-        "successMessage": "Your setting has been saved",
+        "successMessage": "Your settings have been saved",
         "errorMessage": "Sorry, an error occurred. Please try again later.",
         "labels": {
             "yourAccount": "Your Account",
@@ -146,7 +150,7 @@
         "yourAccount": {
             "changePassword": {
                 "title": "Change Password",
-                "description": "An email with a password reset link will be sent to the email registered to your account.",
+                "description": "An email with a password reset link will be sent to the account's registered email.",
                 "button": "Change Password",
                 "statusMessages": {
                     "sendingBtn": "Sending...",
@@ -169,8 +173,8 @@
         },
         "playback": {
             "playbackReprodution": {
-                "title": "Auto-Playing Trailers",
-                "description": "Automatically play trailers while browsing the catalog using a web browser."
+                "title": "Autoplay Trailers",
+                "description": "Automatically play trailers while browsing the catalog on a web browser."
             }
         },
         "language": {
@@ -183,26 +187,26 @@
                 "title": "Profile Language",
                 "description": "Change preferred audio and subtitle languages for personalized recommendations.",
                 "button": "Change",
-                "saveButton": "Save Changes",
+                "saveButton": "Save",
                 "profileLanguage": "Profile Language",
-                "notFullySupported": " Not fully supported yet, try English or Portuguese if you experience issues. "
+                "notFullySupported": "Not fully supported yet, try English or Portuguese if issues occur."
             }
         }
     },
     "watchlistPage": {
-        "title": "Watchlist",
+        "title": "Your List",
         "buttons": {
             "all": "All",
             "moviesLang": "Movies",
             "tvShowsLang": "TV Shows",
-            "mostRecent": "Most Recent Addition",
+            "mostRecent": "Most Recent",
             "orderAz": "Title A-Z",
             "orderZa": "Title Z-A"
         },
         "emptyMessage": {
-            "title": "Your Watchlist is Empty",
-            "description": "Add <0>TV shows</0> and <1>movies</1> you want to watch later by clicking Add to Watchlist.",
-            "button": "Browse All"
+            "title": "Your list is empty",
+            "description": "Add <0>series</0> and <1>movies</1> you want to watch later by clicking Add to List.",
+            "button": "Explore All"
         }
     },
     "searchPage": {
@@ -228,7 +232,7 @@
             "related": "Related",
             "details": "Details"
         },
-        "costumersAlsoWatch": "Customers Also Watched",
+        "costumersAlsoWatch": "Customers also watched",
         "moreInfo": {
             "title": "Learn More",
             "audioLanguage": {
@@ -244,7 +248,7 @@
                 "title": "Producers"
             },
             "starring": {
-                "title": "Starring"
+                "title": "Cast"
             },
             "studio": {
                 "title": "Studio"
@@ -255,7 +259,7 @@
             },
             "feedback": {
                 "title": "Feedback",
-                "sendFeedback": "Send us Feedback"
+                "sendFeedback": "Send Feedback"
             },
             "support": {
                 "title": "Support",
@@ -275,19 +279,19 @@
         },
         "newProfile": {
             "title": "New Profile",
-            "changeImageProfile": "Change Profile Image",
+            "changeImageProfile": "Change Profile Picture",
             "cancelButton": "Cancel",
             "saveButton": "Save Changes",
             "placeHolderNameInput": "Enter Name"
         },
         "editProfile": {
             "title": "Edit Profile",
-            "changeImageProfile": "Change Profile Image",
+            "changeImageProfile": "Change Profile Picture",
             "cancelButton": "Cancel",
             "saveButton": "Save Changes",
             "placeHolderNameInput": "Enter Name",
             "profilePinAndLocks": {
-                "title": "Profile PIN and Locks",
+                "title": "Profile PIN & Locks",
                 "description": "Lock your profile with a profile PIN.",
                 "button": "Manage"
             },
@@ -302,7 +306,7 @@
                 "button": "Remove",
                 "removeProfileModal": {
                     "title": "Remove Profile",
-                    "description": "Removing this profile from Açaíwave+ will permanently delete it from your account. This action cannot be undone.",
+                    "description": "Removing this profile from Açaíwave+ will permanently delete it from your account. This action is irreversible.",
                     "cancelButton": "Keep Profile",
                     "removeButton": "Remove Profile"
                 }
@@ -321,45 +325,5 @@
             "popularMovies": "Popular Movies",
             "popularTvShows": "Popular TV Shows"
         }
-    },
-    "errorPage": {
-        "title": "There's nothing here...",
-        "description": "There's nothing at this web address. Let's find something great to watch instead.",
-        "button": "Go to Açaíwave+ Home"
-    },
-    "buttons": {
-        "radioButtons": {
-            "on": "On",
-            "off": "Off"
-        },
-        "optionsButtons": {
-            "watchlist": "Watchlist",
-            "details": "Details",
-            "hideMediaMovie": "Hide this Movie",
-            "hideMediaSerie": "Hide this Series",
-            "play1": "Watch Now",
-            "play2": "Play",
-            "trailer": "Watch Trailer",
-            "download": "Download",
-            "like": "Like",
-            "dislike": "Not for Me",
-            "share": "Share"
-        }
-    },
-    "components": {
-        "includeWithAcaiwave": {
-            "title": "Included with Açaíwave+"
-        }
-    },
-    "sectionTitles": {
-        "bestOfTheWeek": "Best of the Week",
-        "recommendedSeries": "Series You’ll Love",
-        "recommendedSeries2": "Recommended Series",
-        "recommendedMovies": "Movies We Think You'll Like",
-        "recommendedMovies2": "Recommended Movies",
-        "recomendedTvAndSeries": "Best Series and Movies",
-        "originalsAndExclusives": "Featured Originals & Exclusives",
-        "top10MoviesTMDB": "Top 10 Movies on TMDB",
-        "top10TvShowsTMDB": "Top 10 TV Shows on TMDB"
     }
 }

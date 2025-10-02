@@ -1,7 +1,7 @@
 import BackdropSlider from "../components/Sliders/BackdropSlider/BackdropSlider.jsx";
 import PosterSlider from "../components/Sliders/PosterSlider/PosterSlider.jsx";
 
-export const image_path = "https://image.tmdb.org/t/p/original/";
+export const image_path = "https://image.tmdb.org/t/p/original";
 
 
 const backdropGenresMovie = [

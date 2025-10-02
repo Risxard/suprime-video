@@ -655,11 +655,7 @@ iframe {
     z-index: 10;
 }
 
-.info-details .SectionTitle {
-    margin-top: 40px;
-    height: auto;
-    padding-inline: 0rem;
-}
+
 
 .description-and-genres {
     display: flex;

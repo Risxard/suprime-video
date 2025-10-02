@@ -3,13 +3,17 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import "./GrandPosterCarousel.css";
 import GrandPosterCarouselItem from "./components/GrandPosterCarouselItem.jsx";
 
-const GrandPosterCarousel = ({ movies = [], language }) => {
+const GrandPosterCarousel = ({
+  movies = [],
+  language,
+  top10mode,
+  sectionTitle,
+}) => {
   const carouselRef = useRef(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const duration = 1000;
   const touchStartX = useRef(0);
   const touchEndX = useRef(0);
-
 
   const getCardWidth = () => {
     const el = carouselRef.current;
@@ -17,14 +21,12 @@ const GrandPosterCarousel = ({ movies = [], language }) => {
     return el.children[0].offsetWidth;
   };
 
-
   const getCardsPerView = () => {
     const el = carouselRef.current;
     if (!el || !el.firstElementChild) return 1;
     const styles = getComputedStyle(el.firstElementChild);
     return parseInt(styles.getPropertyValue("--card-caroulsel-number")) || 1;
   };
-
 
   const animateScrollTo = (target, callback) => {
     const el = carouselRef.current;
@@ -59,7 +61,6 @@ const GrandPosterCarousel = ({ movies = [], language }) => {
     const cardWidth = getCardWidth();
     const cardsPerView = getCardsPerView();
 
-
     const maxIndex = Math.ceil(movies.length / cardsPerView) - 1;
 
     if (index < 0) index = 0;
@@ -79,7 +80,6 @@ const GrandPosterCarousel = ({ movies = [], language }) => {
     scrollToIndex(activeIndex - 1);
   };
 
-
   const handleTouchStart = (e) => {
     touchStartX.current = e.touches[0].clientX;
   };
@@ -98,44 +98,58 @@ const GrandPosterCarousel = ({ movies = [], language }) => {
     }
   };
 
-  return (
-    <div className="grandPoster-carousel-Container">
-      <button
-        className="grandPosterPrevBtn"
-        onClick={scrollPrev}
-        disabled={activeIndex === 0}
-      >
-        <ChevronLeft color="#ffffff" />
-      </button>
 
-      <div
-        className="grandPoster-carousel"
-        onTouchStart={handleTouchStart}
-        onTouchMove={handleTouchMove}
-        onTouchEnd={handleTouchEnd}
-      >
-        <div className="grandPoster-carousel-list" ref={carouselRef}>
-          {movies.map((movie, index) => (
-            <GrandPosterCarouselItem
-              key={index}
-              movie={movie}
-              language={language}
-              className="grandPoster-carousel-item"
-            />
-          ))}
-        </div>
+
+
+  return (
+    <section>
+      
+      <div className="section-title">
+        <h4>{sectionTitle}</h4>
       </div>
 
-      <button
-        className="grandPosterNextBtn"
-        onClick={scrollNext}
-        disabled={
-          activeIndex >= Math.ceil(movies.length / getCardsPerView()) - 1
-        }
+      <div
+        className={`grandPoster-carousel-Container ${top10mode ? "top10" : ""}`}
       >
-        <ChevronRight color="#ffffff" />
-      </button>
-    </div>
+        <button
+          className="grandPosterPrevBtn"
+          onClick={scrollPrev}
+          disabled={activeIndex === 0}
+        >
+          <ChevronLeft color="#ffffff" />
+        </button>
+
+        <div
+          className="grandPoster-carousel"
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+        >
+          <div className="grandPoster-carousel-list" ref={carouselRef}>
+            {movies.map((movie, index) => (
+              <GrandPosterCarouselItem
+                key={index}
+                movie={movie}
+                language={language}
+                topNumber={index + 1}
+                top10mode={top10mode}
+                className="grandPoster-carousel-item"
+              />
+            ))}
+          </div>
+        </div>
+
+        <button
+          className="grandPosterNextBtn"
+          onClick={scrollNext}
+          disabled={
+            activeIndex >= Math.ceil(movies.length / getCardsPerView()) - 1
+          }
+        >
+          <ChevronRight color="#ffffff" />
+        </button>
+      </div>
+    </section>
   );
 };
 

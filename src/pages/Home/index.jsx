@@ -20,7 +20,7 @@ const Home = () => {
   const timeWindow = "day";
   const { t } = useTranslation();
   const componentsLang = t("sectionTitles");
-  const { originalsAndExclusives } = componentsLang;
+  const { originalsAndExclusives, top10MoviesTMDB } = componentsLang;
 
   useEffect(() => {
     const fetchTrending = async () => {
@@ -51,9 +51,9 @@ const Home = () => {
           language,
           page: 1,
         });
-        setMediasRecommendations(
-          Array.isArray(data) ? data : data.results || []
-        );
+
+        const items = Array.isArray(data) ? data : data.results || [];
+        setMediasRecommendations(items.slice(0, 10));
       } catch (err) {
         console.error("Erro ao buscar filmes:", err);
       }
@@ -69,7 +69,19 @@ const Home = () => {
       <main>
         <section className="home-main-section">
           <ChannelSection />
-          <GrandPosterCarousel movies={medias} language={language} />
+          <GrandPosterCarousel
+            movies={medias}
+            language={language}
+            top10mode={false}
+            sectionTitle={originalsAndExclusives}
+          />
+          <GrandPosterCarousel
+            movies={mediasRecommendations}
+            language={language}
+            top10mode={true}
+            sectionTitle={top10MoviesTMDB}
+          />
+
           {/* <BackdropSlider
             sectionTitle={componentsLang.recommendedMovies2}
             medias={mediasRecommendations}

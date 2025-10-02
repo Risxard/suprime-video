@@ -1,87 +1,85 @@
 .footer-container {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
-
-    font-family: 'Ember-medium';
-}
-
-.footer-container ul {
-    list-style-type: none;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-}
-
-.footer-container ul li {
-    padding-right: 4px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.footer-container ul li {
-    padding-inline: 4px;
-
-}
-
-
-
-.footer-container ul li:hover a {
-    color: #90dffe;
-}
-
-.footer-container ul li a {
-    color: #79b8f3;
-    text-decoration: none;
-    transition: color .2s ease-in-out;
-    white-space: nowrap;
 }
 
 
 .footer-logo {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 42px;
-    margin-bottom: 20px;
+    padding-top: 19px;
+    width: 74px;
+    margin: 0px auto;
 }
 
-.footer-logo img {
+.footer-logo a {
+    cursor: pointer;
+    min-width: 62px;
+    height: 38px;
+
+}
+.footer-logo a img{
     width: 100%;
     height: 100%;
 }
 
+.footer-container ul {
+    display: flex;
+    margin: 0px auto;
+    -webkit-box-pack: center;
+    justify-content: center;
+    flex-flow: wrap;
+    max-width: 500px;
+
+    list-style: none;
+
+    font-family: 'Inspire-Roman', sans-serif;
+    font-size: 12px;
+    letter-spacing: -.1px;
+    line-height: 1.5;
+}
+
+.footer-container ul li {
+    margin: 11px 5px 10px;
+
+    padding-inline: 6px;
+    padding-block: 1px;
+}
+
+.footer-container ul li a {
+    text-decoration: none;
+
+    color: #f9f9f9;
+    text-decoration: none;
+}
+
+.footer-text {
+    margin-left: 28px;
+    margin-right: 28px;
+
+    text-align: center;
+    color: #cacaca;
+}
+
+
 .Rights {
-    color: #8197a4;
-    display: inline-block;
-    padding: 4px;
+    font-family: 'Inspire-Roman', sans-serif;
+    font-size: 12px;
+    letter-spacing: -.1px;
+    line-height: 1.5;
+
+    color: #cacaca;
+
+    text-align: center;
+
+    padding-bottom: 1.5rem;
+
+    padding-top: .5rem;
 }
 
-
-@media screen and (max-width: 799px) {
-    .List-container {
-        justify-content: center;
-    }
-}
-
-@media screen and (max-width: 1039px) {
-    .footer-container, .footer-container a {
-        font-weight: 500;
-        font-size: 13px;
-        line-height: 16px;
-    }
-}
-
-@media screen and (min-width: 1040px) {
-    .footer-container{
-        font-weight: 500;
-        font-size: 15px;
-        line-height: 20px;
+@media screen and (max-width: 768px) {
+    .footer-container ul li {
+        margin: 11px 1px 10px;
     }
 }

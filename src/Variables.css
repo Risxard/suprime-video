@@ -19,40 +19,7 @@
     --dv-packshot-width: calc((var(--dv-screen-width) - var(--inner-width)*2 - var(--backdrop-gap-slider)*var(--dv-card-gap-number))/var(--dv-card-number)*1);
 }
 
-.SectionTitle {
-    display: flex;
-    justify-content: space-between;
 
-    width: 100%;
-
-    padding-inline: var(--inner-width);
-    padding-bottom: 8px;
-}
-
-.SectionTitle h2 {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-
-    font-family: 'Ember-bold';
-    font-size: 16px;
-    color: #FFFFFF;
-
-    margin-right: 8px;
-}
-
-.SectionTitle h2 svg {
-    color: white;
-    margin-left: 12px;
-
-    width: 33px;
-    height: 33px;
-}
-
-.SectionTitle strong {
-    color: #1a98ff;
-    margin-right: 4px;
-}
 
 
 @media screen and (min-width: 447px) {
@@ -82,10 +49,7 @@
         --inner-width: 32px;
     }
 
-    .SectionTitle h2 {
-        font-size: 18px;
-        margin-right: 16px;
-    }
+
 }
 
 @media screen and (min-width: 768px) {
@@ -97,17 +61,7 @@
         --backdrop-padding-top-slider: 12px;
     }
 
-    .SectionTitle {
-        padding-bottom: 12px;
-    }
 
-    .SectionTitle strong {
-        margin-right: 8px;
-    }
-
-    .SectionTitle h2 {
-        margin-right: 24px;
-    }
 }
 
 @media screen and (min-width: 900px) {
@@ -122,19 +76,7 @@
         --backdrop-padding-top-slider: 16px;
     }
 
-    .SectionTitle h2 {
-        font-size: 20px;
-        margin-right: 36px;
-    }
 
-
-    .SectionTitle {
-        padding-bottom: 16px;
-    }
-
-    .SectionTitle strong {
-        margin-right: 12px;
-    }
 }
 
 @media screen and (min-width: 1440px) {
