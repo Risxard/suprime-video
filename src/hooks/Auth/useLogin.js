@@ -1,41 +1,63 @@
-import { useDispatch } from "react-redux";
-import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
+import { useState } from "react";
 import { auth } from "../../services/firebase/firebaseconfig";
-import { loginSuccess } from "../../store/auth/index";
-import { getAllProfiles, sendEmailVerificationLink } from "../../services/firebase/profileServices";
-import { useNavigate } from "react-router-dom";
+import {
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+} from "firebase/auth";
 
 const useLogin = () => {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const [signInWithEmailAndPassword, , loading, error] = useSignInWithEmailAndPassword(auth);
+  const [loading, setLoading] = useState(false);
 
   const login = async (email, password) => {
+    setLoading(true);
     try {
-      const authUser = await signInWithEmailAndPassword(email, password);
-
-      if (authUser) {
-        const user = authUser.user;
-        console.log(email, password);
-        if (!user.emailVerified) {
-          await sendEmailVerificationLink(user);
-          await auth.signOut();
-          navigate("/verify");
-          return;
-        }
-
-        const token = user.accessToken;
-        
-
-        await getAllProfiles(dispatch);
-        dispatch(loginSuccess({ token, user }));
-      }
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      setLoading(false);
+      return userCredential.user;
     } catch (err) {
-      console.error("Erro ao fazer login:", err.message);
+      setLoading(false);
+
+      // Tratar os erros específicos do Firebase
+      if (err.code === "auth/user-not-found") {
+        throw { code: "auth/user-not-found", message: "Usuário não encontrado" };
+      } else if (err.code === "auth/wrong-password") {
+        throw { code: "auth/wrong-password", message: "Senha incorreta" };
+      } else if (err.code === "auth/too-many-requests") {
+        throw { code: "auth/too-many-requests", message: "Muitas tentativas. Tente mais tarde." };
+      } else {
+        throw { code: err.code || "auth/unknown", message: err.message || "Erro desconhecido" };
+      }
     }
   };
 
-  return { login, loading, error };
+  const signUp = async (email, password) => {
+    setLoading(true);
+    try {
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      setLoading(false);
+      return userCredential.user;
+    } catch (err) {
+      setLoading(false);
+
+      if (err.code === "auth/email-already-in-use") {
+        throw { code: err.code, message: "Este email já está em uso" };
+      } else if (err.code === "auth/weak-password") {
+        throw { code: err.code, message: "Senha muito fraca" };
+      } else {
+        throw { code: err.code || "auth/unknown", message: err.message || "Erro desconhecido" };
+      }
+    }
+  };
+
+  return { login, signUp, loading };
 };
 
 export default useLogin;

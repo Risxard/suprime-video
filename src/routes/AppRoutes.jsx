@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 import {
-  Login,
+  Identity,
   Register,
   Home,
   Movies,
@@ -24,6 +24,9 @@ import PrivateStandalone from "./PrivateStandalone";
 import EditingProfiles from "../pages/Profiles/Components/EditingProfiles";
 import CreateNewProfilePage from "../pages/Profiles/Components/CreateProfile/CreateNewProfile";
 import Search from "../pages/Search";
+import EmailSection from "../pages/Identity/components/EmailSection";
+import PasswordSection from "../pages/Identity/components/PasswordSection";
+import CreatePasswordSection from "../pages/Identity/components/CreatePasswordSection";
 
 const AppRoutes = () => {
   const { user, token, currentProfile, loading } = useSelector((state) => state.auth);
@@ -40,14 +43,26 @@ const AppRoutes = () => {
   const publicRoutes = [
     {
       path: "/",
-      element: !isAuthenticated ? <Login /> : <Navigate to="/home" />,
+      element: isAuthenticated ? <Navigate to="/home" /> :  <Navigate to="/identity/login/enter-email" />,
     },
     {
-      path: "/register",
-      element: isAuthenticated ? <Navigate to="/home" /> : <Register />,
+      path: "/identity/login/enter-email",
+      element: isAuthenticated ?  <Navigate to="/home" /> :  <Identity children={<EmailSection/>} />,
     },
     {
-      path: "/register/done",
+      path: "/identity/login/enter-password",
+      element: isAuthenticated ?  <Navigate to="/home" />:  <Identity children={<PasswordSection/>} />,
+    },
+    {
+      path: "/identity/sign-up/enter-email",
+      element: isAuthenticated ? <Navigate to="/home" /> : <Identity children={<EmailSection />} />,
+    },
+    {
+      path: "/identity/sign-up/create-password",
+      element: isAuthenticated ? <Navigate to="/home" /> : <Identity children={<CreatePasswordSection/>} />,
+    },
+    {
+      path: "/identity/sign-up/successful",
       element: isAuthenticated ? <Navigate to="/" /> : <EmailVerificationPage />,
     },
     {

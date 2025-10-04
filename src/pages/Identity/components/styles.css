@@ -49,5 +49,53 @@
 
 .dialog-buttons button:nth-child(2):hover {
     background-color: rgb(233, 235, 240);
+}
+
+
+.password-prompt.error-message {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 8px;
+    color: red;
+    margin-top: 16px;
+}
+
+.password-prompt.error-message p {
+    text-align: start;
+}
+
+.error-icon {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.error-icon svg {
+    width: 16px;
+    height: 20px;
+    fill: red;
+}
+
+.error-icon svg path {
+    width: 16px;
+    height: 16px;
+    fill: red;
+}
+
+
+.security-password-bar-wrapper-container {
+    width: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+}
+
+.password-strength-text {
+    font-family: 'Inspire-Heavy', sans-serif;
+    font-weight: 900;
+    font-size: 14px;
+    line-height: 24px;
 
 }
