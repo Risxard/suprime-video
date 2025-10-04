@@ -4,8 +4,8 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import { Eye, EyeOff, KeyRound, Mail, User } from "lucide-react";
-import createNewAccount from "../../services/firebase/registerAccount";
 import { useTranslation } from "react-i18next";
+import { createNewAccount } from "../../services/firebase/CreateNewAccount";
 
 function SignUp() {
   const [loading, setLoading] = useState(false);

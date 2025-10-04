@@ -9,25 +9,16 @@ export default function LoginDialog({ email, onConfirm, onCancel }) {
             <h1 className="login-title">Confirme seu e-mail</h1>
             <p>
               Antes de criar a conta, confira se o seu endereço de e-mail está
-              correto:
+              correto: <b>{email}</b>
             </p>
-            <b>{email}</b>
           </div>
 
           <div className="dialog-buttons">
-            <button
-              type="button"
-              className="login-button"
-              onClick={onConfirm}
-            >
+            <button type="button" className="login-button" onClick={onConfirm}>
               Confirmar
             </button>
 
-            <button
-              type="button"
-              className="login-button"
-              onClick={onCancel}
-            >
+            <button type="button" className="login-button" onClick={onCancel}>
               Voltar
             </button>
           </div>

@@ -21,7 +21,6 @@ const useLogin = () => {
     } catch (err) {
       setLoading(false);
 
-      // Tratar os erros específicos do Firebase
       if (err.code === "auth/user-not-found") {
         throw { code: "auth/user-not-found", message: "Usuário não encontrado" };
       } else if (err.code === "auth/wrong-password") {

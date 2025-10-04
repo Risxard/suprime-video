@@ -3,16 +3,17 @@ import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import ArrowSvg from "../assets/ArrowSvg";
 import ErrorSvg from "../assets/ErrorSvg";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { createNewAccount } from "../../../services/firebase/CreateNewAccount";
+import LoaderOverlooping from "../assets/LoaderOverlooping";
 
 function CreatePasswordSection() {
   const [isActive, setIsActive] = useState(false);
   const [showMoreInfo, setShowMoreInfo] = useState(false);
   const [error, setError] = useState(null);
   const [email, setEmail] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const passwordRef = useRef(null);
   const navigate = useNavigate();
-
 
   const {
     register,
@@ -63,9 +64,15 @@ function CreatePasswordSection() {
 
   const onSubmit = async (data) => {
     setError(null);
+    setIsLoading(true);
     try {
-      const auth = getAuth();
-      await createUserWithEmailAndPassword(auth, email, data.password);
+      await createNewAccount({
+        email,
+        password: data.password,
+        name: "Novo Usuário",
+      });
+
+      console.log("✅ Conta criada com sucesso:", email);
       navigate("/home");
     } catch (err) {
       console.error(err);
@@ -76,6 +83,8 @@ function CreatePasswordSection() {
           "Ocorreu um erro ao criar a conta. Certifique-se de que a senha atende aos requisitos."
         );
       }
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -101,129 +110,135 @@ function CreatePasswordSection() {
 
   return (
     <>
-      <h1 className="login-title">Crie uma conta para continuar</h1>
-      <div className="login-subtitle">
-        <p>Crie sua conta com o e-mail</p>
-        <b>{email}</b>{" "}
-        <a href="" onClick={handleEdit}>
-          (Editar)
-        </a>
-      </div>
-
-      <form className="login-form" onSubmit={handleSubmit(onSubmit)}>
-        <div>
-          <div
-            className={`login-form-input-container ${isActive ? "active" : ""}`}
-            onClick={handleContainerClick}
-          >
-            <label htmlFor="password">Escolha sua senha</label>
-            <input
-              id="password"
-              type="password"
-              className="login-input"
-              ref={passwordRef}
-              {...register("password", {
-                required: "Senha é obrigatória",
-                minLength: { value: 6, message: "Mínimo 6 caracteres" },
-                pattern: {
-                  value: passwordPattern,
-                  message:
-                    "Senha deve conter ao menos 1 maiúscula, 1 número e 1 caractere especial",
-                },
-              })}
-              onBlur={handleBlur}
-            />
+      {isLoading ? (
+        <LoaderOverlooping />
+      ) : (
+        <>
+          <h1 className="login-title">Crie uma conta para continuar</h1>
+          <div className="login-subtitle">
+            <p>Crie sua conta com o e-mail</p>
+            <b>{email}</b>{" "}
+            <a href="" onClick={handleEdit}>
+              (Editar)
+            </a>
           </div>
 
-          <div className="security-password-bar-wrapper-container">
-            {passwordValue && (
+          <form className="login-form" onSubmit={handleSubmit(onSubmit)}>
+            <div>
               <div
-                className="security-password-bar-wrapper"
-                style={{
-                  width: "187px",
-                  height: "6px",
-                  backgroundColor: "#e0e0e0",
-                  borderRadius: "3px",
-                  marginTop: "8px",
-                  overflow: "hidden",
-                }}
+                className={`login-form-input-container ${isActive ? "active" : ""}`}
+                onClick={handleContainerClick}
               >
-                <div
-                  className="security-password-bar"
-                  style={{
-                    width: `${(strength / 100) * 187}px`,
-                    backgroundColor: strengthColor,
-                    height: "100%",
-                    borderRadius: "3px",
-                    transition: "width 0.3s ease",
-                  }}
-                ></div>
+                <label htmlFor="password">Escolha sua senha</label>
+                <input
+                  id="password"
+                  type="password"
+                  className="login-input"
+                  ref={passwordRef}
+                  {...register("password", {
+                    required: "Senha é obrigatória",
+                    minLength: { value: 6, message: "Mínimo 6 caracteres" },
+                    pattern: {
+                      value: passwordPattern,
+                      message:
+                        "Senha deve conter ao menos 1 maiúscula, 1 número e 1 caractere especial",
+                    },
+                  })}
+                  onBlur={handleBlur}
+                  disabled={isLoading}
+                />
               </div>
-            )}
-            {passwordValue && (
-              <p
-                className="password-strength-text"
-                style={{ color: strengthColor, marginTop: "4px" }}
+
+              <div className="security-password-bar-wrapper-container">
+                {passwordValue && (
+                  <div
+                    className="security-password-bar-wrapper"
+                    style={{
+                      width: "187px",
+                      height: "6px",
+                      backgroundColor: "#e0e0e0",
+                      borderRadius: "3px",
+                      marginTop: "8px",
+                      overflow: "hidden",
+                    }}
+                  >
+                    <div
+                      className="security-password-bar"
+                      style={{
+                        width: `${(strength / 100) * 187}px`,
+                        backgroundColor: strengthColor,
+                        height: "100%",
+                        borderRadius: "3px",
+                        transition: "width 0.3s ease",
+                      }}
+                    ></div>
+                  </div>
+                )}
+                {passwordValue && (
+                  <p
+                    className="password-strength-text"
+                    style={{ color: strengthColor, marginTop: "4px" }}
+                  >
+                    {strengthLabel}
+                  </p>
+                )}
+              </div>
+
+              {errors.password && (
+                <div className="password-prompt error-message">
+                  <div className="error-icon">
+                    <ErrorSvg />
+                  </div>
+                  <p>{errors.password.message}</p>
+                </div>
+              )}
+
+              {error && (
+                <div className="password-prompt error-message">
+                  <div className="error-icon">
+                    <ErrorSvg />
+                  </div>
+                  <p>{error}</p>
+                </div>
+              )}
+
+              <div className="password-prompt">
+                <p>
+                  Use no mínimo 6 caracteres (com distinção entre maiúsculas e
+                  minúsculas) com pelo menos um número ou caractere especial.
+                </p>
+              </div>
+            </div>
+
+            <button type="submit" className="login-button" disabled={isLoading}>
+              {isLoading ? "Criando conta..." : "Concordar e Continuar"}
+            </button>
+          </form>
+
+          <div className="login-footer">
+            <div className="more-info">
+              <button
+                onClick={toggleMoreInfo}
+                className={showMoreInfo ? "active" : ""}
               >
-                {strengthLabel}
-              </p>
-            )}
+                Saiba mais sobre o Açaíwave+ <ArrowSvg />
+              </button>
+
+              {showMoreInfo && (
+                <div className="more-info-content">
+                  <p className="footer-title">
+                    O Açaíwave+ não é um serviço de streaming real.
+                  </p>
+                  <p className="login-footer-text">
+                    Não possui qualquer vínculo com a Disney ou suas subsidiárias.
+                    Todos os nomes, marcas e imagens são de seus respectivos donos.
+                  </p>
+                </div>
+              )}
+            </div>
           </div>
-
-
-          {errors.password && (
-            <div className="password-prompt error-message">
-              <div className="error-icon">
-                <ErrorSvg />
-              </div>
-              <p>{errors.password.message}</p>
-            </div>
-          )}
-
-          {error && (
-            <div className="password-prompt error-message">
-              <div className="error-icon">
-                <ErrorSvg />
-              </div>
-              <p>{error}</p>
-            </div>
-          )}
-
-          <div className="password-prompt">
-            <p>
-              Use no mínimo 6 caracteres (com distinção entre maiúsculas e
-              minúsculas) com pelo menos um número ou caractere especial.
-            </p>
-          </div>
-        </div>
-
-        <button type="submit" className="login-button">
-          Concordar e Continuar
-        </button>
-      </form>
-
-      <div className="login-footer">
-        <div className="more-info">
-          <button
-            onClick={toggleMoreInfo}
-            className={showMoreInfo ? "active" : ""}
-          >
-            Saiba mais sobre o Açaíwave+ <ArrowSvg />
-          </button>
-
-          {showMoreInfo && (
-            <div className="more-info-content">
-              <p className="footer-title">
-                O Açaíwave+ não é um serviço de streaming real.
-              </p>
-              <p className="login-footer-text">
-                Não possui qualquer vínculo com a Disney ou suas subsidiárias.
-                Todos os nomes, marcas e imagens são de seus respectivos donos.
-              </p>
-            </div>
-          )}
-        </div>
-      </div>
+        </>
+      )}
     </>
   );
 }
