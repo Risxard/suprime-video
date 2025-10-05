@@ -54,8 +54,25 @@ const UserMenuChildren = ({ currentProfileData }) => {
   };
 
   const loggout = async () => {
-    await auth.signOut();
-    dispatch(logout());
+    try {
+      await auth.signOut();
+
+      // limpa redux
+      dispatch(logout());
+
+      // limpa localStorage
+      localStorage.removeItem("@AuthSV:profiles");
+      localStorage.removeItem("@AuthSV:currentProfile");
+      localStorage.removeItem("@AuthSV:watchlist");
+
+      // se preferir, limpa tudo de uma vez:
+      // localStorage.clear();
+
+      // redireciona pra página de login
+      navigate("/login");
+    } catch (error) {
+      console.error("Erro ao sair:", error);
+    }
   };
 
   const { t } = useTranslation();

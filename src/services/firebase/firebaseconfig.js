@@ -6,11 +6,12 @@ import { firebaseApiKey, firebaseAppId, firebaseMessagingSenderId } from "../fir
 
 const firebaseConfig = {
     apiKey: firebaseApiKey,
-    authDomain: "acaiwaveplus-f99c3.firebaseapp.com",
-    projectId: "acaiwaveplus-f99c3",
-    storageBucket: "acaiwaveplus-f99c3.firebasestorage.app",
+    authDomain: "acaiwaveplusapp.firebaseapp.com",
+    projectId: "acaiwaveplusapp",
+    storageBucket: "acaiwaveplusapp.firebasestorage.app",
     messagingSenderId: firebaseMessagingSenderId,
-    appId: firebaseAppId
+    appId: firebaseAppId,
+    measurementId: "G-08B2SZ7FSH"
 };
 
 const app = initializeApp(firebaseConfig);

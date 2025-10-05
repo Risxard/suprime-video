@@ -175,11 +175,7 @@ const EditProfilesItens = ({ imageProfile, onPicSelector }) => {
                 <button
                   className="edit-options-li-btn"
                   onClick={() =>
-                    handleSetGlobalModal(
-                      userId,
-                      profileId,
-                      currentProfile
-                    )
+                    handleSetGlobalModal(userId, profileId, currentProfile)
                   }
                 >
                   {profilesPage.removeProfile.button}
@@ -210,11 +206,7 @@ const EditProfilesItens = ({ imageProfile, onPicSelector }) => {
             </li>
             <li
               onClick={() =>
-                handleSetGlobalModal(
-                  userId,
-                  profileId,
-                  currentProfile
-                )
+                handleSetGlobalModal(userId, profileId, currentProfile)
               }
             >
               <div className="edit-options-li-info">
@@ -266,6 +258,7 @@ const EditingProfiles = () => {
 
   return (
     <div className="profiles-page editing-profile">
+      <div className="app-background" />
       <NavStandalone />
 
       {picSelector ? (

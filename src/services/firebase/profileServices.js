@@ -171,11 +171,10 @@ const sendResetPasswordEmail = async (email) => {
 
 
 const sendEmailVerificationLink = async (user) => {
-    if (!user) {
-        return false;
-    }
+    if (!user) return false;
 
     try {
+        // Envia o e-mail de verificação
         await sendEmailVerification(user, {
             url: "https://richardsonsouza.com/preview/acaiwaveplus",
             handleCodeInApp: false,
@@ -183,6 +182,7 @@ const sendEmailVerificationLink = async (user) => {
 
         return true;
     } catch (error) {
+        console.error("Erro ao enviar verificação:", error);
         return false;
     }
 };

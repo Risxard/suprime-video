@@ -9,6 +9,7 @@
     font-family: 'Ember-bold';
 
     padding-inline: var(--inner-width);
+
 }
 
 .profiles-page h1 {
@@ -439,6 +440,13 @@
     }
 }
 
+@media (min-width: 480px) {
+    .profile-list  {
+        max-width: 528px;
+    }
+}
+
+
 @media (max-width: 599px) {
 
     .edit-options-mobile-anchor{
@@ -691,6 +699,12 @@
     .edit-profile-btn {
         padding: 8px 18px;
         min-height: 60px;
+    }
+}
+
+@media (min-width: 960px) {
+    .profile-list {
+        max-width: 880px;
     }
 }
 

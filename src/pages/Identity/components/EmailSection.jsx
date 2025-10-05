@@ -1,6 +1,8 @@
 import { useRef, useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import LoginDialog from "./LoginDialog";
+import IdentityDialog from "./IdentityDialog/IdentityDialog";
+import { useNavigate } from "react-router-dom";
+
 
 const EmailSection = () => {
   const [tempEmail, setTempEmail] = useState("");
@@ -9,10 +11,12 @@ const EmailSection = () => {
   const emailRef = useRef(null);
 
   const location = useLocation();
+  const navigate = useNavigate();
+
 
   const entryPoint = location.pathname.includes("sign-up")
     ? "Register"
-    : "Login";
+    : "login";
 
   useEffect(() => {
     const savedAuthData = localStorage.getItem("auth-data");
@@ -61,13 +65,9 @@ const EmailSection = () => {
     localStorage.setItem("auth-data", JSON.stringify(authData));
 
     if (entryPoint === "Register") {
-      window.location.replace(
-        "/preview/acaiwaveplus/identity/sign-up/create-password"
-      );
+      navigate("/identity/sign-up/create-password");
     } else {
-      window.location.replace(
-        "/preview/acaiwaveplus/identity/login/enter-password"
-      );
+      navigate("/identity/login/enter-password");
     }
   };
 
@@ -78,22 +78,22 @@ const EmailSection = () => {
   return (
     <>
       {showDialog && entryPoint === "Register" && (
-        <LoginDialog
+        <IdentityDialog
           email={tempEmail}
           onConfirm={handleConfirm}
           onCancel={handleCancel}
         />
       )}
 
-      <h1 className="login-title">Digite o seu e-mail para continuar</h1>
-      <p className="login-subtitle">
+      <h1 className="identity-title">Digite o seu e-mail para continuar</h1>
+      <p className="identity-subtitle">
         Entre no Açaíwave+ com sua conta usando o e⁠-⁠mail. Se você não tiver
         conta, precisará criar uma.
       </p>
 
-      <form className="login-form" onSubmit={handleSubmit}>
+      <form className="identity-form" onSubmit={handleSubmit}>
         <div
-          className={`login-form-input-container ${isActive ? "active" : ""}`}
+          className={`identity-form-input-container ${isActive ? "active" : ""}`}
           onClick={handleContainerClick}
         >
           <label htmlFor="email">E-mail</label>
@@ -101,7 +101,7 @@ const EmailSection = () => {
             id="email"
             type="email"
             required
-            className="login-input"
+            className="identity-input"
             ref={emailRef}
             value={tempEmail}
             onChange={(e) => setTempEmail(e.target.value)}
@@ -109,16 +109,16 @@ const EmailSection = () => {
           />
         </div>
 
-        <button type="submit" className="login-button">
+        <button type="submit" className="identity-button">
           Continuar
         </button>
       </form>
 
-      <div className="login-footer">
+      <div className="identity-footer">
         <p className="footer-title">
           O Açaíwave+ não é um serviço de streaming real.
         </p>
-        <p className="login-footer-text">
+        <p className="identity-footer-text">
           Não possui qualquer vínculo com a Disney ou qualquer uma de suas
           subsidiárias. Todos os nomes, marcas e imagens são de propriedade de
           seus respectivos donos. Este site foi criado apenas para fins de

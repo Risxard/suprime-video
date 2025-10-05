@@ -6,7 +6,8 @@ import Profiles from "./Components/Profiles.jsx";
 import ManageProfileSelect from "./Components/ManageProfile.jsx";
 import NavStandalone from "../../components/Navigation/NavStandalone.jsx";
 import { useTranslation } from "react-i18next";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "../../services/firebase/firebaseconfig.js";
 
 const ProfilesPage = () => {
   const [editMode, setEditMode] = useState(false);
@@ -17,8 +18,6 @@ const ProfilesPage = () => {
   const profilesPage = t("profilesPage");
 
   useEffect(() => {
-    const auth = getAuth();
-
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         getAllProfiles(dispatch)
@@ -50,6 +49,8 @@ const ProfilesPage = () => {
 
   return (
     <div className="profiles-page">
+      <div className="app-background" />
+
       <NavStandalone />
       {editMode ? (
         <ManageProfileSelect

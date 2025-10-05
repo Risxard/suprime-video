@@ -8,32 +8,32 @@ footer {
     margin-top: 100px;
 }
 
-.Login footer {
+.identity footer {
     background: white;
     padding-top: 28px;
     padding-bottom: 28px;
 
     padding-inline: 40px;
 }
-.Login footer .footer-logo{
+.identity footer .footer-logo{
     display: none;
 }
 
-.Login footer .footer-container ul {
+.identity footer .footer-container ul {
     width: 100%;
     max-width: none;
     margin-left: 0;
     margin-right: 0;
 }
 
-.Login footer .footer-container ul li a,
+.identity footer .footer-container ul li a,
 .footer-text,
 .Rights
 {
     color: rgb(95 97 102) !important;
 }
 
-.Login footer .footer-container ul li:hover a {
+.identity footer .footer-container ul li:hover a {
     color: rgb(0, 0, 0) !important;
 }
 

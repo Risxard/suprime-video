@@ -5,6 +5,9 @@ import ArrowSvg from "../assets/ArrowSvg";
 import ErrorSvg from "../assets/ErrorSvg";
 import { createNewAccount } from "../../../services/firebase/CreateNewAccount";
 import LoaderOverlooping from "../assets/LoaderOverlooping";
+import "./styles.css";
+import { sendEmailVerificationLink } from "../../../services/firebase/profileServices";
+import { auth } from "../../../services/firebase/firebaseconfig";
 
 function CreatePasswordSection() {
   const [isActive, setIsActive] = useState(false);
@@ -72,8 +75,9 @@ function CreatePasswordSection() {
         name: "Novo Usuário",
       });
 
-      console.log("✅ Conta criada com sucesso:", email);
-      navigate("/home");
+      await sendEmailVerificationLink(auth.currentUser);
+
+      navigate("/identity/login/verify-email");
     } catch (err) {
       console.error(err);
       if (err.code === "auth/email-already-in-use") {
@@ -114,8 +118,8 @@ function CreatePasswordSection() {
         <LoaderOverlooping />
       ) : (
         <>
-          <h1 className="login-title">Crie uma conta para continuar</h1>
-          <div className="login-subtitle">
+          <h1 className="identity-title">Crie uma conta para continuar</h1>
+          <div className="identity-subtitle">
             <p>Crie sua conta com o e-mail</p>
             <b>{email}</b>{" "}
             <a href="" onClick={handleEdit}>
@@ -123,17 +127,19 @@ function CreatePasswordSection() {
             </a>
           </div>
 
-          <form className="login-form" onSubmit={handleSubmit(onSubmit)}>
+          <form className="identity-form" onSubmit={handleSubmit(onSubmit)}>
             <div>
               <div
-                className={`login-form-input-container ${isActive ? "active" : ""}`}
+                className={`identity-form-input-container ${
+                  isActive ? "active" : ""
+                }`}
                 onClick={handleContainerClick}
               >
                 <label htmlFor="password">Escolha sua senha</label>
                 <input
                   id="password"
                   type="password"
-                  className="login-input"
+                  className="identity-input"
                   ref={passwordRef}
                   {...register("password", {
                     required: "Senha é obrigatória",
@@ -210,12 +216,16 @@ function CreatePasswordSection() {
               </div>
             </div>
 
-            <button type="submit" className="login-button" disabled={isLoading}>
+            <button
+              type="submit"
+              className="identity-button"
+              disabled={isLoading}
+            >
               {isLoading ? "Criando conta..." : "Concordar e Continuar"}
             </button>
           </form>
 
-          <div className="login-footer">
+          <div className="identity-footer">
             <div className="more-info">
               <button
                 onClick={toggleMoreInfo}
@@ -229,9 +239,10 @@ function CreatePasswordSection() {
                   <p className="footer-title">
                     O Açaíwave+ não é um serviço de streaming real.
                   </p>
-                  <p className="login-footer-text">
-                    Não possui qualquer vínculo com a Disney ou suas subsidiárias.
-                    Todos os nomes, marcas e imagens são de seus respectivos donos.
+                  <p className="identity-footer-text">
+                    Não possui qualquer vínculo com a Disney ou suas
+                    subsidiárias. Todos os nomes, marcas e imagens são de seus
+                    respectivos donos.
                   </p>
                 </div>
               )}

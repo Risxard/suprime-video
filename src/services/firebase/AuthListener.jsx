@@ -13,8 +13,6 @@ const AuthListener = () => {
         const token = await user.getIdToken();
         dispatch(loginSuccess({ user, token }));
 
-
-
       } else {
         dispatch(logout());
       }

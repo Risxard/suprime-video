@@ -27,6 +27,7 @@ import Search from "../pages/Search";
 import EmailSection from "../pages/Identity/components/EmailSection";
 import PasswordSection from "../pages/Identity/components/PasswordSection";
 import CreatePasswordSection from "../pages/Identity/components/CreatePasswordSection";
+import EmailVerification from "../pages/Identity/components/EmailVerification";
 
 const AppRoutes = () => {
   const { user, token, currentProfile, loading } = useSelector((state) => state.auth);
@@ -52,6 +53,10 @@ const AppRoutes = () => {
     {
       path: "/identity/login/enter-password",
       element: isAuthenticated ?  <Navigate to="/home" />:  <Identity children={<PasswordSection/>} />,
+    },
+    {
+      path: "/identity/login/verify-email",
+      element: isAuthenticated ?  <Navigate to="/home" />:  <Identity children={<EmailVerification/>} />,
     },
     {
       path: "/identity/sign-up/enter-email",

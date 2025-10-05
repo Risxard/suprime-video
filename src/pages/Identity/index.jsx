@@ -8,14 +8,14 @@ import "./styles.css";
 
 function Identity({ children }) {
   return (
-    <div className="Login">
-      <div className="login-container">
-        <Link to="/" className="login-logo">
+    <div className="identity">
+      <div className="identity-container">
+        <Link to="/" className="identity-logo">
           <img src={logo} alt="logo" />
         </Link>
 
-        <div className="login-box">
-          <Link to="/" className="login-logo-black">
+        <div className="identity-box">
+          <Link to="/" className="identity-logo-black">
             <img src={logoblack} alt="logo black" />
           </Link>
 

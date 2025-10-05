@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import ArrowSvg from "../assets/ArrowSvg";
 import ErrorSvg from "../assets/ErrorSvg";
 import LoaderOverlooping from "../assets/LoaderOverlooping";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { loginUser } from "../../../services/firebase/loginUser";
 
 function PasswordSection() {
   const [tempPassword, setTempPassword] = useState("");
@@ -21,7 +21,7 @@ function PasswordSection() {
     if (authData?.email) {
       setEmail(authData.email);
     } else {
-      navigate("/login/enter-email");
+      navigate("/identity/login/enter-email");
     }
   }, [navigate]);
 
@@ -45,24 +45,27 @@ function PasswordSection() {
       return;
     }
 
-    try {
-      const auth = getAuth();
-      await signInWithEmailAndPassword(auth, email, tempPassword);
+    const { success, error, needsVerification } = await loginUser(
+      email,
+      tempPassword
+    );
+
+    if (success) {
       navigate("/home");
-    } catch (err) {
-      console.error(err);
-      setError(
-        "Não foi possível entrar. Digite seu e-mail e senha novamente ou redefina sua senha."
-      );
-    } finally {
-      setIsLoading(false);
+    } else if (needsVerification) {
+      navigate("/identity/login/verify-email");
+      setError(error);
+    } else {
+      setError(error);
     }
+
+    setIsLoading(false);
   };
 
   const handleEdit = (e) => {
     e.preventDefault();
     localStorage.removeItem("auth-data");
-    navigate("/login/enter-email");
+    navigate("/identity/login/enter-email");
   };
 
   const toggleMoreInfo = () => setShowMoreInfo(!showMoreInfo);
@@ -73,8 +76,8 @@ function PasswordSection() {
         <LoaderOverlooping />
       ) : (
         <>
-          <h1 className="login-title">Digite a senha</h1>
-          <div className="login-subtitle">
+          <h1 className="identity-title">Digite a senha</h1>
+          <div className="identity-subtitle">
             <p>Entre no Açaíwave+ com sua conta usando o e⁠-⁠mail</p>
             <b>{email}</b>{" "}
             <a href="" onClick={handleEdit}>
@@ -82,10 +85,12 @@ function PasswordSection() {
             </a>
           </div>
 
-          <form className="login-form" onSubmit={handleSubmit}>
+          <form className="identity-form" onSubmit={handleSubmit}>
             <div>
               <div
-                className={`login-form-input-container ${isActive ? "active" : ""}`}
+                className={`identity-form-input-container ${
+                  isActive ? "active" : ""
+                }`}
                 onClick={handleContainerClick}
               >
                 <label htmlFor="password">Senha</label>
@@ -93,7 +98,7 @@ function PasswordSection() {
                   id="password"
                   type="password"
                   required
-                  className="login-input"
+                  className="identity-input"
                   ref={passwordRef}
                   value={tempPassword}
                   onChange={(e) => setTempPassword(e.target.value)}
@@ -116,12 +121,16 @@ function PasswordSection() {
               </div>
             </div>
 
-            <button type="submit" className="login-button" disabled={isLoading}>
+            <button
+              type="submit"
+              className="identity-button"
+              disabled={isLoading}
+            >
               {isLoading ? "Entrando..." : "Entrar"}
             </button>
           </form>
 
-          <div className="login-footer">
+          <div className="identity-footer">
             <div className="more-info">
               <button
                 onClick={toggleMoreInfo}
@@ -135,9 +144,10 @@ function PasswordSection() {
                   <p className="footer-title">
                     O Açaíwave+ não é um serviço de streaming real.
                   </p>
-                  <p className="login-footer-text">
-                    Não possui qualquer vínculo com a Disney ou suas subsidiárias.
-                    Todos os nomes, marcas e imagens são de seus respectivos donos.
+                  <p className="identity-footer-text">
+                    Não possui qualquer vínculo com a Disney ou suas
+                    subsidiárias. Todos os nomes, marcas e imagens são de seus
+                    respectivos donos.
                   </p>
                 </div>
               )}
