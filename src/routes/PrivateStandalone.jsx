@@ -18,7 +18,6 @@ const PrivateStandalone = ({ isAuthenticated }) => {
       {isAuthenticated && (
         <>
           <Outlet context={{ language }} />
-          <Footer language={language} />
           <GlobalMoldal />
         </>
       )}

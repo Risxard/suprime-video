@@ -356,7 +356,7 @@
 
 .feature-info-title h2 {
     display: inline;
-    font-family: 'Ember-bold';
+
     font-style: normal;
     font-weight: 600;
     font-size: clamp(1.4rem, 7vw, 10rem);

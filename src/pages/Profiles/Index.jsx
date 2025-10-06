@@ -4,7 +4,7 @@ import "./styles.css";
 import { getAllProfiles } from "../../services/firebase/profileServices.js";
 import Profiles from "./Components/Profiles.jsx";
 import ManageProfileSelect from "./Components/ManageProfile.jsx";
-import NavStandalone from "../../components/Navigation/NavStandalone.jsx";
+import NavProfiles from "../../components/Navigation/NavProfiles.jsx";
 import { useTranslation } from "react-i18next";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../services/firebase/firebaseconfig.js";
@@ -41,7 +41,7 @@ const ProfilesPage = () => {
   if (loading) {
     return (
       <div className="profiles-page">
-        <NavStandalone />
+        <NavProfiles />
         <p>Carregando perfis...</p>
       </div>
     );
@@ -51,26 +51,29 @@ const ProfilesPage = () => {
     <div className="profiles-page">
       <div className="app-background" />
 
-      <NavStandalone />
-      {editMode ? (
-        <ManageProfileSelect
-          profileList={validProfilesList}
-          profileLang={profilesPage.manageProfile}
-        />
-      ) : (
-        <Profiles
-          profileList={validProfilesList}
-          profileLang={profilesPage.selectProfile}
-        />
-      )}
+      <NavProfiles />
 
-      <div className="edit-profile-btn-container">
+      <div className="profiles-page-container">
+        {editMode ? (
+          <ManageProfileSelect
+            profileList={validProfilesList}
+            profileLang={profilesPage.manageProfile}
+          />
+        ) : (
+          <Profiles
+            profileList={validProfilesList}
+            profileLang={profilesPage.selectProfile}
+          />
+        )}
+      </div>
+
+      {/* <div className="edit-profile-btn-container">
         <button className="edit-profile-btn" onClick={handleEditMode}>
           {editMode
             ? profilesPage.manageProfile.button
             : profilesPage.selectProfile.button1}
         </button>
-      </div>
+      </div> */}
     </div>
   );
 };

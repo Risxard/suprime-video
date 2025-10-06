@@ -11,17 +11,76 @@
 
 
 
-.nav-standalone {
-    display: flex;
-    width: 100vw;
-
-    box-sizing: border-box;
-    height: var(--nav-height);
-
+.nav-profiles {
+    -webkit-box-align: center;
     align-items: center;
-
-    z-index: 9999;
+    background-color: transparent;
+    display: flex;
+    flex-flow: row;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    left: 0px;
+    padding: 0px 20px;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    transition: 0.2s ease-in-out;
+    will-change: background-color, height;
+    height: 72px;
+    z-index: 10;
 }
+
+.nav-profiles button {
+    padding: 0px 24px;
+    -webkit-box-align: center;
+    align-items: center;
+    cursor: pointer;
+    display: flex;
+    flex-shrink: 0;
+    height: 48px;
+    -webkit-box-pack: center;
+    justify-content: center;
+    margin: 0px;
+    overflow: hidden;
+    text-align: center;
+    transition: 0.2s ease-in-out;
+    width: auto;
+    -webkit-font-smoothing: antialiased;
+    opacity: 1;
+    visibility: visible;
+    background: rgba(255, 255, 255, 0.2) !important;
+    color: rgb(255, 255, 255) !important;
+
+    border: 0;
+    border-radius: .25rem;
+
+    font-family: 'inspire-Heavy', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    display: inline-block;
+    font-size: 15px;
+    font-weight: 900;
+    letter-spacing: 1.5px;
+    line-height: 1.6;
+    outline: none;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.nav-logo-profiles {
+    display: block;
+    cursor: pointer;
+    min-width: 62px;
+    height: 38px;
+    margin-right: 24px;
+}
+
+.nav-logo-profiles img {
+    width: auto;
+    height: 100%;
+}
+
+
 
 .nav-container {
     display: flex;
@@ -787,17 +846,32 @@ media query MobileFirst Open*/
 }
 
 .nav-menu-profile-pic {
-    display: flex;
+    display: block;
+    cursor: pointer;
     position: relative;
+    height: 36px;
+    width: 36px;
+    background: linear-gradient(rgb(58, 60, 74), rgb(36, 38, 50)) 0% 0% / contain;
+    border-radius: 50%;
+    margin: auto;
+    transition: 250ms cubic-bezier(0.455, 0.03, 0.515, 0.955);
+}
+
+.nav-menu-profile-pic.add-new-profile-btn {
+    background: inherit;
+    background-color: rgba(249, 249, 249, 0.1);
+    display: flex;
     align-items: center;
     justify-content: center;
-
 }
 
-.nav-menu-profile-pic img {
-    max-width: 36px;
-    max-height: 36px;
+.nav-menu-profile-pic.add-new-profile-btn svg {
+    fill: white;
+    width: 24px;
+    height: 24px;
 }
+
+
 
 .nav-menu-list-itens {
     display: flex;
@@ -899,20 +973,6 @@ media query MobileFirst Open*/
 
 
 
-@media screen and (max-width: 448px) {
-
-    .nav-standalone {
-        display: flex;
-        width: 100%;
-
-        box-sizing: border-box;
-        height: var(--nav-height);
-
-        align-items: center;
-    }
-
-}
-
 @media screen and (max-width: 599px) {
     .Navigation {
         --nav-content-padding: 8px;
@@ -943,6 +1003,16 @@ media query MobileFirst Open*/
 
 
 @media (min-width: 768px) {
+    .nav-logo-profiles {
+        min-width: 86px;
+        height: 48px;
+        margin-right: 32px;
+    }
+
+    .nav-profiles {
+        padding: 0px 36px;
+    }
+
     .NavLogo {
         margin-right: 52px;
     }
@@ -984,10 +1054,7 @@ media query MobileFirst Open*/
         display: flex;
     }
 
-    .nav-menu-profile-pic img {
-        max-width: 48px;
-        max-height: 48px;
-    }
+
 }
 
 

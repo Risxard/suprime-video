@@ -2,25 +2,29 @@ import { useTranslation } from "react-i18next";
 import { NavLink } from "react-router-dom";
 
 const AddNew = () => {
-
-    const { t } = useTranslation();
-    const profilesPage = t("profilesPage");
+  const { t } = useTranslation();
+  const profilesPage = t("profilesPage");
   return (
-    <NavLink to={"/profiles/create"} className="profile-picture-container">
+    <NavLink
+      to={"/profiles/create"}
+      className="profile-picture-container add-new-profile-list-btn"
+    >
       <div className="picture-container">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20">
-          <g
-            stroke="#F2F4F6"
-            strokeWidth="2"
-            fill="none"
-            fillRule="evenodd"
-            strokeLinecap="round"
-          >
-            <path d="M1 10h18M10 19V1" />
-          </g>
+        <svg
+          aria-hidden="true"
+          aria-label="plus"
+          color="white"
+          role="img"
+          transform=""
+          version="1.1"
+          viewBox="0 0 36 36"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <title></title>
+          <path d="M16.469 17.219V5.5a1 1 0 0 1 1-1h.312a1 1 0 0 1 1 1v11.719H30.5a1 1 0 0 1 1 1v.312a1 1 0 0 1-1 1H18.781V31.25a1 1 0 0 1-1 1h-.312a1 1 0 0 1-1-1V19.531H4.75a1 1 0 0 1-1-1v-.312a1 1 0 0 1 1-1h11.719z"></path>
         </svg>
       </div>
-      <p>{profilesPage.buttonAdd}</p>
+      <h3>{profilesPage.buttonAdd}</h3>
     </NavLink>
   );
 };

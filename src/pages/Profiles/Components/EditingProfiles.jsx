@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import NavStandalone from "../../../components/Navigation/NavStandalone.jsx";
 import { useParams } from "react-router-dom";
 import "../styles.css";
 import ChevronRight from "../assets/ChevronRight.jsx";
@@ -259,7 +258,7 @@ const EditingProfiles = () => {
   return (
     <div className="profiles-page editing-profile">
       <div className="app-background" />
-      <NavStandalone />
+
 
       {picSelector ? (
         <div>

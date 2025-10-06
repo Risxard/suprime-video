@@ -7,7 +7,7 @@
 }
 
 .CategoriesPage>h1, .watchlistPage>h1 {
-    font-family: 'ember-bold';
+
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     padding-inline: var(--inner-width);

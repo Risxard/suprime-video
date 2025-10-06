@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { createNewProfile } from "../../../../services/firebase/profileServices.js";
-import NavStandalone from "../../../../components/Navigation/NavStandalone.jsx";
 
 import imageList from "../../assets/ImageList.json";
 import { useTranslation } from "react-i18next";
@@ -26,7 +25,6 @@ const CreateNewProfilePage = () => {
 
   return (
     <>
-      <NavStandalone />
       <div className="profiles-page">
         {picSelector ? (
           <div>

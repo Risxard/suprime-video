@@ -91,13 +91,17 @@ const UserMenuChildren = ({ currentProfileData }) => {
               onClick={() => handleSetUserProfile(profile)}
             >
               <a href="">
-                <span className="nav-menu-profile-pic">
-                  <img
-                    src={profile.userInfoData.img.url}
-                    alt="profile avatar"
-                  />
-                </span>
-                <p>{profile.userInfoData.name}</p>
+                <span
+                  className="nav-menu-profile-pic"
+                  style={{
+                    ...(profile.userInfoData?.img?.url && {
+                      backgroundImage: `url(${profile.userInfoData.img.url})`,
+                    }),
+                  }}
+                ></span>
+                {profile.userInfoData?.name && (
+                  <p>{profile.userInfoData.name}</p>
+                )}
               </a>
             </li>
           ))
@@ -105,10 +109,8 @@ const UserMenuChildren = ({ currentProfileData }) => {
 
       <li className="nav-menu-item">
         <a href="/preview/acaiwaveplus/profiles/create">
-          <span className="nav-menu-profile-pic">
-            <div className="add-profile">
-              <AddProfile />
-            </div>
+          <span className="nav-menu-profile-pic add-new-profile-btn">
+            <AddProfile />
           </span>
           <p>{profiles.addNew}</p>
         </a>
@@ -211,16 +213,21 @@ const UserMenu = () => {
         ref={avatarButtonRef}
       >
         <a>
-          {currentProfileData.userInfoData.name ? (
+          {currentProfileData.userInfoData.name && (
             <p>{currentProfileData.userInfoData.name}</p>
-          ) : null}
-          <span className="nav-menu-profile-pic">
-            {currentProfileData.userInfoData.img ? (
-              <img src={currentProfileData.userInfoData.img.url} alt="Avatar" />
-            ) : null}
-          </span>
+          )}
+
+          <span
+            className="nav-menu-profile-pic"
+            style={{
+              ...(currentProfileData.userInfoData?.img?.url && {
+                backgroundImage: `url(${currentProfileData.userInfoData.img.url})`,
+              }),
+            }}
+          ></span>
         </a>
       </li>
+
       <div className="nav-menu-separator" />
 
       <UserMenuChildren currentProfileData={currentProfileData} />

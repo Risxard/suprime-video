@@ -227,7 +227,7 @@
 
 .poster-options-btn .watchlist-btn::after{
     padding: 8px 12px;
-    font-family: 'Ember-bold';
+
     font-size: 18px;
     border-radius: 8px;
 
@@ -247,7 +247,7 @@
 
 .poster-options-btn .details-btn::after{
     padding: 8px 12px;
-    font-family: 'Ember-bold';
+
     font-size: 18px;
     border-radius: 8px;
     position: relative;
@@ -342,7 +342,7 @@
 
 .poster-info-title h2 {
     display: flex;
-    font-family: 'Ember-bold';
+
     font-style: normal;
     font-weight: 600;
     font-size: 32px;
