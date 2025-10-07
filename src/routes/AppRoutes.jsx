@@ -28,55 +28,94 @@ import EmailSection from "../pages/Identity/components/EmailSection";
 import PasswordSection from "../pages/Identity/components/PasswordSection";
 import CreatePasswordSection from "../pages/Identity/components/CreatePasswordSection";
 import EmailVerification from "../pages/Identity/components/EmailVerification";
+import EditProfiles from "../pages/Profiles/Components/EditProfiles";
+import LoadingComponent from "../components/utils/LoadingComponent/LoadingComponent";
+import SelectProfile from "../pages/Profiles/Components/SelectProfile";
+import EditProfile from "../pages/Profiles/Components/EditProfile/EditProfile";
+
 
 const AppRoutes = () => {
-  const { user, token, currentProfile, loading } = useSelector((state) => state.auth);
+  const { user, token, currentProfile, loading } = useSelector(
+    (state) => state.auth
+  );
   const isAuthenticated = !!user && !!token;
 
   if (loading) {
-    return (
-      <div className="flex items-center justify-center h-screen text-xl font-bold">
-        Carregando...
-      </div>
-    );
+    return <LoadingComponent />;
   }
 
   const publicRoutes = [
     {
       path: "/",
-      element: isAuthenticated ? <Navigate to="/home" /> :  <Navigate to="/identity/login/enter-email" />,
+      element: isAuthenticated ? (
+        <Navigate to="/home" />
+      ) : (
+        <Navigate to="/identity/login/enter-email" />
+      ),
     },
     {
       path: "/identity/login/enter-email",
-      element: isAuthenticated ?  <Navigate to="/home" /> :  <Identity children={<EmailSection/>} />,
+      element: isAuthenticated ? (
+        <Navigate to="/home" />
+      ) : (
+        <Identity children={<EmailSection />} />
+      ),
     },
     {
       path: "/identity/login/enter-password",
-      element: isAuthenticated ?  <Navigate to="/home" />:  <Identity children={<PasswordSection/>} />,
+      element: isAuthenticated ? (
+        <Navigate to="/home" />
+      ) : (
+        <Identity children={<PasswordSection />} />
+      ),
     },
     {
       path: "/identity/login/verify-email",
-      element: isAuthenticated ?  <Navigate to="/home" />:  <Identity children={<EmailVerification/>} />,
+      element: isAuthenticated ? (
+        <Navigate to="/home" />
+      ) : (
+        <Identity children={<EmailVerification />} />
+      ),
     },
     {
       path: "/identity/sign-up/enter-email",
-      element: isAuthenticated ? <Navigate to="/home" /> : <Identity children={<EmailSection />} />,
+      element: isAuthenticated ? (
+        <Navigate to="/home" />
+      ) : (
+        <Identity children={<EmailSection />} />
+      ),
     },
     {
       path: "/identity/sign-up/create-password",
-      element: isAuthenticated ? <Navigate to="/home" /> : <Identity children={<CreatePasswordSection/>} />,
+      element: isAuthenticated ? (
+        <Navigate to="/home" />
+      ) : (
+        <Identity children={<CreatePasswordSection />} />
+      ),
     },
     {
       path: "/identity/sign-up/successful",
-      element: isAuthenticated ? <Navigate to="/" /> : <EmailVerificationPage />,
+      element: isAuthenticated ? (
+        <Navigate to="/" />
+      ) : (
+        <EmailVerificationPage />
+      ),
     },
     {
       path: "/verify",
-      element: isAuthenticated ? <Navigate to="/" /> : <EmailVerificationPage />,
+      element: isAuthenticated ? (
+        <Navigate to="/" />
+      ) : (
+        <EmailVerificationPage />
+      ),
     },
     {
       path: "/verify:ref",
-      element: isAuthenticated ? <Navigate to="/" /> : <EmailVerificationPage />,
+      element: isAuthenticated ? (
+        <Navigate to="/" />
+      ) : (
+        <EmailVerificationPage />
+      ),
     },
     {
       path: "/forgot",
@@ -112,17 +151,23 @@ const AppRoutes = () => {
   ];
 
   const privateStandalone = [
-    { path: "/profiles", element: <ProfilesPage /> },
     {
-      path: "/profiles/editing&profileId/:profileId",
-      element: <EditingProfiles />,
+      path: "/select-profile",
+      element: <ProfilesPage children={<SelectProfile />} />,
+    },
+    {
+      path: "/edit-profiles",
+      element: <ProfilesPage children={<EditProfiles />} />,
+    },
+    {
+      path: "/edit-profile/:profileId",
+      element: <ProfilesPage children={<EditProfile />} />,
     },
     { path: "/profiles/create", element: <CreateNewProfilePage /> },
   ];
 
   return (
     <BrowserRouter basename="/preview/acaiwaveplus">
-      
       <Routes>
         {publicRoutes.map(({ path, element }) => (
           <Route key={path} path={path} element={element} />
@@ -140,7 +185,9 @@ const AppRoutes = () => {
         </Route>
 
         {/* Rotas privadas standalone */}
-        <Route element={<PrivateStandalone isAuthenticated={isAuthenticated} />}>
+        <Route
+          element={<PrivateStandalone isAuthenticated={isAuthenticated} />}
+        >
           {privateStandalone.map(({ path, element }) => (
             <Route key={path} path={path} element={element} />
           ))}

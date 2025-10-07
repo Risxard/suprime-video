@@ -1,0 +1,340 @@
+.edit-profile-container {
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    margin: 164px auto 100px;
+    max-width: 480px;
+    width: 100%;
+}
+
+.edit-profile-title {
+    text-align: center;
+    margin-bottom: 24px;
+    width: 100%;
+}
+
+.edit-profile-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.edit-profile-picture-container {
+    -webkit-box-align: center;
+    align-items: center;
+    align-self: baseline;
+    display: flex;
+    flex-direction: column;
+    opacity: 1;
+    padding: 0px;
+    margin: auto auto 24px;
+}
+
+.edit-profile-picture {
+    display: block;
+    cursor: pointer;
+    position: relative;
+    height: 140px;
+    width: 140px;
+    background: url("") 0% 0% / contain no-repeat;
+    border-radius: 50%;
+    margin: auto;
+    transition: 250ms cubic-bezier(0.455, 0.03, 0.515, 0.955);
+}
+
+.edit-profile-picture:hover {
+    transform: scale(1.05, 1.05);
+}
+
+.edit-profile-picture:hover::after {
+    border: 4px solid rgba(249, 249, 249, 0.8);
+}
+
+.edit-profile-picture::after {
+    border-radius: 50%;
+    border: 4px solid rgba(0, 0, 0, 0);
+    inset: 0px;
+    content: "";
+    position: absolute;
+    transition: border 250ms cubic-bezier(0.455, 0.03, 0.515, 0.955);
+}
+
+.edit-profile-picture img {
+    background: transparent;
+    border-radius: 100%;
+    bottom: -4px;
+    position: absolute;
+    right: -4px;
+    z-index: 10;
+    height: 48px;
+    width: 48px;
+}
+
+
+
+
+.edit-profile-container form {
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    margin: 0px;
+    padding: 0px 40px;
+    flex-direction: column;
+    width: 100%;
+}
+
+
+
+.profile-box-container {
+    display: block;
+    -webkit-box-align: center;
+    align-items: center;
+    max-width: 400px;
+    width: 100%;
+}
+
+.profile-box-container>* {
+    width: 100%;
+}
+
+.profile-box-container fieldset {
+    border: none;
+    display: inline;
+    margin: 0px auto 18px;
+    padding: 0px;
+    position: relative;
+
+}
+
+
+.profile-input-container input {
+    backdrop-filter: blur(50px);
+    background-color: rgb(45, 47, 54);
+    border: 1px solid transparent;
+    border-radius: 4px;
+    caret-color: rgb(11, 122, 173);
+    height: 56px;
+    margin: 0px;
+    outline: none;
+    padding: 7px 12px;
+    transition: 0.1s;
+    width: 100%;
+
+    color: #f9f9f9;
+
+    font-family: 'inspire-Roman', sans-serif;
+    font-size: 15px;
+    letter-spacing: -.1px;
+    line-height: 1.6;
+}
+
+.profile-input-container :focus {
+    border: 1px solid rgba(249, 249, 249, 0.3);
+}
+
+
+
+
+
+.profile-box-section-container {
+    border-radius: 4px;
+    border: 1px solid rgb(30, 31, 36);
+    display: flex;
+    flex-flow: column;
+    margin-bottom: 32px;
+}
+
+.profile-box-section-title {
+    background-color: #31343e;
+    padding-bottom: .25rem;
+    padding-top: .25rem;
+    padding-right: 1rem;
+    padding-left: 1rem;
+}
+
+.profile-box-section-title p {
+    font-family: 'inspire-Roman', sans-serif;
+    font-size: 15px;
+    letter-spacing: -.1px;
+    line-height: 1.6;
+    color: #a8a9ad;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+
+.profile-box-section> :not(:first-child) {
+    border-top: 1px solid rgb(30, 31, 36);
+}
+
+.profile-box-section {
+    width: 100%;
+    position: relative;
+
+    font-family: 'inspire-Roman', sans-serif;
+    font-size: 15px;
+    letter-spacing: -.1px;
+    line-height: 1.6;
+    color: white;
+    text-align: center;
+}
+
+.profile-box-section-options {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    -webkit-box-align: center;
+
+    min-height: 56px;
+    background-color: transparent;
+
+    color: white;
+
+}
+
+.profile-box-section-options>span {
+    font-family: 'inspire-Roman', sans-serif;
+    font-size: 15px;
+    letter-spacing: -.1px;
+    line-height: 1.6;
+
+    -webkit-box-align: center;
+    align-items: center;
+
+    border-radius: 7px 7px 0px 0px;
+    box-shadow: none;
+    cursor: pointer;
+    display: flex;
+    flex-wrap: wrap;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    min-height: 0px;
+    position: relative;
+    transition: 0.3s;
+    box-sizing: border-box;
+    color: rgb(255, 255, 255);
+    padding: 0px 12px 0px 12px;
+    height: 55px;
+    width: 100%;
+    outline: 0px !important;
+}
+
+.profile-box-section-options.active >span {
+    border: 1px solid rgb(75, 78, 90);
+}
+
+
+
+
+.profile-box-section-options.active>span {
+    background-color: rgb(30, 31, 36);
+}
+
+
+
+.profile-box-section-options-selected {
+    display: flex;
+    flex-direction: row;
+
+    align-items: center;
+    -webkit-box-align: center;
+
+    color: rgb(219, 220, 222);
+
+}
+
+.profile-box-section-options-selected svg {
+    height: 24px;
+    min-width: 24px;
+    width: 24px;
+    z-index: auto;
+    fill: white;
+    margin-left: 6px;
+}
+
+
+.profile-box-section-options-dropdrown {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    width: 100%;
+    border-top: solid 1px #31343e;
+}
+
+
+
+
+
+.profile-box-section-options-dropdrown li {
+    font-family: 'inspire-Roman', sans-serif;
+    font-size: 15px;
+    letter-spacing: -.1px;
+    line-height: 1.6;
+}
+
+.profile-box-section-options-dropdrown li {
+    background-color: rgb(30, 31, 36);
+    color: rgb(219, 220, 222);
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: inherit;
+    padding: 10px;
+    width: 100%;
+    user-select: none;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    box-sizing: border-box;
+    border-radius: 0px;
+    transition: 0.3s;
+    vertical-align: middle;
+}
+
+.profile-box-section-options-dropdrown li:hover {
+    color: white
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media (min-width: 360px) and (max-width: 767px) {
+    .profile-box-container {
+        max-width: 400px;
+    }
+}
+
+@media (min-width: 768px) {
+    .edit-profile-container {
+        max-width: 800px;
+        margin: 176px auto 100px;
+    }
+
+
+    .edit-profile-content {
+        flex-direction: row-reverse;
+    }
+
+    .edit-profile-title {
+        width: 400px;
+        text-align: left;
+    }
+
+    .edit-profile-picture-container {
+        margin: 0px 0px 0px 75px;
+    }
+
+    .edit-profile-picture {
+        height: 213px;
+        width: 213px;
+    }
+}

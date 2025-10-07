@@ -34,6 +34,14 @@
     padding-bottom: 1.5rem;
 }
 
+.profiles-page h4 {
+    font-family: 'Inspire-Heavy', sans-serif;
+    font-size: 20px;
+    letter-spacing: .11px;
+    line-height: 1.4;
+    color: #cacaca;
+}
+
 
 
 
@@ -119,9 +127,12 @@
     height: 120px;
     width: 120px;
     background: url("") 0% 0% / contain no-repeat;
+
     border-radius: 50%;
     margin: auto;
     transition: 250ms cubic-bezier(0.455, 0.03, 0.515, 0.955);
+
+
 }
 
 
@@ -143,6 +154,17 @@
 
 .picture-container svg {
     fill: white;
+}
+
+.picture-container img {
+    background: transparent;
+    border-radius: 100%;
+    bottom: -4px;
+    position: absolute;
+    right: -4px;
+    z-index: 10;
+    height: 48px;
+    width: 48px;
 }
 
 .picture-container:hover {
@@ -184,12 +206,7 @@
     text-decoration: none;
 }
 
-.profile-list-item .profile-picture-container img {
-    height: 140px;
-    position: relative;
-    width: 100%;
-    border-radius: 50%;
-}
+
 
 .profile-picture-container h3 {
     font-family: 'Inspire-Heavy', sans-serif;
@@ -669,12 +686,7 @@
 @media (max-width: 879px) {
 
 
-    .profile-list-item .profile-picture-container img {
-        height: 100px;
-        position: relative;
-        width: 100%;
-        border-radius: 50%;
-    }
+
 
     .edit-profile-btn {
         padding: 5px 15px;

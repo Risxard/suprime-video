@@ -1,17 +1,15 @@
 import { NavLink } from "react-router-dom";
 import React from "react";
 import logo from "../../assets/acaiwaveLogo.png";
-import './Navigation.css'
+import "./Navigation.css";
 
-var NavProfiles = () => {
+var NavProfiles = ({ onSubmitNavBtn, text }) => {
   return (
     <nav className="nav-profiles">
       <div className="nav-logo-profiles">
         <img src={logo} alt="acaiwaveplus logo" />
       </div>
-      <button>
-        Editar perfis
-      </button>
+      <button onClick={() => onSubmitNavBtn()}>{text}</button>
     </nav>
   );
 };

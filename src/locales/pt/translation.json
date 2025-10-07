@@ -268,9 +268,9 @@
     }
   },
   "profilesPage": {
-    "buttonAdd": "Adicionar novo perfil",
+    "buttonAdd": "Adicionar perfil",
     "selectProfile": {
-      "title": "Quem está assistindo?",
+      "title": "Quem vai assistir?",
       "button1": "Editar perfil"
     },
     "manageProfile": {

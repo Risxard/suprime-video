@@ -15,35 +15,44 @@ import i18next from "i18next";
 
 import holdimg from "../Icons/download.png";
 import AddProfile from "../Icons/AddProfile.jsx";
+import { profileService } from "../../../services/firebase/profileServices.js";
 
 const UserMenuChildren = ({ currentProfileData }) => {
   const [sortedProfileList, setCurrentProfileList] = useState([]);
+  const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
   const avatarButtonRef = useRef(null);
 
-  const profilesList = useSelector((state) => state.auth.profiles);
-  const validProfilesList = Array.isArray(profilesList) ? profilesList : [];
+  const { t } = useTranslation();
+  const navigationAccountMenu = t("navigation.accountMenu");
+  const { yourAccount, profiles } = navigationAccountMenu;
+  const { editProfile, appSettings, account, help, signOut } = yourAccount;
 
   useEffect(() => {
-    const filteredProfileList = validProfilesList.filter(
-      (profile) => profile.id !== currentProfileData?.id
-    );
+    const fetchProfiles = async () => {
+      try {
+        const allProfiles = await profileService.getAll();
 
-    const sortedList = [...filteredProfileList].sort((a, b) => {
-      if (a.id < b.id) {
-        return 1;
-      }
-      if (a.id > b.id) {
-        return -1;
-      }
-      return 0;
-    });
+        // filtra o currentProfileData
+        const filteredProfiles = allProfiles.filter(
+          (profile) => profile.id !== currentProfileData?.id
+        );
 
-    if (sortedList) {
-      setCurrentProfileList(sortedList);
-    }
+        // ordena decrescente pelo id (ou outra lógica)
+        const sortedList = [...filteredProfiles].sort((a, b) =>
+          a.id < b.id ? 1 : a.id > b.id ? -1 : 0
+        );
+
+        setCurrentProfileList(sortedList);
+      } catch (error) {
+        console.error("Erro ao buscar perfis:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProfiles();
   }, [currentProfileData]);
 
   const handleSetUserProfile = (profile) => {
@@ -56,56 +65,38 @@ const UserMenuChildren = ({ currentProfileData }) => {
   const loggout = async () => {
     try {
       await auth.signOut();
-
-      // limpa redux
       dispatch(logout());
-
-      // limpa localStorage
       localStorage.removeItem("@AuthSV:profiles");
       localStorage.removeItem("@AuthSV:currentProfile");
       localStorage.removeItem("@AuthSV:watchlist");
-
-      // se preferir, limpa tudo de uma vez:
-      // localStorage.clear();
-
-      // redireciona pra página de login
       navigate("/login");
     } catch (error) {
       console.error("Erro ao sair:", error);
     }
   };
 
-  const { t } = useTranslation();
-
-  const navigationAccountMenu = t("navigation.accountMenu");
-  const { yourAccount, profiles } = navigationAccountMenu;
-  const { editProfile, appSettings, account, help, signOut } = yourAccount;
 
   return (
     <div className="nav-menu-list-itens">
-      {sortedProfileList.length > 0
-        ? sortedProfileList.map((profile) => (
-            <li
-              className="nav-menu-item"
-              key={profile.id}
-              onClick={() => handleSetUserProfile(profile)}
-            >
-              <a href="">
-                <span
-                  className="nav-menu-profile-pic"
-                  style={{
-                    ...(profile.userInfoData?.img?.url && {
-                      backgroundImage: `url(${profile.userInfoData.img.url})`,
-                    }),
-                  }}
-                ></span>
-                {profile.userInfoData?.name && (
-                  <p>{profile.userInfoData.name}</p>
-                )}
-              </a>
-            </li>
-          ))
-        : null}
+      {sortedProfileList.map((profile) => (
+        <li
+          className="nav-menu-item"
+          key={profile.id}
+          onClick={() => handleSetUserProfile(profile)}
+        >
+          <a href="">
+            <span
+              className="nav-menu-profile-pic"
+              style={{
+                ...(profile.userInfoData?.img?.url && {
+                  backgroundImage: `url(${profile.userInfoData.img.url})`,
+                }),
+              }}
+            ></span>
+            {profile.userInfoData?.name && <p>{profile.userInfoData.name}</p>}
+          </a>
+        </li>
+      ))}
 
       <li className="nav-menu-item">
         <a href="/preview/acaiwaveplus/profiles/create">
@@ -117,7 +108,7 @@ const UserMenuChildren = ({ currentProfileData }) => {
       </li>
 
       <li className="nav-menu-item nopic">
-        <a href="">
+        <a href="/preview/acaiwaveplus/edit-profiles">
           <p>{editProfile}</p>
         </a>
       </li>
@@ -128,7 +119,7 @@ const UserMenuChildren = ({ currentProfileData }) => {
       </li>
       <li className="nav-menu-item nopic">
         <a href="">
-          <p>{account} </p>
+          <p>{account}</p>
         </a>
       </li>
       <li className="nav-menu-item nopic">
@@ -136,7 +127,7 @@ const UserMenuChildren = ({ currentProfileData }) => {
           <p>{help}</p>
         </a>
       </li>
-      <li className="nav-menu-item nopic" onClick={() => loggout()}>
+      <li className="nav-menu-item nopic" onClick={loggout}>
         <a href="">
           <p>{signOut}</p>
         </a>

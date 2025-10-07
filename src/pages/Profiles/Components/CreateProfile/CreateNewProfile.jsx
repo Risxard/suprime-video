@@ -24,7 +24,7 @@ const CreateNewProfilePage = () => {
   const profilesPage = t("profilesPage");
 
   return (
-    <>
+    <div className="profiles-page-container">
       <div className="profiles-page">
         {picSelector ? (
           <div>
@@ -58,7 +58,7 @@ const CreateNewProfilePage = () => {
           />
         )}
       </div>
-    </>
+    </div>
   );
 };
 

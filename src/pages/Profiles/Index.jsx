@@ -2,20 +2,18 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import "./styles.css";
 import { getAllProfiles } from "../../services/firebase/profileServices.js";
-import Profiles from "./Components/Profiles.jsx";
+import Profiles from "./Components/SelectProfile.jsx";
 import ManageProfileSelect from "./Components/ManageProfile.jsx";
 import NavProfiles from "../../components/Navigation/NavProfiles.jsx";
 import { useTranslation } from "react-i18next";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../services/firebase/firebaseconfig.js";
+import LoadingComponent from "../../components/utils/LoadingComponent/LoadingComponent.jsx";
 
-const ProfilesPage = () => {
+const ProfilesPage = ({ children }) => {
   const [editMode, setEditMode] = useState(false);
   const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
-  const profilesList = useSelector((state) => state.auth.profiles);
-  const { t } = useTranslation();
-  const profilesPage = t("profilesPage");
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -32,48 +30,19 @@ const ProfilesPage = () => {
     return () => unsubscribe();
   }, [dispatch]);
 
-  const validProfilesList = Array.isArray(profilesList) ? profilesList : [];
-
   function handleEditMode() {
     setEditMode((prevEditMode) => !prevEditMode);
   }
 
   if (loading) {
-    return (
-      <div className="profiles-page">
-        <NavProfiles />
-        <p>Carregando perfis...</p>
-      </div>
-    );
+    return <LoadingComponent />;
   }
+
 
   return (
     <div className="profiles-page">
       <div className="app-background" />
-
-      <NavProfiles />
-
-      <div className="profiles-page-container">
-        {editMode ? (
-          <ManageProfileSelect
-            profileList={validProfilesList}
-            profileLang={profilesPage.manageProfile}
-          />
-        ) : (
-          <Profiles
-            profileList={validProfilesList}
-            profileLang={profilesPage.selectProfile}
-          />
-        )}
-      </div>
-
-      {/* <div className="edit-profile-btn-container">
-        <button className="edit-profile-btn" onClick={handleEditMode}>
-          {editMode
-            ? profilesPage.manageProfile.button
-            : profilesPage.selectProfile.button1}
-        </button>
-      </div> */}
+      {children}
     </div>
   );
 };

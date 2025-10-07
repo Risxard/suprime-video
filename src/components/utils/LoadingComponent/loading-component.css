@@ -1,0 +1,27 @@
+.loading-component {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: black;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+}
+
+.loading-component img {
+  width: 80px;
+  height: 80px;
+  animation: spin 700ms linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

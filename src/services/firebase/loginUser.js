@@ -3,7 +3,6 @@ import { sendEmailVerificationLink } from "./profileServices";
 import { auth } from "./firebaseconfig";
 
 /**
- * Faz login com email e senha no Firebase
  * @param {string} email
  * @param {string} password
  * @returns {Promise<{success: boolean, error?: string, needsVerification?: boolean}>}
