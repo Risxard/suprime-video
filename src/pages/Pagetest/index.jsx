@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./styles.css";
 import { profileService } from "../../services/firebase/profileServices";
-import { userServices } from "../../services/firebase/userServices";
 import { set } from "react-hook-form";
 import { useSelector } from "react-redux";
 import useHero from "../../hooks/Sliders/useHero/useHero";

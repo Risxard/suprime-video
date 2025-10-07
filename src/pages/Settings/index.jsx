@@ -19,7 +19,6 @@ import Cookies from "js-cookie";
 import { set } from "react-hook-form";
 import { logout } from "../../store/auth";
 import useDeleteAccount from "../../hooks/Auth/DeleteAccount";
-import { userServices } from "../../services/firebase/userServices";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 const SetYourAccountChildren = ({ editAccount }) => {

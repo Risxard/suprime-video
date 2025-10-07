@@ -32,7 +32,7 @@ import EditProfiles from "../pages/Profiles/Components/EditProfiles";
 import LoadingComponent from "../components/utils/LoadingComponent/LoadingComponent";
 import SelectProfile from "../pages/Profiles/Components/SelectProfile";
 import EditProfile from "../pages/Profiles/Components/EditProfile/EditProfile";
-
+import SelectAvatar from "../pages/Profiles/Components/SelectAvatar/SelectAvatar";
 
 const AppRoutes = () => {
   const { user, token, currentProfile, loading } = useSelector(
@@ -162,6 +162,14 @@ const AppRoutes = () => {
     {
       path: "/edit-profile/:profileId",
       element: <ProfilesPage children={<EditProfile />} />,
+    },
+    {
+      path: "/select-avatar/",
+      element: <ProfilesPage children={<SelectAvatar />} />,
+    },
+    {
+      path: "/select-avatar/:profileId",
+      element: <ProfilesPage children={<SelectAvatar />} />,
     },
     { path: "/profiles/create", element: <CreateNewProfilePage /> },
   ];
