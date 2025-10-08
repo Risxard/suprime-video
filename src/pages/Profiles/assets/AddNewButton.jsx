@@ -1,12 +1,12 @@
 import { useTranslation } from "react-i18next";
 import { NavLink } from "react-router-dom";
 
-const AddNew = () => {
+const AddNewButton = () => {
   const { t } = useTranslation();
   const profilesPage = t("profilesPage");
   return (
     <NavLink
-      to={"/profiles/create"}
+      to={"/select-avatar"}
       className="profile-picture-container add-new-profile-list-btn"
     >
       <div className="picture-container">
@@ -29,4 +29,4 @@ const AddNew = () => {
   );
 };
 
-export default AddNew;
+export default AddNewButton;

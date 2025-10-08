@@ -1,17 +1,13 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import "./styles.css";
 import { getAllProfiles } from "../../services/firebase/profileServices.js";
-import Profiles from "./Components/SelectProfile.jsx";
-import ManageProfileSelect from "./Components/ManageProfile.jsx";
-import NavProfiles from "../../components/Navigation/NavProfiles.jsx";
-import { useTranslation } from "react-i18next";
+
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../services/firebase/firebaseconfig.js";
 import LoadingComponent from "../../components/utils/LoadingComponent/LoadingComponent.jsx";
 
 const ProfilesPage = ({ children }) => {
-  const [editMode, setEditMode] = useState(false);
   const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
 
@@ -30,14 +26,11 @@ const ProfilesPage = ({ children }) => {
     return () => unsubscribe();
   }, [dispatch]);
 
-  function handleEditMode() {
-    setEditMode((prevEditMode) => !prevEditMode);
-  }
+
 
   if (loading) {
     return <LoadingComponent />;
   }
-
 
   return (
     <div className="profiles-page">

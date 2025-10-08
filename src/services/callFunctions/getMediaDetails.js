@@ -12,15 +12,11 @@ const similarFilter = (similarData) => {
 export const getMediaDetails = async (mediaParam) => {
   try {
 
-
     const initialData = await tmdbService.fetchMediaDetails({
       mediaType: mediaParam.type,
       mediaId: mediaParam.id,
       language: i18next.language,
     });
-
-
-
 
 
     const initialSimilar = similarFilter(initialData.similar.results);

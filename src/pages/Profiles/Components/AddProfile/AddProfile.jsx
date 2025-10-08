@@ -1,17 +1,14 @@
 import React, { useEffect, useState, useRef } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import NavProfiles from "../../../../components/Navigation/NavProfiles";
-import LoadingComponent from "../../../../components/utils/LoadingComponent/LoadingComponent";
-import {
-  profileService,
-  updateProfileLanguage,
-} from "../../../../services/firebase/profileServices";
-import "./styles.css";
-import DoneSvg from "../../assets/DoneSvg";
+
 import { useDispatch } from "react-redux";
 import editsvg from "../../assets/edit-svg.svg";
 import SelectedSvg from "../../assets/SelectedSvg";
+import DoneSvg from "../../assets/DoneSvg";
+import { newProfileStorage } from "../../../../utils/sessionStorageManager";
+import { profileService } from "../../../../services/firebase/profileServices";
 import { syncProfiles } from "../../../../services/firebase/profileServicesHelpers";
 
 const languages = [
@@ -20,111 +17,122 @@ const languages = [
   { code: "es-ES", label: "Español" },
 ];
 
-const EditProfile = () => {
+const AddProfile = () => {
   const { t } = useTranslation();
-  const { profileId } = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const [profile, setProfile] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [selectedLang, setSelectedLang] = useState("pt-BR");
-  const [name, setName] = useState("");
+  const [profile, setProfile] = useState({
+    userInfoData: {
+      img: {
+        url: "https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/BD2FA0F3965617FC515E3CEBD3AD51C00CCFFBF98F96448EFE46B82867FCE542/scale?width=600&aspectRatio=1.00&format=png",
+      },
+      name: "",
+      language: "pt-BR",
+    },
+  });
 
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [name, setName] = useState("");
+  const [selectedLang, setSelectedLang] = useState("pt-BR");
+  const [errorMessage, setErrorMessage] = useState("");
+  const [isSaving, setIsSaving] = useState(false);
 
   const dropdownRef = useRef(null);
 
   useEffect(() => {
-    const fetchProfile = async () => {
-      try {
+    const data = newProfileStorage.get();
+    if (data) {
+      setProfile((prev) => ({
+        ...prev,
+        userInfoData: {
+          ...prev.userInfoData,
+          img: { url: data.imgUrl || prev.userInfoData.img.url },
+          name: data.profileName || "",
+          language: data.language || "pt-BR",
+        },
+      }));
 
-        await syncProfiles(dispatch);
+      setName(data.profileName || "");
+      setSelectedLang(data.language || "pt-BR");
+      newProfileStorage.clear();
+    }
+  }, []);
 
-        const data = await profileService.getById(profileId);
-        if (data) {
-          setProfile(data);
-          setName(data.userInfoData?.name || "");
-          setSelectedLang(data.userInfoData?.language || "pt-BR");
-        } else {
-          console.error("Perfil não encontrado");
-        }
-      } catch (error) {
-        console.error("Erro ao buscar perfil:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
+  const handleNameBlur = () => {
+    setProfile((prev) => ({
+      ...prev,
+      userInfoData: { ...prev.userInfoData, name },
+    }));
+  };
 
-    if (profileId) fetchProfile();
-  }, [profileId, dispatch]);
+  const goToAvatarSelection = () => {
+
+    newProfileStorage.set(
+      {
+        profileName: name,
+        imgUrl: profile.userInfoData.img.url,
+        language: selectedLang,
+      },
+      15
+    );
+    navigate(`/select-avatar/`);
+  };
 
   const toggleDropdown = () => setIsDropdownOpen((prev) => !prev);
 
-  const handleSelectLang = async (lang, event) => {
+  const handleSelectLang = (lang, event) => {
     event.stopPropagation();
     setSelectedLang(lang);
+    setProfile((prev) => ({
+      ...prev,
+      userInfoData: { ...prev.userInfoData, language: lang },
+    }));
     setIsDropdownOpen(false);
-    try {
-      await updateProfileLanguage(profileId, lang, dispatch);
-    } catch (error) {
-      console.error("Erro ao atualizar idioma:", error);
-    }
   };
 
-  const handleNameBlur = async () => {
-    if (name !== profile.userInfoData?.name) {
-      try {
-        await profileService.update(profileId, { "userInfoData.name": name });
-        setProfile((prev) => ({
-          ...prev,
-          userInfoData: { ...prev.userInfoData, name },
-        }));
-      } catch (error) {
-        console.error("Erro ao atualizar nome:", error);
-      }
-    }
-  };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsSaving(true);
+    setErrorMessage("");
 
-  const goToAvatarSelection = () => navigate(`/select-avatar/${profileId}`);
+    const profileName = profile.userInfoData?.name || "Novo Perfil";
+    const imgUrl = profile.userInfoData?.img?.url;
 
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        setIsDropdownOpen(false);
-      }
-    };
-    if (isDropdownOpen)
-      document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, [isDropdownOpen]);
-
-  const navFunction = () => navigate("/select-profile");
-
-  const openDeleteModal = () => setIsModalOpen(true);
-  const closeDeleteModal = () => setIsModalOpen(false);
-
-  const handleDeleteProfile = async () => {
     try {
-      await profileService.remove(profileId);
-      closeDeleteModal();
+      await profileService.create({
+        name: profileName,
+        imgUrl: imgUrl,
+      });
+
+
+      await syncProfiles(dispatch);
+
       navigate("/select-profile");
     } catch (error) {
-      console.error("Erro ao excluir perfil:", error);
+      console.error("Erro ao criar perfil:", error);
+
+      if (error.message.includes("Número máximo de perfis")) {
+        setErrorMessage("Número máximo de perfis atingido");
+      } else {
+        setErrorMessage("Erro ao criar perfil");
+      }
+    } finally {
+      setIsSaving(false);
     }
   };
 
-  if (loading) return <LoadingComponent />;
+  const navFunction = () => navigate("/");
 
   return (
     <>
-      <NavProfiles text="Pronto" onSubmitNavBtn={navFunction} />
+      <NavProfiles text="Cancelar" onSubmitNavBtn={navFunction} />
       <div className="profiles-page-container">
         <div className="edit-profile-container">
-          <form>
+          <form onSubmit={handleSubmit}>
             <div className="edit-profile-title">
-              <h2>Editar perfil</h2>
+              <h2>Adicionar perfil</h2>
+              <p>Para continuar, forneça as seguintes informações.</p>
             </div>
 
             <div className="edit-profile-content">
@@ -134,7 +142,7 @@ const EditProfile = () => {
                   style={{
                     background: profile.userInfoData?.img?.url
                       ? `url(${profile.userInfoData.img.url}) center/cover no-repeat`
-                      : "linear-gradient(rgb(58, 60, 74), rgb(36, 38, 50)) center/contain no-repeat",
+                      : "linear-gradient(rgb(58, 60, 74), rgb(36, 38, 50))",
                   }}
                   onClick={goToAvatarSelection}
                 >
@@ -144,12 +152,15 @@ const EditProfile = () => {
 
               <div className="profile-box-container">
                 <fieldset>
+                  <label htmlFor="profileName">Nome de perfil</label>
                   <span className="profile-input-container">
                     <input
+                      id="profileName"
                       type="text"
                       value={name}
                       onChange={(e) => setName(e.target.value)}
                       onBlur={handleNameBlur}
+                      required
                     />
                   </span>
                 </fieldset>
@@ -196,40 +207,25 @@ const EditProfile = () => {
                 </div>
 
                 <button
-                  type="button"
-                  className="delete-profile-btn"
-                  onClick={openDeleteModal}
+                  type="submit"
+                  className={`profile-box-container-submit-button ${
+                    errorMessage ? "error" : ""
+                  }`}
+                  disabled={!!errorMessage || isSaving}
                 >
-                  Excluir perfil
+                  {errorMessage
+                    ? errorMessage
+                    : isSaving
+                    ? "Salvando..."
+                    : "Salvar"}
                 </button>
               </div>
             </div>
           </form>
         </div>
       </div>
-
-      {isModalOpen && (
-        <div className="modal-backdrop">
-          <div className="modal-content">
-            <h4>Excluir o perfil de {name}?</h4>
-            <p>
-              O histórico do perfil, a Minha Lista e a atividade serão
-              excluídos. Essa ação não pode ser desfeita.
-            </p>
-
-            <div className="modal-buttons">
-              <button onClick={closeDeleteModal} className="cancel-btn">
-                Cancelar
-              </button>
-              <button onClick={handleDeleteProfile} className="confirm-btn">
-                Excluir
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
     </>
   );
 };
 
-export default EditProfile;
+export default AddProfile;

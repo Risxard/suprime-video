@@ -14,7 +14,7 @@
     display: flex;
     flex-wrap: wrap;
     font-family: Arial, Helvetica, sans-serif;
-    /* grid-template-columns is not valid on flex containers, remove or use display: grid if needed */
+
     height: auto;
     justify-content: center;
     line-height: 18.4px;

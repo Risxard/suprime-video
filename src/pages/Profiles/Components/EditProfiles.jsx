@@ -4,13 +4,11 @@ import {
   setCurrentWatchlist,
 } from "../../../store/auth/index.js";
 
-import { Navigate } from "react-router-dom";
-import { useEffect, useState } from "react";
-import AddNew from "./CreateProfile/Addnew.jsx";
 import { useNavigate } from "react-router-dom";
 import i18next from "i18next";
 import { useTranslation } from "react-i18next";
 import NavProfiles from "../../../components/Navigation/NavProfiles.jsx";
+import AddNewButton from "../assets/AddNewButton.jsx";
 
 const EditProfiles = () => {
   const dispatch = useDispatch();
@@ -92,7 +90,7 @@ const EditProfiles = () => {
                 role="button"
                 aria-label="Adicionar perfil"
               >
-                <AddNew />
+                <AddNewButton />
               </div>
             </div>
           </ul>

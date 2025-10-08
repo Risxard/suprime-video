@@ -21,8 +21,6 @@ import {
 import PrivateLayout from "../App";
 import PrivateStandalone from "./PrivateStandalone";
 
-import EditingProfiles from "../pages/Profiles/Components/EditingProfiles";
-import CreateNewProfilePage from "../pages/Profiles/Components/CreateProfile/CreateNewProfile";
 import Search from "../pages/Search";
 import EmailSection from "../pages/Identity/components/EmailSection";
 import PasswordSection from "../pages/Identity/components/PasswordSection";
@@ -33,6 +31,7 @@ import LoadingComponent from "../components/utils/LoadingComponent/LoadingCompon
 import SelectProfile from "../pages/Profiles/Components/SelectProfile";
 import EditProfile from "../pages/Profiles/Components/EditProfile/EditProfile";
 import SelectAvatar from "../pages/Profiles/Components/SelectAvatar/SelectAvatar";
+import AddProfile from "../pages/Profiles/Components/AddProfile/AddProfile";
 
 const AppRoutes = () => {
   const { user, token, currentProfile, loading } = useSelector(
@@ -171,7 +170,7 @@ const AppRoutes = () => {
       path: "/select-avatar/:profileId",
       element: <ProfilesPage children={<SelectAvatar />} />,
     },
-    { path: "/profiles/create", element: <CreateNewProfilePage /> },
+    { path: "/add-profile", element: <ProfilesPage children={<AddProfile />} /> },
   ];
 
   return (
@@ -187,7 +186,7 @@ const AppRoutes = () => {
             <Route
               key={path}
               path={path}
-              element={!currentProfile ? <Navigate to="/profiles" /> : element}
+              element={!currentProfile ? <Navigate to="/select-profile" /> : element}
             />
           ))}
         </Route>

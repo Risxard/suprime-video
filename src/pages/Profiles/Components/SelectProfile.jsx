@@ -2,7 +2,7 @@ import { useDispatch } from "react-redux";
 import {
   setCurrentProfile,
   setCurrentWatchlist,
-  userProfiles
+  userProfiles,
 } from "../../../store/auth/index.js";
 
 import { useEffect, useState } from "react";
@@ -10,9 +10,8 @@ import { useNavigate } from "react-router-dom";
 import i18next from "i18next";
 import { useTranslation } from "react-i18next";
 import NavProfiles from "../../../components/Navigation/NavProfiles.jsx";
-import AddNew from "./CreateProfile/Addnew.jsx";
 import { profileService } from "../../../services/firebase/profileServices.js";
-
+import AddNewButton from "../assets/AddNewButton.jsx";
 
 const SelectProfile = () => {
   const dispatch = useDispatch();
@@ -29,7 +28,6 @@ const SelectProfile = () => {
       try {
         const allProfiles = await profileService.getAll();
         setProfiles(allProfiles);
-
 
         if (allProfiles.length > 0) {
           const savedProfile = allProfiles[0];
@@ -64,8 +62,6 @@ const SelectProfile = () => {
 
   const navFunction = () => navigate("/edit-profiles");
 
- 
-
   return (
     <>
       <NavProfiles text="Editar Perfil" onSubmitNavBtn={navFunction} />
@@ -90,7 +86,7 @@ const SelectProfile = () => {
                     style={{
                       background: profile.userInfoData?.img?.url
                         ? `url(${profile.userInfoData.img.url}) center/cover no-repeat`
-                        : "linear-gradient(rgb(58, 60, 74), rgb(36, 38, 50)) center/contain no-repeat"
+                        : "linear-gradient(rgb(58, 60, 74), rgb(36, 38, 50)) center/contain no-repeat",
                     }}
                   ></div>
 
@@ -105,7 +101,7 @@ const SelectProfile = () => {
                 role="button"
                 aria-label="Adicionar perfil"
               >
-                <AddNew />
+                <AddNewButton />
               </div>
             </div>
           </ul>
