@@ -5,11 +5,10 @@ import "./GrandPosterCarouselItem.css";
 import MediaClass from "../../../MediaClass/MediaClass";
 import { NavLink } from "react-router-dom";
 import CardLabel from "./assets/card-label";
+import { image_path_342, image_path_500 } from "../../../../utils/imagePaths";
 
 const GrandPosterCarouselItem = ({ movie, language, top10mode, topNumber }) => {
   const [posterAndLogo, setPosterAndLogo] = useState({});
-
-  const image_path = "https://image.tmdb.org/t/p/w500";
 
   useEffect(() => {
     const fetchLogo = async () => {
@@ -45,8 +44,6 @@ const GrandPosterCarouselItem = ({ movie, language, top10mode, topNumber }) => {
     ) || []
   ).slice(0, 3);
 
-
-
   return (
     <div className="grandPoster-carousel-item">
       <NavLink to={`/detail/${movie.media_type}/${movie.id}`}>
@@ -56,7 +53,7 @@ const GrandPosterCarouselItem = ({ movie, language, top10mode, topNumber }) => {
 
             {posterAndLogo?.poster?.file_path ? (
               <img
-                src={`${image_path}${posterAndLogo?.poster?.file_path}`}
+                src={`${image_path_500}${posterAndLogo?.poster?.file_path}`}
                 alt={movie.title || ""}
               />
             ) : null}
@@ -66,7 +63,7 @@ const GrandPosterCarouselItem = ({ movie, language, top10mode, topNumber }) => {
                 {posterAndLogo?.logo?.file_path &&
                 posterAndLogo?.poster?.iso_639_1 == "xx" ? (
                   <img
-                    src={`${image_path}${posterAndLogo?.logo?.file_path}`}
+                    src={`${image_path_342}${posterAndLogo?.logo?.file_path}`}
                     alt={`${movie.title} logo`}
                   />
                 ) : (

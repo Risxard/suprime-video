@@ -1,0 +1,120 @@
+import { useState } from "react";
+import { useParams } from "react-router-dom";
+import "./styles.css";
+import { dateConverter, genreConverter } from "../../../functions/Converter";
+import HeroCardList from "../../../components/Cards/HeroCardList/HeroCardList";
+
+const DetailsTab = ({ media }) => {
+  const [activeTab, setActiveTab] = useState("episodios");
+  const { mediaType } = useParams();
+
+  const release_date = media?.release_date || media?.first_air_date;
+
+  const genreNames =
+    media?.genres?.map((g) =>
+      genreConverter(g.id, "pt-BR", mediaType || "movie")
+    ) ||
+    media?.genre_ids?.map((id) =>
+      genreConverter(id, "pt-BR", mediaType || "movie")
+    ) ||
+    [];
+
+  const creatorsOrDirectors =
+    mediaType === "tv"
+      ? media?.created_by?.length > 0
+        ? media.created_by.map((c) => c.name)
+        : null
+      : media?.credits?.crew
+          ?.filter((c) => c.job === "Director")
+          .map((c) => c.name) || null;
+
+  const cast =
+    media?.credits?.cast?.length > 0 ? media.credits.cast.slice(0, 10) : null;
+
+  return (
+    <div className="details-tabs-container">
+      <ul role="tablist" className="details-tabs-container-tablist">
+        <li
+          onClick={() => setActiveTab("episodios")}
+          className={activeTab === "episodios" ? "active" : ""}
+        >
+          <div className="tabItem-text-1">EPISÓDIOS</div>
+          <div className="tabItem-text-2">EPISÓDIOS</div>
+        </li>
+        <li
+          onClick={() => setActiveTab("sugestoes")}
+          className={activeTab === "sugestoes" ? "active" : ""}
+        >
+          <div className="tabItem-text-1">SUGESTÕES</div>
+          <div className="tabItem-text-2">SUGESTÕES</div>
+        </li>
+        <li
+          onClick={() => setActiveTab("detalhes")}
+          className={activeTab === "detalhes" ? "active" : ""}
+        >
+          <div className="tabItem-text-1">DETALHES</div>
+          <div className="tabItem-text-2">DETALHES</div>
+        </li>
+      </ul>
+
+      <div className="details-tabs-content">
+        {activeTab === "episodios" && <HeroCardList cards={media?.similar?.results}/>}
+
+        {activeTab === "sugestoes" && <HeroCardList cards={media?.similar?.results}/>}
+
+        {activeTab === "detalhes" && (
+          <div className="detailsTab">
+            <div className="detailsTab-title-container">
+              <h3>{media?.title || media?.name}</h3>
+              <p>{media?.overview}</p>
+            </div>
+
+            <div className="detailsTab-info-container">
+              <div className="detailsTab-info-media">
+                {release_date && (
+                  <div className="detailsTab-info-media-item">
+                    <div className="media-releaseDate-title">
+                      Data de lançamento:
+                    </div>
+                    <p>{dateConverter(release_date)}</p>
+                  </div>
+                )}
+
+                {genreNames.length > 0 && (
+                  <div className="detailsTab-info-media-item">
+                    <div className="media-releaseDate-title">Gênero:</div>
+                    <p>{genreNames.slice(0, 3).join(", ")}</p>
+                  </div>
+                )}
+              </div>
+
+              <div className="detailsTab-info-credits">
+                {creatorsOrDirectors?.length > 0 && (
+                  <div className="detailsTab-info-media-item">
+                    <div className="media-releaseDate-title">
+                      {mediaType === "tv" ? "Criação:" : "Direção:"}
+                    </div>
+                    {creatorsOrDirectors.map((name, idx) => (
+                      <p key={idx}>{name}</p>
+                    ))}
+                  </div>
+                )}
+
+                {cast && (
+                  <div className="detailsTab-info-media-item">
+                    <div className="media-releaseDate-title">Elenco:</div>
+                    {cast.map((c) => (
+                      <p key={c.id}>{c.name}</p>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
+
+export default DetailsTab;

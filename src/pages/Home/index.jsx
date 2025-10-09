@@ -1,13 +1,9 @@
 import React, { useEffect, useState } from "react";
 import Header from "../../components/Header/Header.jsx";
 import "./styles.css";
-import SlideDistributor from "../../components/SlideDistributor/Index.jsx";
 import i18n from "../../i18n.js";
 import { useTranslation } from "react-i18next";
-import BackdropSlider from "../../components/Sliders/BackdropSlider/BackdropSlider.jsx";
-import PosterSlider from "../../components/Sliders/PosterSlider/PosterSlider.jsx";
 import { tmdbService } from "../../services/tmdb/tmdbServices.js";
-import { movieSliderMap } from "../../utils/sliderMaps.js";
 import ChannelSection from "../../components/ChannelSection/index.jsx";
 import GrandPosterCarousel from "../../components/Sliders/GrandPosterCarousel/GrandPosterCarousel.jsx";
 

@@ -133,8 +133,15 @@ const AppRoutes = () => {
   const privateRoutes = [
     { path: "/home", element: <Home /> },
     { path: "/movies", element: <Movies /> },
+
+
+    
     { path: "/detail/:mediaType/:id/", element: <DetailsPage /> },
     { path: "/detail/:mediaType/:id/:referrer", element: <DetailsPage /> },
+
+
+
+
     { path: "/search/:searchKey", element: <Search /> },
     { path: "/categories/:genreId", element: <Categories /> },
     { path: "/tv-series", element: <TvSeries /> },

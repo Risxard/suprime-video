@@ -673,11 +673,13 @@ media query MobileFirst Open*/
     letter-spacing: 1.42px;
 }
 
-.NavigationLinks li a svg {
-    width: 18px;
-    height: 18px;
+.NavigationLinks li a span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
 }
-
 .NavigationLinks li:hover a span {
     position: relative;
 }

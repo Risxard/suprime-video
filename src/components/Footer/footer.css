@@ -15,7 +15,8 @@ footer {
 
     padding-inline: 40px;
 }
-.identity footer .footer-logo{
+
+.identity footer .footer-logo {
     display: none;
 }
 
@@ -28,13 +29,12 @@ footer {
 
 .identity footer .footer-container ul li a,
 .footer-text,
-.Rights
-{
-    color: rgb(95 97 102) !important;
+.Rights {
+    color: rgb(95 97 102) ;
 }
 
 .identity footer .footer-container ul li:hover a {
-    color: rgb(0, 0, 0) !important;
+    color: rgb(0, 0, 0) ;
 }
 
 
@@ -76,7 +76,7 @@ footer {
     list-style: none;
 
     font-family: 'Inspire-Roman', sans-serif;
-    font-size: 14px;
+    font-size: 12px;
     letter-spacing: -.1px;
     line-height: 1.5;
 }
@@ -101,6 +101,11 @@ footer {
 
     text-align: center;
     color: #cacaca;
+
+    font-family: 'Inspire-Roman', sans-serif;
+    font-size: 12px;
+    letter-spacing: -.1px;
+    line-height: 1.5;
 }
 
 

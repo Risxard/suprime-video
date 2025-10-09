@@ -1,254 +1,167 @@
-import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { useGetVideoKey } from "../../hooks/GetVideoKey/useGetVideoKeys.jsx";
-import { Volume1, VolumeX } from "lucide-react";
-import Player from "../../components/MediaPlayer/Player/Player.jsx";
-import InfoDetails from "../../Components/MediaDetail/InfoDetails/InfoDetails.jsx";
-import "./styles.css";
-import MediaDetail from "../../components/MediaDetail/Index.jsx";
-import { getMediaDetails } from "../../services/callFunctions/getMediaDetails.js";
-import MediaPlayer from "../../components/MediaPlayer/MediaPlayer.jsx";
-import { showPlayerModal } from "../../store/slices/modals.js";
-import { use } from "react";
+import { useEffect, useState } from "react";
 import i18next from "i18next";
-import { useTranslation } from "react-i18next";
+import "./styles.css";
+import {
+  image_path_342,
+  image_path_92,
+  image_path_original,
+} from "../../utils/imagePaths";
+import { tmdbService } from "../../services/tmdb/tmdbServices";
+import PlayActionIcon from "./assets/PlayActionIcon";
+import PlusActionIcon from "./assets/PlusActionIcon";
+import DetailsTab from "./components/DetailsTab";
+import DoneActionIcon from "./assets/DoneActionIcon";
+import { updateWatchlist } from "../../services/firebase/profileServices";
+import { useDispatch, useSelector } from "react-redux";
+import LoadingIcon from "../../assets/svgs/LoadingIcon";
 
 const DetailsPage = () => {
-  const [sectionActived, setSectionActived] = useState("slider");
-  const [isMouseMoving, setIsMouseMoving] = useState(true);
-  const [hideInfo, setHideInfo] = useState(true);
-  const [userInPage, setUserInPage] = useState(true);
   const [media, setMedia] = useState(null);
-
-  const image_path = "https://image.tmdb.org/t/p/original/";
-
+  const [logo, setLogo] = useState(null);
+  const [bgOpacity, setBgOpacity] = useState(1);
+  const [isLoading, setIsLoading] = useState(false);
   const language = i18next.language;
-  const playerModal = useSelector((state) => state.modals.playerModal);
-
-  const { referrer, id, mediaType } = useParams();
-
+  const { mediaType, id } = useParams();
   const dispatch = useDispatch();
 
-  const handleExitClick = () => {
-    dispatch(showPlayerModal(true));
+  const profileId = useSelector((state) => state.auth.currentProfile.id);
+  const watchlist = useSelector((state) => state.auth.watchList);
+  const isInWatchlist = watchlist?.[mediaType]?.includes(id);
+  const action = isInWatchlist ? "remove" : "add";
+
+  const handleToWatchlist = async (profileId, mediaType, mediaId, action) => {
+    setIsLoading(true);
+    try {
+      await updateWatchlist(profileId, mediaType, mediaId, action, dispatch);
+    } catch (error) {
+      console.error("Error adding to watchlist:", error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   useEffect(() => {
-    const fetchMediaDetails = async () => {
+    const fetchMediaData = async () => {
       try {
-        const response = await getMediaDetails({
-          id: id,
-          lang: language,
-          type: mediaType,
+        const details = await tmdbService.fetchMediaDetails({
+          mediaType,
+          mediaId: id,
+          language,
         });
 
-        setMedia(response);
+        setMedia(details);
+
+        const response = await tmdbService.fetchMediaLogoImage({
+          mediaId: id,
+          mediaType,
+          language,
+          originalLanguage: details.original_language,
+        });
+
+        if (response) {
+          setLogo(response.file_path);
+        }
       } catch (error) {
-        console.error("Erro ao buscar os detalhes da mídia:", error);
+        console.error("Erro ao buscar mídia:", error);
       }
     };
 
-    fetchMediaDetails();
+    fetchMediaData();
   }, [id, language, mediaType]);
 
-  const title = media?.title;
-  const original_title = media?.original_title;
-  const runtime = media?.runtime;
-  const overview = media?.overview;
-  const tagline = media?.tagline;
-  const backdrop_path = media?.backdrop_path;
-  const release_date = media?.release_date
-    ? media?.release_date
-    : media?.first_date;
-  const similar = media?.similar;
-  const vote_average = media?.vote_average;
-  const genresId = media?.genres_Id;
-  const originalLanguage = media?.original_language;
-
-  const videoKey = useGetVideoKey(id, language, mediaType, originalLanguage);
-
-  const startVideo = videoKey;
-
-  const { t } = useTranslation();
-
-  const detailPage = t("detailPage");
-
   useEffect(() => {
-    if (videoKey && referrer) {
-      setTimeout(() => {
-        handleExitClick();
-      }, 400);
-    }
-  }, [referrer, videoKey]);
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+      const halfScreen = window.innerHeight / 5;
 
-  const [isMuted, setIsMuted] = useState(true);
+      let newOpacity = 1 - (scrollY / halfScreen) * 0.8;
+      if (newOpacity < 0.2) newOpacity = 0.2;
+      if (newOpacity > 1) newOpacity = 1;
 
-  const handleMuteToggle = () => {
-    setIsMuted((prevIsMuted) => !prevIsMuted);
-  };
-
-  useEffect(() => {
-    const handleVisibilityChange = () => {
-      if (document.hidden) {
-        setUserInPage(false);
-      } else {
-        setUserInPage(true);
-      }
+      setBgOpacity(newOpacity);
     };
 
-    document.addEventListener("visibilitychange", handleVisibilityChange);
-
-    return () => {
-      document.removeEventListener("visibilitychange", handleVisibilityChange);
-    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  useEffect(() => {
-    let timeoutId;
 
-    const handleMouseInactive = () => {
-      if (userInPage) {
-        setIsMouseMoving(false);
-        setTimeout(() => {
-          setHideInfo(false);
-        }, 300);
-      }
-    };
 
-    const handleMouseActive = () => {
-      setIsMouseMoving(true);
-      setTimeout(() => {
-        setHideInfo(true);
-      }, 0);
-    };
-
-    const handleMouseMove = () => {
-      clearTimeout(timeoutId);
-
-      if (!isMouseMoving) {
-        handleMouseActive();
-      }
-
-      timeoutId = setTimeout(handleMouseInactive, 4000);
-    };
-
-    document.addEventListener("mousemove", handleMouseMove);
-
-    return () => {
-      document.removeEventListener("mousemove", handleMouseMove);
-      clearTimeout(timeoutId);
-    };
-  }, [id, isMouseMoving]);
-
-  useEffect(() => {
-    const img = document.querySelector(".background-container");
-
-    setTimeout(() => {
-      img.classList.add("activeMedia");
-
-      const intervalId = setInterval(() => {
-        img.classList.remove("activeMedia");
-      }, 60000);
-
-      return () => {
-        clearInterval(intervalId);
-      };
-    }, 4000);
-  }, [id]);
-
-  const videok = "ZL7R8qyQXrc";
   return (
-    <div
-      className={`MovieContainer ${isMouseMoving ? "" : "isMouseMoving"} ${
-        hideInfo ? "" : "hideInfo"
-      }`}
-      key={id}
-    >
-      <div className="MovieContainerInner">
-        <div className="MovieInner" onMouseMove={() => setIsMouseMoving(true)}>
-          {!playerModal && (
-            <span className="background-container">
-              <span className="mute-btn" onClick={handleMuteToggle}>
-                {!isMuted ? <Volume1 /> : <VolumeX />}
-              </span>
-              <span className="img-container">
-                <section className="current-media">
-                  {videoKey && (
-                    <Player
-                      videoKey={videoKey}
-                      isMuted={isMuted}
-                      controlsMode={0}
-                    ></Player>
+    <>
+      <div className="details-page">
+        <div className="details-page-container">
+          <div className="details-page-content">
+            <div
+              className="details-page-media-background"
+              style={{ opacity: bgOpacity }}
+            >
+              <div className="details-page-media-background-image">
+                <img
+                  src={`${image_path_92}${media?.backdrop_path}`}
+                  alt=""
+                  className="details-page-media-background-image-blurred"
+                />
+                <img
+                  src={`${image_path_original}${media?.backdrop_path}`}
+                  alt=""
+                  className="details-page-media-background-image-original"
+                />
+              </div>
+              <div className="details-page-media-background-filter" />
+            </div>
+
+            <section className="explore-ui-main-container">
+              <div className="explore-ui-main-content">
+                <div className="explore-ui-main-content-logo">
+                  {logo ? (
+                    <img
+                      src={`${image_path_342}${logo}`}
+                      alt="Logo"
+                      className="details-page-logo"
+                    />
+                  ) : (
+                    <h2>{media?.title || media?.name}</h2>
                   )}
-                </section>
+                </div>
 
-                <img src={`${image_path}${backdrop_path}`} alt={title} />
-                <span className="background-filter" />
-                <span className="background-filter2" />
-              </span>
-            </span>
-          )}
+                <div className="explore-ui-main-content-overview">
+                  <p>{media?.overview}</p>
+                </div>
 
-          <MediaDetail
-            title={title}
-            original_title={original_title}
-            runtime={runtime}
-            overview={overview}
-            tagline={tagline}
-            backdrop_path={backdrop_path}
-            release_date={release_date}
-            vote_average={vote_average}
-            genres_Id={genresId}
-            mediaType={mediaType}
-            similar={similar}
-            language={language}
-            videoKey={videoKey}
-          ></MediaDetail>
+                <div className="explore-ui-main-content-actions">
+                  <a href="" className="play-action">
+                    <PlayActionIcon />
+                    Assistir
+                  </a>
+                  <div
+                    className="watchlist-action"
+                    onClick={() =>
+                      handleToWatchlist(profileId, mediaType, id, action)
+                    }
+                  >
+                    <button>
+                      {isLoading ? (
+                        <LoadingIcon />
+                      ) : isInWatchlist ? (
+                        <DoneActionIcon />
+                      ) : (
+                        <PlusActionIcon />
+                      )}
+                    </button>
+                    <span className="watchlist-action-showup">Minha lista</span>
+                  </div>
+                </div>
+              </div>
+            </section>
 
-          <div className="selectSection options-info-btn">
-            <span
-              className={`select ${
-                sectionActived === "slider" ? "active" : ""
-              }`}
-              onClick={() => setSectionActived("slider")}
-            >
-              {detailPage.labelButtons.related}
-            </span>
-
-            <span
-              className={`select ${
-                sectionActived === "media-info" ? "active" : ""
-              }`}
-              onClick={() => setSectionActived("media-info")}
-            >
-              {detailPage.labelButtons.details}
-            </span>
+            <DetailsTab media={media} />
           </div>
         </div>
-
-        {media && (
-          <InfoDetails
-            sectionActived={sectionActived}
-            spoken_languages={media.spoken_languages}
-            starring={media.starring}
-            directors={media.directors}
-            producers={media.producers}
-            studios={media.studios}
-            subtitles={media.subtitles}
-            mediaType={mediaType}
-            language={language}
-            mediaId={id}
-          />
-        )}
       </div>
-
-      {playerModal && (
-        <div className="media-modal">
-          {videoKey && <MediaPlayer propsKey={videoKey} />}
-        </div>
-      )}
-    </div>
+      <div className="app-background" />
+    </>
   );
 };
 

@@ -59,11 +59,7 @@ const Footer = () => {
             de estudo e portfólio. Ele funciona como um catálogo de filmes
             fictício, sem qualquer finalidade comercial. Este projeto não possui
             vínculo com a Disney, Disney+, ou qualquer outro serviço de
-            streaming. A interface foi inspirada na experiência de navegação do
-            Disney+, servindo apenas como referência de design e usabilidade.
-            Nenhum filme ou conteúdo exibido aqui é transmitido, distribuído ou
-            comercializado. Todo o material apresentado tem caráter ilustrativo
-            e acadêmico.
+            streaming.
           </div>
         </ul>
 

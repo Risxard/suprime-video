@@ -8,6 +8,8 @@
     width: calc(100% + (2 * var(--inner-width)) + 10px);
 
     box-sizing: border-box;
+
+    color: #FFFFFF;
 }
 
 .topra {

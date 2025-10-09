@@ -1,12 +1,10 @@
 import { useEffect, useState } from "react";
 
 import {
-  image_path_154,
   image_path_342,
   image_path_500,
-  image_path_780,
   image_path_original,
-} from "../../../../utils/sliderMaps";
+} from "../../../../utils/imagePaths";
 import "./HeroCarouselItem.css";
 import { tmdbService } from "../../../../services/tmdb/tmdbServices";
 import MediaClass from "../../../MediaClass/MediaClass";
@@ -59,7 +57,7 @@ const HeroCarouselItem = ({ movie, language, active }) => {
             <picture>
               <source
                 media="(max-width: 479px)"
-                srcSet={`${image_path_780}${posterAndLogo?.poster?.file_path}`}
+                srcSet={`${image_path_500}${posterAndLogo?.poster?.file_path}`}
               />
               <img
                 src={`${image_path_original}${movie.backdrop_path}`}
