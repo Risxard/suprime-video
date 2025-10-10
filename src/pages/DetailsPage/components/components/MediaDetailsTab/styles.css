@@ -1,0 +1,105 @@
+
+.detailsTab-title-container {
+    padding-bottom: 12px;
+}
+
+.detailsTab-title-container h3 {
+    font-family: 'Inspire-Heavy', sans-serif;
+    font-size: 24px;
+    letter-spacing: .11px;
+    line-height: 1.2;
+    margin-bottom: 22px;
+    color: #FFFFFF;
+}
+
+.detailsTab-title-container p {
+    margin-block: 0;
+    margin-inline: 0;
+    padding-block: 0;
+    padding-inline: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    margin-top: 0;
+
+    white-space: pre-wrap;
+    color: #FFFFFF;
+
+    font-family: 'Inspire-Roman', sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+    letter-spacing: -0.1px;
+    line-height: 1.6;
+}
+
+
+
+.detailsTab-info-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+
+.detailsTab-info-media {
+    grid-column: 1;
+    padding-right: 12px;
+}
+
+
+.detailsTab-info-media-item {
+    margin-bottom: 12px;
+    font-family: 'Inspire-Roman', sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    letter-spacing: -0.1px;
+    line-height: 1.6;
+}
+
+.detailsTab-info-media-item>div {
+    white-space: pre-line;
+    color: #DBDCDE;
+    font-family: 'Inspire-Roman', sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    letter-spacing: -0.1px;
+    line-height: 1.6;
+}
+
+.detailsTab-info-media-item p {
+    margin-block: 0;
+    margin-inline: 0;
+    padding-block: 0;
+    padding-inline: 0;
+    white-space: pre-line;
+    color: #FFFFFF;
+    font-family: 'Inspire-Roman', sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    letter-spacing: -0.1px;
+    line-height: 1.6;
+}
+
+@media (min-width: 768px) {
+    .detailsTab-info-media {
+        padding-right: 24px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .detailsTab {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .detailsTab-title-container {
+        grid-column: 1;
+        padding-bottom: 0;
+        padding-right: 12px;
+    }
+
+    .detailsTab-info-container {
+        padding-left: 12px;
+        grid-column: 2;
+        grid-row: 1;
+    }
+}

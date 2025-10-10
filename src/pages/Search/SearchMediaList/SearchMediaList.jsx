@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import SearchItem from "./Searchitem/SearchItem";
 import { useIntersectionObserver } from "../../../hooks/IntersectionObserver/useIntersationObserver";
-import BackdropSlider from "../../../Components/Sliders/BackdropSlider/BackdropSlider";
+
 import { setSectionTitle } from "../../../functions/Converter";
 
 const SearchMediaList = (props) => {

@@ -7,50 +7,6 @@ import PosterSlider from "../SliderComponents/PosterSlider/PosterSlider";
 
 import useTop10 from "../../hooks/Sliders/useTop10/useTop10.jsx";
 
-import Top10Slider from "../SliderComponents/Top10Slider/Top10Slider.jsx";
-
-const MovieList = {
-    horror: {
-      key: 0,
-      listName: 'Horror Movies',
-      link: `3/discover/movie?include_adult=false&include_video=false&page=1&sort_by=popularity.desc&with_genres=27`,
-    },
-    horror: {
-      key: 0,
-      listName: 'Horror Series',
-      link: `3/discover/movie?include_adult=false&include_video=false&page=1&sort_by=popularity.desc&with_genres=27`,
-    },
-    adventure: {
-      key: 1,
-      listName: 'Adventure Movies',
-      link: `3/discover/movie?include_adult=false&include_video=false&page=1&sort_by=popularity.desc&with_genres=12`,
-    },
-    comedy: {
-      key: 2,
-      listName: 'Comedy Movies',
-      link: `3/discover/movie?include_adult=false&include_video=false&page=1&sort_by=popularity.desc&with_genres=35`,
-    },
-    crime: {
-      key: 3,
-      listName: 'Crime Movies',
-      link: `3/discover/movie?include_adult=false&include_video=false&page=1&sort_by=popularity.desc&with_genres=80`,
-    },
-    drama: {
-      key: 4,
-      listName: 'Drama Movies',
-      link: `3/discover/movie?include_adult=false&include_video=false&page=1&sort_by=popularity.desc&with_genres=18`,
-    },
-    romance: {
-      key: 5,
-      listName: 'Romance Movies',
-      link: `3/discover/movie?include_adult=false&include_video=false&page=1&sort_by=popularity.desc&with_genres=10749`,
-    },
-    ScienceFiction: {
-      key: 6,
-      listName: 'Science Fiction Movies',
-      link: `3/discover/movie?include_adult=false&include_video=false&page=1&sort_by=popularity.desc&with_genres=878`,
-    },
-  };
 
 function Main(SectionData) {
   const [visibleSections, setVisibleSections] = useState(0);
@@ -78,7 +34,7 @@ function Main(SectionData) {
 
   return (
     <main>
-      <Top10Slider medias={medias} language={language}/>
+
 
       <PosterSlider
         id={"MostPopular"}

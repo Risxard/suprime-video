@@ -49,7 +49,7 @@ export const tmdbService = {
     });
     return data;
   },
-  
+
   fetchPosterAndLogo: async ({ mediaId, mediaType, language, originalLanguage }) => {
     const { data } = await api.get("/api/tmdb/images/posterandlogo", {
       params: { mediaId, mediaType, language, originalLanguage },
@@ -79,6 +79,12 @@ export const tmdbService = {
   fetchClassification: async ({ mediaType, mediaId, language }) => {
     const { data } = await api.get("/api/tmdb/classification", {
       params: { mediaType, mediaId, language },
+    });
+    return data;
+  },
+  fetchSeason: async ({ tvId, seasonNumber, language }) => {
+    const { data } = await api.get("/api/tmdb/season", {
+      params: { tvId, seasonNumber, language },
     });
     return data;
   }

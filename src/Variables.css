@@ -2,102 +2,23 @@
     --nav-height: 72px;
     --inner-width: 40px;
     --color-background: #17171B;
-
-
-    /* backdrop slide */
-    --backdrop-gap-slider: 12px;
-    --backdrop-height-slider: 600px;
-    --backdrop-padding-top-slider: 8px;
-    --backdrop-margin-bottom-slider: calc(-415px);
-
-
-
-    --dv-screen-width: 100vw;
-    --dv-card-number: 1.5;
-    --dv-card-gap-number: calc(var(--dv-card-number) - 0.5);
-
-    --dv-packshot-width: calc((var(--dv-screen-width) - var(--inner-width)*2 - var(--backdrop-gap-slider)*var(--dv-card-gap-number))/var(--dv-card-number)*1);
-
-
-
 }
 
 
-
-
-@media screen and (min-width: 447px) {
+@media (min-width: 768px) {
     #root {
-        --dv-card-number: 2;
+        --inner-width: 56px
     }
 }
 
-@media (max-width: 599px) {
-    :root {
-        --dvui-spacing-100: 4px;
-        --dvui-spacing-200: 4px;
-        --dvui-spacing-300: 4px;
-        --dvui-spacing-400: 8px;
-        --dvui-spacing-500: 12px;
-        --dvui-spacing-600: 16px;
-        --dvui-spacing-700: 24px;
-        --dvui-spacing-800: 36px;
+@media (min-width: 1024px) {
+    #root {
+        --inner-width: 58px
     }
 }
 
-@media screen and (min-width: 680px) {
+@media (min-width: 1440px) {
     #root {
-        --backdrop-gap-slider: 16px;
-        --dv-card-gap-number: calc(var(--dv-card-number) - 1);
-        --dv-card-number: 3;
-        --inner-width: 32px;
-    }
-
-
-}
-
-@media screen and (min-width: 768px) {
-
-    #root {
-        --inner-width: 56px;
-
-        --dv-card-number: 4;
-        --backdrop-padding-top-slider: 12px;
-    }
-
-
-}
-
-@media screen and (min-width: 900px) {
-    #root {
-        --backdrop-gap-slider: 24px;
-    }
-}
-
-@media screen and (min-width: 1024px) {
-    #root {
-        --inner-width: 56px;
-        --backdrop-padding-top-slider: 16px;
-    }
-
-
-}
-
-@media screen and (min-width: 1440px) {
-    #root {
-        --inner-width: 71px;
-        --dv-card-number: 5;
-
-    }
-}
-
-@media screen and (min-width: 1800px) {
-    #root {
-        --dv-card-number: 6;
-    }
-}
-
-@media screen and (min-width: 2400px) {
-    #root {
-        --inner-width: 104px;
+        --inner-width: 71px
     }
 }

@@ -1,9 +1,9 @@
-import L from "./br/L.png";
-import BR10 from "./br/10.png";
-import BR12 from "./br/12.png";
-import BR14 from "./br/14.png";
-import BR16 from "./br/16.png";
-import BR18 from "./br/18.png";
+import L from "./br/L.webp";
+import BR10 from "./br/10.webp";
+import BR12 from "./br/A12.webp";
+import BR14 from "./br/14.webp";
+import BR16 from "./br/16.webp";
+import BR18 from "./br/18.webp";
 
 
 import ESA from "./es/A.svg";

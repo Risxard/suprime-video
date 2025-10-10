@@ -4,11 +4,11 @@ import Header from "../../Components/Header/Header.jsx";
 import "./styles.css";
 import SlideDistributor from "../../components/SlideDistributor/Index.jsx";
 import { useTranslation } from "react-i18next";
-import PosterSlider from "../../components/Sliders/PosterSlider/PosterSlider.jsx";
-import Top10Slider from "../../components/Sliders/Top10Slider/Top10Slider.jsx";
+
+
 import { tvSliderMap } from "../../utils/sliderMaps.js";
 import { tmdbService } from "../../services/tmdb/tmdbServices.js";
-import BackdropSlider from "../../components/Sliders/BackdropSlider/BackdropSlider.jsx";
+
 
 const TvSeries = (SectionData) => {
   const [medias, setMedias] = useState([]);
@@ -74,22 +74,7 @@ const TvSeries = (SectionData) => {
         {/* <Top10Slider></Top10Slider> */}
 
         <section className="home-main-section">
-          <BackdropSlider
-            sectionTitle={sectionTitles.recommendedSeries}
-            medias={mediasRecommendations}
-          />
 
-          <Top10Slider
-            language={language}
-            mediaType={mediaType}
-            sectionTitle={top10TvShowsTMDB}
-          />
-
-          <PosterSlider
-            sectionTitle={originalsAndExclusives}
-            medias={medias}
-            language={language}
-          />
 
           <SlideDistributor
             language={language}

@@ -1,0 +1,139 @@
+.season-tab-dropdown {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 16px;
+}
+
+.season-tab-dropdown ul {
+    z-index: 2;
+    list-style-type: none;
+    min-height: calc(96px);
+    max-height: calc(288px);
+    overflow: overlay;
+    min-width: 143px;
+    max-width: 263px;
+    position: absolute;
+    margin-top: 10px;
+    padding-right: 0px;
+    padding-left: 0px;
+    padding-bottom: 4px;
+    padding-top: 4px;
+    cursor: pointer;
+    border-radius: 4px;
+    background-color: rgb(45, 47, 54);
+    color: rgb(255, 255, 255);
+}
+
+.season-tab-dropdown ul li {
+    font-weight: bold;
+    padding: 12px 24px;
+    width: 100%;
+    transition: 300ms;
+    min-height: 48px;
+    max-height: 70px;
+    position: relative;
+
+    font-family: 'Inspire-Roman', sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    letter-spacing: -0.1px;
+    line-height: 1.6;
+}
+
+.season-tab-dropdown ul li:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.season-tab-dropdown ul li.active {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+
+
+.season-tab-dropdown button {
+    line-height: normal;
+    border-radius: 18px;
+    box-shadow: none;
+    height: 35px;
+    border: none;
+    min-width: auto;
+    max-width: 276px;
+    transition: 300ms;
+    justify-content: space-between;
+    align-items: center;
+
+    display: flex;
+    padding-right: 16px;
+    padding-left: 16px;
+    cursor: pointer;
+    background-color: rgb(45, 47, 54);
+    color: rgb(219, 220, 222);
+    -webkit-appearance: button;
+    text-transform: none;
+    overflow: visible;
+}
+
+.season-tab-dropdown button span {
+    font-family: 'Inspire-Roman', sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    letter-spacing: -0.1px;
+    line-height: 1.6;
+    color: rgb(219, 220, 222);
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: block;
+    -webkit-line-clamp: 1;
+}
+
+
+
+
+.season-tab-dropdown>p {
+    font-family: 'Inspire-Roman', sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    letter-spacing: -0.1px;
+    line-height: 1.6;
+
+    color: #FFFFFF;
+
+
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: block;
+    -webkit-line-clamp: 1;
+}
+
+
+
+
+
+.season-tab-dropdown button svg {
+    margin-left: 20px;
+    color: rgb(219, 220, 222);
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+}
+
+
+
+.season-tab-dropdown ul::-webkit-scrollbar {
+    width: 4px;
+}
+
+.season-tab-dropdown ul::-webkit-scrollbar-corner {
+    background: rgb(45, 47, 54);
+}
+
+.season-tab-dropdown ul::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 6px;
+}
+
+.season-tab-dropdown ul::-webkit-scrollbar-track {
+    display: none;
+}

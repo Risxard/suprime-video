@@ -4,12 +4,11 @@ import Header from "../../Components/Header/Header.jsx";
 import "./styles.css";
 import SlideDistributor from "../../components/SlideDistributor/Index.jsx";
 import { useTranslation } from "react-i18next";
-import Top10Slider from "../../components/Sliders/Top10Slider/Top10Slider.jsx";
-import PosterSlider from "../../components/Sliders/PosterSlider/PosterSlider.jsx";
+
 import i18n from "../../i18n.js";
 import { tmdbService } from "../../services/tmdb/tmdbServices.js";
 import { movieSliderMap } from "../../utils/sliderMaps.js";
-import BackdropSlider from "../../Components/Sliders/BackdropSlider/BackdropSlider.jsx";
+
 
 const Movie = () => {
   const [medias, setMedias] = useState([]);
@@ -67,23 +66,6 @@ const Movie = () => {
 
       <main>
         <section className="home-main-section">
-          <BackdropSlider
-            sectionTitle={sectionTitles.recommendedMovies}
-            medias={mediasRecommendations}
-          />
-
-          <Top10Slider
-            language={language}
-            mediaType={mediaType}
-            sectionTitle={top10MoviesTMDB}
-          />
-
-          <PosterSlider
-            sectionTitle={originalsAndExclusives}
-            medias={medias}
-            language={language}
-          />
-
           <SlideDistributor
             language={language}
             mediaType={mediaType}

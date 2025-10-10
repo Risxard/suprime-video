@@ -1,5 +1,5 @@
-import BackdropSlider from "../components/Sliders/BackdropSlider/BackdropSlider.jsx";
-import PosterSlider from "../components/Sliders/PosterSlider/PosterSlider.jsx";
+import GrandPosterCarousel from "../components/Sliders/GrandPosterCarousel/GrandPosterCarousel";
+
 
 
 const backdropGenresMovie = [
@@ -32,11 +32,11 @@ const posterGenresMovie = [
 export const movieSliderMap = {};
 
 backdropGenresMovie.forEach((id) => {
-    movieSliderMap[id] = BackdropSlider;
+    movieSliderMap[id] = GrandPosterCarousel;
 });
 
 posterGenresMovie.forEach((id) => {
-    movieSliderMap[id] = PosterSlider;
+    movieSliderMap[id] = GrandPosterCarousel;
 });
 
 
@@ -57,10 +57,10 @@ const posterGenresTV = [
 export const tvSliderMap = {};
 
 backdropGenresTV.forEach((id) => {
-    tvSliderMap[id] = BackdropSlider;
+    tvSliderMap[id] = GrandPosterCarousel;
 });
 
 posterGenresTV.forEach((id) => {
-    tvSliderMap[id] = PosterSlider;
+    tvSliderMap[id] = GrandPosterCarousel;
 }
 );

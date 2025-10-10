@@ -49,6 +49,7 @@ const HeroCarouselItem = ({ movie, language, active }) => {
     ) || []
   ).slice(0, 3);
 
+
   return (
     <div className={`${active ? "active" : ""} hero-carousel-Item`}>
       <NavLink to={`/detail/${movie.media_type}/${movie.id}`}>

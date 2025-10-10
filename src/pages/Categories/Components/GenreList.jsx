@@ -1,6 +1,6 @@
 import React from "react";
 import "../styles.css";
-import BackdropSlider from "../../../components/Sliders/BackdropSlider/BackdropSlider";
+
 import usePerGenre from "../../../hooks/ApiCalls/usePerGenres/usePerGenres";
 
 const GenreList = ({ language, genreId, filter, sectionTitles }) => {

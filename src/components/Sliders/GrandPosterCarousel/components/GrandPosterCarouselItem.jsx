@@ -44,6 +44,8 @@ const GrandPosterCarouselItem = ({ movie, language, top10mode, topNumber }) => {
     ) || []
   ).slice(0, 3);
 
+
+
   return (
     <div className="grandPoster-carousel-item">
       <NavLink to={`/detail/${movie.media_type}/${movie.id}`}>
@@ -61,7 +63,8 @@ const GrandPosterCarouselItem = ({ movie, language, top10mode, topNumber }) => {
             <div className="grandPoster-carousel-item-info">
               <div className="grandPoster-carousel-item-info-logo">
                 {posterAndLogo?.logo?.file_path &&
-                posterAndLogo?.poster?.iso_639_1 == "xx" ? (
+                (posterAndLogo?.poster?.iso_639_1 == "xx" ||
+                  posterAndLogo?.poster?.iso_639_1 == null) ? (
                   <img
                     src={`${image_path_342}${posterAndLogo?.logo?.file_path}`}
                     alt={`${movie.title} logo`}
