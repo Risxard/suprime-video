@@ -1,14 +1,8 @@
 .hero-carousel-Container {
     position: relative;
-    display: flex;
-
-    flex-direction: column;
-
     margin-left: calc(-1 * var(--inner-width));
     width: calc(100% + (2 * var(--inner-width)) + 10px);
-
     box-sizing: border-box;
-
     color: #FFFFFF;
 }
 
@@ -24,10 +18,7 @@
     unicode-bidi: isolate;
 }
 
-.hero-carousel {
-    overflow: hidden;
-    flex: 1;
-}
+
 
 .hero-carousel-List {
     display: flex;
@@ -103,7 +94,7 @@
     gap: 8px;
 
     width: 100%;
-    height: 36px;
+    height: 34px;
 }
 
 .dot {

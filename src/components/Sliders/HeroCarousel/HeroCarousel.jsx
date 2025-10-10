@@ -153,31 +153,30 @@ const HeroCarousel = ({ mediasData }) => {
       </button>
 
       <div
-        className="hero-carousel"
+        className="hero-carousel-List"
+        ref={heroCarousel}
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
       >
-        <div className="hero-carousel-List" ref={heroCarousel}>
-          {extendedMedias.map((movie, index) => {
-            const realIndex =
-              index === 0
-                ? medias.length - 1
-                : index === extendedMedias.length - 1
-                ? 0
-                : index - 1;
+        {extendedMedias.map((movie, index) => {
+          const realIndex =
+            index === 0
+              ? medias.length - 1
+              : index === extendedMedias.length - 1
+              ? 0
+              : index - 1;
 
-            return (
-              <HeroCarouselItem
-                key={`item-${index}-${movie?.id || "clone"}`}
-                movie={movie}
-                language={language}
-                active={activeIndex === realIndex}
-                className="hero-carousel-Item"
-              />
-            );
-          })}
-        </div>
+          return (
+            <HeroCarouselItem
+              key={`item-${index}-${movie?.id || "clone"}`}
+              movie={movie}
+              language={language}
+              active={activeIndex === realIndex}
+              className="hero-carousel-Item"
+            />
+          );
+        })}
       </div>
 
       <button
