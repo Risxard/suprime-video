@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import NavProfiles from "../../../../components/Navigation/NavProfiles";
-import LoadingComponent from "../../../../components/utils/LoadingComponent/LoadingComponent";
+import LoadingPage from "../../../../components/utils/LoadingPage/index.jsx";
 import {
   profileService,
   updateProfileLanguage,
@@ -115,7 +115,7 @@ const EditProfile = () => {
     }
   };
 
-  if (loading) return <LoadingComponent />;
+  if (loading) return <LoadingPage />;
 
   return (
     <>

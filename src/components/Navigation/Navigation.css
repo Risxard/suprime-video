@@ -680,6 +680,7 @@ media query MobileFirst Open*/
     width: 24px;
     height: 24px;
 }
+
 .NavigationLinks li:hover a span {
     position: relative;
 }
@@ -1005,6 +1006,11 @@ media query MobileFirst Open*/
 
 
 @media (min-width: 768px) {
+    .nav-menu-profile-pic {
+        height: 48px;
+        width: 48px;
+    }
+
     .nav-logo-profiles {
         min-width: 86px;
         height: 48px;

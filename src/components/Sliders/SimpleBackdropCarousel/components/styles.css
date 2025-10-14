@@ -1,0 +1,144 @@
+.simple-backdrop-item {
+    --card-caroulsel-number: 2;
+
+
+    transition-duration: 300ms;
+    transition-property: width, display;
+    transition-timing-function:
+        ease-out;
+    width: calc(100% / var(--card-caroulsel-number));
+    height: auto;
+    scroll-snap-align: start;
+
+    flex-shrink: 0;
+    flex-grow: 0;
+    scroll-snap-align: start;
+    will-change: transform;
+}
+
+.simple-backdrop-item:first-of-type {
+    scroll-snap-align: start;
+    margin-left: 0;
+}
+
+.simple-backdrop-item a {
+    padding: 10px;
+    text-decoration: inherit;
+
+    cursor: auto;
+    width: 100%;
+    transform: scale(1, 1) translateZ(0);
+    transition-property: transform;
+    display: block;
+
+    color: inherit;
+
+    position: relative;
+
+    border-radius: 4px;
+    background-color: transparent;
+}
+
+.simple-backdrop-item-content {
+    aspect-ratio: 16 / 9;
+
+
+    position: relative;
+    width: 100%;
+    height: auto;
+    transform: scale(1, 1) translateZ(0);
+    -webkit-font-smoothing: subpixel-antialiased;
+
+    cursor: pointer;
+
+    transition-timing-function:
+        ease-out;
+    z-index: -1;
+    transition-duration: 300ms;
+    border-radius: inherit;
+    background: #2D2F36;
+}
+
+
+
+.simple-backdrop-item-content:hover {
+    transform: scale(1.05, 1.05) translateZ(0) translate3d(0, 0, 0);
+}
+
+.simple-backdrop-item-content:hover::before{
+    opacity: 1;
+}
+
+
+
+.simple-backdrop-item-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border-radius: inherit;
+    border-width: 3px;
+    border-style: solid;
+    border-color: transparent;
+    outline: 3px solid #FFFFFF;
+    outline-offset: 3px;
+    opacity: 0;
+    transition: opacity 300ms ease;
+}
+
+.simple-backdrop-item-content::after {
+    content: "";
+    position: absolute;
+    box-shadow: 0px 20px 24px 0px rgba(0, 0, 0, 0.80);
+    left: 12px;
+    width: calc(100% - 24px);
+    bottom: 10px;
+    height: 33px;
+    z-index: -1;
+    cursor: pointer;
+}
+
+.simple-backdrop-item-image {
+    height: 100%;
+    align-items: center;
+    display: flex;
+    overflow: hidden;
+    border-radius: inherit;
+    background: #2D2F36;
+}
+
+.simple-backdrop-item-image img {
+    width: 100%;
+    height: 100%;
+    border-radius: inherit;
+    display: block;
+    transition-property: opacity;
+    opacity: 1;
+
+    transition-timing-function:
+        ease-in-out;
+    transition-duration: 200ms;
+    border-style: none;
+}
+
+
+
+@media (min-width: 768px) {
+    .simple-backdrop-item {
+        --card-caroulsel-number: 3;
+    }
+}
+
+@media (min-width: 1024px) {
+    .simple-backdrop-item {
+        --card-caroulsel-number: 4;
+    }
+}
+
+@media (min-width: 1440px) {
+    .simple-backdrop-item {
+        --card-caroulsel-number: 5;
+    }
+}

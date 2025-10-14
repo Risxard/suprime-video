@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 
@@ -8,22 +8,32 @@ import SearchMediaList from "./SearchMediaList/SearchMediaList.jsx";
 import "./styles.css";
 import SearchSvg from "./assets/SearchSvg.jsx";
 import SearchCancelSvg from "./assets/SearchCancelSvg.jsx";
+import SectionBuilder from "../../components/utils/SectionBuilder/SectionBuilder.jsx";
+import SimpleBackdropCarousel from "../../components/Sliders/SimpleBackdropCarousel/SimpleBackdropCarousel.jsx";
 
-const Search = () => {
-  const [searchTerm, setSearchTerm] = useState("");
-  const [debouncedSearch, setDebouncedSearch] = useState("");
-  const [results, setResults] = useState([]);
 
-  const { t } = useTranslation();
-  const language = useSelector((state) => state.lang.language);
+function useDebounce(value, delay) {
+  const [debouncedValue, setDebouncedValue] = useState(value);
 
   useEffect(() => {
     const handler = setTimeout(() => {
-      setDebouncedSearch(searchTerm);
-    }, 2000);
+      setDebouncedValue(value);
+    }, delay);
 
     return () => clearTimeout(handler);
-  }, [searchTerm]);
+  }, [value, delay]);
+
+  return debouncedValue;
+}
+
+const Search = () => {
+  const [searchTerm, setSearchTerm] = useState("");
+  const [results, setResults] = useState([]);
+  const [mediasTrending, setMediasTrending] = useState([]);
+
+  const { t } = useTranslation();
+  const language = useSelector((state) => state.lang.language);
+  const debouncedSearch = useDebounce(searchTerm, 800);
 
 
   useEffect(() => {
@@ -40,19 +50,7 @@ const Search = () => {
           page: 1,
         });
 
-        const rawResults = Array.isArray(data) ? data : [];
-
-        const filtered = rawResults.filter(Boolean).filter((item) => {
-          const mediaType = (item?.media_type || "").toLowerCase();
-          const looksLikePerson =
-            mediaType === "person" ||
-            Object.prototype.hasOwnProperty.call(item, "known_for") ||
-            Object.prototype.hasOwnProperty.call(item, "known_for_department");
-
-          return !looksLikePerson && !!item?.backdrop_path;
-        });
-
-        setResults(filtered);
+        setResults(Array.isArray(data) ? data : []);
       } catch (error) {
         console.error("Erro na busca:", error);
       }
@@ -61,15 +59,47 @@ const Search = () => {
     fetchData();
   }, [debouncedSearch, language]);
 
+
+  const filteredResults = useMemo(() => {
+    return results.filter((item) => {
+      const mediaType = (item?.media_type || "").toLowerCase();
+      const looksLikePerson =
+        mediaType === "person" ||
+        Object.prototype.hasOwnProperty.call(item, "known_for") ||
+        Object.prototype.hasOwnProperty.call(item, "known_for_department");
+
+      return !looksLikePerson && !!item?.backdrop_path;
+    });
+  }, [results]);
+
+
+  useEffect(() => {
+    const fetchTrending = async () => {
+      try {
+        const data = await tmdbService.fetchTrending({
+          timeWindow: "day",
+          pageType: "all",
+          language,
+          page: 1,
+        });
+
+        const items = Array.isArray(data) ? data : data.results || [];
+        setMediasTrending(items.slice(0, 20));
+      } catch (err) {
+        console.error("Erro ao buscar filmes:", err);
+      }
+    };
+
+    fetchTrending();
+  }, [language]);
+
   const searchPage = t("searchPage.buttons");
   const recomendedTvAndSeries = t("sectionTitles.recomendedTvAndSeries");
-  const { infoLabels } = searchPage;
-
-
 
   return (
     <div className="search-page-container">
       <div className="search-page">
+
         <div className="search-bar-container">
           <input
             id="search-input"
@@ -85,7 +115,6 @@ const Search = () => {
             className={searchTerm ? "active" : ""}
             onClick={() => {
               setSearchTerm("");
-              setDebouncedSearch("");
               setResults([]);
             }}
           >
@@ -93,10 +122,21 @@ const Search = () => {
           </button>
         </div>
 
-        <SearchMediaList
-          filteredMedias={results}
-          recomendedTvAndSeries={recomendedTvAndSeries}
-        />
+
+        {filteredResults.length === 0 ? (
+          <div className="set-group-search">
+
+            <SectionBuilder
+              children={<SimpleBackdropCarousel movies={mediasTrending} />}
+              sectionTitle={"Buscas em Alta Hoje"}
+            />
+          </div>
+        ) : (
+          <SearchMediaList
+            filteredMedias={filteredResults}
+            recomendedTvAndSeries={recomendedTvAndSeries}
+          />
+        )}
       </div>
       <div className="app-background" />
     </div>

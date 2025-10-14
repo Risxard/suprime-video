@@ -5,19 +5,13 @@ import { useIntersectionObserver } from "../../../hooks/IntersectionObserver/use
 
 import { setSectionTitle } from "../../../functions/Converter";
 
-const SearchMediaList = (props) => {
-  const [genresToFilter, setGenresToFilter] = useState([]);
+const SearchMediaList = ({ filteredMedias }) => {
 
-  const { filteredMedias } = props;
 
   return (
     <div>
       {filteredMedias.length > 0 ? (
         <div className="column-container-items">
-          <div className="ptext">
-
-          </div>
-
           <div className="search-card-list">
             {filteredMedias.map((array) => (
               <SearchItem key={array.id} media={array} />
@@ -29,4 +23,4 @@ const SearchMediaList = (props) => {
   );
 };
 
-export default SearchMediaList;
+export default React.memo(SearchMediaList);

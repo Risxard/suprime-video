@@ -5,7 +5,6 @@ import {
   Identity,
   Register,
   Home,
-  Movies,
   TvSeries,
   DetailsPage,
   ProfilesPage,
@@ -27,11 +26,14 @@ import PasswordSection from "../pages/Identity/components/PasswordSection";
 import CreatePasswordSection from "../pages/Identity/components/CreatePasswordSection";
 import EmailVerification from "../pages/Identity/components/EmailVerification";
 import EditProfiles from "../pages/Profiles/Components/EditProfiles";
-import LoadingComponent from "../components/utils/LoadingComponent/LoadingComponent";
+import LoadingPage from "../components/utils/LoadingPage/index.jsx";
 import SelectProfile from "../pages/Profiles/Components/SelectProfile";
 import EditProfile from "../pages/Profiles/Components/EditProfile/EditProfile";
 import SelectAvatar from "../pages/Profiles/Components/SelectAvatar/SelectAvatar";
 import AddProfile from "../pages/Profiles/Components/AddProfile/AddProfile";
+import BrowsePage from "../pages/BrowsePage";
+import MoviesPage from "../pages/MoviesPage/index.jsx";
+import TvSeriesPage from "../pages/TvSeriesPage/index.jsx";
 
 const AppRoutes = () => {
   const { user, token, currentProfile, loading } = useSelector(
@@ -40,7 +42,7 @@ const AppRoutes = () => {
   const isAuthenticated = !!user && !!token;
 
   if (loading) {
-    return <LoadingComponent />;
+    return <LoadingPage />;
   }
 
   const publicRoutes = [
@@ -132,20 +134,24 @@ const AppRoutes = () => {
 
   const privateRoutes = [
     { path: "/home", element: <Home /> },
-    { path: "/movies", element: <Movies /> },
+    {
+      path: "/browse/movies",
+      element: <BrowsePage children={<MoviesPage />} />,
+    },
+    {
+      path: "/browse/series",
+      element: <BrowsePage children={<TvSeriesPage />} />,
+    },
 
-
-    
     { path: "/detail/:mediaType/:id/", element: <DetailsPage /> },
     { path: "/detail/:mediaType/:id/:referrer", element: <DetailsPage /> },
 
+    { path: "/search", element: <Search /> },
 
-
-
-    { path: "/search/:searchKey", element: <Search /> },
-    { path: "/categories/:genreId", element: <Categories /> },
-    { path: "/tv-series", element: <TvSeries /> },
-    { path: "/watchlist/:filterId", element: <WatchlistPage /> },
+    {
+      path: "/browse/watchlist/",
+      element: <BrowsePage children={<WatchlistPage />} />,
+    },
     { path: "/settings/:id", element: <SettingsPage /> },
     { path: "/settings/:id/:ref", element: <SettingsPage /> },
     { path: "/settings", element: <Navigate to="/settings/your-account" /> },
@@ -177,7 +183,10 @@ const AppRoutes = () => {
       path: "/select-avatar/:profileId",
       element: <ProfilesPage children={<SelectAvatar />} />,
     },
-    { path: "/add-profile", element: <ProfilesPage children={<AddProfile />} /> },
+    {
+      path: "/add-profile",
+      element: <ProfilesPage children={<AddProfile />} />,
+    },
   ];
 
   return (
@@ -187,18 +196,18 @@ const AppRoutes = () => {
           <Route key={path} path={path} element={element} />
         ))}
 
-        {/* Rotas privadas com Layout */}
         <Route element={<PrivateLayout isAuthenticated={isAuthenticated} />}>
           {privateRoutes.map(({ path, element }) => (
             <Route
               key={path}
               path={path}
-              element={!currentProfile ? <Navigate to="/select-profile" /> : element}
+              element={
+                !currentProfile ? <Navigate to="/select-profile" /> : element
+              }
             />
           ))}
         </Route>
 
-        {/* Rotas privadas standalone */}
         <Route
           element={<PrivateStandalone isAuthenticated={isAuthenticated} />}
         >

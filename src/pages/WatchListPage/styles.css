@@ -1,0 +1,21 @@
+.watchlist-page {
+    color: #fff;
+    width: 100%;
+    margin-top: 20px;
+
+}
+
+.watchlist-page>h1 {
+    font-family: 'Inspire-Heavy', sans-serif;
+    margin-bottom: 40px;
+    margin-top: 40px;
+    font-size: 44px;
+    line-height: 1.2;
+    color: #fff;
+    text-align: center;
+}
+
+.watchlist-content {
+    margin-top: 40px;
+    padding-inline: var(--inner-width);
+}

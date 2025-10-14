@@ -5,7 +5,7 @@ import { getAllProfiles } from "../../services/firebase/profileServices.js";
 
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../services/firebase/firebaseconfig.js";
-import LoadingComponent from "../../components/utils/LoadingComponent/LoadingComponent.jsx";
+import LoadingPage from "../../components/utils/LoadingPage/index.jsx";
 
 const ProfilesPage = ({ children }) => {
   const [loading, setLoading] = useState(true);
@@ -29,7 +29,7 @@ const ProfilesPage = ({ children }) => {
 
 
   if (loading) {
-    return <LoadingComponent />;
+    return <LoadingPage />;
   }
 
   return (

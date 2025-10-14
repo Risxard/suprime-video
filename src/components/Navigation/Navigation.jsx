@@ -53,28 +53,28 @@ const Navigation = () => {
               </li>
 
               <li>
-                <Link to="/search/kw=batman">
+                <Link to="/search">
                   <span><BrowseSvg /></span>
                   <p>{search}</p>
                 </Link>
               </li>
 
               <li>
-                <Link to="/my-list">
+                <Link to="/browse/watchlist/">
                   <span><WatchlistSvg /></span>
                   <p>{myList}</p>
                 </Link>
               </li>
 
               <li>
-                <Link to="/movies">
+                <Link to="/browse/movies">
                   <span><MoviesSvg /></span>
                   <p>{movies}</p>
                 </Link>
               </li>
 
               <li>
-                <Link to="/tv-series">
+                <Link to="/browse/series">
                   <span><TvSvg /></span>
                   <p>{tvShows}</p>
                 </Link>

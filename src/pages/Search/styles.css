@@ -45,7 +45,11 @@
     height: 44px;
     width: 100%;
     padding-bottom: 11px;
-    color: #FFFFFF;
+    color: #FFFFFFCC;
+}
+
+.search-bar-container input::placeholder {
+    color: #FFFFFFCC;
 }
 
 .search-bar-container label {
@@ -53,12 +57,17 @@
     position: absolute;
     display: flex;
     cursor: text;
-
-    color: #FFFFFFCC;
     box-sizing: border-box;
+
 }
 
-.search-bar-container label svg {}
+.search-bar-container label svg {
+    fill: rgba(255, 255, 255, 0.8);
+}
+
+.search-bar-container input:focus-visible + label svg {
+    fill: #FFFFFF;
+}
 
 
 .search-bar-container input:focus-visible::placeholder,
@@ -84,6 +93,8 @@
     visibility: visible;
     opacity: 1;
 }
+
+.search-input {}
 
 
 .search-bar-container button {
@@ -119,6 +130,11 @@
     width: 20px;
     margin-left: 4px;
     color: #FFFFFF;
+}
+
+.set-group-search {
+    display: flex;
+    flex-direction: column;
 }
 
 

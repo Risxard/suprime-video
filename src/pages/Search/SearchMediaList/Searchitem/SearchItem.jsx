@@ -18,8 +18,6 @@ const SearchItem = ({ media }) => {
 
   const release_date = media?.release_date || media?.first_air_date;
 
-  console.log('Componente renderizado!')
-
   return (
     <div key={media.id} className="search-card-item">
       <Link to={`/detail/${mediaType}/${media.id}`}>

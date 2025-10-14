@@ -1,6 +1,5 @@
-import React from "react";
 import spinnerLoading from "../../../assets/spinner-loader-aurora.png";
-import "./loading-component.css"; 
+import "./styles.css"; 
 
 const LoadingComponent = () => (
   <div className="loading-component">

@@ -2,7 +2,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import NavProfiles from "../../../../components/Navigation/NavProfiles";
 
-import LoadingComponent from "../../../../components/utils/LoadingComponent/LoadingComponent";
+import LoadingPage from "../../../../components/utils/LoadingPage/index.jsx";
 import { profileService } from "../../../../services/firebase/profileServices";
 import "./styles.css";
 import AvatarCarousel from "../../../../components/Sliders/AvatarCarousel/AvatarCarousel";
@@ -85,7 +85,7 @@ export const SelectAvatar = () => {
     }
   };
 
-  if (loading) return <LoadingComponent />;
+  if (loading) return <LoadingPage />;
 
   return (
     <>

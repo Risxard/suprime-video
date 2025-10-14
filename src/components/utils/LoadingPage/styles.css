@@ -1,4 +1,4 @@
-.loading-component {
+.loading-page {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -11,7 +11,7 @@
   z-index: 9999;
 }
 
-.loading-component img {
+.loading-page img {
   width: 80px;
   height: 80px;
   animation: spin 700ms linear infinite;

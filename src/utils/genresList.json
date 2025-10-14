@@ -1,0 +1,41 @@
+{
+  "movies": [
+    { "id": 28, "name": { "pt-BR": "Ação", "en-US": "Action", "es-ES": "Acción" } },
+    { "id": 12, "name": { "pt-BR": "Aventura", "en-US": "Adventure", "es-ES": "Aventura" } },
+    { "id": 16, "name": { "pt-BR": "Animação", "en-US": "Animation", "es-ES": "Animación" } },
+    { "id": 35, "name": { "pt-BR": "Comédia", "en-US": "Comedy", "es-ES": "Comedia" } },
+    { "id": 80, "name": { "pt-BR": "Crime", "en-US": "Crime", "es-ES": "Crimen" } },
+    { "id": 99, "name": { "pt-BR": "Documentário", "en-US": "Documentary", "es-ES": "Documental" } },
+    { "id": 18, "name": { "pt-BR": "Drama", "en-US": "Drama", "es-ES": "Drama" } },
+    { "id": 10751, "name": { "pt-BR": "Família", "en-US": "Family", "es-ES": "Familia" } },
+    { "id": 14, "name": { "pt-BR": "Fantasia", "en-US": "Fantasy", "es-ES": "Fantasía" } },
+    { "id": 36, "name": { "pt-BR": "História", "en-US": "History", "es-ES": "Historia" } },
+    { "id": 27, "name": { "pt-BR": "Terror", "en-US": "Horror", "es-ES": "Terror" } },
+    { "id": 10402, "name": { "pt-BR": "Música", "en-US": "Music", "es-ES": "Música" } },
+    { "id": 9648, "name": { "pt-BR": "Mistério", "en-US": "Mystery", "es-ES": "Misterio" } },
+    { "id": 10749, "name": { "pt-BR": "Romance", "en-US": "Romance", "es-ES": "Romance" } },
+    { "id": 878, "name": { "pt-BR": "Ficção científica", "en-US": "Science Fiction", "es-ES": "Ciencia Ficción" } },
+    { "id": 10770, "name": { "pt-BR": "Cinema TV", "en-US": "TV Movie", "es-ES": "Película de TV" } },
+    { "id": 53, "name": { "pt-BR": "Thriller", "en-US": "Thriller", "es-ES": "Suspense" } },
+    { "id": 10752, "name": { "pt-BR": "Guerra", "en-US": "War", "es-ES": "Guerra" } },
+    { "id": 37, "name": { "pt-BR": "Faroeste", "en-US": "Western", "es-ES": "Western" } }
+  ],
+  "tv": [
+    { "id": 10759, "name": { "pt-BR": "Ação e Aventura", "en-US": "Action & Adventure", "es-ES": "Acción y Aventura" } },
+    { "id": 16, "name": { "pt-BR": "Animação", "en-US": "Animation", "es-ES": "Animación" } },
+    { "id": 35, "name": { "pt-BR": "Comédia", "en-US": "Comedy", "es-ES": "Comedia" } },
+    { "id": 80, "name": { "pt-BR": "Crime", "en-US": "Crime", "es-ES": "Crimen" } },
+    { "id": 99, "name": { "pt-BR": "Documentário", "en-US": "Documentary", "es-ES": "Documental" } },
+    { "id": 18, "name": { "pt-BR": "Drama", "en-US": "Drama", "es-ES": "Drama" } },
+    { "id": 10751, "name": { "pt-BR": "Família", "en-US": "Family", "es-ES": "Familia" } },
+    { "id": 10762, "name": { "pt-BR": "Infantil", "en-US": "Kids", "es-ES": "Niños" } },
+    { "id": 9648, "name": { "pt-BR": "Mistério", "en-US": "Mystery", "es-ES": "Misterio" } },
+    { "id": 10763, "name": { "pt-BR": "Notícias", "en-US": "News", "es-ES": "Noticias" } },
+    { "id": 10764, "name": { "pt-BR": "Reality", "en-US": "Reality", "es-ES": "Reality" } },
+    { "id": 10765, "name": { "pt-BR": "Ficção científica e Fantasia", "en-US": "Sci-Fi & Fantasy", "es-ES": "Ciencia Ficción y Fantasía" } },
+    { "id": 10766, "name": { "pt-BR": "Soap", "en-US": "Soap", "es-ES": "Telenovela" } },
+    { "id": 10767, "name": { "pt-BR": "Talk Show", "en-US": "Talk", "es-ES": "Talk Show" } },
+    { "id": 10768, "name": { "pt-BR": "Guerra e Política", "en-US": "War & Politics", "es-ES": "Guerra y Política" } },
+    { "id": 37, "name": { "pt-BR": "Faroeste", "en-US": "Western", "es-ES": "Western" } }
+  ]
+}

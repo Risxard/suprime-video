@@ -47,7 +47,7 @@ const SeasonsTab = ({ seasons = [], tvId }) => {
   const handleSelectSeason = (season_number) => {
     setSelectedSeason(season_number);
     setShowDropdown(false);
-    console.log("Selecionou temporada:", season_number);
+
   };
 
   const selectedSeasonName =

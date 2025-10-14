@@ -1,0 +1,106 @@
+.simple-backdrop-container {
+    margin-left: calc(-1 * var(--inner-width));
+    width: calc(100% + (2 * var(--inner-width)) + 10px);
+    position: relative;
+}
+
+
+
+.simple-backdrop-carousel {
+    padding-left: var(--inner-width);
+    padding-right: var(--inner-width);
+    padding-top: calc(2px + 20px);
+    padding-bottom: 40px;
+    margin-top: -20px;
+    margin-bottom: -20px;
+    margin-left: -10px;
+    align-content: stretch;
+    overflow-y: hidden;
+    overflow-x: auto;
+    scroll-padding: 0 var(--inner-width);
+    overscroll-behavior-x: contain;
+    mask-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5) 8px, rgba(0, 0, 0, 0.5) calc(var(--inner-width) * 0.85), rgba(0, 0, 0, 1) calc(var(--inner-width) + (10px * 0.85)), rgba(0, 0, 0, 1) calc(100% - calc(var(--inner-width) + (10px * 0.85))), rgba(0, 0, 0, 0.5) calc(100% - calc(var(--inner-width) * 0.85)), rgba(0, 0, 0, 0.5) calc(100% - 8px), rgba(0, 0, 0, 0));
+    -webkit-mask-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5) 8px, rgba(0, 0, 0, 0.5) calc(var(--inner-width) * 0.85), rgba(0, 0, 0, 1) calc(var(--inner-width) + (10px * 0.85)), rgba(0, 0, 0, 1) calc(100% - calc(var(--inner-width) + (10px * 0.85))), rgba(0, 0, 0, 0.5) calc(100% - calc(var(--inner-width) * 0.85)), rgba(0, 0, 0, 0.5) calc(100% - 8px), rgba(0, 0, 0, 0));
+    mask-composite: intersect;
+
+    scrollbar-width: none;
+    display: flex;
+}
+
+
+
+.simple-backdrop-NextBtn,
+.simple-backdrop-PrevBtn {
+    opacity: 0;
+}
+
+.simple-backdrop-NextBtn:hover,
+.simple-backdrop-PrevBtn:hover {
+    cursor: pointer;
+    opacity: 1;
+}
+
+
+.simple-backdrop-NextBtn svg,
+.simple-backdrop-PrevBtn svg {
+    width: 45px;
+    height: auto;
+}
+
+
+
+
+
+.simple-backdrop-NextBtn {
+    width: var(--inner-width);
+    border: 0;
+    background-color: transparent;
+
+    height: calc(100% - 22px);
+    transition-property: transform, opacity;
+    transition-duration: .5s, .35s;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    flex-direction: column;
+    display: flex;
+    top: 0;
+    z-index: 2;
+
+    right: 10px;
+}
+
+
+.simple-backdrop-PrevBtn {
+    width: var(--inner-width);
+    border: 0;
+    background-color: transparent;
+
+    height: calc(100% - 22px);
+    transition-property: transform, opacity;
+    transition-duration: .5s, .35s;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    flex-direction: column;
+    display: flex;
+    top: 0;
+    left: 0;
+    z-index: 2;
+
+}
+
+.simple-backdrop-PrevBtn:disabled,
+.simple-backdrop-NextBtn:disabled {
+    opacity: 0;
+    cursor: inherit;
+
+}
+
+
+
+@media (min-width: 768px) {
+    .simple-backdrop-NextBtn {
+        right: 0;
+    }
+}
