@@ -37,62 +37,72 @@ const Navigation = () => {
 
   return (
     <nav className="Navigation" id="nav">
-      <div className="nav-container">
-        <div className="nav-content">
-          <div className="nav-content-align">
-            <NavLink to="/home" className="NavLogo">
-              <img src={logo} alt="acaiwaveplus logo" />
-            </NavLink>
+      <div className="nav-content">
+        <div className="nav-content-align">
+          <NavLink to="/home" className="NavLogo">
+            <img src={logo} alt="acaiwaveplus logo" />
+          </NavLink>
 
-            <ul className="NavigationLinks" id="nav-links">
-              <li>
-                <Link to="/home">
-                  <span><HomeSvg /></span>
-                  <p>{home}</p>
-                </Link>
-              </li>
+          <ul className="NavigationLinks" id="nav-links">
+            <li>
+              <Link to="/home">
+                <span>
+                  <HomeSvg />
+                </span>
+                <p>{home}</p>
+              </Link>
+            </li>
 
-              <li>
-                <Link to="/search">
-                  <span><BrowseSvg /></span>
-                  <p>{search}</p>
-                </Link>
-              </li>
+            <li>
+              <Link to="/search">
+                <span>
+                  <BrowseSvg />
+                </span>
+                <p>{search}</p>
+              </Link>
+            </li>
 
-              <li>
-                <Link to="/browse/watchlist/">
-                  <span><WatchlistSvg /></span>
-                  <p>{myList}</p>
-                </Link>
-              </li>
+            <li>
+              <Link to="/browse/watchlist/">
+                <span>
+                  <WatchlistSvg />
+                </span>
+                <p>{myList}</p>
+              </Link>
+            </li>
 
-              <li>
-                <Link to="/browse/movies">
-                  <span><MoviesSvg /></span>
-                  <p>{movies}</p>
-                </Link>
-              </li>
+            <li>
+              <Link to="/browse/movies">
+                <span>
+                  <MoviesSvg />
+                </span>
+                <p>{movies}</p>
+              </Link>
+            </li>
 
-              <li>
-                <Link to="/browse/series">
-                  <span><TvSvg /></span>
-                  <p>{tvShows}</p>
-                </Link>
-              </li>
+            <li>
+              <Link to="/browse/series">
+                <span>
+                  <TvSvg />
+                </span>
+                <p>{tvShows}</p>
+              </Link>
+            </li>
 
-              <li>
-                <Link to="/originals">
-                  <span><StarSvg /></span>
-                  <p>{originals}</p>
-                </Link>
-              </li>
-            </ul>
+            {/* <li>
+              <Link to="/originals">
+                <span>
+                  <StarSvg />
+                </span>
+                <p>{originals}</p>
+              </Link>
+            </li> */}
+          </ul>
 
-            <ExtendedMenu />
-          </div>
-
-          <UserMenu />
+          <ExtendedMenu />
         </div>
+
+        <UserMenu />
       </div>
     </nav>
   );

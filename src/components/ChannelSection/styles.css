@@ -3,10 +3,6 @@
     height: auto;
 }
 
-.channels-section section {
-    width: 100%;
-    height: auto;
-}
 
 .channels-group {
     align-items: start;
@@ -15,19 +11,23 @@
     flex-wrap: wrap;
     font-family: Arial, Helvetica, sans-serif;
 
-    height: auto;
     justify-content: center;
     line-height: 18.4px;
     margin-bottom: 0px;
+    margin-left: -10px;
+    margin-right: -10px;
 
     margin-top: 0px;
     padding-bottom: 22px;
     text-size-adjust: 100%;
     unicode-bidi: isolate;
     user-select: none;
-    width: 100%;
+
     -webkit-font-smoothing: antialiased;
+
+
 }
+
 
 .channel-item {
     flex: 0 25%;

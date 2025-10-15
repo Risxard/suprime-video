@@ -47,13 +47,11 @@ const SeasonsTab = ({ seasons = [], tvId }) => {
   const handleSelectSeason = (season_number) => {
     setSelectedSeason(season_number);
     setShowDropdown(false);
-
   };
 
   const selectedSeasonName =
     seasons.find((s) => s.season_number === selectedSeason)?.name ||
     "Selecione uma temporada";
-
 
   return (
     <div className="tab-content">
@@ -86,7 +84,9 @@ const SeasonsTab = ({ seasons = [], tvId }) => {
         )}
       </div>
 
-      <DetailCardList cards={medias.episodes} />
+      <DetailCardList
+        cards={(medias.episodes || []).filter((ep) => !!ep.still_path)}
+      />
     </div>
   );
 };

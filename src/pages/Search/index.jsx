@@ -96,6 +96,8 @@ const Search = () => {
   const searchPage = t("searchPage.buttons");
   const recomendedTvAndSeries = t("sectionTitles.recomendedTvAndSeries");
 
+
+
   return (
     <div className="search-page-container">
       <div className="search-page">

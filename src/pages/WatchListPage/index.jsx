@@ -11,12 +11,14 @@ import { Trans } from "react-i18next";
 import { tmdbService } from "../../services/tmdb/tmdbServices";
 import DetailCardList from "../../components/Cards/DetailCardList/DetailCardList";
 import SearchMediaList from "../Search/SearchMediaList/SearchMediaList";
+import LoadingComponent from "../../components/utils/LoadingComponent";
+import { setLoading } from "../../store/auth";
 
 const WatchListPage = () => {
   const { filterId } = useParams();
-
   const [medias, setMedias] = useState({ movies: [], tv: [] });
   const [filterType, setFilterType] = useState(filterId);
+  const [isLoading, setIsLoading] = useState(false);
 
   const watchlist = useSelector((state) => state.auth.watchList);
   const language = useSelector((state) => state.lang.language);
@@ -30,6 +32,7 @@ const WatchListPage = () => {
 
   useEffect(() => {
     const fetchMedia = async () => {
+      setIsLoading(true);
       try {
         const fetchedMovies = watchlist.movie
           ? await Promise.all(
@@ -58,12 +61,15 @@ const WatchListPage = () => {
           : [];
 
         setMedias({ movies: fetchedMovies, tv: fetchedTVShows });
+        setIsLoading(false);
       } catch (err) {
         console.error("Erro ao buscar watchlist:", err);
       }
     };
 
-    fetchMedia();
+    if (watchlist) {
+      fetchMedia();
+    }
   }, [watchlist, language]);
 
   const mostRecentSort = mostRecent;
@@ -101,7 +107,7 @@ const WatchListPage = () => {
 
   return (
     <div className="watchlist-page">
-      <h1>Minha lista</h1>
+      <h1>Minha Lista</h1>
 
       <div className="tablist-carousel-list-container">
         <div role="tablist" className="tablist-carousel-list">
@@ -110,7 +116,16 @@ const WatchListPage = () => {
       </div>
 
       <div className="watchlist-content">
-        <SearchMediaList filteredMedias={filteredMedia} />
+        {isLoading ? (
+          <LoadingComponent />
+        ) : filteredMedia.length === 0 ? (
+          <div className="watchlist-empty">
+            <h3>Você ainda não adicionou nada</h3>
+            <p>Coloque os títulos que você quer assistir na Minha Lista.</p>
+          </div>
+        ) : (
+          <SearchMediaList filteredMedias={filteredMedia} />
+        )}
       </div>
     </div>
   );

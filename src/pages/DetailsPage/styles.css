@@ -173,6 +173,8 @@
     font-weight: 700;
     letter-spacing: 1.76px;
     line-height: 1.6;
+
+    border: none;
 }
 
 .play-action svg {

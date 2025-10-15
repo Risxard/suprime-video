@@ -59,7 +59,7 @@
     flex-direction: column;
     display: flex;
 
-    opacity: 1;
+    opacity: 0;
     cursor: pointer;
     z-index: 2;
     color: #fff;
@@ -67,6 +67,15 @@
     text-transform: none;
     overflow: visible;
 }
+
+
+.heroPrevBtn:hover,
+.heroNextBtn:hover {
+
+    opacity: 1;
+
+}
+
 
 .heroPrevBtn svg,
 .heroNextBtn svg {

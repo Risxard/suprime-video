@@ -65,6 +65,7 @@ const Home = () => {
       <main>
         <section className="home-main-section">
           <ChannelSection />
+          
           <GrandPosterCarousel
             movies={medias}
             language={language}

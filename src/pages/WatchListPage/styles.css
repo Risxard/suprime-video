@@ -1,8 +1,6 @@
 .watchlist-page {
     color: #fff;
     width: 100%;
-    margin-top: 20px;
-
 }
 
 .watchlist-page>h1 {
@@ -18,4 +16,51 @@
 .watchlist-content {
     margin-top: 40px;
     padding-inline: var(--inner-width);
+}
+
+.watchlist-empty {
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    flex-direction: column;
+    display: flex;
+    padding-top: 60px;
+    color: #FFFFFF;
+}
+
+.watchlist-empty h3 {
+    font-family: 'Inspire-Heavy', sans-serif;
+    font-size: 24px;
+    letter-spacing: .11px;
+    line-height: 1.2;
+
+    text-align: center;
+    margin-bottom: 16px;
+}
+
+
+.watchlist-empty p {
+    margin-block: 0;
+    margin-inline: 0;
+    padding-block: 0;
+    padding-inline: 0;
+    text-align: center;
+    color: #DBDCDE;
+
+
+    font-family: 'Inspire-Roman', sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    letter-spacing: -0.1px;
+    line-height: 1.6;
+}
+
+
+
+
+
+@media (min-width: 1024px) {
+    .watchlist-empty {
+        padding-top: 110px;
+    }
 }

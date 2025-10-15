@@ -6,8 +6,7 @@ import { useIntersectionObserver } from "../../../hooks/IntersectionObserver/use
 import { setSectionTitle } from "../../../functions/Converter";
 
 const SearchMediaList = ({ filteredMedias }) => {
-
-
+  
   return (
     <div>
       {filteredMedias.length > 0 ? (

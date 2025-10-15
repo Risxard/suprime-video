@@ -15,12 +15,12 @@ const channels = [
     video: disneyVideo,
   },
   {
-    img: "https://disney.images.edge.bamgrid.com/ripcut-delivery/v2/variant/disney/8D83D724070255A0A0078E3D7945301A1F5ADD0DCCA1C7F908542AEA0C742823/compose?format=webp&width=800",
-    video: marvelVideo,
-  },
-  {
     img: "https://disney.images.edge.bamgrid.com/ripcut-delivery/v2/variant/disney/7F4E1A299763030A0A8527227AD2812C049CE3E02822F7EDEFCFA1CFB703DDA5/compose?format=webp&width=800",
     video: pixarVideo,
+  },
+  {
+    img: "https://disney.images.edge.bamgrid.com/ripcut-delivery/v2/variant/disney/8D83D724070255A0A0078E3D7945301A1F5ADD0DCCA1C7F908542AEA0C742823/compose?format=webp&width=800",
+    video: marvelVideo,
   },
   {
     img: "https://disney.images.edge.bamgrid.com/ripcut-delivery/v2/variant/disney/5A9416D67DC9595496B2666087596EE64DE379272051BB854157C0D938BE2C26/compose?format=webp&width=800",
@@ -50,7 +50,6 @@ const ChannelSection = () => {
       }
     }
   };
-
 
   return (
     <div className="channels-section">

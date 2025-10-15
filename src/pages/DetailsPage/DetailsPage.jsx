@@ -15,12 +15,16 @@ import DoneActionIcon from "./assets/DoneActionIcon";
 import { updateWatchlist } from "../../services/firebase/profileServices";
 import { useDispatch, useSelector } from "react-redux";
 import LoadingIcon from "../../assets/svgs/LoadingIcon";
+import MediaPlayer from "../../components/MediaPlayer/MediaPlayer";
 
 const DetailsPage = () => {
   const [media, setMedia] = useState(null);
   const [logo, setLogo] = useState(null);
   const [bgOpacity, setBgOpacity] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
+  const [videoKey, setVideoKey] = useState("");
+  const [showPlayer, setShowPlayer] = useState(false);
+
   const language = i18next.language;
   const { mediaType, id } = useParams();
   const dispatch = useDispatch();
@@ -43,13 +47,13 @@ const DetailsPage = () => {
 
   useEffect(() => {
     const fetchMediaData = async () => {
+      setIsLoading(true);
       try {
         const details = await tmdbService.fetchMediaDetails({
           mediaType,
           mediaId: id,
           language,
         });
-
         setMedia(details);
 
         const response = await tmdbService.fetchMediaLogoImage({
@@ -64,11 +68,40 @@ const DetailsPage = () => {
         }
       } catch (error) {
         console.error("Erro ao buscar mídia:", error);
+      } finally {
+        setIsLoading(false);
       }
     };
 
+
+    setMedia(null);
+    setLogo(null);
+    setVideoKey("");
     fetchMediaData();
   }, [id, language, mediaType]);
+
+  useEffect(() => {
+    if (!media) return;
+
+    const fetchVideoKey = async () => {
+      try {
+        const response = await tmdbService.fetchVideoKey({
+          mediaType,
+          mediaId: media.id,
+          language,
+          originalLanguage: media.original_language,
+        });
+
+        if (response) {
+          setVideoKey(response);
+        }
+      } catch (error) {
+        console.error("Erro ao buscar videoKey:", error);
+      }
+    };
+
+    fetchVideoKey();
+  }, [mediaType, id, language, media]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -86,13 +119,16 @@ const DetailsPage = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-
-
   return (
     <>
+      {showPlayer && videoKey && (
+        <MediaPlayer propsKey={videoKey} onClose={() => setShowPlayer(false)} />
+      )}
+
       <div className="details-page">
         <div className="details-page-container">
           <div className="details-page-content">
+
             <div
               className="details-page-media-background"
               style={{ opacity: bgOpacity }}
@@ -131,10 +167,14 @@ const DetailsPage = () => {
                 </div>
 
                 <div className="explore-ui-main-content-actions">
-                  <a href="" className="play-action">
+                  <button
+                    className="play-action"
+                    onClick={() => setShowPlayer(true)}
+                  >
                     <PlayActionIcon />
                     Assistir
-                  </a>
+                  </button>
+
                   <div
                     className="watchlist-action"
                     onClick={() =>

@@ -9,7 +9,6 @@ const DetailCardList = ({ cards }) => {
   const validCards = cards;
 
 
-  console.log(validCards)
 
   return (
     <div className="detail-card-list">
