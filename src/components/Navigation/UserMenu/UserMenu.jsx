@@ -34,12 +34,12 @@ const UserMenuChildren = ({ currentProfileData }) => {
       try {
         const allProfiles = await profileService.getAll();
 
-        // filtra o currentProfileData
+
         const filteredProfiles = allProfiles.filter(
           (profile) => profile.id !== currentProfileData?.id
         );
 
-        // ordena decrescente pelo id (ou outra lógica)
+
         const sortedList = [...filteredProfiles].sort((a, b) =>
           a.id < b.id ? 1 : a.id > b.id ? -1 : 0
         );

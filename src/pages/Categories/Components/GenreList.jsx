@@ -4,7 +4,6 @@ import "../styles.css";
 import usePerGenre from "../../../hooks/ApiCalls/usePerGenres/usePerGenres";
 
 const GenreList = ({ language, genreId, filter, sectionTitles }) => {
-  // Configurações de listas que queremos renderizar
   const lists = [
     {
       key: "movies",
@@ -66,7 +65,6 @@ const GenreList = ({ language, genreId, filter, sectionTitles }) => {
   );
 };
 
-// Componente isolado para cada seção
 const GenreSection = ({ title, params }) => {
   const { data, loading, error } = usePerGenre(params);
 

@@ -49,14 +49,6 @@ const AppRoutes = () => {
   const publicRoutes = [
     {
       path: "/",
-      element: isAuthenticated ? (
-        <Navigate to="/home" />
-      ) : (
-        <Navigate to="/identity/login/enter-email" />
-      ),
-    },
-    {
-      path: "/landing",
       element: isAuthenticated ? <Navigate to="/home" /> : <LandingPage />,
     },
     {

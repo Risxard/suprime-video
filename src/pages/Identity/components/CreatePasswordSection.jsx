@@ -24,7 +24,7 @@ function CreatePasswordSection() {
     watch,
     formState: { errors },
   } = useForm({
-    defaultValues: { password: "" },
+    defaultValues: { password: "", terms: false },
   });
 
   const passwordValue = watch("password");
@@ -42,7 +42,6 @@ function CreatePasswordSection() {
     if (!password) return 0;
 
     let strength = 0;
-
     if (password.length >= 6) strength += 25;
     if (/[A-Z]/.test(password)) strength += 20;
     if (/[0-9]/.test(password)) strength += 20;
@@ -214,6 +213,72 @@ function CreatePasswordSection() {
                   minúsculas) com pelo menos um número ou caractere especial.
                 </p>
               </div>
+            </div>
+
+            <div className="accept-terms">
+              <label className="accept-terms-checkbox">
+                <input
+                  type="checkbox"
+                  {...register("terms", {
+                    required: "Você deve aceitar os termos para continuar",
+                  })}
+                  style={{ display: "none" }}
+                />
+                <span className="custom-checkbox">
+                  {watch("terms") ? (
+                    <svg
+                      aria-hidden="true"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="white"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path d="M17.9647 5.43209C18.3563 4.9383 19.0741 4.85548 19.5679 5.24711C20.0617 5.63874 20.1445 6.35652 19.7529 6.85031L10.4733 18.5507C10.0495 19.0851 9.25459 19.1308 8.7723 18.6485L4.33424 14.2104C3.88859 13.7648 3.88859 13.0422 4.33424 12.5966C4.77989 12.1509 5.50243 12.1509 5.94808 12.5966L9.48076 16.1292L17.9647 5.43209Z"></path>
+                    </svg>
+                  ) : (
+                    <svg
+                      aria-hidden="true"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="gray"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <rect
+                        x="3"
+                        y="3"
+                        width="18"
+                        height="18"
+                        rx="2"
+                        ry="2"
+                        strokeWidth="2"
+                      />
+                    </svg>
+                  )}
+                </span>
+
+                <p>
+                  Aceito os{" "}
+                  <a href="/termos-de-uso" target="_blank">
+                    Termos de Uso
+                  </a>{" "}
+                  e a{" "}
+                  <a href="/politica-de-privacidade" target="_blank">
+                    Política de Privacidade
+                  </a>
+                  .
+                </p>
+              </label>
+              {errors.terms && (
+                <div className="password-prompt error-message">
+                  <div className="error-icon">
+                    <ErrorSvg />
+                  </div>
+                  <p>{errors.terms.message}</p>
+                </div>
+              )}
             </div>
 
             <button

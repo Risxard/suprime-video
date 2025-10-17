@@ -13,7 +13,7 @@ const MediaClass = ({ id, language, mediaType }) => {
 
   if (!mediaClass) return null;
 
-  // Traduções para o title
+
   const TITLE_TRANSLATIONS = {
     "pt-BR": "Classificação",
     "es-ES": "Clasificación",

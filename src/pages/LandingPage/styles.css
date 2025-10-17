@@ -1,8 +1,75 @@
 .landing-page {
     display: flex;
+    flex-direction: column;
     width: 100vw;
     height: 100vh;
     background-color: #040714;
+}
+
+.landing-page footer {
+    margin-top: 0;
+}
+
+.landing-nav {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    width: 100%;
+    height: var(--nav-height);
+    padding-inline: var(--inner-width);
+
+    position: absolute;
+    left: 0;
+    right: 0;
+
+    z-index: 100;
+}
+
+
+
+
+
+.landing-nav .login-btn {
+    font-family: 'Inspire-Roman', sans-serif;
+    max-width: 260px;
+    padding: 9px 12px;
+
+    width: auto;
+    height: 50px;
+
+    cursor: pointer;
+    border-radius: .25rem;
+    box-sizing: border-box;
+    transition: all .2s ease-in-out 0s;
+    display: inline-flex;
+    border: none;
+    vertical-align: middle;
+    justify-content: center;
+    align-items: center;
+    font-size: 15px;
+    line-height: 15px;
+
+    font-weight: 400;
+    letter-spacing: 1.76px;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+
+
+    color: #f9f9f9;
+    background-color: transparent;
+    border-color: #f9f9f9;
+    border-style: solid;
+    border-width: 1px;
+}
+
+.landing-nav .login-btn:hover {
+    color: #040714;
+    border-color: #f9f9f9;
+    background-color: #f9f9f9;
+    border: 1px solid #f9f9f9;
+    text-decoration: none !important;
 }
 
 
@@ -24,7 +91,9 @@
     align-items: center;
 }
 
-.landing-page-content {}
+.landing-page-content {
+    z-index: 2;
+}
 
 
 .landing-page-content>:first-child {
@@ -185,6 +254,93 @@
     flex-direction: column;
 }
 
+
+.landing-bg {
+    display: flex;
+    position: absolute;
+    right: 0;
+    top: 0;
+
+    z-index: 1;
+}
+
+.landing-bg img {
+    object-fit: cover;
+}
+
+
+
+.accept-terms-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    user-select: none;
+}
+
+
+.accept-terms-checkbox input[type="checkbox"] {
+    display: none;
+}
+
+
+.accept-terms-checkbox .custom-checkbox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 24px;
+    height: 24px;
+    border: 2px solid rgb(204 206 211);
+    border-radius: 4px;
+    transition: all 0.1s ease-in-out;
+    position: relative;
+}
+
+
+.accept-terms-checkbox:hover .custom-checkbox {
+    background-color: rgba(192, 192, 192, 0.2);
+    border-color: rgb(204 206 211 / 0.7);
+}
+
+
+.accept-terms-checkbox .custom-checkbox svg {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: none;
+
+}
+
+
+.accept-terms-checkbox input[type="checkbox"]:checked+.custom-checkbox svg {
+    display: block;
+
+
+}
+
+
+.accept-terms-checkbox input[type="checkbox"]:checked+.custom-checkbox {
+    background-color: #040714;
+    border-color: transparent;
+}
+
+
+.accept-terms-checkbox p {
+    font-family: 'Inspire-Roman', sans-serif;
+    color: rgb(255, 85, 76);
+    font-size: 14px;
+    line-height: 24px;
+    margin: 0;
+    color: rgb(0 0 0 / 1);
+}
+
+
+
+
+
+
 @media screen and (min-width: 769px) and (max-width: 1024px) {
     .landing-page-image-container img {
         max-width: 200px;
@@ -206,11 +362,27 @@
         align-items: center;
         justify-content: center;
     }
+
+
+
+    .landing-nav .login-btn {
+        padding-left: 8px;
+        padding-right: 8px;
+        font-size: 13px;
+        line-height: 15px;
+        height: 40px;
+    }
 }
 
 
 
 @media screen and (min-width: 769px) {
+    .landing-nav .login-btn {
+        padding-left: 16px;
+        padding-right: 16px;
+        font-size: 18px;
+        height: 50px;
+    }
 
     .landing-page-input-container input {
         border-radius: 4px 0 0 4px;
@@ -271,6 +443,24 @@
 }
 
 @media screen and (max-width: 1025px) {
+
+    .landing-bg {
+        display: flex;
+        position: absolute;
+        right: 0;
+        left: 0;
+        top: 0;
+        bottom: 0;
+
+        z-index: 1;
+    }
+
+    .landing-bg img {
+        width: 100%;
+        object-fit: contain;
+    }
+
+
     .landing-page-image-container {
         display: flex;
         justify-content: center;

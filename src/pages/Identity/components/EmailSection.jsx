@@ -3,7 +3,6 @@ import { useLocation } from "react-router-dom";
 import IdentityDialog from "./IdentityDialog/IdentityDialog";
 import { useNavigate } from "react-router-dom";
 
-
 const EmailSection = () => {
   const [tempEmail, setTempEmail] = useState("");
   const [isActive, setIsActive] = useState(false);
@@ -12,7 +11,6 @@ const EmailSection = () => {
 
   const location = useLocation();
   const navigate = useNavigate();
-
 
   const entryPoint = location.pathname.includes("sign-up")
     ? "Register"
@@ -87,13 +85,28 @@ const EmailSection = () => {
 
       <h1 className="identity-title">Digite o seu e-mail para continuar</h1>
       <p className="identity-subtitle">
-        Entre no Açaíwave+ com sua conta usando o e⁠-⁠mail. Se você não tiver
-        conta, precisará criar uma.
+        {entryPoint === "Register" ? (
+          <>
+            Entre com seu e-mail para iniciar seu cadastro. Já possui uma conta? Entre{" "}
+            <a href="/preview/acaiwaveplus/identity/login/enter-email">aqui</a>.
+          </>
+        ) : (
+          <>
+            Entre no Açaíwave+ com sua conta usando o e⁠-⁠mail. Se você não
+            tiver conta, precisará{" "}
+            <a href="/preview/acaiwaveplus/identity/sign-up/enter-email">
+              criar uma conta
+            </a>
+            .
+          </>
+        )}
       </p>
 
       <form className="identity-form" onSubmit={handleSubmit}>
         <div
-          className={`identity-form-input-container ${isActive ? "active" : ""}`}
+          className={`identity-form-input-container ${
+            isActive ? "active" : ""
+          }`}
           onClick={handleContainerClick}
         >
           <label htmlFor="email">E-mail</label>

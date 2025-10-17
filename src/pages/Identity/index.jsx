@@ -10,7 +10,7 @@ function Identity({ children }) {
   return (
     <div className="identity">
       <div className="identity-container">
-        <Link to="/" className="identity-logo">
+        <Link to="/landing" className="identity-logo">
           <img src={logo} alt="logo" />
         </Link>
 
