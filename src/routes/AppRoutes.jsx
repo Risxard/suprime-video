@@ -15,6 +15,7 @@ import {
   EmailVerificationPage,
   FortgetPasswordPage,
   PageTest,
+  LandingPage,
 } from "../pages/Index";
 
 import PrivateLayout from "../App";
@@ -53,6 +54,10 @@ const AppRoutes = () => {
       ) : (
         <Navigate to="/identity/login/enter-email" />
       ),
+    },
+    {
+      path: "/landing",
+      element: isAuthenticated ? <Navigate to="/home" /> : <LandingPage />,
     },
     {
       path: "/identity/login/enter-email",

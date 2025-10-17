@@ -12,3 +12,4 @@ export { default as ErrorPage } from "./ErrorPage/index";
 export { default as EmailVerificationPage } from "./EmailVerification/index";
 export { default as FortgetPasswordPage } from "./FortgotPasswordPage/index";
 export { default as PageTest } from "./Pagetest/index";
+export { default as LandingPage } from "./LandingPage/index";
