@@ -62,6 +62,9 @@
     border-color: #f9f9f9;
     border-style: solid;
     border-width: 1px;
+
+
+    background-color: rgba(0, 0, 0, .8);
 }
 
 .landing-nav .login-btn:hover {
@@ -93,6 +96,7 @@
 
 .landing-page-content {
     z-index: 2;
+    margin-bottom: 72px;
 }
 
 

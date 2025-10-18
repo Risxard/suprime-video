@@ -50,3 +50,23 @@
 .dialog-buttons button:nth-child(2):hover {
     background-color: rgb(233, 235, 240);
 }
+
+
+@media (max-width: 479px) {
+    .email-confirmation-dialog{
+        align-items: flex-end;
+    }
+    .dialog-content {
+        padding-inline: 0;
+        padding-bottom: 0;
+
+    }
+
+    .dialog-box {
+        padding-inline: 24px;
+        padding-block: 32px;
+        border-end-end-radius: 0;
+        border-end-start-radius: 0;
+    }
+
+}

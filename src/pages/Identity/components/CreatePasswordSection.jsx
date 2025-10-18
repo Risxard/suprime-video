@@ -8,6 +8,7 @@ import LoaderOverlooping from "../assets/LoaderOverlooping";
 import "./styles.css";
 import { sendEmailVerificationLink } from "../../../services/firebase/profileServices";
 import { auth } from "../../../services/firebase/firebaseconfig";
+import ShowPassword from "../assets/ShowPasswordSvg";
 
 function CreatePasswordSection() {
   const [isActive, setIsActive] = useState(false);
@@ -15,6 +16,7 @@ function CreatePasswordSection() {
   const [error, setError] = useState(null);
   const [email, setEmail] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const passwordRef = useRef(null);
   const navigate = useNavigate();
 
@@ -108,6 +110,8 @@ function CreatePasswordSection() {
 
   const toggleMoreInfo = () => setShowMoreInfo(!showMoreInfo);
 
+  const toggleShowPassword = () => setShowPassword((prev) => !prev);
+
   const passwordPattern =
     /^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*(),.?":{}|<>]).{6,}$/;
 
@@ -117,7 +121,9 @@ function CreatePasswordSection() {
         <LoaderOverlooping />
       ) : (
         <>
-          <h1 className="identity-title">Crie uma conta para continuar</h1>
+          <h1 className="identity-title">
+            Finalize seu cadastro para continuar
+          </h1>
           <div className="identity-subtitle">
             <p>Crie sua conta com o e-mail</p>
             <b>{email}</b>{" "}
@@ -137,7 +143,7 @@ function CreatePasswordSection() {
                 <label htmlFor="password">Escolha sua senha</label>
                 <input
                   id="password"
-                  type="password"
+                  type={showPassword ? "text" : "password"}
                   className="identity-input"
                   ref={passwordRef}
                   {...register("password", {
@@ -152,6 +158,17 @@ function CreatePasswordSection() {
                   onBlur={handleBlur}
                   disabled={isLoading}
                 />
+                <div className="show-password">
+                  <button
+                    type="button"
+                    onClick={toggleShowPassword}
+                    aria-label={
+                      showPassword ? "Ocultar senha" : "Mostrar senha"
+                    }
+                  >
+                    <ShowPassword showPassword={showPassword} />
+                  </button>
+                </div>
               </div>
 
               <div className="security-password-bar-wrapper-container">

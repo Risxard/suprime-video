@@ -19,7 +19,7 @@ const UserMenuChildren = () => {
   return (
     <ul className="expand-menu-list-container">
       <li>
-        <Link to="/movies">
+        <Link to="/browse/movies">
           <span>
             <MoviesSvg />
           </span>
@@ -28,7 +28,7 @@ const UserMenuChildren = () => {
       </li>
 
       <li>
-        <Link to="/tv-series">
+        <Link to="/browse/series">
           <span>
             <TvSvg />
           </span>
@@ -37,7 +37,7 @@ const UserMenuChildren = () => {
       </li>
 
       <li>
-        <Link to="/tv-series">
+        <Link to="/browse/series">
           <span>
             <StarSvg />
           </span>

@@ -4,6 +4,7 @@ import ArrowSvg from "../assets/ArrowSvg";
 import ErrorSvg from "../assets/ErrorSvg";
 import LoaderOverlooping from "../assets/LoaderOverlooping";
 import { loginUser } from "../../../services/firebase/loginUser";
+import ShowPassword from "../assets/ShowPasswordSvg";
 
 function PasswordSection() {
   const [tempPassword, setTempPassword] = useState("");
@@ -12,6 +13,7 @@ function PasswordSection() {
   const [showMoreInfo, setShowMoreInfo] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [email, setEmail] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
   const passwordRef = useRef(null);
   const navigate = useNavigate();
@@ -70,6 +72,8 @@ function PasswordSection() {
 
   const toggleMoreInfo = () => setShowMoreInfo(!showMoreInfo);
 
+  const toggleShowPassword = () => setShowPassword((prev) => !prev);
+
   return (
     <>
       {isLoading ? (
@@ -96,7 +100,7 @@ function PasswordSection() {
                 <label htmlFor="password">Senha</label>
                 <input
                   id="password"
-                  type="password"
+                  type={showPassword ? "text" : "password"}
                   required
                   className="identity-input"
                   ref={passwordRef}
@@ -105,6 +109,17 @@ function PasswordSection() {
                   onBlur={handleBlur}
                   disabled={isLoading}
                 />
+                <div className="show-password">
+                  <button
+                    type="button"
+                    onClick={toggleShowPassword}
+                    aria-label={
+                      showPassword ? "Ocultar senha" : "Mostrar senha"
+                    }
+                  >
+                    <ShowPassword showPassword={showPassword} />
+                  </button>
+                </div>
               </div>
 
               {error && (
