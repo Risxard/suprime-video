@@ -10,8 +10,12 @@ const AccountPage = () => {
           </div>
 
           <div>
-            <section>
-                
+            <section className="account-page-section">
+              <div className="account-page-section-title-container">
+                <div className="account-page-section-title">
+                  Seus planos e cobranças
+                </div>
+              </div>
             </section>
           </div>
         </div>

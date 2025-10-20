@@ -28,3 +28,24 @@
     font-size: 1.5rem;
     line-height: 2rem;
 }
+
+
+.account-page-section-title-container {
+    background-color: hsl(227, 9%, 19%);
+    border-radius: 4px;
+    border-end-start-radius: 0px;
+    border-end-end-radius: 0px;
+    padding: 0.5rem 1rem;
+    color: hsl(0, 0%, 79.2%);
+}
+
+.account-page-section-title {
+    font-size: 1rem;
+    font-family: "Inspire-Heavy", sans-serif;
+    line-height: 1.5rem;
+    letter-spacing: 0;
+
+
+    color: #fafafa;
+    font-weight: 700;
+}
