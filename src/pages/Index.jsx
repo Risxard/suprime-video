@@ -1,15 +1,13 @@
 export { default as Identity } from "./Identity";
-export { default as Register } from "./Register";
 export { default as Home } from "./Home";
 export { default as Movies } from "./MoviesPage";
 export { default as TvSeries } from "./TvSeriesPage";
 export { default as DetailsPage } from "./DetailsPage/DetailsPage";
 export { default as ProfilesPage } from "./Profiles/Index";
-export { default as Categories } from "./Categories";
 export { default as WatchlistPage } from "./WatchListPage/index";
 export { default as SettingsPage } from "./Settings/index";
 export { default as ErrorPage } from "./ErrorPage/index";
-export { default as EmailVerificationPage } from "./EmailVerification/index";
 export { default as FortgetPasswordPage } from "./FortgotPasswordPage/index";
 export { default as PageTest } from "./Pagetest/index";
 export { default as LandingPage } from "./LandingPage/index";
+export { default as AccountPage } from "./AccountPage/index";

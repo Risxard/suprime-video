@@ -1,0 +1,30 @@
+.account-page {
+    min-height: 100vh;
+    padding-top: var(--nav-height);
+}
+
+
+.account-page-container {
+    margin-top: 40px;
+}
+
+.account-page-content {
+    max-width: 506px;
+    margin: 0px auto;
+    padding: 0px 20px;
+}
+
+.account-page-title {
+    margin-bottom: 16px;
+
+    color: #fafafa;
+}
+
+.account-page-title h1 {
+
+    font-family: "Inspire-Heavy", sans-serif;
+    font-weight: 700;
+    letter-spacing: 0;
+    font-size: 1.5rem;
+    line-height: 2rem;
+}

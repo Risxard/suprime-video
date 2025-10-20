@@ -3,19 +3,16 @@ import { useSelector } from "react-redux";
 
 import {
   Identity,
-  Register,
   Home,
-  TvSeries,
   DetailsPage,
   ProfilesPage,
-  Categories,
   WatchlistPage,
   SettingsPage,
   ErrorPage,
-  EmailVerificationPage,
   FortgetPasswordPage,
   PageTest,
   LandingPage,
+  AccountPage,
 } from "../pages/Index";
 
 import PrivateLayout from "../App";
@@ -92,30 +89,6 @@ const AppRoutes = () => {
       ),
     },
     {
-      path: "/identity/sign-up/successful",
-      element: isAuthenticated ? (
-        <Navigate to="/" />
-      ) : (
-        <EmailVerificationPage />
-      ),
-    },
-    {
-      path: "/verify",
-      element: isAuthenticated ? (
-        <Navigate to="/" />
-      ) : (
-        <EmailVerificationPage />
-      ),
-    },
-    {
-      path: "/verify:ref",
-      element: isAuthenticated ? (
-        <Navigate to="/" />
-      ) : (
-        <EmailVerificationPage />
-      ),
-    },
-    {
       path: "/forgot",
       element: isAuthenticated ? <Navigate to="/" /> : <FortgetPasswordPage />,
     },
@@ -149,7 +122,8 @@ const AppRoutes = () => {
       path: "/browse/watchlist/",
       element: <BrowsePage children={<WatchlistPage />} />,
     },
-    { path: "/settings/:id", element: <SettingsPage /> },
+    { path: "/settings/account", element: <AccountPage /> },
+
     { path: "/settings/:id/:ref", element: <SettingsPage /> },
     { path: "/settings", element: <Navigate to="/settings/your-account" /> },
     {

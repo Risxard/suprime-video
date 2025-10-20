@@ -2,7 +2,7 @@ import PrivateLayout from "./routes/PrivateLayout.jsx";
 
 function App() {
   return (
-    <div className="App">
+    <div id="app">
       <PrivateLayout/>
     </div>
   );
