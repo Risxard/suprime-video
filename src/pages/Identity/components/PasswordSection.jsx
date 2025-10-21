@@ -4,7 +4,7 @@ import ArrowSvg from "../assets/ArrowSvg";
 import ErrorSvg from "../assets/ErrorSvg";
 import LoaderOverlooping from "../assets/LoaderOverlooping";
 import { loginUser } from "../../../services/firebase/loginUser";
-import ShowPassword from "../assets/ShowPasswordSvg";
+import ShowPassword from "../../../assets/ShowPassword";
 
 function PasswordSection() {
   const [tempPassword, setTempPassword] = useState("");

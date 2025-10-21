@@ -1,4 +1,6 @@
-.profiles-page {}
+.profiles-page {
+    padding-top: var(--nav-height);
+}
 
 
 .profiles-page-container {

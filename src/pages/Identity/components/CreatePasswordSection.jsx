@@ -8,7 +8,7 @@ import LoaderOverlooping from "../assets/LoaderOverlooping";
 import "./styles.css";
 import { sendEmailVerificationLink } from "../../../services/firebase/profileServices";
 import { auth } from "../../../services/firebase/firebaseconfig";
-import ShowPassword from "../assets/ShowPasswordSvg";
+import ShowPassword from "../../../assets/ShowPassword";
 
 function CreatePasswordSection() {
   const [isActive, setIsActive] = useState(false);

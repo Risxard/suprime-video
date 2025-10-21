@@ -39,7 +39,7 @@ const HideSvg = () => {
 };
 
 const ShowPassword = ({ showPassword }) => {
-  return showPassword ? <ShowSvg /> : <HideSvg />;
+  return showPassword ? <HideSvg /> : <ShowSvg />;
 };
 
 export default ShowPassword;

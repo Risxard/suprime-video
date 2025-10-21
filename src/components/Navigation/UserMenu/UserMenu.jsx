@@ -1,6 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./UserMenu.css";
-import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
+import {
+  Link,
+  Navigate,
+  NavLink,
+  useLocation,
+  useNavigate,
+} from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
   logout,
@@ -34,11 +40,9 @@ const UserMenuChildren = ({ currentProfileData }) => {
       try {
         const allProfiles = await profileService.getAll();
 
-
         const filteredProfiles = allProfiles.filter(
           (profile) => profile.id !== currentProfileData?.id
         );
-
 
         const sortedList = [...filteredProfiles].sort((a, b) =>
           a.id < b.id ? 1 : a.id > b.id ? -1 : 0
@@ -75,7 +79,6 @@ const UserMenuChildren = ({ currentProfileData }) => {
     }
   };
 
-
   return (
     <div className="nav-menu-list-itens">
       {sortedProfileList.map((profile) => (
@@ -99,38 +102,38 @@ const UserMenuChildren = ({ currentProfileData }) => {
       ))}
 
       <li className="nav-menu-item">
-        <a href="/preview/acaiwaveplus/profiles/create">
+        <NavLink to="/select-avatar">
           <span className="nav-menu-profile-pic add-new-profile-btn">
             <AddProfile />
           </span>
           <p>{profiles.addNew}</p>
-        </a>
+        </NavLink>
       </li>
 
       <li className="nav-menu-item nopic">
-        <a href="/preview/acaiwaveplus/edit-profiles">
+        <NavLink to="/edit-profiles">
           <p>{editProfile}</p>
-        </a>
+        </NavLink>
       </li>
       <li className="nav-menu-item nopic">
-        <a href="">
+        <NavLink to="/settings/app-settings">
           <p>{appSettings}</p>
-        </a>
+        </NavLink>
       </li>
       <li className="nav-menu-item nopic">
-        <a href="">
+        <NavLink to="/settings/account">
           <p>{account}</p>
-        </a>
+        </NavLink>
       </li>
       <li className="nav-menu-item nopic">
-        <a href="">
+        <NavLink to="/settings/account">
           <p>{help}</p>
-        </a>
+        </NavLink>
       </li>
       <li className="nav-menu-item nopic" onClick={loggout}>
-        <a href="">
+        <NavLink>
           <p>{signOut}</p>
-        </a>
+        </NavLink>
       </li>
     </div>
   );
