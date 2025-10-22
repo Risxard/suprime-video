@@ -24,6 +24,7 @@ export const createNewAccount = async ({ email, password, name }) => {
     await setDoc(doc(db, "users", userId, "mainAccount", "settings"), {
       theme: "light",
       language: "pt-BR",
+      new_profiles_protection: false,
     });
 
 

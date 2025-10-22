@@ -5,6 +5,7 @@ import GlobalMoldal from "../components/Modals/GlobalMoldal";
 import Footer from "../components/Footer/Footer";
 import Navigation from "../components/Navigation/Navigation";
 
+
 const PrivateLayout = () => {
   const modal = useSelector((state) => state.modals.filterModal);
 
@@ -14,6 +15,7 @@ const PrivateLayout = () => {
       <Outlet />
       {!modal && <Footer />}
       <GlobalMoldal />
+      
     </>
   );
 };

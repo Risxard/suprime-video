@@ -5,12 +5,14 @@ import languageReducer from './language/index';
 import authReducer from './auth/index';
 import getIdSlice from './slices/getMediaId';
 import modalsSlice from './slices/modals';
+import popupReducer from "./slices/popupSlice";
 
 const reducer = combineReducers({
   getId: getIdSlice,
   lang: languageReducer,
   auth: authReducer,
   modals: modalsSlice,
+  popup: popupReducer,
 })
 
 

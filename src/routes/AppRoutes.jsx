@@ -32,6 +32,8 @@ import AddProfile from "../pages/Profiles/Components/AddProfile/AddProfile";
 import BrowsePage from "../pages/BrowsePage";
 import MoviesPage from "../pages/MoviesPage/index.jsx";
 import TvSeriesPage from "../pages/TvSeriesPage/index.jsx";
+import PopUpMessage from "../components/PopUpMessage/index.jsx";
+import ChangePassword from "../pages/Identity/components/ChangePassword.jsx";
 
 const AppRoutes = () => {
   const { user, token, currentProfile, loading } = useSelector(
@@ -49,6 +51,10 @@ const AppRoutes = () => {
       element: isAuthenticated ? <Navigate to="/home" /> : <LandingPage />,
     },
     {
+      path: "/landing",
+      element: isAuthenticated ? <Navigate to="/home" /> : <LandingPage />,
+    },
+    {
       path: "/identity/login/enter-email",
       element: isAuthenticated ? (
         <Navigate to="/home" />
@@ -62,6 +68,18 @@ const AppRoutes = () => {
         <Navigate to="/home" />
       ) : (
         <Identity children={<PasswordSection />} />
+      ),
+    },
+    {
+      path: "/identity/update-credentials/change-password",
+      element: <Identity children={<ChangePassword />} updatePage={true} />,
+    },
+    {
+      path: "/identity/update-credentials/enter-email",
+      element: isAuthenticated ? (
+        <Navigate to="/identity/update-credentials/change-password" />
+      ) : (
+        <Identity children={<EmailSection />} />
       ),
     },
     {
@@ -122,8 +140,6 @@ const AppRoutes = () => {
       path: "/browse/watchlist/",
       element: <BrowsePage children={<WatchlistPage />} />,
     },
-    { path: "/settings/account", element: <AccountPage /> },
-
     { path: "/settings/:id/:ref", element: <SettingsPage /> },
     { path: "/settings", element: <Navigate to="/settings/your-account" /> },
     {
@@ -138,6 +154,7 @@ const AppRoutes = () => {
       path: "/select-profile",
       element: <ProfilesPage children={<SelectProfile />} />,
     },
+    { path: "/settings/account", element: <AccountPage /> },
     {
       path: "/edit-profiles",
       element: <ProfilesPage children={<EditProfiles />} />,
@@ -187,6 +204,7 @@ const AppRoutes = () => {
           ))}
         </Route>
       </Routes>
+      <PopUpMessage />
     </BrowserRouter>
   );
 };

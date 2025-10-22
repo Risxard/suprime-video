@@ -73,7 +73,6 @@ const DetailsPage = () => {
       }
     };
 
-
     setMedia(null);
     setLogo(null);
     setVideoKey("");
@@ -119,6 +118,7 @@ const DetailsPage = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+
   return (
     <>
       {showPlayer && videoKey && (
@@ -128,7 +128,6 @@ const DetailsPage = () => {
       <div className="details-page">
         <div className="details-page-container">
           <div className="details-page-content">
-
             <div
               className="details-page-media-background"
               style={{ opacity: bgOpacity }}

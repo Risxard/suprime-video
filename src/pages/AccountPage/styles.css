@@ -1,8 +1,13 @@
 .account-page {
     min-height: 100vh;
-    padding-top: var(--nav-height);
 }
 
+.account-page nav {
+    display: flex;
+    align-items: center;
+    height: var(--nav-height);
+    padding-inline: var(--inner-width);
+}
 
 .account-page-container {
     margin-top: 40px;
@@ -96,7 +101,10 @@
     justify-content: center;
     align-items: center;
 }
-
+.account-page-section-actions a{
+    text-decoration: none;
+    color: inherit;
+}
 .account-page-section-actions button {
     display: inline-flex;
     height: inherit;
@@ -116,9 +124,6 @@
     cursor: pointer;
     text-decoration: underline;
 }
-
-
-.account-page-section-settings-actions {}
 
 .account-page-section-settings-actions button {
     padding: 16px;
@@ -190,6 +195,10 @@
     left: 0;
     position: absolute;
 }
+.account-page-section-settings-action-toggle.active span::before {
+    left: inherit;
+    right: 0;
+}
 
 .account-page-section-settings-action-toggle input {
     display: none;
@@ -218,7 +227,7 @@
     max-width: 560px;
     width: calc(100% - 48px);
     position: relative;
-    
+
 }
 
 
@@ -419,6 +428,7 @@
 
     width: fit-content;
 }
+
 .dialog a:hover {
     color: white;
     text-decoration: underline;

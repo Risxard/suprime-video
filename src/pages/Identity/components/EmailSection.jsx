@@ -1,7 +1,6 @@
 import { useRef, useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import IdentityDialog from "./IdentityDialog/IdentityDialog";
-import { useNavigate } from "react-router-dom";
 
 const EmailSection = () => {
   const [tempEmail, setTempEmail] = useState("");
@@ -12,9 +11,13 @@ const EmailSection = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
+
   const entryPoint = location.pathname.includes("sign-up")
-    ? "Register"
+    ? "register"
+    : location.pathname.includes("update-credentials")
+    ? "update-credentials"
     : "login";
+
 
   useEffect(() => {
     const savedAuthData = localStorage.getItem("auth-data");
@@ -43,7 +46,7 @@ const EmailSection = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (entryPoint === "Register") {
+    if (entryPoint === "register") {
       setShowDialog(true);
     } else {
       handleConfirm();
@@ -62,8 +65,10 @@ const EmailSection = () => {
 
     localStorage.setItem("auth-data", JSON.stringify(authData));
 
-    if (entryPoint === "Register") {
+    if (entryPoint === "register") {
       navigate("/identity/sign-up/create-password");
+    } else if (entryPoint === "update-credentials") {
+      navigate("/identity/update-credentials/change-password");
     } else {
       navigate("/identity/login/enter-password");
     }
@@ -75,7 +80,7 @@ const EmailSection = () => {
 
   return (
     <>
-      {showDialog && entryPoint === "Register" && (
+      {showDialog && entryPoint === "register" && (
         <IdentityDialog
           email={tempEmail}
           onConfirm={handleConfirm}
@@ -85,10 +90,16 @@ const EmailSection = () => {
 
       <h1 className="identity-title">Digite o seu e-mail para continuar</h1>
       <p className="identity-subtitle">
-        {entryPoint === "Register" ? (
+        {entryPoint === "register" ? (
           <>
-            Entre com seu e-mail para iniciar seu cadastro. Já possui uma conta? Entre{" "}
+            Entre com seu e-mail para iniciar seu cadastro. Já possui uma conta?
+            Entre{" "}
             <a href="/preview/acaiwaveplus/identity/login/enter-email">aqui</a>.
+          </>
+        ) : entryPoint === "update-credentials" ? (
+          <>
+            Digite o e-mail associado à sua conta para alterar suas credenciais.
+            Enviaremos um link para redefinir sua senha ou atualizar seu acesso.
           </>
         ) : (
           <>

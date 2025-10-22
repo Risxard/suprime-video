@@ -12,11 +12,7 @@ import {
     setCurrentWatchlist,
     userProfiles
 } from "../../store/auth/index.js";
-import {
-    sendPasswordResetEmail,
-    sendEmailVerification,
-    getAuth
-} from "firebase/auth";
+import { sendEmailVerification, sendPasswordResetEmail, } from "firebase/auth";
 import { auth, db } from "./firebaseconfig.js";
 
 
@@ -257,17 +253,28 @@ export const nameAccountUpdate = async (userId, newName) => {
     }
 };
 
+
+
+
 export const sendResetPasswordEmail = async (email) => {
-    const auth = getAuth();
+    if (!email) {
+        console.error("E-mail não fornecido para redefinição de senha.");
+        return false;
+    }
+
     try {
         await sendPasswordResetEmail(auth, email, {
             url: "https://richardsonsouza.com/preview/acaiwaveplus",
-            handleCodeInApp: false
+            handleCodeInApp: false,
         });
+        return true;
     } catch (error) {
-        throw error;
+        console.error("Erro ao enviar e-mail de redefinição:", error);
+        return false;
     }
 };
+
+
 
 export const sendEmailVerificationLink = async (user) => {
     if (!user) return false;
@@ -280,5 +287,40 @@ export const sendEmailVerificationLink = async (user) => {
     } catch (error) {
         console.error(error);
         return false;
+    }
+};
+
+
+
+export const deleteUserAccountAndData = async () => {
+    const user = auth.currentUser;
+    if (!user) {
+        throw new Error("Nenhum usuário logado encontrado.");
+    }
+
+    try {
+        const uid = user.uid;
+
+        const userCollections = ["profiles", "settings", "watchlist"];
+
+        for (const coll of userCollections) {
+            const ref = collection(db, "users", uid, coll);
+            const snapshot = await getDocs(ref);
+            const deletePromises = snapshot.docs.map((docSnap) => deleteDoc(docSnap.ref));
+            await Promise.all(deletePromises);
+        }
+
+
+        const userRef = doc(db, "users", uid);
+        await deleteDoc(userRef);
+
+
+        await deleteUser(user);
+
+        console.log("Conta e dados do usuário excluídos com sucesso!");
+        return true;
+    } catch (error) {
+        console.error("Erro ao excluir conta e dados:", error);
+        throw error;
     }
 };

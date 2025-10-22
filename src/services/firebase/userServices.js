@@ -5,7 +5,6 @@ export const userServices = {
         const { data } = await api.get("/api/users");
         return data;
     },
-
 };
 
 

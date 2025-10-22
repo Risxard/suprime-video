@@ -1,5 +1,5 @@
 import { useRef, useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import ArrowSvg from "../assets/ArrowSvg";
 import ErrorSvg from "../assets/ErrorSvg";
 import LoaderOverlooping from "../assets/LoaderOverlooping";
@@ -168,7 +168,9 @@ function PasswordSection() {
               )}
             </div>
 
-            <a href="">Não consegue entrar? redefina sua senha</a>
+            <NavLink to="/identity/update-credentials/enter-email">
+              Não consegue entrar? redefina sua senha
+            </NavLink>
           </div>
         </>
       )}

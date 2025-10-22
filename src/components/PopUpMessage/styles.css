@@ -1,0 +1,110 @@
+.pop-up-message-component {
+    background: rgb(75, 78, 90);
+    border-radius: 26px;
+    bottom: 24px;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 16px 28px 0px, rgba(0, 0, 0, 0.4) 0px 25px 55px 0px;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    height: 52px;
+    left: 50%;
+    padding: 14px 16px;
+    position: fixed;
+    transform: translateX(-50%);
+    z-index: 101;
+
+
+    max-width: 345px;
+    transform: scale(1) translateX(-50%);
+    transition: transform 50ms ease-out, max-width 300ms ease-out 150ms;
+}
+
+
+
+
+.pop-up-message-component>p {
+    max-width: 231px;
+    opacity: 1;
+    transform: translateX(0px);
+    transition: 150ms ease-in 320ms;
+    color: #f9f9f9;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-align: left;
+    margin: 0;
+    padding-right: 2.5rem;
+
+    font-family: 'Inspire-Roman', sans-serif;
+    font-size: 15px;
+    letter-spacing: -.1px;
+    line-height: 1.6;
+}
+
+.pop-separator {
+    background-color: rgba(0, 0, 0, 0.2);
+    height: 100%;
+    width: 2px;
+}
+
+
+
+.pop-up-message-close-container {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    height: 100%;
+}
+
+.pop-up-message-close-container svg {
+    cursor: pointer;
+    margin: 2px 0px 2px 10px;
+    width: 20px;
+    height: 20px;
+    min-width: 20px;
+    z-index: auto;
+    fill: rgb(219, 220, 222);
+}
+
+.pop-up-icon {
+    opacity: 1;
+    transform: rotate(0deg);
+    transition: 130ms ease-out 20ms;
+    height: 24px;
+    margin-right: 12px;
+    width: 24px;
+}
+
+.pop-up-icon:hover {
+    fill: rgb(255, 255, 255);
+}
+
+
+.warning-icon {
+    fill: rgb(255, 182, 63);
+}
+
+.done-icon{
+    fill: rgb(121, 223, 112);
+}
+
+.fail-icon {
+    fill: rgb(255, 92, 63);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+@media (min-width: 375px) {
+    .pop-up-message-component {
+        bottom: 40px;
+    }
+}

@@ -6,12 +6,12 @@ import logoblack from "../../assets/acaiwaveLogoBlack.png";
 
 import "./styles.css";
 
-function Identity({ children }) {
+function Identity({ children, updatePage }) {
   return (
-    <div className="identity">
+    <div className={`identity ${updatePage ? "update-page" : ""}`}>
       <div className="identity-container">
-        <Link to="/landing" className="identity-logo">
-          <img src={logo} alt="logo" />
+        <Link to="/home" className="identity-logo">
+          <img src={updatePage ? logoblack : logo} alt="logo" />
         </Link>
 
         <div className="identity-box">

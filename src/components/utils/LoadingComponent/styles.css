@@ -7,6 +7,13 @@
 
 }
 
+.loading-screen-component {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 600px;
+}
 
 .loading-component img {
   width: 80px;
