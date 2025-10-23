@@ -1,8 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./UserMenu.css";
 import {
-  Link,
-  Navigate,
   NavLink,
   useLocation,
   useNavigate,
@@ -13,25 +11,21 @@ import {
   setCurrentProfile,
   setCurrentWatchlist,
 } from "../../../store/auth/index.js";
-import DropdownContainer from "../Layout/DropdownContainer/Index.jsx";
 import { isMobile } from "react-device-detect";
 import { useTranslation } from "react-i18next";
 import { auth } from "../../../services/firebase/firebaseconfig.js";
 import i18next from "i18next";
 
-import holdimg from "../Icons/download.png";
 import AddProfile from "../Icons/AddProfile.jsx";
 import { profileService } from "../../../services/firebase/profileServices.js";
 
 const UserMenuChildren = ({ currentProfileData }) => {
   const [sortedProfileList, setCurrentProfileList] = useState([]);
-  const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const avatarButtonRef = useRef(null);
 
   const { t } = useTranslation();
-  const navigationAccountMenu = t("navigation.accountMenu");
+  const navigationAccountMenu = t("navigation.accountMenu", { returnObjects: true });
   const { yourAccount, profiles } = navigationAccountMenu;
   const { editProfile, appSettings, account, help, signOut } = yourAccount;
 
@@ -39,23 +33,17 @@ const UserMenuChildren = ({ currentProfileData }) => {
     const fetchProfiles = async () => {
       try {
         const allProfiles = await profileService.getAll();
-
         const filteredProfiles = allProfiles.filter(
           (profile) => profile.id !== currentProfileData?.id
         );
-
         const sortedList = [...filteredProfiles].sort((a, b) =>
           a.id < b.id ? 1 : a.id > b.id ? -1 : 0
         );
-
         setCurrentProfileList(sortedList);
       } catch (error) {
         console.error("Erro ao buscar perfis:", error);
-      } finally {
-        setLoading(false);
       }
     };
-
     fetchProfiles();
   }, [currentProfileData]);
 
@@ -66,7 +54,7 @@ const UserMenuChildren = ({ currentProfileData }) => {
     window.location.reload();
   };
 
-  const loggout = async () => {
+  const handleLogout = async () => {
     try {
       await auth.signOut();
       dispatch(logout());
@@ -87,7 +75,7 @@ const UserMenuChildren = ({ currentProfileData }) => {
           key={profile.id}
           onClick={() => handleSetUserProfile(profile)}
         >
-          <a href="">
+          <a href="#">
             <span
               className="nav-menu-profile-pic"
               style={{
@@ -96,7 +84,9 @@ const UserMenuChildren = ({ currentProfileData }) => {
                 }),
               }}
             ></span>
-            {profile.userInfoData?.name && <p>{profile.userInfoData.name}</p>}
+            {profile.userInfoData?.name && (
+              <p className="capitalize">{profile.userInfoData.name}</p>
+            )}
           </a>
         </li>
       ))}
@@ -126,12 +116,12 @@ const UserMenuChildren = ({ currentProfileData }) => {
         </NavLink>
       </li>
       <li className="nav-menu-item nopic">
-        <NavLink to="/settings/account">
+        <NavLink to="/help">
           <p>{help}</p>
         </NavLink>
       </li>
-      <li className="nav-menu-item nopic" onClick={loggout}>
-        <NavLink>
+      <li className="nav-menu-item nopic" onClick={handleLogout}>
+        <NavLink to="#">
           <p>{signOut}</p>
         </NavLink>
       </li>
@@ -142,27 +132,19 @@ const UserMenuChildren = ({ currentProfileData }) => {
 const UserMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [currentProfileData, setCurrentProfileData] = useState(null);
-
   const avatarButtonRef = useRef(null);
   const currentProfile = useSelector((state) => state.auth.currentProfile);
-
-  function handleCurrentProfile(data) {
-    setCurrentProfileData(data);
-  }
+  const location = useLocation();
 
   useEffect(() => {
-    if (currentProfile) {
-      handleCurrentProfile(currentProfile);
-    }
+    if (currentProfile) setCurrentProfileData(currentProfile);
   }, [currentProfile]);
 
-  const handleSetIsOpen = () => {
-    if (isMobile) {
-      setIsOpen(!isOpen);
-    }
+  const toggleMenu = () => {
+    if (isMobile) setIsOpen(!isOpen);
   };
 
-  const handleDocumentClick = (event) => {
+  const handleClickOutside = (event) => {
     if (
       avatarButtonRef.current &&
       !avatarButtonRef.current.contains(event.target)
@@ -172,30 +154,21 @@ const UserMenu = () => {
   };
 
   useEffect(() => {
-    if (isMobile) {
-      if (isOpen) {
-        document.addEventListener("click", handleDocumentClick);
-      }
-
-      return () => {
-        document.removeEventListener("click", handleDocumentClick);
-      };
+    if (isMobile && isOpen) {
+      document.addEventListener("click", handleClickOutside);
     }
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
   }, [isOpen]);
 
-  const location = useLocation();
-
-  const handleOffIsOpen = () => {
-    setIsOpen(false);
-  };
-
   useEffect(() => {
-    handleOffIsOpen();
+    setIsOpen(false);
   }, [location]);
 
   return currentProfileData ? (
     <ul
-      className={`nav-menu ${isOpen && "active"}`}
+      className={`nav-menu ${isOpen ? "active" : ""}`}
       data-mobile={isMobile}
       data-open={isOpen}
       onMouseEnter={() => setIsOpen(true)}
@@ -203,14 +176,15 @@ const UserMenu = () => {
     >
       <li
         className="nav-menu-show-btn"
-        onClick={() => handleSetIsOpen()}
+        onClick={toggleMenu}
         ref={avatarButtonRef}
       >
         <a>
-          {currentProfileData.userInfoData.name && (
-            <p>{currentProfileData.userInfoData.name}</p>
+          {currentProfileData.userInfoData?.name && (
+            <p className="capitalize">
+              {currentProfileData.userInfoData.name}
+            </p>
           )}
-
           <span
             className="nav-menu-profile-pic"
             style={{
@@ -223,7 +197,6 @@ const UserMenu = () => {
       </li>
 
       <div className="nav-menu-separator" />
-
       <UserMenuChildren currentProfileData={currentProfileData} />
 
       {isOpen && isMobile && <span className="focus-modal" />}

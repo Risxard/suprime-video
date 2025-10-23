@@ -14,8 +14,7 @@ import ExtendedMenu from "./ExtendedMenu/index.jsx";
 
 const Navigation = () => {
   const { t } = useTranslation();
-
-  const navigationMenu = t("navigation.menu");
+  const navigationMenu = t("navigation.menu", { returnObjects: true });
   const { home, search, myList, movies, tvShows, originals } = navigationMenu;
 
   useEffect(() => {
@@ -29,10 +28,7 @@ const Navigation = () => {
     };
 
     window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (

@@ -70,7 +70,6 @@
     flex-flow: column wrap;
     -webkit-box-align: center;
     align-items: center;
-
 }
 
 
@@ -525,19 +524,15 @@
     height: 100%;
 }
 
-
-
-
-
-
-@media (max-width: 447px) {}
-
 @media (min-width: 480px) {
     .profile-list {
         max-width: 528px;
     }
 
-    .add-new-list-item {
+    .add-new-list-item:not(:last-child) {
+        margin: 18px;
+    }
+    .profiles-add-profile {
         margin: 18px;
     }
 }
@@ -736,12 +731,6 @@
         width: 30px;
         height: 30px;
     }
-
-
-    .profile-list-item {}
-
-
-
     .edit-profile-btn {
         padding: 8px 18px;
         min-height: 60px;

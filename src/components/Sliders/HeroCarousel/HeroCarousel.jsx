@@ -189,14 +189,14 @@ const HeroCarousel = ({ mediasData }) => {
 
       <div className="slider-dots">
         {medias.map((_, index) => (
-          <span
+          <button
             key={index}
             className={`dot ${index === activeIndex ? "active" : ""}`}
             onClick={() => {
               cancelAutoPlay();
               scrollToIndex(index);
             }}
-          />
+          >•</button>
         ))}
       </div>
     </div>

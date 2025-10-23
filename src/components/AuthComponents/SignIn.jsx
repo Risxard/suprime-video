@@ -77,19 +77,17 @@ function SignIn() {
   return (
 <div className="login-container">
       <div className="login-box">
-        {/* Logo */}
+
         <h1 className="login-logo">
           <span className="my">My</span>
           <span className="disney">Disney</span>
         </h1>
 
-        {/* Título */}
         <h2 className="login-title">Digite o seu e-mail para continuar</h2>
         <p className="login-subtitle">
           Entre no Disney+ com a sua conta MyDisney. Se você não tiver conta, precisará criar uma.
         </p>
 
-        {/* Formulário */}
         <form onSubmit={handleSubmit} className="login-form">
           <input
             type="email"
@@ -104,7 +102,6 @@ function SignIn() {
           </button>
         </form>
 
-        {/* Rodapé */}
         <div className="login-footer">
           <p className="footer-title">
             O Disney+ faz parte das empresas do grupo Walt Disney

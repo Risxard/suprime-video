@@ -7,6 +7,11 @@
 }
 
 
+.capitalize {
+    text-transform: capitalize;
+}
+
+
 @media (min-width: 768px) {
     #root {
         --inner-width: 56px

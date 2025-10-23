@@ -1,369 +1,340 @@
 {
-  "signUpNow": "Cadastre-se agora",
-  "loginPage": {
-    "title": "Entrar",
-    "subtitle": "Digite seu endereço de e-mail e senha para começar. Se você já é assinante do Açaíwave+, use o e-mail associado à sua conta.",
-    "emailAdress": "Endereço de e-mail",
-    "password": "Senha",
-    "loginEnterBtn": "Entrar",
-    "loginSignInBtn": "Entrando...",
-    "dontHaveAccount": "Não tem uma conta?",
-    "signUp": "Cadastre-se",
-    "forgotPassword": "Esqueceu a senha?",
-    "errors": {
-      "emailInvalid": "Endereço de e-mail inválido",
-      "emailRequired": "O e-mail é obrigatório",
-      "passwordMin": "A senha precisa ter no mínimo 6 caracteres",
-      "passwordMax": "A senha não pode exceder 25 caracteres",
-      "passwordRequired": "A senha é obrigatória"
-    }
-  },
-  "registerPage": {
-    "title": "Registrar",
-    "subTitle": "Digite seu nome, endereço de e-mail e senha para criar sua conta.",
-    "firstName": "Nome",
-    "yourEmail": "Seu e-mail",
-    "yourPassword": "Sua senha",
-    "confirmPassword": "Confirmar sua senha",
-    "registerBtn": "Cadastrar",
-    "registeringBtn": "Cadastrando...",
-    "haveAccount": "Já tem uma conta?",
-    "signInNow": "Entrar agora",
-    "errors": {
-      "nameMin": "O nome precisa ter no mínimo 3 caracteres",
-      "emailInvalid": "Formato de e-mail inválido",
-      "emailMin": "O e-mail precisa ter no mínimo 6 caracteres",
-      "passwordMin": "A senha precisa ter no mínimo 6 caracteres",
-      "confirmPasswordMin": "A confirmação de senha é obrigatória",
-      "passwordsNotMatch": "As senhas precisam ser iguais!"
-    }
-  },
-  "forgotPasswordPage": {
-    "introMessage1": {
-      "title": "Email de alteração de senha enviado!",
-      "subTitle": "Se houver um e-mail cadastrado, você receberá um link para alterar sua senha."
-    },
-    "introMessage2": {
-      "title": "Recuperar senha",
-      "subTitle": "Entre com o e-mail cadastrado e, se houver um e-mail registrado, você receberá um link para alterar sua senha."
-    },
-    "emailAdress": "Endereço de e-mail",
-    "sendBtn": "Enviar",
-    "sendingBtn": "Enviando...",
-    "haveAccount": "Já tem uma conta?",
-    "signUp": "Cadastre-se",
-    "errors": {
-      "emailInvalid": "Endereço de e-mail inválido",
-      "emailRequired": "O e-mail é obrigatório"
-    }
-  },
-  "emailVerificationPage": {
-    "title": "Email de verificação enviado!",
-    "subTitle": "Enviamos um link de verificação para o seu e-mail. Por favor, acesse sua caixa de entrada.",
-    "subTitle2": "Não encontrou o e-mail? Tente procurar na pasta de spam ou lixo eletrônico."
-  },
   "navigation": {
     "menu": {
       "home": "Início",
-      "search": "Pesquisa",
+      "search": "Buscar",
       "myList": "Minha Lista",
       "movies": "Filmes",
       "tvShows": "Séries",
       "originals": "Originais"
     },
-    "search": {
-      "placeholder": "Buscar",
-      "button": "Limpar"
+    "userMenu": {
+      "profile": "Perfil",
+      "settings": "Configurações",
+      "logout": "Sair"
     },
-    "categories": {
-      "genres": {
-        "title": "Gêneros",
-        "actionAndAdventure": "Ação e aventura",
-        "anime": "Anime",
-        "comedy": "Comédia",
-        "documentary": "Documentário",
-        "drama": "Drama",
-        "fantasy": "Fantasia",
-        "horror": "Terror",
-        "kids": "Infantis",
-        "mysteryAndThriller": "Suspense e mistério",
-        "romance": "Romance",
-        "scienceFiction": "Ficção científica"
-      },
-      "featuredCollections": {
-        "title": "Coleções em destaque",
-        "madeForYou": "Feito para você",
-        "newAndUpcoming": "Novidades e lançamentos",
-        "homePremiere": "Estreias em casa",
-        "criticallyAcclaimed": "Aclamados pela crítica",
-        "lgbtqiap": "LGBTQIAP+",
-        "blackVoices": "Vozes negras"
-      }
-    },
-    "yourAccount": {
-      "all": "Tudo",
-      "watchlist": "Sua Lista",
-      "purchasesRentals": "Compras e aluguéis"
+    "extendedMenu": {
+      "categories": "Categorias",
+      "genres": "Gêneros",
+      "language": "Idioma"
     },
     "accountMenu": {
+      "profiles": {
+        "addNew": "Adicionar novo perfil"
+      },
       "yourAccount": {
-        "editProfile": "Editar perfil",
-        "appSettings": "Configuração do Aplicativo",
+        "editProfile": "Editar perfis",
+        "appSettings": "Configurações do aplicativo",
         "account": "Conta",
         "help": "Ajuda",
         "signOut": "Sair"
-      },
+      }
+    },
+    "altAccountMenu": {
       "profiles": {
-        "title": "Perfis",
-        "addNew": "Adicionar perfil",
-        "manageProfiles": "Editar perfil",
-        "learnMore": "Saiba mais"
+        "addNew": "Adicionar novo perfil"
+      },
+      "options": {
+        "selectProfile": "Selecionar um perfil",
+        "editProfiles": "Editar perfis",
+        "appSettings": "Configurações do aplicativo",
+        "account": "Conta",
+        "help": "Ajuda",
+        "signOut": "Sair"
       }
     }
+  },
+  "landing-page": {
+    "nav": {
+      "login": "Entrar"
+    },
+    "hero": {
+      "title": "Séries exclusivas, sucessos do cinema, esportes com a ESPN e muito mais",
+      "subtitle1": "Escolha um plano a partir de",
+      "subtitle2": "R$ 27,99/mês"
+    },
+    "email-section": {
+      "prompt": "Digite o seu e-mail para começar",
+      "label": "E-mail",
+      "cta": "Começar agora",
+      "input-errors": {
+        "required": "Digite um endereço de e-mail válido."
+      }
+    }
+  },
+  "identity-page": {
+    "email-section": {
+      "title": "Digite o seu e-mail para continuar",
+      "subtitle": {
+        "register": "Entre com seu e-mail para iniciar seu cadastro. Já possui uma conta? <a href='/preview/acaiwaveplus/identity/login/enter-email'>Entre aqui</a>.",
+        "update-credentials": "Digite o e-mail associado à sua conta para alterar suas credenciais. Enviaremos um link para redefinir sua senha ou atualizar seu acesso.",
+        "login": "Entre no Açaíwave+ com sua conta usando o e⁠-⁠mail. Se você não tiver conta, precisará <a href='/preview/acaiwaveplus/identity/sign-up/enter-email'>criar uma conta</a>."
+      },
+      "label": "E-mail",
+      "button": "Continuar"
+    },
+    "password-section": {
+      "title": "Digite a senha",
+      "subtitle1": "Entre no Açaíwave+ com sua conta usando o e⁠-⁠mail",
+      "subtitle2": "(Editar)",
+      "placeholder": "Senha",
+      "input-advise": "(Maiúsculas e minúsculas)",
+      "button": "Entrar",
+      "forgot-password": "Não consegue entrar? Redefina sua senha",
+      "more-about": "Saiba mais sobre o Açaíwave+"
+    },
+    "dialogs": {
+      "email-confirm": {
+        "title": "Confirme seu e-mail",
+        "text1": "Antes de criar a conta, confira se o seu endereço de e-mail está correto:",
+        "button-confirm": "Confirmar",
+        "button-cancel": "Voltar"
+      },
+      "resend-verification": {
+        "help-subject": "Ajuda com verificação de e-mail",
+        "help-body": "Olá, preciso de ajuda com a verificação de e-mail no Açaíwave+.",
+        "button-ok": "OK",
+        "button-help": "Central de Ajuda"
+      },
+      "delete-account": {
+        "title": "Excluir conta",
+        "text1": "Tem certeza de que deseja excluir sua conta vinculada a <b>{{email}}</b>?",
+        "text2": "Esta ação é <b>irreversível</b>. Todos os seus dados, perfis e preferências serão removidos permanentemente e não poderão ser recuperados.",
+        "button-confirm": "Sim, excluir conta",
+        "button-cancel": "Cancelar"
+      }
+    },
+    "create-password": {
+      "title": "Finalize seu cadastro para continuar",
+      "subtitle1": "Crie sua conta com o e-mail",
+      "edit": "(Editar)",
+      "name-label": "Seu nome",
+      "password-label": "Escolha sua senha",
+      "strength": {
+        "weak": "Fraca",
+        "medium": "Regular",
+        "good": "Boa",
+        "great": "Ótima"
+      },
+      "errors": {
+        "name-required": "Nome é obrigatório",
+        "password-required": "Senha é obrigatória",
+        "min-length": "Mínimo 6 caracteres",
+        "password-pattern": "Senha deve conter ao menos 1 maiúscula, 1 número e 1 caractere especial",
+        "terms": "Você deve aceitar os termos para continuar",
+        "email-in-use": "Este e-mail já está em uso. Tente outro ou faça login.",
+        "generic": "Ocorreu um erro ao criar a conta. Verifique os requisitos da senha."
+      },
+      "terms-text": "Aceito os",
+      "terms-link": "Termos de Uso",
+      "and": "e a",
+      "privacy-link": "Política de Privacidade",
+      "loading": "Criando conta...",
+      "submit": "Concordar e Continuar",
+      "more-info": "Saiba mais sobre o Açaíwave+"
+    },
+    "email-verification": {
+      "title": "Verificação de E-mail Necessária",
+      "subtitle1": "Enviamos um e-mail para",
+      "subtitle2": "com um link de verificação. Por favor, acesse sua caixa de entrada e clique no link para confirmar seu endereço de e-mail.",
+      "subtitle3": "Se não encontrar o e-mail, verifique também as pastas de spam ou lixo eletrônico.",
+      "subtitle4": "Não recebeu o e-mail?",
+      "subtitle5": "Reenviar"
+    },
+    "delete-account": {
+      "title": "Excluir conta",
+      "subtitle1": "Você está prestes a excluir a conta vinculada a",
+      "subtitle2": "Para confirmar, digite sua senha abaixo. Após a exclusão, todos os seus dados serão removidos permanentemente e não poderão ser recuperados.",
+      "button-confirm": "Excluir conta",
+      "button-cancel": "Cancelar",
+      "errors": {
+        "required": "Senha é obrigatória.",
+        "wrong-password": "Senha incorreta. Digite a senha correta.",
+        "too-many": "Muitas tentativas. Tente novamente mais tarde.",
+        "session-expired": "Sessão expirada. Faça login novamente.",
+        "unknown": "Erro inesperado. Tente novamente mais tarde."
+      }
+    },
+    "advise-texts": {
+      "title": "O Açaíwave+ não é um serviço de streaming real.",
+      "subtitle": "Não possui qualquer vínculo com a Disney ou qualquer uma de suas subsidiárias. Todos os nomes, marcas e imagens são de propriedade de seus respectivos donos. Este site foi criado apenas para fins de portfólio."
+    }
+  },
+  "profiles-page": {
+    "nav": {
+      "edit": "Editar perfis",
+      "done": "Pronto",
+      "back": "Voltar"
+    },
+    "selectProfile": {
+      "title": "Quem está assistindo?",
+      "addProfile": "Adicionar perfil",
+      "loading": "Carregando perfis...",
+      "error": "Erro ao carregar perfis. Tente novamente mais tarde.",
+      "empty": "Nenhum perfil encontrado. Crie um novo para começar."
+    },
+    "editProfiles": {
+      "title": "Editar perfis",
+      "subtitle": "Selecione um perfil para editar ou criar um novo.",
+      "language-label": "Idioma do aplicativo",
+      "settings-title": "Configurações de reprodução e idioma",
+      "placeholder-name": "Nome do perfil",
+      "button-edit": "Editar",
+      "button-save": "Pronto",
+      "button-cancel": "Cancelar",
+      "button-delete": "Excluir perfil",
+      "button-add": "Adicionar novo perfil",
+      "confirm-delete": {
+        "title": "Excluir o perfil de",
+        "text1": "Tem certeza de que deseja excluir o perfil <b>{{name}}</b>?",
+        "text2": "O histórico do perfil, a Minha Lista e a atividade serão excluídos. Essa ação não pode ser desfeita.",
+        "button-confirm": "Sim, excluir",
+        "button-cancel": "Cancelar"
+      },
+      "errors": {
+        "name-required": "O nome é obrigatório.",
+        "generic": "Ocorreu um erro ao salvar o perfil. Tente novamente."
+      }
+    },
+    "editProfile": {
+      "title": "Editar perfil",
+      "language-label": "Idioma do aplicativo",
+      "settings-title": "Configurações de reprodução e idioma",
+      "placeholder-name": "Nome do perfil",
+      "button-edit": "Editar avatar",
+      "button-save": "Pronto",
+      "button-cancel": "Cancelar",
+      "button-delete": "Excluir perfil",
+      "confirm-delete": {
+        "title": "Excluir o perfil de",
+        "text1": "Tem certeza de que deseja excluir o perfil <b>{{name}}</b>?",
+        "text2": "O histórico do perfil, a Minha Lista e a atividade serão excluídos. Essa ação não pode ser desfeita.",
+        "button-confirm": "Sim, excluir",
+        "button-cancel": "Cancelar"
+      },
+      "errors": {
+        "name-required": "O nome do perfil não pode estar vazio.",
+        "generic": "Erro ao atualizar o nome. Tente novamente."
+      }
+    },
+    "selectAvatar": {
+      "title": "Escolha o avatar",
+      "buttonSkip": "Pular",
+      "buttonDone": "Pronto",
+      "featured": "Destaques",
+      "error": "Erro ao carregar avatares. Tente novamente."
+    }
+  },
+  "account-page": {
+    "title": "Gerencie sua conta",
+    "labels": {
+      "passwordHidden": "Senha: ••••••"
+    },
+    "actions": {
+      "changePassword": "Alterar senha"
+    },
+    "sections": {
+      "security": "Acesso e segurança",
+      "otherSettings": "Outras configurações"
+    },
+    "delete": {
+      "title": "Excluir conta",
+      "description": "Tenha certeza antes de prosseguir: a exclusão é irreversível.",
+      "action": "Excluir minha conta"
+    },
+    "restrict": {
+      "title": "Restringir a criação de perfis",
+      "description": "Para criar novos perfis, será necessário inserir uma senha."
+    },
+    "dialog": {
+      "title": "Confirme sua senha",
+      "subtitle": "Para alterar as configurações do controle parental, é preciso inserir a senha da sua conta.",
+      "placeholder": "Senha",
+      "notice": "(diferencia maiúsculas e minúsculas)",
+      "showPassword": "Mostrar senha",
+      "hidePassword": "Ocultar senha",
+      "confirm": "Continuar",
+      "cancel": "Cancelar",
+      "forgotPassword": "Esqueceu a senha?",
+      "errors": {
+        "shortPassword": "Senha inválida. Insira pelo menos 6 caracteres.",
+        "unauthenticated": "Usuário não autenticado.",
+        "invalidPassword": "Senha incorreta ou erro ao atualizar."
+      }
+    },
+    "alerts": {
+      "updated": "Configuração atualizada com sucesso",
+      "failed": "Falha ao atualizar configuração"
+    }
+  },
+  "details-page": {
+    "actions": {
+      "play": "Assistir",
+      "myList": "Minha lista"
+    },
+    "info": {
+      "overview": "Sinopse",
+      "cast": "Elenco",
+      "director": "Diretor",
+      "seasons": "Criação",
+      "episodes": "Episódios",
+      "releaseDate": "Data de lançamento",
+      "genres": "Gêneros",
+      "runtime": "Duração",
+      "similar": "Títulos semelhantes"
+    },
+    "tabs": {
+      "details": "Detalhes",
+      "trailers": "Trailers e extras",
+      "similar": "Sugestões",
+      "episodes": "Episódios"
+    },
+    "errors": {
+      "notFound": "Não foi possível carregar os detalhes dessa mídia.",
+      "videoNotFound": "Nenhum vídeo disponível para reprodução."
+    },
+    "loading": {
+      "fetching": "Carregando detalhes...",
+      "updatingWatchlist": "Atualizando sua lista..."
+    }
+  },
+  "watchlist-page": {
+    "title": "Minha Lista",
+    "subtitle": "Meus Filmes e Séries",
+    "empty": {
+      "title": "Você ainda não adicionou nada",
+      "subtitle": "Coloque os títulos que você quer assistir na Minha Lista."
+    },
+    "loading": "Carregando sua lista..."
+  },
+  "browse-page": {
+    "moviesTitle": "Filmes",
+    "seriesTitle": "Séries",
+    "loading": "Carregando títulos..."
+  },
+  "searchPage": {
+    "placeholder": "Pesquise por título, gênero, time ou liga",
+    "buttons": {
+      "clear": "Limpar busca",
+      "search": "Buscar"
+    },
+    "trendingSection": "Buscas em Alta Hoje"
   },
   "footer": {
     "links": {
       "privacyPolicy": "Política de Privacidade",
-      "termsOfUse": "Termos de Uso do AçaiWave+",
-      "brazilPrivacyNotice": "Aviso de Direitos de Privacidade do Brasil",
+      "termsOfUse": "Termos de Uso",
+      "brazilPrivacyNotice": "Aviso de Privacidade do Brasil",
       "cookiesPolicy": "Política de Cookies",
       "dataProtectionBrazil": "Proteção de Dados no Brasil",
       "subscriptionAgreement": "Contrato de Assinatura",
       "help": "Ajuda",
-      "supportedDevices": "Dispositivos Compatíveis",
-      "aboutAcaiwaveplus": "Sobre o AçaiWave+",
-      "customAds": "Anúncios Personalizados",
-      "feedback": "Envie-nos Feedback"
+      "supportedDevices": "Dispositivos compatíveis",
+      "aboutAcaiwaveplus": "Sobre o Açaíwave+",
+      "customAds": "Anúncios personalizados",
+      "feedback": "Enviar feedback"
     },
-    "copyright": "© 2025, Richardson Souza, Inc. ou suas afiliadas"
-  },
-  "settingsPage": {
-    "title": "Conta e configurações",
-    "profileDescription": "As seguintes informações se aplicam ao perfil de",
-    "successMessage": "Sua configuração foi salva",
-    "errorMessage": "Desculpe, ocorreu um erro. Tente novamente mais tarde.",
-    "labels": {
-      "yourAccount": "Sua conta",
-      "playback": "Reprodutor",
-      "language": "Idioma"
-    },
-    "yourAccount": {
-      "changePassword": {
-        "title": "Alterar senha",
-        "description": "Um e-mail com um link para redefinição de senha será enviado para o e-mail cadastrado na conta.",
-        "button": "Alterar senha",
-        "statusMessages": {
-          "sendingBtn": "Enviando...",
-          "emailSuccess": "E-mail enviado com sucesso!"
-        }
-      },
-      "deleteMyAccount": {
-        "title": "Excluir minha conta",
-        "description": "Todos os seus dados serão deletados permanentemente do Açaiwave+.",
-        "deleteButton1": "Excluir conta",
-        "confirmDelete": {
-          "title": "Excluir conta",
-          "description": "Você tem certeza de que deseja excluir sua conta? Esta ação é irreversível e todos os seus dados serão perdidos!",
-          "confirmButton": "Sim, excluir minha conta",
-          "cancelButton": "Não, manter minha conta",
-          "passwordConfirmation": "Para confirmar, digite sua senha.",
-          "passwordPlaceholder": "Digite sua senha"
-        }
-      }
-    },
-    "playback": {
-      "playbackReprodution": {
-        "title": "Trailers com reprodução automática",
-        "description": "Reproduza trailers automaticamente enquanto navega pelo catálogo com um navegador da Web."
-      }
-    },
-    "language": {
-      "websiteLanguage": {
-        "title": "Idioma do site",
-        "description": "Os novos perfis usarão este idioma como padrão inicial.",
-        "button": "Alterar"
-      },
-      "streamingLanguage": {
-        "title": "Idioma do perfil",
-        "description": "Altere os idiomas preferidos de áudio e legenda para recomendações personalizadas.",
-        "button": "Alterar",
-        "saveButton": "Salvar",
-        "profileLanguage": "Idioma do perfil",
-        "notFullySupported": " Ainda não totalmente suportado, tente Inglês ou Português se apresentar problemas."
-      }
-    }
-  },
-  "watchlistPage": {
-    "title": "Sua lista",
-    "buttons": {
-      "all": "Todos",
-      "moviesLang": "Filmes",
-      "tvShowsLang": "Séries",
-      "mostRecent": "Adição mais recente",
-      "orderAz": "Título A-Z",
-      "orderZa": "Título Z-A"
-    },
-    "emptyMessage": {
-      "title": "Sua lista está vazia",
-      "description": "Adicione <0>séries</0> e <1>filmes</1> a que deseja assistir mais tarde clicando em Adicionar à Lista.",
-      "button": "Explorar tudo"
-    }
-  },
-  "searchPage": {
-    "buttons": {
-      "contentType": {
-        "title": "Tipo de conteúdo",
-        "movies": "Filmes",
-        "tvShows": "Séries"
-      },
-      "genre": {
-        "title": "Gênero"
-      },
-      "infoLabels": {
-        "resultsFor": "Resultados para",
-        "moreVideos": "Mais para explorar",
-        "notFound1": "Não encontramos nenhuma correspondência para",
-        "notFound2": "Navegue por nossas séries e filmes mais populares."
-      }
-    }
-  },
-  "detailPage": {
-    "labelButtons": {
-      "related": "Relacionados",
-      "details": "Detalhes"
-    },
-    "costumersAlsoWatch": "Os clientes também assistiram",
-    "moreInfo": {
-      "title": "Saiba mais",
-      "audioLanguage": {
-        "title": "Idioma de áudio"
-      },
-      "subtitles": {
-        "title": "Legendas"
-      },
-      "directors": {
-        "title": "Diretores"
-      },
-      "producers": {
-        "title": "Produtores"
-      },
-      "starring": {
-        "title": "Elenco"
-      },
-      "studio": {
-        "title": "Estúdio"
-      },
-      "termsOfUse": {
-        "message1": "Ao clicar em reproduzir, você concorda com nossos ",
-        "message2": "Termos de Uso."
-      },
-      "feedback": {
-        "title": "Feedback",
-        "sendFeedback": "Envie-nos feedback"
-      },
-      "support": {
-        "title": "Suporte",
-        "getHelp": "Obter ajuda"
-      }
-    }
-  },
-  "profilesPage": {
-    "buttonAdd": "Adicionar perfil",
-    "selectProfile": {
-      "title": "Quem vai assistir?",
-      "button1": "Editar perfil"
-    },
-    "manageProfile": {
-      "title": "Gerenciar perfil",
-      "button": "Salvar"
-    },
-    "newProfile": {
-      "title": "Novo perfil",
-      "changeImageProfile": "Alterar imagem do perfil",
-      "cancelButton": "Cancelar",
-      "saveButton": "Salvar alterações",
-      "placeHolderNameInput": "Inserir nome"
-    },
-    "editProfile": {
-      "title": "Editar perfil",
-      "changeImageProfile": "Alterar imagem do perfil",
-      "cancelButton": "Cancelar",
-      "saveButton": "Salvar alterações",
-      "placeHolderNameInput": "Inserir nome",
-      "profilePinAndLocks": {
-        "title": "PIN e bloqueios do perfil",
-        "description": "Bloqueie seu perfil com um PIN do perfil.",
-        "button": "Gerenciar"
-      },
-      "streamingLanguages": {
-        "title": "Idioma do perfil",
-        "description": "Altere os idiomas preferidos de áudio e legenda para recomendações personalizadas.",
-        "button": "Gerenciar"
-      },
-      "removeProfile": {
-        "title": "Remover perfil",
-        "description": "Remova este perfil do Açaíwave+.",
-        "button": "Remover",
-        "removeProfileModal": {
-          "title": "Remover perfil",
-          "description": "Remover este perfil do Açaíwave+ irá excluí-lo permanentemente da sua conta. Esta ação é irreversível.",
-          "cancelButton": "Manter perfil",
-          "removeButton": "Remover perfil"
-        }
-      }
-    }
-  },
-  "categoriesPage": {
-    "buttons": {
-      "all": "Todos",
-      "movies": "Filmes",
-      "tvShows": "Séries"
-    },
-    "sectionTitles": {
-      "movies": "Filmes",
-      "tvShows": "Séries",
-      "popularMovies": "Filmes populares",
-      "popularTvShows": "Séries populares"
-    }
-  },
-  "errorPage": {
-    "title": "Não tem nada aqui...",
-    "description": "Não há nada neste endereço da web. Vamos encontrar um ótimo vídeo para assistir em vez disso.",
-    "button": "Ir para a página inicial do Açaíwave+"
-  },
-  "buttons": {
-    "radioButtons": {
-      "on": "Ativado",
-      "off": "Desativado"
-    },
-    "optionsButtons": {
-      "watchlist": "Lista",
-      "details": "Detalhes",
-      "hideMediaMovie": "Ocultar esse filme",
-      "hideMediaSerie": "Ocultar essa série",
-      "play1": "Assista agora",
-      "play2": "Reproduzir",
-      "trailer": "Assistir ao trailer",
-      "download": "Baixar",
-      "like": "Curtir",
-      "dislike": "Não é pra mim",
-      "share": "Compartilhar"
-    }
-  },
-  "components": {
-    "includeWithAcaiwave": {
-      "title": "Incluído no Açaíwave+"
-    }
-  },
-  "sectionTitles": {
-    "bestOfTheWeek": "Os melhores da semana",
-    "recommendedSeries": "Para você maratonar",
-    "recommendedSeries2": "Séries recomendadas",
-    "recommendedMovies": "Filmes que achamos que você vai gostar",
-    "recommendedMovies2": "Filmes recomendados",
-    "recomendedTvAndSeries": "Melhores séries e filmes",
-    "originalsAndExclusives": "Originais e exclusivos em destaque",
-    "top10MoviesTMDB": "Top 10 filmes no TMDB",
-    "top10TvShowsTMDB": "Top 10 séries no TMDB"
+    "projectDescription": "O Açaíwave+ é um projeto pessoal, desenvolvido unicamente para fins de estudo e portfólio. Ele funciona como um catálogo de filmes fictício, sem qualquer finalidade comercial. Este projeto não possui vínculo com a Disney, Disney+ ou qualquer outro serviço de streaming.",
+    "copyright": "© 2025 Açaíwave+. Todos os direitos reservados."
   }
 }

@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from "react";
+import { useSelector } from "react-redux";
+import { useTranslation } from "react-i18next";
 import genresList from "../../utils/genresList.json";
 import "./styles.css";
-import { useSelector } from "react-redux";
 import SmallCardList from "../../components/Cards/SmallCardList/SmallCardList";
 import { tmdbService } from "../../services/tmdb/tmdbServices";
 import NextBtnTablist from "./components/NextBtnTablist";
@@ -12,6 +13,7 @@ const BrowseComponent = ({ mediaType }) => {
   const carouselRef = useRef(null);
   const observerRef = useRef(null);
   const language = useSelector((state) => state.lang.language);
+  const { t } = useTranslation();
 
   const genres = mediaType === "movie" ? genresList.movies : genresList.tv;
 
@@ -23,19 +25,17 @@ const BrowseComponent = ({ mediaType }) => {
   const [loading, setLoading] = useState(false);
 
   const scrollLeft = () => {
-    carouselRef.current?.scrollBy({ left: -200 });
+    carouselRef.current?.scrollBy({ left: -200, behavior: "smooth" });
   };
 
   const scrollRight = () => {
-    carouselRef.current?.scrollBy({ left: 200 });
+    carouselRef.current?.scrollBy({ left: 200, behavior: "smooth" });
   };
 
   const MAX_PAGES = 5;
 
   const fetchMedias = async (genreId, page = 1) => {
-    if (loading) return;
-
-    if (page > MAX_PAGES) return;
+    if (loading || page > MAX_PAGES) return;
 
     setLoading(true);
     try {
@@ -61,7 +61,6 @@ const BrowseComponent = ({ mediaType }) => {
           [genreId]: {
             medias: page === 1 ? results : [...prevData.medias, ...results],
             page,
-
             hasMore: results.length > 0 && page < MAX_PAGES,
           },
         };
@@ -75,7 +74,6 @@ const BrowseComponent = ({ mediaType }) => {
 
   useEffect(() => {
     if (!selectedGenre) return;
-
     if (!genreCache[selectedGenre]) {
       fetchMedias(selectedGenre, 1);
     }
@@ -95,7 +93,6 @@ const BrowseComponent = ({ mediaType }) => {
     );
 
     if (observerRef.current) observer.observe(observerRef.current);
-
     return () => {
       if (observerRef.current) observer.unobserve(observerRef.current);
     };
@@ -105,7 +102,11 @@ const BrowseComponent = ({ mediaType }) => {
 
   return (
     <div className="browse-container">
-      <h1>{mediaType === "movie" ? "Filmes" : "Séries"}</h1>
+      <h1>
+        {mediaType === "movie"
+          ? t("browse-page.moviesTitle")
+          : t("browse-page.seriesTitle")}
+      </h1>
 
       <div className="tablist-carousel-container">
         <button className="tablist-carousel-prevbtn" onClick={scrollLeft}>
@@ -120,7 +121,7 @@ const BrowseComponent = ({ mediaType }) => {
                 className={selectedGenre === genre.id ? "active" : ""}
                 onClick={() => setSelectedGenre(genre.id)}
               >
-                {genre.name[language]}
+                {genre.name[language] || genre.name["en"]}
               </button>
             ))}
           </div>
@@ -133,9 +134,7 @@ const BrowseComponent = ({ mediaType }) => {
 
       <div className="browse-media-cards">
         <SmallCardList medias={currentGenreData.medias} />
-        
-        {loading && <LoadingComponent />}
-
+        {loading && <LoadingComponent text={t("browse-page.loading")} />}
         <div ref={observerRef} style={{ height: "1px" }} />
       </div>
     </div>

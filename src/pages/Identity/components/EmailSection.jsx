@@ -1,6 +1,7 @@
 import { useRef, useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import IdentityDialog from "./IdentityDialog/IdentityDialog";
+import { useTranslation } from "react-i18next";
 
 const EmailSection = () => {
   const [tempEmail, setTempEmail] = useState("");
@@ -10,14 +11,13 @@ const EmailSection = () => {
 
   const location = useLocation();
   const navigate = useNavigate();
-
+  const { t } = useTranslation();
 
   const entryPoint = location.pathname.includes("sign-up")
     ? "register"
     : location.pathname.includes("update-credentials")
     ? "update-credentials"
     : "login";
-
 
   useEffect(() => {
     const savedAuthData = localStorage.getItem("auth-data");
@@ -88,28 +88,25 @@ const EmailSection = () => {
         />
       )}
 
-      <h1 className="identity-title">Digite o seu e-mail para continuar</h1>
+      <h1 className="identity-title">
+        {t("identity-page.email-section.title")}
+      </h1>
+
       <p className="identity-subtitle">
         {entryPoint === "register" ? (
-          <>
-            Entre com seu e-mail para iniciar seu cadastro. Já possui uma conta?
-            Entre{" "}
-            <a href="/preview/acaiwaveplus/identity/login/enter-email">aqui</a>.
-          </>
+          <span
+            dangerouslySetInnerHTML={{
+              __html: t("identity-page.email-section.subtitle.register"),
+            }}
+          />
         ) : entryPoint === "update-credentials" ? (
-          <>
-            Digite o e-mail associado à sua conta para alterar suas credenciais.
-            Enviaremos um link para redefinir sua senha ou atualizar seu acesso.
-          </>
+          t("identity-page.email-section.subtitle.update-credentials")
         ) : (
-          <>
-            Entre no Açaíwave+ com sua conta usando o e⁠-⁠mail. Se você não
-            tiver conta, precisará{" "}
-            <a href="/preview/acaiwaveplus/identity/sign-up/enter-email">
-              criar uma conta
-            </a>
-            .
-          </>
+          <span
+            dangerouslySetInnerHTML={{
+              __html: t("identity-page.email-section.subtitle.login"),
+            }}
+          />
         )}
       </p>
 
@@ -120,7 +117,9 @@ const EmailSection = () => {
           }`}
           onClick={handleContainerClick}
         >
-          <label htmlFor="email">E-mail</label>
+          <label htmlFor="email">
+            {t("identity-page.email-section.label")}
+          </label>
           <input
             id="email"
             type="email"
@@ -134,19 +133,16 @@ const EmailSection = () => {
         </div>
 
         <button type="submit" className="identity-button">
-          Continuar
+          {t("identity-page.email-section.button")}
         </button>
       </form>
 
       <div className="identity-footer">
         <p className="footer-title">
-          O Açaíwave+ não é um serviço de streaming real.
+          {t("identity-page.advise-texts.title")}
         </p>
         <p className="identity-footer-text">
-          Não possui qualquer vínculo com a Disney ou qualquer uma de suas
-          subsidiárias. Todos os nomes, marcas e imagens são de propriedade de
-          seus respectivos donos. Este site foi criado apenas para fins de
-          portfólio.
+          {t("identity-page.advise-texts.subtitle")}
         </p>
       </div>
     </>

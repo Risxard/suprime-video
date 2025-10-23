@@ -292,35 +292,39 @@ export const sendEmailVerificationLink = async (user) => {
 
 
 
-export const deleteUserAccountAndData = async () => {
-    const user = auth.currentUser;
-    if (!user) {
-        throw new Error("Nenhum usuário logado encontrado.");
+const deleteDocumentRecursively = async (docRef) => {
+    const subCollections = await listCollections(docRef);
+    for (const subCol of subCollections) {
+        await deleteCollectionRecursively(subCol);
     }
 
+
+    await deleteDoc(docRef);
+};
+
+const deleteCollectionRecursively = async (colRef) => {
+    const snapshot = await getDocs(colRef);
+
+    for (const docSnap of snapshot.docs) {
+        await deleteDocumentRecursively(docSnap.ref);
+    }
+};
+
+export const deleteUserAccountAndData = async () => {
+    const user = auth.currentUser;
+    if (!user) throw new Error("Nenhum usuário logado.");
+
+    const uid = user.uid;
+    const userDocRef = doc(db, "users", uid);
+
     try {
-        const uid = user.uid;
-
-        const userCollections = ["profiles", "settings", "watchlist"];
-
-        for (const coll of userCollections) {
-            const ref = collection(db, "users", uid, coll);
-            const snapshot = await getDocs(ref);
-            const deletePromises = snapshot.docs.map((docSnap) => deleteDoc(docSnap.ref));
-            await Promise.all(deletePromises);
-        }
-
-
-        const userRef = doc(db, "users", uid);
-        await deleteDoc(userRef);
-
+        await deleteDocumentRecursively(userDocRef);
 
         await deleteUser(user);
 
-        console.log("Conta e dados do usuário excluídos com sucesso!");
-        return true;
-    } catch (error) {
-        console.error("Erro ao excluir conta e dados:", error);
-        throw error;
+        console.log("Usuário e todos os dados deletados com sucesso!");
+    } catch (err) {
+        console.error("Erro ao deletar conta e dados:", err);
+        throw err;
     }
-};
+}; 

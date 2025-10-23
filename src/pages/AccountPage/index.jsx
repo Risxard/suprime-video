@@ -7,17 +7,18 @@ import {
   reauthenticateWithCredential,
   EmailAuthProvider,
 } from "firebase/auth";
+import { useDispatch } from "react-redux";
+import { useTranslation } from "react-i18next";
 
 import AcaiwaveSVG from "../../assets/AcaiwaveSVG";
 import ShowPassword from "../../assets/ShowPassword";
 import logo from "../../assets/acaiwaveLogo.png";
 import UserMenuSA from "../../components/Navigation/UserMenu/UserMenuSA";
-import "./styles.css";
-import { db } from "../../services/firebase/firebaseconfig";
 import LoadingComponent from "../../components/utils/LoadingComponent";
-import PopUpMessage from "../../components/PopUpMessage";
-import { useDispatch } from "react-redux";
+
+import { db } from "../../services/firebase/firebaseconfig";
 import { showPopup } from "../../store/slices/popupSlice";
+import "./styles.css";
 
 const AccountPage = () => {
   const [email, setEmail] = useState("");
@@ -29,6 +30,9 @@ const AccountPage = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(true);
 
+  const dispatch = useDispatch();
+  const { t } = useTranslation();
+  const accountPage = t("account-page", { returnObjects: true });
 
   useEffect(() => {
     const auth = getAuth();
@@ -45,7 +49,6 @@ const AccountPage = () => {
     return () => unsubscribe();
   }, []);
 
-
   useEffect(() => {
     const fetchSettings = async () => {
       if (!userId) return;
@@ -58,7 +61,6 @@ const AccountPage = () => {
           const data = snap.data();
           setIsRestricted(data.new_profiles_protection || false);
         } else {
-
           await setDoc(settingsRef, {
             theme: "light",
             language: "pt-BR",
@@ -76,7 +78,6 @@ const AccountPage = () => {
     fetchSettings();
   }, [userId]);
 
-
   useEffect(() => {
     document.body.style.overflow = showDialog ? "hidden" : "auto";
     return () => {
@@ -84,21 +85,15 @@ const AccountPage = () => {
     };
   }, [showDialog]);
 
-
   const toggleShowPassword = () => setShowPassword((prev) => !prev);
-
-
-  const handleToggleClick = () => {
-    setShowDialog(true);
-  };
-
+  const handleToggleClick = () => setShowDialog(true);
 
   const handleConfirmPassword = async (e) => {
     e.preventDefault();
     setError("");
 
     if (password.trim().length < 6) {
-      setError("Senha inválida. Insira pelo menos 6 caracteres.");
+      setError(accountPage.dialog.errors.shortPassword);
       return;
     }
 
@@ -107,15 +102,12 @@ const AccountPage = () => {
       const user = auth.currentUser;
 
       if (!user) {
-        setError("Usuário não autenticado.");
+        setError(accountPage.dialog.errors.unauthenticated);
         return;
       }
 
       const credential = EmailAuthProvider.credential(user.email, password);
-
-
       await reauthenticateWithCredential(user, credential);
-
 
       const settingsRef = doc(db, "users", user.uid, "mainAccount", "settings");
       await setDoc(
@@ -124,41 +116,28 @@ const AccountPage = () => {
         { merge: true }
       );
 
-
       setIsRestricted((prev) => !prev);
       setShowDialog(false);
       setPassword("");
 
-      handleSuccess();
+      dispatch(
+        showPopup({
+          message: accountPage.alerts.updated,
+          iconType: "done",
+        })
+      );
     } catch (error) {
-      handleFail();
-      setError("Senha incorreta ou erro ao atualizar.");
+      dispatch(
+        showPopup({
+          message: accountPage.alerts.failed,
+          iconType: "fail",
+        })
+      );
+      setError(accountPage.dialog.errors.invalidPassword);
     }
   };
 
-  const dispatch = useDispatch();
-
-  const handleSuccess = () => {
-    dispatch(
-      showPopup({
-        message: "Atualizado",
-        iconType: "done",
-      })
-    );
-  };
-
-  const handleFail = () => {
-    dispatch(
-      showPopup({
-        message: "Falha ao atualizar",
-        iconType: "fail",
-      })
-    );
-  };
-
-  if (loading) {
-    return <LoadingComponent />;
-  }
+  if (loading) return <LoadingComponent />;
 
   return (
     <div className="account-page">
@@ -172,11 +151,10 @@ const AccountPage = () => {
       <div className="account-page-container">
         <div className="account-page-content">
           <div className="account-page-title">
-            <h1>Gerencie sua conta</h1>
+            <h1>{accountPage.title}</h1>
           </div>
 
           <div className="account-page-sections-wrapper">
-
             <section className="account-page-section">
               <div className="account-page-section-title-container">
                 <div className="account-page-section-title">
@@ -187,7 +165,7 @@ const AccountPage = () => {
                 <li>
                   <div>
                     <span>{email}</span>
-                    <span>Senha: ••••••</span>
+                    <span>{accountPage.labels.passwordHidden}</span>
                   </div>
                 </li>
 
@@ -195,7 +173,7 @@ const AccountPage = () => {
                   <div>
                     <button>
                       <NavLink to="/identity/update-credentials/change-password">
-                        <span>Alterar senha</span>
+                        <span>{accountPage.actions.changePassword}</span>
                       </NavLink>
                     </button>
                   </div>
@@ -203,50 +181,44 @@ const AccountPage = () => {
               </ul>
             </section>
 
-
             <section className="account-page-section">
               <div className="account-page-section-title-container">
                 <div className="account-page-section-title">
-                  Acesso e segurança
+                  {accountPage.sections.security}
                 </div>
               </div>
               <ul>
                 <li>
                   <div className="account-page-section-settings-action-description">
-                    <span>Excluir conta</span>
-                    <span>
-                      Tenha certeza antes de prosseguir: a exclusão é
-                      irreversível.
-                    </span>
+                    <span>{accountPage.delete.title}</span>
+                    <span>{accountPage.delete.description}</span>
                   </div>
                 </li>
 
                 <li className="account-page-section-actions">
                   <div>
                     <button>
-                      <span>Excluir minha conta</span>
+                      <NavLink to="/identity/delete-account/confirm-deletion">
+                        <span>{accountPage.delete.action}</span>
+                      </NavLink>
                     </button>
                   </div>
                 </li>
               </ul>
             </section>
 
-
             <section className="account-page-section">
               <div className="account-page-section-title-container">
                 <div className="account-page-section-title">
-                  Outras configurações
+                  {accountPage.sections.otherSettings}
                 </div>
               </div>
               <ul>
                 <li className="account-page-section-settings-actions">
                   <button onClick={handleToggleClick}>
                     <div className="account-page-section-settings-action-description">
-                      <span>Restringir a criação de perfis</span>
-                      <span>
-                        Para criar novos perfis, será necessário inserir uma
-                        senha.
-                      </span>
+                      <span>{accountPage.restrict.title}</span>
+                      <span>{accountPage.restrict.description}</span>
                     </div>
 
                     <div
@@ -271,17 +243,13 @@ const AccountPage = () => {
         </div>
       </div>
 
-
       {showDialog && (
         <div className="dialog-backdrop">
           <div className="dialog">
             <div>
-              <h2>Confirme sua senha</h2>
+              <h2>{accountPage.dialog.title}</h2>
               <div>
-                <p>
-                  Para alterar as configurações do controle parental, é preciso
-                  inserir a senha da sua conta.
-                </p>
+                <p>{accountPage.dialog.subtitle}</p>
                 <form onSubmit={handleConfirmPassword}>
                   <div className="dialog-input-container">
                     <div className="dialog-input-content">
@@ -289,33 +257,41 @@ const AccountPage = () => {
                         type={showPassword ? "text" : "password"}
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
-                        placeholder="Senha"
+                        placeholder={accountPage.dialog.placeholder}
                       />
                       <div className="show-password">
                         <button
                           type="button"
                           onClick={toggleShowPassword}
                           aria-label={
-                            showPassword ? "Ocultar senha" : "Mostrar senha"
+                            showPassword
+                              ? accountPage.dialog.hidePassword
+                              : accountPage.dialog.showPassword
                           }
                         >
                           <ShowPassword showPassword={showPassword} />
                         </button>
                       </div>
                     </div>
-                    <p>(diferencia maiúsculas e minúsculas)</p>
+                    <p>{accountPage.dialog.notice}</p>
                   </div>
+
                   {error && <p className="dialog-error">{error}</p>}
 
                   <div className="dialog-actions">
-                    <button type="submit">Continuar</button>
-                    <button type="button" onClick={() => setShowDialog(false)}>
-                      Cancelar
+                    <button type="submit">{accountPage.dialog.confirm}</button>
+                    <button
+                      type="button"
+                      onClick={() => setShowDialog(false)}
+                    >
+                      {accountPage.dialog.cancel}
                     </button>
                   </div>
                 </form>
               </div>
-              <NavLink to="/help/account-recovery">Esqueceu a senha?</NavLink>
+              <NavLink to="/help/account-recovery">
+                {accountPage.dialog.forgotPassword}
+              </NavLink>
             </div>
           </div>
         </div>

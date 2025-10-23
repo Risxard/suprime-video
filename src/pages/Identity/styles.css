@@ -448,16 +448,16 @@
 
 
 
-.identity.update-page{
+.identity.update-page {
     background-image: none;
     background-color: rgb(241 242 244 / 1);
 }
 
-.identity.update-page footer{
+.identity.update-page footer {
     display: none;
 }
 
-.identity.update-page .identity-logo-black{
+.identity.update-page .identity-logo-black {
     display: none;
 }
 

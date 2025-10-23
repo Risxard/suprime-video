@@ -3,6 +3,7 @@ import { sendResetPasswordEmail } from "../../../services/firebase/profileServic
 import { useNavigate } from "react-router-dom";
 import IdentityDialog from "./IdentityDialog/IdentityDialog";
 import LoaderOverlooping from "../assets/LoaderOverlooping";
+import { useTranslation } from "react-i18next";
 
 const ChangePassword = () => {
   const [message, setMessage] = useState(null);
@@ -10,7 +11,7 @@ const ChangePassword = () => {
   const [email, setEmail] = useState("");
 
   const navigate = useNavigate();
-
+  const { t } = useTranslation();
 
   useEffect(() => {
     const authData = JSON.parse(localStorage.getItem("auth-data") || "{}");
@@ -21,7 +22,6 @@ const ChangePassword = () => {
     }
   }, [navigate]);
 
-
   const handleResend = async (e) => {
     e.preventDefault();
     setMessage(null);
@@ -30,8 +30,8 @@ const ChangePassword = () => {
     try {
       if (!email) {
         setMessage({
-          message1: "E-mail não encontrado.",
-          message2: "Volte e insira seu e-mail novamente.",
+          message1: t("identity-page.change-password.dialog.no-email.message1"),
+          message2: t("identity-page.change-password.dialog.no-email.message2"),
         });
         return;
       }
@@ -40,14 +40,13 @@ const ChangePassword = () => {
 
       if (sent) {
         setMessage({
-          message1: "Novo e-mail enviado!",
-          message2:
-            "Verifique sua caixa de entrada ou a pasta de spam. Se não encontrar, tente novamente mais tarde.",
+          message1: t("identity-page.change-password.dialog.resent.message1"),
+          message2: t("identity-page.change-password.dialog.resent.message2"),
         });
       } else {
         setMessage({
-          message1: "Falha ao enviar o e-mail.",
-          message2: "Verifique o endereço e tente novamente.",
+          message1: t("identity-page.change-password.dialog.error.message1"),
+          message2: t("identity-page.change-password.dialog.error.message2"),
         });
       }
     } catch (error) {
@@ -55,18 +54,18 @@ const ChangePassword = () => {
 
       if (error.code === "auth/too-many-requests") {
         setMessage({
-          message1: "Muitas tentativas detectadas.",
-          message2: "Aguarde alguns minutos antes de tentar novamente.",
+          message1: t("identity-page.change-password.dialog.too-many.message1"),
+          message2: t("identity-page.change-password.dialog.too-many.message2"),
         });
       } else if (error.code === "auth/user-not-found") {
         setMessage({
-          message1: "Usuário não encontrado.",
-          message2: "Verifique se o e-mail está correto.",
+          message1: t("identity-page.change-password.dialog.not-found.message1"),
+          message2: t("identity-page.change-password.dialog.not-found.message2"),
         });
       } else {
         setMessage({
-          message1: "Erro inesperado.",
-          message2: "Tente novamente mais tarde.",
+          message1: t("identity-page.change-password.dialog.unknown.message1"),
+          message2: t("identity-page.change-password.dialog.unknown.message2"),
         });
       }
     } finally {
@@ -82,20 +81,34 @@ const ChangePassword = () => {
         <LoaderOverlooping />
       ) : (
         <>
-          <h1 className="identity-title">Verifique seu e-mail</h1>
+          <h1 className="identity-title">
+            {t("identity-page.change-password.title")}
+          </h1>
+
+          <p
+            className="identity-subtitle"
+            dangerouslySetInnerHTML={{
+              __html: t("identity-page.change-password.subtitle1", { email }),
+            }}
+          />
+
           <p className="identity-subtitle">
-            Enviamos um e-mail para <b>{email}</b> com um link para redefinir
-            sua senha. Clique no link e siga as instruções para criar uma nova
-            senha.
+            {t("identity-page.change-password.subtitle2")}
           </p>
+
           <p className="identity-subtitle">
-            Se não encontrar o e-mail, verifique as pastas de spam ou lixo
-            eletrônico.
+            {t("identity-page.change-password.subtitle3", {
+              interpolation: { escapeValue: false },
+            }).replace(
+              "<a>",
+              `<a href="#" onclick="return false;" id='resend-link'>`
+            )}
           </p>
+
           <p className="identity-subtitle">
-            Não recebeu o e-mail?{" "}
+            {t("identity-page.change-password.subtitle4")}{" "}
             <a href="#" onClick={handleResend}>
-              Reenviar
+              {t("identity-page.change-password.subtitle5")}
             </a>
           </p>
         </>

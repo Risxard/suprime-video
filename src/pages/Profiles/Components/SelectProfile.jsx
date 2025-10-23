@@ -17,7 +17,7 @@ const SelectProfile = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { t } = useTranslation();
-  const profilesPage = t("profilesPage");
+  const profilesPage = t("profiles-page");
 
   const [profiles, setProfiles] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -90,12 +90,12 @@ const SelectProfile = () => {
                     }}
                   ></div>
 
-                  <h3>{profile.userInfoData.name}</h3>
+                  <h3 className="capitalize">{profile.userInfoData.name}</h3>
                 </span>
               </div>
             ))}
 
-            <div className="add-new-list-item">
+            <div className={`add-new-list-item ${sortedProfiles.length > 3 ? "profiles-add-profile" : ""}`}>
               <div
                 className="profile-list-item"
                 role="button"

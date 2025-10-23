@@ -5,6 +5,7 @@ import ErrorSvg from "../assets/ErrorSvg";
 import LoaderOverlooping from "../assets/LoaderOverlooping";
 import { loginUser } from "../../../services/firebase/loginUser";
 import ShowPassword from "../../../assets/ShowPassword";
+import { useTranslation } from "react-i18next";
 
 function PasswordSection() {
   const [tempPassword, setTempPassword] = useState("");
@@ -17,6 +18,7 @@ function PasswordSection() {
 
   const passwordRef = useRef(null);
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   useEffect(() => {
     const authData = JSON.parse(localStorage.getItem("auth-data"));
@@ -42,7 +44,7 @@ function PasswordSection() {
     setIsLoading(true);
 
     if (!email) {
-      setError("Email não encontrado. Volte e insira seu email novamente.");
+      setError(t("identity-page.password-section.password-erros.not-possible"));
       setIsLoading(false);
       return;
     }
@@ -71,7 +73,6 @@ function PasswordSection() {
   };
 
   const toggleMoreInfo = () => setShowMoreInfo(!showMoreInfo);
-
   const toggleShowPassword = () => setShowPassword((prev) => !prev);
 
   return (
@@ -80,12 +81,15 @@ function PasswordSection() {
         <LoaderOverlooping />
       ) : (
         <>
-          <h1 className="identity-title">Digite a senha</h1>
+          <h1 className="identity-title">
+            {t("identity-page.password-section.title")}
+          </h1>
+
           <div className="identity-subtitle">
-            <p>Entre no Açaíwave+ com sua conta usando o e⁠-⁠mail</p>
+            <p>{t("identity-page.password-section.subtitle1")}</p>
             <b>{email}</b>{" "}
             <a href="" onClick={handleEdit}>
-              (Editar)
+              {t("identity-page.password-section.subtitle2")}
             </a>
           </div>
 
@@ -97,7 +101,9 @@ function PasswordSection() {
                 }`}
                 onClick={handleContainerClick}
               >
-                <label htmlFor="password">Senha</label>
+                <label htmlFor="password">
+                  {t("identity-page.password-section.placeholder")}
+                </label>
                 <input
                   id="password"
                   type={showPassword ? "text" : "password"}
@@ -114,7 +120,9 @@ function PasswordSection() {
                     type="button"
                     onClick={toggleShowPassword}
                     aria-label={
-                      showPassword ? "Ocultar senha" : "Mostrar senha"
+                      showPassword
+                        ? t("Ocultar senha")
+                        : t("Mostrar senha")
                     }
                   >
                     <ShowPassword showPassword={showPassword} />
@@ -132,7 +140,7 @@ function PasswordSection() {
               )}
 
               <div className="password-prompt">
-                <p>(Maiúsculas e minúsculas)</p>
+                <p>{t("identity-page.password-section.input-advise")}</p>
               </div>
             </div>
 
@@ -141,7 +149,9 @@ function PasswordSection() {
               className="identity-button"
               disabled={isLoading}
             >
-              {isLoading ? "Entrando..." : "Entrar"}
+              {isLoading
+                ? t("identity-page.password-section.button") + "..."
+                : t("identity-page.password-section.button")}
             </button>
           </form>
 
@@ -151,25 +161,23 @@ function PasswordSection() {
                 onClick={toggleMoreInfo}
                 className={showMoreInfo ? "active" : ""}
               >
-                Saiba mais sobre o Açaíwave+ <ArrowSvg />
+                {t("identity-page.password-section.more-about")} <ArrowSvg />
               </button>
 
               {showMoreInfo && (
                 <div className="more-info-content">
                   <p className="footer-title">
-                    O Açaíwave+ não é um serviço de streaming real.
+                    {t("identity-page.advise-texts.title")}
                   </p>
                   <p className="identity-footer-text">
-                    Não possui qualquer vínculo com a Disney ou suas
-                    subsidiárias. Todos os nomes, marcas e imagens são de seus
-                    respectivos donos.
+                    {t("identity-page.advise-texts.subtitle")}
                   </p>
                 </div>
               )}
             </div>
 
             <NavLink to="/identity/update-credentials/enter-email">
-              Não consegue entrar? redefina sua senha
+              {t("identity-page.password-section.forgot-password")}
             </NavLink>
           </div>
         </>

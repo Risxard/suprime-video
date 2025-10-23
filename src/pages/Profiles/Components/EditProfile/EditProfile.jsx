@@ -22,6 +22,8 @@ const languages = [
 
 const EditProfile = () => {
   const { t } = useTranslation();
+  const profilesPage = t("profiles-page", { returnObjects: true });
+
   const { profileId } = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -31,7 +33,8 @@ const EditProfile = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [selectedLang, setSelectedLang] = useState("pt-BR");
   const [name, setName] = useState("");
-
+  const [previousName, setPreviousName] = useState("");
+  const [nameError, setNameError] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const dropdownRef = useRef(null);
@@ -39,13 +42,14 @@ const EditProfile = () => {
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-
         await syncProfiles(dispatch);
 
         const data = await profileService.getById(profileId);
         if (data) {
           setProfile(data);
-          setName(data.userInfoData?.name || "");
+          const userName = data.userInfoData?.name || "";
+          setName(userName);
+          setPreviousName(userName);
           setSelectedLang(data.userInfoData?.language || "pt-BR");
         } else {
           console.error("Perfil não encontrado");
@@ -74,15 +78,28 @@ const EditProfile = () => {
   };
 
   const handleNameBlur = async () => {
-    if (name !== profile.userInfoData?.name) {
+    const trimmedName = name.trim();
+
+    // ❌ Nome vazio → erro e restaura o anterior
+    if (!trimmedName) {
+      setNameError(profilesPage.editProfile.errors["name-required"]);
+      setName(previousName);
+      return;
+    }
+
+    // ✅ Nome diferente → atualiza
+    if (trimmedName !== previousName) {
       try {
-        await profileService.update(profileId, { "userInfoData.name": name });
+        await profileService.update(profileId, { "userInfoData.name": trimmedName });
         setProfile((prev) => ({
           ...prev,
-          userInfoData: { ...prev.userInfoData, name },
+          userInfoData: { ...prev.userInfoData, name: trimmedName },
         }));
+        setPreviousName(trimmedName);
+        setNameError("");
       } catch (error) {
         console.error("Erro ao atualizar nome:", error);
+        setNameError(profilesPage.editProfile.errors["generic"]);
       }
     }
   };
@@ -119,12 +136,16 @@ const EditProfile = () => {
 
   return (
     <>
-      <NavProfiles text="Pronto" onSubmitNavBtn={navFunction} />
+      <NavProfiles
+        text={profilesPage.selectAvatar.buttonDone}
+        onSubmitNavBtn={navFunction}
+      />
+
       <div className="profiles-page-container">
         <div className="edit-profile-container">
           <form>
             <div className="edit-profile-title">
-              <h2>Editar perfil</h2>
+              <h2>{profilesPage.editProfile.title}</h2>
             </div>
 
             <div className="edit-profile-content">
@@ -138,7 +159,11 @@ const EditProfile = () => {
                   }}
                   onClick={goToAvatarSelection}
                 >
-                  <img name="edit" src={editsvg} alt="Editar" />
+                  <img
+                    name="edit"
+                    src={editsvg}
+                    alt={profilesPage.editProfile["button-edit"]}
+                  />
                 </div>
               </div>
 
@@ -150,13 +175,18 @@ const EditProfile = () => {
                       value={name}
                       onChange={(e) => setName(e.target.value)}
                       onBlur={handleNameBlur}
+                      placeholder={
+                        profilesPage.editProfile["placeholder-name"]
+                      }
+                      className={nameError ? "input-error" : ""}
                     />
                   </span>
+                  {nameError && <p className="error-message">{nameError}</p>}
                 </fieldset>
 
                 <div className="profile-box-section-container">
                   <div className="profile-box-section-title">
-                    <p>Configurações de reprodução e idioma</p>
+                    <p>{profilesPage.editProfile["settings-title"]}</p>
                   </div>
 
                   <div
@@ -167,7 +197,9 @@ const EditProfile = () => {
                     ref={dropdownRef}
                   >
                     <span>
-                      <label>Idioma do aplicativo</label>
+                      <label>
+                        {profilesPage.editProfile["language-label"]}
+                      </label>
                       <div className="profile-box-section-options-selected">
                         {languages.find((l) => l.code === selectedLang)?.label}
                         <SelectedSvg />
@@ -200,7 +232,7 @@ const EditProfile = () => {
                   className="delete-profile-btn"
                   onClick={openDeleteModal}
                 >
-                  Excluir perfil
+                  {profilesPage.editProfile["button-delete"]}
                 </button>
               </div>
             </div>
@@ -211,18 +243,18 @@ const EditProfile = () => {
       {isModalOpen && (
         <div className="modal-backdrop">
           <div className="modal-content">
-            <h4>Excluir o perfil de {name}?</h4>
-            <p>
-              O histórico do perfil, a Minha Lista e a atividade serão
-              excluídos. Essa ação não pode ser desfeita.
-            </p>
+            <h4>
+              {profilesPage.editProfile["confirm-delete"].title}{" "}
+              <b className="capitalize">{name}</b>?
+            </h4>
+            <p>{profilesPage.editProfile["confirm-delete"].text2}</p>
 
             <div className="modal-buttons">
               <button onClick={closeDeleteModal} className="cancel-btn">
-                Cancelar
+                {profilesPage.editProfile["confirm-delete"]["button-cancel"]}
               </button>
               <button onClick={handleDeleteProfile} className="confirm-btn">
-                Excluir
+                {profilesPage.editProfile["confirm-delete"]["button-confirm"]}
               </button>
             </div>
           </div>

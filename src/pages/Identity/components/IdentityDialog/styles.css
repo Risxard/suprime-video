@@ -52,6 +52,18 @@
 }
 
 
+
+.identity-button.danger {
+  background-color: #e53935;
+  color: white;
+}
+
+.identity-button.danger:hover {
+  background-color: #c62828;
+}
+
+
+
 @media (max-width: 479px) {
     .email-confirmation-dialog{
         align-items: flex-end;

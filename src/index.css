@@ -288,11 +288,11 @@ body {
 
 body, .hero-carousel-container-text {
     -webkit-font-smoothing: antialiased;
-    /* Chrome, Safari */
+
     -moz-osx-font-smoothing: grayscale;
-    /* Firefox */
+
     text-rendering: optimizeLegibility;
-    /* kerning + ligatures */
+
 }
 
 
@@ -327,7 +327,6 @@ main {
 
 
 .focus-modal {
-    /* background: #00050d; */
     bottom: 0;
     left: 0;
     opacity: .8;

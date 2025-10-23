@@ -34,6 +34,7 @@ import MoviesPage from "../pages/MoviesPage/index.jsx";
 import TvSeriesPage from "../pages/TvSeriesPage/index.jsx";
 import PopUpMessage from "../components/PopUpMessage/index.jsx";
 import ChangePassword from "../pages/Identity/components/ChangePassword.jsx";
+import DeleteAccount from "../pages/Identity/components/DeleteAccount.jsx";
 
 const AppRoutes = () => {
   const { user, token, currentProfile, loading } = useSelector(
@@ -107,14 +108,6 @@ const AppRoutes = () => {
       ),
     },
     {
-      path: "/forgot",
-      element: isAuthenticated ? <Navigate to="/" /> : <FortgetPasswordPage />,
-    },
-    {
-      path: "/forgot/:ref",
-      element: isAuthenticated ? <Navigate to="/" /> : <FortgetPasswordPage />,
-    },
-    {
       path: "/*",
       element: !isAuthenticated ? <Navigate to="/" /> : <ErrorPage />,
     },
@@ -174,6 +167,14 @@ const AppRoutes = () => {
     {
       path: "/add-profile",
       element: <ProfilesPage children={<AddProfile />} />,
+    },
+    {
+      path: "/identity/delete-account/confirm-deletion",
+      element: isAuthenticated ? (
+        <Identity children={<DeleteAccount />} updatePage={true} />
+      ) : (
+        <Navigate to="/" />
+      ),
     },
   ];
 

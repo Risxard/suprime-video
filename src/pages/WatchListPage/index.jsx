@@ -1,18 +1,11 @@
 import React, { useState, useEffect } from "react";
-
 import "./styles.css";
 import { useSelector } from "react-redux";
-import { ChevronDown } from "lucide-react";
-
-import { toggleFilterChecked } from "./scripts/watchlistScript";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { Trans } from "react-i18next";
 import { tmdbService } from "../../services/tmdb/tmdbServices";
-import DetailCardList from "../../components/Cards/DetailCardList/DetailCardList";
 import SearchMediaList from "../Search/SearchMediaList/SearchMediaList";
 import LoadingComponent from "../../components/utils/LoadingComponent";
-import { setLoading } from "../../store/auth";
 
 const WatchListPage = () => {
   const { filterId } = useParams();
@@ -24,11 +17,12 @@ const WatchListPage = () => {
   const language = useSelector((state) => state.lang.language);
   const { t } = useTranslation();
 
-  const watchlistPage = t("watchlistPage");
-  const watchlistButtonsPage = t("watchlistPage.buttons");
-  const { genres, featuredCollections } = watchlistPage;
-  const { all, moviesLang, tvShowsLang, mostRecent, orderAz, orderZa } =
-    watchlistButtonsPage;
+  // Traduções
+  const title = t("watchlist-page.title");
+  const subtitle = t("watchlist-page.subtitle");
+  const emptyTitle = t("watchlist-page.empty.title");
+  const emptySubtitle = t("watchlist-page.empty.subtitle");
+  const loadingText = t("watchlist-page.loading");
 
   useEffect(() => {
     const fetchMedia = async () => {
@@ -61,9 +55,10 @@ const WatchListPage = () => {
           : [];
 
         setMedias({ movies: fetchedMovies, tv: fetchedTVShows });
-        setIsLoading(false);
       } catch (err) {
         console.error("Erro ao buscar watchlist:", err);
+      } finally {
+        setIsLoading(false);
       }
     };
 
@@ -72,56 +67,33 @@ const WatchListPage = () => {
     }
   }, [watchlist, language]);
 
-  const mostRecentSort = mostRecent;
-  const azSort = orderAz;
-  const zaSort = orderZa;
-  const [mediaSort, setMediaSort] = useState(mostRecentSort);
-
   const movies = medias.movies;
   const tv = medias.tv;
 
-  const sortedMovies = [...movies].sort((a, b) => {
-    if (mediaSort === azSort) {
-      return a.title.localeCompare(b.title);
-    } else if (mediaSort === zaSort) {
-      return b.title.localeCompare(a.title);
-    }
-    return 0;
-  });
-
-  const sortedTV = [...tv].sort((a, b) => {
-    if (mediaSort === azSort) {
-      return a.name.localeCompare(b.name);
-    } else if (mediaSort === zaSort) {
-      return b.name.localeCompare(a.name);
-    }
-    return 0;
-  });
-
   const filteredMedia =
     filterType === "movies"
-      ? sortedMovies
+      ? movies
       : filterType === "tv"
-      ? sortedTV
-      : [...sortedMovies, ...sortedTV];
+      ? tv
+      : [...movies, ...tv];
 
   return (
     <div className="watchlist-page">
-      <h1>Minha Lista</h1>
+      <h1>{title}</h1>
 
       <div className="tablist-carousel-list-container">
         <div role="tablist" className="tablist-carousel-list">
-          <button className={"active"}>Meus Filmes e Séries</button>
+          <button className="active">{subtitle}</button>
         </div>
       </div>
 
       <div className="watchlist-content">
         {isLoading ? (
-          <LoadingComponent />
+          <LoadingComponent text={loadingText} />
         ) : filteredMedia.length === 0 ? (
           <div className="watchlist-empty">
-            <h3>Você ainda não adicionou nada</h3>
-            <p>Coloque os títulos que você quer assistir na Minha Lista.</p>
+            <h3>{emptyTitle}</h3>
+            <p>{emptySubtitle}</p>
           </div>
         ) : (
           <SearchMediaList filteredMedias={filteredMedia} />

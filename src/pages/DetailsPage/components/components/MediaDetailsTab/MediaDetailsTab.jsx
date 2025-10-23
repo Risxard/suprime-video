@@ -1,4 +1,5 @@
 import { useParams } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import {
   dateConverter,
   genreConverter,
@@ -6,7 +7,11 @@ import {
 import "./styles.css";
 
 const MediaDetailsTab = ({ media }) => {
+  const { t } = useTranslation();
   const { mediaType } = useParams();
+
+  const detailsInfo = t("details-page.info", { returnObjects: true });
+
   const release_date = media?.release_date || media?.first_air_date;
 
   const genreNames =
@@ -43,7 +48,7 @@ const MediaDetailsTab = ({ media }) => {
             {release_date && (
               <div className="detailsTab-info-media-item">
                 <div className="media-releaseDate-title">
-                  Data de lançamento:
+                  {detailsInfo.releaseDate}
                 </div>
                 <p>{dateConverter(release_date)}</p>
               </div>
@@ -51,7 +56,9 @@ const MediaDetailsTab = ({ media }) => {
 
             {genreNames.length > 0 && (
               <div className="detailsTab-info-media-item">
-                <div className="media-releaseDate-title">Gênero:</div>
+                <div className="media-releaseDate-title">
+                  {detailsInfo.genres}
+                </div>
                 <p>{genreNames.slice(0, 3).join(", ")}</p>
               </div>
             )}
@@ -61,7 +68,9 @@ const MediaDetailsTab = ({ media }) => {
             {creatorsOrDirectors?.length > 0 && (
               <div className="detailsTab-info-media-item">
                 <div className="media-releaseDate-title">
-                  {mediaType === "tv" ? "Criação:" : "Direção:"}
+                  {mediaType === "tv"
+                    ? detailsInfo.seasons
+                    : detailsInfo.director}
                 </div>
                 {creatorsOrDirectors.map((name, idx) => (
                   <p key={idx}>{name}</p>
@@ -71,7 +80,9 @@ const MediaDetailsTab = ({ media }) => {
 
             {cast && (
               <div className="detailsTab-info-media-item">
-                <div className="media-releaseDate-title">Elenco:</div>
+                <div className="media-releaseDate-title">
+                  {detailsInfo.cast}
+                </div>
                 {cast.map((c) => (
                   <p key={c.id}>{c.name}</p>
                 ))}

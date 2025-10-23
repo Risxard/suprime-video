@@ -1,12 +1,18 @@
 import { useState } from "react";
 import { useParams } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import "./styles.css";
+
 import MediaDetailsTab from "./components/MediaDetailsTab/MediaDetailsTab";
 import SuggestionsTab from "./components/SuggestionsTab/SuggestionsTab";
 import SeasonsTab from "./components/SeasonsTab/SeasonsTab";
 
 const DetailsTab = ({ media }) => {
+  const { t } = useTranslation();
   const { mediaType } = useParams();
+
+  const tabs = t("details-page.tabs", { returnObjects: true });
+
   const [activeTab, setActiveTab] = useState(
     mediaType === "movie" ? "sugestoes" : "episodios"
   );
@@ -19,8 +25,8 @@ const DetailsTab = ({ media }) => {
             onClick={() => setActiveTab("episodios")}
             className={activeTab === "episodios" ? "active" : ""}
           >
-            <div className="tabItem-text-1">EPISÓDIOS</div>
-            <div className="tabItem-text-2">EPISÓDIOS</div>
+            <div className="tabItem-text-1">{tabs.episodes || "EPISÓDIOS"}</div>
+            <div className="tabItem-text-2">{tabs.episodes || "EPISÓDIOS"}</div>
           </li>
         )}
 
@@ -28,16 +34,16 @@ const DetailsTab = ({ media }) => {
           onClick={() => setActiveTab("sugestoes")}
           className={activeTab === "sugestoes" ? "active" : ""}
         >
-          <div className="tabItem-text-1">SUGESTÕES</div>
-          <div className="tabItem-text-2">SUGESTÕES</div>
+          <div className="tabItem-text-1">{tabs.similar}</div>
+          <div className="tabItem-text-2">{tabs.similar}</div>
         </li>
 
         <li
           onClick={() => setActiveTab("detalhes")}
           className={activeTab === "detalhes" ? "active" : ""}
         >
-          <div className="tabItem-text-1">DETALHES</div>
-          <div className="tabItem-text-2">DETALHES</div>
+          <div className="tabItem-text-1">{tabs.details}</div>
+          <div className="tabItem-text-2">{tabs.details}</div>
         </li>
       </ul>
 

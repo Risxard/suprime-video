@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import IdentityDialog from "./IdentityDialog/IdentityDialog";
 import LoaderOverlooping from "../assets/LoaderOverlooping";
 import { auth } from "../../../services/firebase/firebaseconfig";
+import { useTranslation } from "react-i18next";
 
 const EmailVerification = () => {
   const [message, setMessage] = useState(null);
@@ -11,6 +12,7 @@ const EmailVerification = () => {
   const [email, setEmail] = useState("");
 
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   useEffect(() => {
     const authData = JSON.parse(localStorage.getItem("auth-data") || "{}");
@@ -27,11 +29,10 @@ const EmailVerification = () => {
     setIsSending(true);
 
     try {
-
       if (!auth) {
         setMessage({
-          message1: "Nenhum usuário logado encontrado.",
-          message2: "Por favor, faça login novamente.",
+          message1: t("identity-page.email-verification.dialog.no-user.message1"),
+          message2: t("identity-page.email-verification.dialog.no-user.message2"),
         });
         return;
       }
@@ -40,13 +41,13 @@ const EmailVerification = () => {
 
       if (sent) {
         setMessage({
-          message1: "Novo e-mail enviado!",
-          message2: "Verifique sua caixa de spam. Ainda não encontrou o e-mail? Acesse a Central de Ajuda.",
+          message1: t("identity-page.email-verification.dialog.resent.message1"),
+          message2: t("identity-page.email-verification.dialog.resent.message2"),
         });
       } else {
         setMessage({
-          message1: "Não foi possível enviar o e-mail.",
-          message2: "Tente novamente mais tarde.",
+          message1: t("identity-page.email-verification.dialog.error.message1"),
+          message2: t("identity-page.email-verification.dialog.error.message2"),
         });
       }
     } catch (error) {
@@ -54,13 +55,13 @@ const EmailVerification = () => {
 
       if (error.code === "auth/too-many-requests") {
         setMessage({
-          message1: "Muitas tentativas detectadas.",
-          message2: "Aguarde alguns minutos antes de tentar novamente.",
+          message1: t("identity-page.email-verification.dialog.too-many.message1"),
+          message2: t("identity-page.email-verification.dialog.too-many.message2"),
         });
       } else {
         setMessage({
-          message1: "Erro desconhecido.",
-          message2: "Tente novamente mais tarde.",
+          message1: t("identity-page.email-verification.dialog.unknown.message1"),
+          message2: t("identity-page.email-verification.dialog.unknown.message2"),
         });
       }
     } finally {
@@ -78,20 +79,23 @@ const EmailVerification = () => {
         <LoaderOverlooping />
       ) : (
         <>
-          <h1 className="identity-title">Verificação de E-mail Necessária</h1>
+          <h1 className="identity-title">
+            {t("identity-page.email-verification.title")}
+          </h1>
+
           <p className="identity-subtitle">
-            Enviamos um e-mail para <b>{email}</b> com um link de verificação.
-            Por favor, acesse sua caixa de entrada e clique no link para
-            confirmar seu endereço de e-mail.
+            {t("identity-page.email-verification.subtitle1")} <b>{email}</b>{" "}
+            {t("identity-page.email-verification.subtitle2")}
           </p>
+
           <p className="identity-subtitle">
-            Se não encontrar o e-mail, verifique também as pastas de spam ou
-            lixo eletrônico.
+            {t("identity-page.email-verification.subtitle3")}
           </p>
+
           <p className="identity-subtitle">
-            Não recebeu o e-mail?{" "}
-            <a href="" onClick={handleResend}>
-              Reenviar
+            {t("identity-page.email-verification.subtitle4")}{" "}
+            <a href="#" onClick={handleResend}>
+              {t("identity-page.email-verification.subtitle5")}
             </a>
           </p>
         </>

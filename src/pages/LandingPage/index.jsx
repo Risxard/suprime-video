@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { useTranslation } from "react-i18next";
 import "./styles.css";
 import acaiwaveLogo from "../../assets/acaiwaveLogo.png";
 
@@ -19,6 +20,7 @@ import Footer from "../../components/Footer/Footer";
 
 const LandingPage = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const {
     register,
     handleSubmit,
@@ -44,11 +46,9 @@ const LandingPage = () => {
       <div className="landing-nav">
         <button
           className="login-btn"
-          onClick={() =>
-            navigate("/identity/login/enter-email")
-          }
+          onClick={() => navigate("/identity/login/enter-email")}
         >
-          Entrar
+          {t("landing-page.nav.login")}
         </button>
       </div>
 
@@ -79,21 +79,21 @@ const LandingPage = () => {
               media="(min-width: 1921px)"
               srcSet={`${img2560_1x} 1x, ${img2560_15x} 1.5x`}
             />
-
             <img src={img1600_1x} alt="Landing Background" />
           </picture>
         </div>
 
         <div className="landing-page-content">
           <div className="landing-page-image-container">
-            <img src={acaiwaveLogo} alt="Acaiwave Logo" />
+            <img src={acaiwaveLogo} alt="Açaíwave Logo" />
           </div>
 
-          <h1>Descubra os melhores filmes e séries em um só lugar</h1>
+          <h1>{t("landing-page.hero.title")}</h1>
           <h4>
-            <b>Um acervo para você se inspirar e</b> <b>conhecer novidades</b>
+            <b>{t("landing-page.hero.subtitle1")}</b>{" "}
+            <b>{t("landing-page.hero.subtitle2")}</b>
           </h4>
-          <p>Digite o seu e-mail para começar</p>
+          <p>{t("landing-page.email-section.prompt")}</p>
 
           <form
             className="landing-page-form"
@@ -103,12 +103,14 @@ const LandingPage = () => {
             <div className="landing-page-input-container">
               <input
                 type="email"
-                placeholder="E-mail"
+                placeholder={t("landing-page.email-section.label")}
                 {...register("email", {
-                  required: "Digite um e-mail.",
+                  required: t("landing-page.email-section.input-errors.required"),
                   pattern: {
                     value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                    message: "Digite um endereço de e-mail válido.",
+                    message: t(
+                      "landing-page.email-section.input-errors.required"
+                    ),
                   },
                 })}
               />
@@ -120,7 +122,9 @@ const LandingPage = () => {
             </div>
 
             <div className="landing-page-button-container">
-              <button type="submit">Começar agora</button>
+              <button type="submit">
+                {t("landing-page.email-section.cta")}
+              </button>
             </div>
           </form>
         </div>

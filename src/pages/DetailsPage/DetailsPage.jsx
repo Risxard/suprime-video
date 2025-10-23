@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import i18next from "i18next";
+import { useTranslation } from "react-i18next";
 import "./styles.css";
 import {
   image_path_342,
@@ -10,12 +11,12 @@ import {
 import { tmdbService } from "../../services/tmdb/tmdbServices";
 import PlayActionIcon from "./assets/PlayActionIcon";
 import PlusActionIcon from "./assets/PlusActionIcon";
-import DetailsTab from "./components/DetailsTab";
 import DoneActionIcon from "./assets/DoneActionIcon";
+import LoadingIcon from "../../assets/svgs/LoadingIcon";
+import DetailsTab from "./components/DetailsTab";
+import MediaPlayer from "../../components/MediaPlayer/MediaPlayer";
 import { updateWatchlist } from "../../services/firebase/profileServices";
 import { useDispatch, useSelector } from "react-redux";
-import LoadingIcon from "../../assets/svgs/LoadingIcon";
-import MediaPlayer from "../../components/MediaPlayer/MediaPlayer";
 
 const DetailsPage = () => {
   const [media, setMedia] = useState(null);
@@ -24,6 +25,9 @@ const DetailsPage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [videoKey, setVideoKey] = useState("");
   const [showPlayer, setShowPlayer] = useState(false);
+
+  const { t } = useTranslation();
+  const detailsPage = t("details-page", { returnObjects: true });
 
   const language = i18next.language;
   const { mediaType, id } = useParams();
@@ -39,7 +43,7 @@ const DetailsPage = () => {
     try {
       await updateWatchlist(profileId, mediaType, mediaId, action, dispatch);
     } catch (error) {
-      console.error("Error adding to watchlist:", error);
+      console.error("Erro ao adicionar/remover da watchlist:", error);
     } finally {
       setIsLoading(false);
     }
@@ -63,9 +67,7 @@ const DetailsPage = () => {
           originalLanguage: details.original_language,
         });
 
-        if (response) {
-          setLogo(response.file_path);
-        }
+        if (response) setLogo(response.file_path);
       } catch (error) {
         console.error("Erro ao buscar mídia:", error);
       } finally {
@@ -90,10 +92,7 @@ const DetailsPage = () => {
           language,
           originalLanguage: media.original_language,
         });
-
-        if (response) {
-          setVideoKey(response);
-        }
+        if (response) setVideoKey(response);
       } catch (error) {
         console.error("Erro ao buscar videoKey:", error);
       }
@@ -106,18 +105,15 @@ const DetailsPage = () => {
     const handleScroll = () => {
       const scrollY = window.scrollY;
       const halfScreen = window.innerHeight / 5;
-
       let newOpacity = 1 - (scrollY / halfScreen) * 0.8;
       if (newOpacity < 0.2) newOpacity = 0.2;
       if (newOpacity > 1) newOpacity = 1;
-
       setBgOpacity(newOpacity);
     };
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
 
   return (
     <>
@@ -171,7 +167,7 @@ const DetailsPage = () => {
                     onClick={() => setShowPlayer(true)}
                   >
                     <PlayActionIcon />
-                    Assistir
+                    {detailsPage.actions.play}
                   </button>
 
                   <div
@@ -189,7 +185,9 @@ const DetailsPage = () => {
                         <PlusActionIcon />
                       )}
                     </button>
-                    <span className="watchlist-action-showup">Minha lista</span>
+                    <span className="watchlist-action-showup">
+                      {detailsPage.actions.myList}
+                    </span>
                   </div>
                 </div>
               </div>
@@ -199,6 +197,7 @@ const DetailsPage = () => {
           </div>
         </div>
       </div>
+
       <div className="app-background" />
     </>
   );

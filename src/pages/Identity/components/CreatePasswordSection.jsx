@@ -9,16 +9,22 @@ import "./styles.css";
 import { sendEmailVerificationLink } from "../../../services/firebase/profileServices";
 import { auth } from "../../../services/firebase/firebaseconfig";
 import ShowPassword from "../../../assets/ShowPassword";
+import { useTranslation } from "react-i18next";
 
 function CreatePasswordSection() {
-  const [isActive, setIsActive] = useState(false);
+  const [activeField, setActiveField] = useState("");
+  const [nameValue, setNameValue] = useState("");
+  const [passwordValue, setPasswordValue] = useState("");
   const [showMoreInfo, setShowMoreInfo] = useState(false);
   const [error, setError] = useState(null);
   const [email, setEmail] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+
   const passwordRef = useRef(null);
+  const nameRef = useRef(null);
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const {
     register,
@@ -26,10 +32,16 @@ function CreatePasswordSection() {
     watch,
     formState: { errors },
   } = useForm({
-    defaultValues: { password: "", terms: false },
+    defaultValues: { name: "", password: "", terms: false },
   });
 
-  const passwordValue = watch("password");
+  const watchedName = watch("name");
+  const watchedPassword = watch("password");
+
+  useEffect(() => {
+    setNameValue(watchedName);
+    setPasswordValue(watchedPassword);
+  }, [watchedName, watchedPassword]);
 
   useEffect(() => {
     const authData = JSON.parse(localStorage.getItem("auth-data") || "{}");
@@ -42,24 +54,24 @@ function CreatePasswordSection() {
 
   const calculateStrength = (password) => {
     if (!password) return 0;
-
     let strength = 0;
     if (password.length >= 6) strength += 25;
     if (/[A-Z]/.test(password)) strength += 20;
     if (/[0-9]/.test(password)) strength += 20;
     if (/[!@#$%^&*(),.?":{}|<>]/.test(password)) strength += 20;
     if (password.length >= 12) strength += 15;
-
     if (password.length > 0 && strength < 25) strength = 25;
-
     return Math.min(strength, 100);
   };
 
   const getStrengthLabelAndColor = (strength) => {
-    if (strength < 40) return { label: "Fraca", color: "#ff4d4f" };
-    if (strength < 70) return { label: "Regular", color: "#ffcc00" };
-    if (strength < 90) return { label: "Boa", color: "#4caf50" };
-    return { label: "Ótima", color: "#2e7d32" };
+    if (strength < 40)
+      return { label: t("identity-page.create-password.strength.weak"), color: "#ff4d4f" };
+    if (strength < 70)
+      return { label: t("identity-page.create-password.strength.medium"), color: "#ffcc00" };
+    if (strength < 90)
+      return { label: t("identity-page.create-password.strength.good"), color: "#4caf50" };
+    return { label: t("identity-page.create-password.strength.great"), color: "#2e7d32" };
   };
 
   const strength = calculateStrength(passwordValue);
@@ -69,11 +81,12 @@ function CreatePasswordSection() {
   const onSubmit = async (data) => {
     setError(null);
     setIsLoading(true);
+
     try {
       await createNewAccount({
         email,
         password: data.password,
-        name: "Novo Usuário",
+        name: data.name,
       });
 
       await sendEmailVerificationLink(auth.currentUser);
@@ -82,38 +95,26 @@ function CreatePasswordSection() {
     } catch (err) {
       console.error(err);
       if (err.code === "auth/email-already-in-use") {
-        setError("Este e-mail já está em uso. Tente outro ou faça login.");
+        setError(t("identity-page.create-password.errors.email-in-use"));
       } else {
-        setError(
-          "Ocorreu um erro ao criar a conta. Certifique-se de que a senha atende aos requisitos."
-        );
+        setError(t("identity-page.create-password.errors.generic"));
       }
     } finally {
       setIsLoading(false);
     }
   };
 
+  const toggleShowPassword = () => setShowPassword((prev) => !prev);
+  const toggleMoreInfo = () => setShowMoreInfo(!showMoreInfo);
+
+  const passwordPattern =
+    /^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*(),.?":{}|<>]).{6,}$/;
+
   const handleEdit = (e) => {
     e.preventDefault();
     localStorage.removeItem("auth-data");
     navigate("/identity/sign-up/enter-email");
   };
-
-  const handleContainerClick = () => {
-    setIsActive(true);
-    passwordRef.current?.focus();
-  };
-
-  const handleBlur = () => {
-    if (!passwordValue) setIsActive(false);
-  };
-
-  const toggleMoreInfo = () => setShowMoreInfo(!showMoreInfo);
-
-  const toggleShowPassword = () => setShowPassword((prev) => !prev);
-
-  const passwordPattern =
-    /^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*(),.?":{}|<>]).{6,}$/;
 
   return (
     <>
@@ -122,168 +123,166 @@ function CreatePasswordSection() {
       ) : (
         <>
           <h1 className="identity-title">
-            Finalize seu cadastro para continuar
+            {t("identity-page.create-password.title")}
           </h1>
+
           <div className="identity-subtitle">
-            <p>Crie sua conta com o e-mail</p>
+            <p>{t("identity-page.create-password.subtitle1")}</p>
             <b>{email}</b>{" "}
             <a href="" onClick={handleEdit}>
-              (Editar)
+              {t("identity-page.create-password.edit")}
             </a>
           </div>
 
           <form className="identity-form" onSubmit={handleSubmit(onSubmit)}>
-            <div>
-              <div
-                className={`identity-form-input-container ${
-                  isActive ? "active" : ""
-                }`}
-                onClick={handleContainerClick}
-              >
-                <label htmlFor="password">Escolha sua senha</label>
-                <input
-                  id="password"
-                  type={showPassword ? "text" : "password"}
-                  className="identity-input"
-                  ref={passwordRef}
-                  {...register("password", {
-                    required: "Senha é obrigatória",
-                    minLength: { value: 6, message: "Mínimo 6 caracteres" },
-                    pattern: {
-                      value: passwordPattern,
-                      message:
-                        "Senha deve conter ao menos 1 maiúscula, 1 número e 1 caractere especial",
-                    },
-                  })}
-                  onBlur={handleBlur}
-                  disabled={isLoading}
-                />
-                <div className="show-password">
-                  <button
-                    type="button"
-                    onClick={toggleShowPassword}
-                    aria-label={
-                      showPassword ? "Ocultar senha" : "Mostrar senha"
-                    }
-                  >
-                    <ShowPassword showPassword={showPassword} />
-                  </button>
+            <div
+              className={`identity-form-input-container ${
+                activeField === "name" || nameValue ? "active" : ""
+              }`}
+              onClick={() => {
+                setActiveField("name");
+                nameRef.current?.focus();
+              }}
+            >
+              <label htmlFor="name">{t("identity-page.create-password.name-label")}</label>
+              <input
+                id="name"
+                type="text"
+                className="identity-input"
+                {...register("name", { required: t("identity-page.create-password.errors.name-required") })}
+                ref={(el) => {
+                  register("name").ref(el);
+                  nameRef.current?.focus();
+                }}
+                onFocus={() => setActiveField("name")}
+                onBlur={() => {
+                  const value = nameRef.current?.value?.trim();
+                  if (!value) setActiveField("");
+                }}
+                disabled={isLoading}
+              />
+            </div>
+
+            {errors.name && (
+              <div className="password-prompt error-message">
+                <div className="error-icon">
+                  <ErrorSvg />
                 </div>
+                <p>{errors.name.message}</p>
               </div>
+            )}
 
-              <div className="security-password-bar-wrapper-container">
-                {passwordValue && (
-                  <div
-                    className="security-password-bar-wrapper"
-                    style={{
-                      width: "187px",
-                      height: "6px",
-                      backgroundColor: "#e0e0e0",
-                      borderRadius: "3px",
-                      marginTop: "8px",
-                      overflow: "hidden",
-                    }}
-                  >
-                    <div
-                      className="security-password-bar"
-                      style={{
-                        width: `${(strength / 100) * 187}px`,
-                        backgroundColor: strengthColor,
-                        height: "100%",
-                        borderRadius: "3px",
-                        transition: "width 0.3s ease",
-                      }}
-                    ></div>
-                  </div>
-                )}
-                {passwordValue && (
-                  <p
-                    className="password-strength-text"
-                    style={{ color: strengthColor, marginTop: "4px" }}
-                  >
-                    {strengthLabel}
-                  </p>
-                )}
-              </div>
-
-              {errors.password && (
-                <div className="password-prompt error-message">
-                  <div className="error-icon">
-                    <ErrorSvg />
-                  </div>
-                  <p>{errors.password.message}</p>
-                </div>
-              )}
-
-              {error && (
-                <div className="password-prompt error-message">
-                  <div className="error-icon">
-                    <ErrorSvg />
-                  </div>
-                  <p>{error}</p>
-                </div>
-              )}
-
-              <div className="password-prompt">
-                <p>
-                  Use no mínimo 6 caracteres (com distinção entre maiúsculas e
-                  minúsculas) com pelo menos um número ou caractere especial.
-                </p>
+            <div
+              className={`identity-form-input-container ${
+                activeField === "password" || passwordValue ? "active" : ""
+              }`}
+              onClick={() => {
+                setActiveField("password");
+                passwordRef.current?.focus();
+              }}
+            >
+              <label htmlFor="password">{t("identity-page.create-password.password-label")}</label>
+              <input
+                id="password"
+                type={showPassword ? "text" : "password"}
+                className="identity-input"
+                ref={passwordRef}
+                {...register("password", {
+                  required: t("identity-page.create-password.errors.password-required"),
+                  minLength: { value: 6, message: t("identity-page.create-password.errors.min-length") },
+                  pattern: {
+                    value: passwordPattern,
+                    message: t("identity-page.create-password.errors.password-pattern"),
+                  },
+                })}
+                onFocus={() => setActiveField("password")}
+                onBlur={() => {
+                  const value = passwordRef.current?.value?.trim();
+                  if (!value) setActiveField("");
+                }}
+                disabled={isLoading}
+              />
+              <div className="show-password">
+                <button
+                  type="button"
+                  onClick={toggleShowPassword}
+                  aria-label={showPassword ? "Ocultar senha" : "Mostrar senha"}
+                >
+                  <ShowPassword showPassword={showPassword} />
+                </button>
               </div>
             </div>
+
+            {passwordValue && (
+              <div className="security-password-bar-wrapper-container">
+                <div
+                  className="security-password-bar-wrapper"
+                  style={{
+                    width: "187px",
+                    height: "6px",
+                    backgroundColor: "#e0e0e0",
+                    borderRadius: "3px",
+                    marginTop: "8px",
+                    overflow: "hidden",
+                  }}
+                >
+                  <div
+                    className="security-password-bar"
+                    style={{
+                      width: `${(strength / 100) * 187}px`,
+                      backgroundColor: strengthColor,
+                      height: "100%",
+                      borderRadius: "3px",
+                      transition: "width 0.3s ease",
+                    }}
+                  />
+                </div>
+                <p
+                  className="password-strength-text"
+                  style={{ color: strengthColor, marginTop: "4px" }}
+                >
+                  {strengthLabel}
+                </p>
+              </div>
+            )}
+
+            {errors.password && (
+              <div className="password-prompt error-message">
+                <div className="error-icon">
+                  <ErrorSvg />
+                </div>
+                <p>{errors.password.message}</p>
+              </div>
+            )}
+
+            {error && (
+              <div className="password-prompt error-message">
+                <div className="error-icon">
+                  <ErrorSvg />
+                </div>
+                <p>{error}</p>
+              </div>
+            )}
 
             <div className="accept-terms">
               <label className="accept-terms-checkbox">
                 <input
                   type="checkbox"
                   {...register("terms", {
-                    required: "Você deve aceitar os termos para continuar",
+                    required: t("identity-page.create-password.errors.terms"),
                   })}
                   style={{ display: "none" }}
                 />
-                <span className="custom-checkbox">
-                  {watch("terms") ? (
-                    <svg
-                      aria-hidden="true"
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="white"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path d="M17.9647 5.43209C18.3563 4.9383 19.0741 4.85548 19.5679 5.24711C20.0617 5.63874 20.1445 6.35652 19.7529 6.85031L10.4733 18.5507C10.0495 19.0851 9.25459 19.1308 8.7723 18.6485L4.33424 14.2104C3.88859 13.7648 3.88859 13.0422 4.33424 12.5966C4.77989 12.1509 5.50243 12.1509 5.94808 12.5966L9.48076 16.1292L17.9647 5.43209Z"></path>
-                    </svg>
-                  ) : (
-                    <svg
-                      aria-hidden="true"
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="gray"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <rect
-                        x="3"
-                        y="3"
-                        width="18"
-                        height="18"
-                        rx="2"
-                        ry="2"
-                        strokeWidth="2"
-                      />
-                    </svg>
-                  )}
-                </span>
+                <span className="custom-checkbox"></span>
 
                 <p>
-                  Aceito os{" "}
+                  {t("identity-page.create-password.terms-text")}{" "}
                   <a href="/termos-de-uso" target="_blank">
-                    Termos de Uso
+                    {t("identity-page.create-password.terms-link")}
                   </a>{" "}
-                  e a{" "}
+                  {t("identity-page.create-password.and")}{" "}
                   <a href="/politica-de-privacidade" target="_blank">
-                    Política de Privacidade
+                    {t("identity-page.create-password.privacy-link")}
                   </a>
                   .
                 </p>
@@ -303,7 +302,9 @@ function CreatePasswordSection() {
               className="identity-button"
               disabled={isLoading}
             >
-              {isLoading ? "Criando conta..." : "Concordar e Continuar"}
+              {isLoading
+                ? t("identity-page.create-password.loading")
+                : t("identity-page.create-password.submit")}
             </button>
           </form>
 
@@ -313,18 +314,16 @@ function CreatePasswordSection() {
                 onClick={toggleMoreInfo}
                 className={showMoreInfo ? "active" : ""}
               >
-                Saiba mais sobre o Açaíwave+ <ArrowSvg />
+                {t("identity-page.create-password.more-info")} <ArrowSvg />
               </button>
 
               {showMoreInfo && (
                 <div className="more-info-content">
                   <p className="footer-title">
-                    O Açaíwave+ não é um serviço de streaming real.
+                    {t("identity-page.advise-texts.title")}
                   </p>
                   <p className="identity-footer-text">
-                    Não possui qualquer vínculo com a Disney ou suas
-                    subsidiárias. Todos os nomes, marcas e imagens são de seus
-                    respectivos donos.
+                    {t("identity-page.advise-texts.subtitle")}
                   </p>
                 </div>
               )}
