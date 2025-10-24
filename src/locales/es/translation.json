@@ -1,320 +1,340 @@
 {
   "navigation": {
     "menu": {
-      "home": "Home",
-      "search": "Search",
-      "myList": "My List",
-      "movies": "Movies",
+      "home": "Inicio",
+      "search": "Buscar",
+      "myList": "Mi lista",
+      "movies": "Películas",
       "tvShows": "Series",
-      "originals": "Originals"
+      "originals": "Originales"
     },
     "userMenu": {
-      "profile": "Profile",
-      "settings": "Settings",
-      "logout": "Sign Out"
+      "profile": "Perfil",
+      "settings": "Configuración",
+      "logout": "Cerrar sesión"
     },
     "extendedMenu": {
-      "categories": "Categories",
-      "genres": "Genres",
-      "language": "Language"
+      "categories": "Categorías",
+      "genres": "Géneros",
+      "language": "Idioma"
     },
     "accountMenu": {
       "profiles": {
-        "addNew": "Add New Profile"
+        "addNew": "Añadir nuevo perfil"
       },
       "yourAccount": {
-        "editProfile": "Edit Profiles",
-        "appSettings": "App Settings",
-        "account": "Account",
-        "help": "Help",
-        "signOut": "Sign Out"
+        "editProfile": "Editar perfiles",
+        "appSettings": "Ajustes de la aplicación",
+        "account": "Cuenta",
+        "help": "Ayuda",
+        "signOut": "Cerrar sesión"
       }
     },
     "altAccountMenu": {
       "profiles": {
-        "addNew": "Add New Profile"
+        "addNew": "Añadir nuevo perfil"
       },
       "options": {
-        "selectProfile": "Select a Profile",
-        "editProfiles": "Edit Profiles",
-        "appSettings": "App Settings",
-        "account": "Account",
-        "help": "Help",
-        "signOut": "Sign Out"
+        "selectProfile": "Seleccionar un perfil",
+        "editProfiles": "Editar perfiles",
+        "appSettings": "Ajustes de la aplicación",
+        "account": "Cuenta",
+        "help": "Ayuda",
+        "signOut": "Cerrar sesión"
       }
     }
   },
-
   "landing-page": {
-    "nav": { "login": "Sign In" },
+    "nav": {
+      "login": "Entrar"
+    },
     "hero": {
-      "title": "Exclusive series, blockbuster movies, ESPN sports, and much more",
-      "subtitle1": "Choose a plan starting at",
-      "subtitle2": "$27.99/month"
+      "title": "Series exclusivas, éxitos de cine, deportes con ESPN y mucho más",
+      "subtitle1": "Elige un plan a partir de",
+      "subtitle2": "27,99 €/mes"
     },
     "email-section": {
-      "prompt": "Enter your email to get started",
-      "label": "Email",
-      "cta": "Get Started",
-      "input-errors": { "required": "Please enter a valid email address." }
+      "prompt": "Introduce tu correo electrónico para comenzar",
+      "label": "Correo electrónico",
+      "cta": "Comenzar ahora",
+      "input-errors": {
+        "required": "Introduce una dirección de correo electrónico válida."
+      }
     }
   },
-
   "identity-page": {
     "email-section": {
-      "title": "Enter your email to continue",
+      "title": "Introduce tu correo electrónico para continuar",
       "subtitle": {
-        "register": "Sign in with your email to start registration. Already have an account? <a href='/preview/acaiwaveplus/identity/login/enter-email'>Sign in here</a>.",
-        "update-credentials": "Enter the email associated with your account to update your credentials. We'll send a link to reset your password or update your access.",
-        "login": "Sign in to Açaíwave+ using your email account. If you don’t have an account, you’ll need to <a href='/preview/acaiwaveplus/identity/sign-up/enter-email'>create one</a>."
+        "register": "Introduce tu correo electrónico para iniciar tu registro. ¿Ya tienes cuenta? <a href='/preview/acaiwaveplus/identity/login/enter-email'>Inicia sesión aquí</a>.",
+        "update-credentials": "Introduce el correo electrónico asociado a tu cuenta para cambiar tus credenciales. Enviaremos un enlace para restablecer tu contraseña o actualizar tu acceso.",
+        "login": "Inicia sesión en Açaíwave+ con tu cuenta usando el correo electrónico. Si no tienes cuenta, necesitarás <a href='/preview/acaiwaveplus/identity/sign-up/enter-email'>crear una cuenta</a>."
       },
-      "label": "Email",
-      "button": "Continue"
+      "label": "Correo electrónico",
+      "button": "Continuar"
     },
     "password-section": {
-      "title": "Enter your password",
-      "subtitle1": "Sign in to Açaíwave+ using your account email",
-      "subtitle2": "(Edit)",
-      "placeholder": "Password",
-      "input-advise": "(Case sensitive)",
-      "button": "Sign In",
-      "forgot-password": "Can't sign in? Reset your password",
-      "more-about": "Learn more about Açaíwave+"
+      "title": "Introduce la contraseña",
+      "subtitle1": "Inicia sesión en Açaíwave+ con tu cuenta usando el correo electrónico",
+      "subtitle2": "(Editar)",
+      "placeholder": "Contraseña",
+      "input-advise": "(Mayúsculas y minúsculas)",
+      "button": "Entrar",
+      "forgot-password": "¿No puedes acceder? Restablece tu contraseña",
+      "more-about": "Más información sobre Açaíwave+"
     },
     "dialogs": {
       "email-confirm": {
-        "title": "Confirm your email",
-        "text1": "Before creating your account, please confirm that your email address is correct:",
-        "button-confirm": "Confirm",
-        "button-cancel": "Go Back"
+        "title": "Confirma tu correo electrónico",
+        "text1": "Antes de crear la cuenta, comprueba que tu dirección de correo electrónico es correcta:",
+        "button-confirm": "Confirmar",
+        "button-cancel": "Volver"
       },
       "resend-verification": {
-        "help-subject": "Help with email verification",
-        "help-body": "Hello, I need help verifying my email on Açaíwave+.",
-        "button-ok": "OK",
-        "button-help": "Help Center"
+        "help-subject": "Ayuda con la verificación de correo electrónico",
+        "help-body": "Hola, necesito ayuda con la verificación de correo en Açaíwave+.",
+        "button-ok": "Aceptar",
+        "button-help": "Centro de ayuda"
       },
       "delete-account": {
-        "title": "Delete Account",
-        "text1": "Are you sure you want to delete your account linked to <b>{{email}}</b>?",
-        "text2": "This action is <b>irreversible</b>. All your data, profiles, and preferences will be permanently deleted and cannot be recovered.",
-        "button-confirm": "Yes, delete account",
-        "button-cancel": "Cancel"
+        "title": "Eliminar cuenta",
+        "text1": "¿Estás seguro de que deseas eliminar tu cuenta vinculada a <b>{{email}}</b>?",
+        "text2": "Esta acción es <b>irreversible</b>. Todos tus datos, perfiles y preferencias serán eliminados permanentemente y no podrán recuperarse.",
+        "button-confirm": "Sí, eliminar cuenta",
+        "button-cancel": "Cancelar"
       }
     },
     "create-password": {
-      "title": "Finish setting up your account",
-      "subtitle1": "Create your account using your email",
-      "edit": "(Edit)",
-      "name-label": "Your name",
-      "password-label": "Choose a password",
+      "title": "Finaliza tu registro para continuar",
+      "subtitle1": "Crea tu cuenta con el correo electrónico",
+      "edit": "(Editar)",
+      "name-label": "Tu nombre",
+      "password-label": "Elige tu contraseña",
       "strength": {
-        "weak": "Weak",
-        "medium": "Medium",
-        "good": "Good",
-        "great": "Great"
+        "weak": "Débil",
+        "medium": "Media",
+        "good": "Buena",
+        "great": "Excelente"
       },
       "errors": {
-        "name-required": "Name is required",
-        "password-required": "Password is required",
-        "min-length": "At least 6 characters",
-        "password-pattern": "Password must include at least 1 uppercase letter, 1 number, and 1 special character",
-        "terms": "You must accept the terms to continue",
-        "email-in-use": "This email is already in use. Try another or sign in.",
-        "generic": "An error occurred while creating your account. Check your password requirements."
+        "name-required": "El nombre es obligatorio",
+        "password-required": "La contraseña es obligatoria",
+        "min-length": "Mínimo 6 caracteres",
+        "password-pattern": "La contraseña debe contener al menos 1 mayúscula, 1 número y 1 carácter especial",
+        "terms": "Debes aceptar los términos para continuar",
+        "email-in-use": "Este correo ya está en uso. Prueba con otro o inicia sesión.",
+        "generic": "Se produjo un error al crear la cuenta. Comprueba los requisitos de la contraseña."
       },
-      "terms-text": "I accept the",
-      "terms-link": "Terms of Use",
-      "and": "and the",
-      "privacy-link": "Privacy Policy",
-      "loading": "Creating account...",
-      "submit": "Agree and Continue",
-      "more-info": "Learn more about Açaíwave+"
+      "terms-text": "Acepto los",
+      "terms-link": "Términos de uso",
+      "and": "y la",
+      "privacy-link": "Política de privacidad",
+      "loading": "Creando cuenta...",
+      "submit": "Aceptar y continuar",
+      "more-info": "Más información sobre Açaíwave+"
     },
     "email-verification": {
-      "title": "Email Verification Required",
-      "subtitle1": "We've sent an email to",
-      "subtitle2": "with a verification link. Please check your inbox and click the link to confirm your email address.",
-      "subtitle3": "If you don't see the email, check your spam or junk folders.",
-      "subtitle4": "Didn't receive the email?",
-      "subtitle5": "Resend"
+      "title": "Verificación de correo necesaria",
+      "subtitle1": "Hemos enviado un correo a",
+      "subtitle2": "con un enlace de verificación. Por favor, accede a tu bandeja de entrada y haz clic en el enlace para confirmar tu dirección de correo electrónico.",
+      "subtitle3": "Si no encuentras el correo, revisa también las carpetas de spam o correo no deseado.",
+      "subtitle4": "¿No has recibido el correo?",
+      "subtitle5": "Reenviar"
     },
     "delete-account": {
-      "title": "Delete Account",
-      "subtitle1": "You are about to delete the account linked to",
-      "subtitle2": "To confirm, please enter your password below. Once deleted, all your data will be permanently removed and cannot be recovered.",
-      "button-confirm": "Delete Account",
-      "button-cancel": "Cancel",
+      "title": "Eliminar cuenta",
+      "subtitle1": "Estás a punto de eliminar la cuenta vinculada a",
+      "subtitle2": "Para confirmar, introduce tu contraseña a continuación. Tras la eliminación, todos tus datos serán eliminados permanentemente y no podrán recuperarse.",
+      "button-confirm": "Eliminar cuenta",
+      "button-cancel": "Cancelar",
       "errors": {
-        "required": "Password is required.",
-        "wrong-password": "Incorrect password. Please try again.",
-        "too-many": "Too many attempts. Try again later.",
-        "session-expired": "Session expired. Please sign in again.",
-        "unknown": "Unexpected error. Try again later."
+        "required": "La contraseña es obligatoria.",
+        "wrong-password": "Contraseña incorrecta. Introduce la contraseña correcta.",
+        "too-many": "Demasiados intentos. Intenta de nuevo más tarde.",
+        "session-expired": "Sesión expirada. Inicia sesión de nuevo.",
+        "unknown": "Error inesperado. Intenta de nuevo más tarde."
       }
     },
     "advise-texts": {
-      "title": "Açaíwave+ is not a real streaming service.",
-      "subtitle": "It is not affiliated with Disney or any of its subsidiaries. All names, brands, and images are the property of their respective owners. This site was created for portfolio purposes only."
+      "title": "Açaíwave+ no es un servicio de streaming real.",
+      "subtitle": "No tiene relación alguna con Disney ni con ninguna de sus filiales. Todos los nombres, marcas e imágenes son propiedad de sus respectivos dueños. Este sitio fue creado únicamente con fines de estudio y portafolio."
     }
   },
-
   "profiles-page": {
     "nav": {
-      "edit": "Edit Profiles",
-      "done": "Done",
-      "back": "Back"
+      "edit": "Editar perfiles",
+      "done": "Listo",
+      "back": "Volver"
     },
     "selectProfile": {
-      "title": "Who's watching?",
-      "addProfile": "Add Profile",
-      "loading": "Loading profiles...",
-      "error": "Error loading profiles. Please try again later.",
-      "empty": "No profiles found. Create one to get started."
+      "title": "¿Quién está viendo?",
+      "addProfile": "Añadir perfil",
+      "loading": "Cargando perfiles...",
+      "error": "Error al cargar los perfiles. Intenta de nuevo más tarde.",
+      "empty": "No se encontró ningún perfil. Crea uno nuevo para empezar."
     },
     "editProfiles": {
-      "title": "Edit Profiles",
-      "subtitle": "Select a profile to edit or create a new one.",
-      "language-label": "App Language",
-      "settings-title": "Playback and Language Settings",
-      "placeholder-name": "Profile name",
-      "button-edit": "Edit",
-      "button-save": "Save",
-      "button-cancel": "Cancel",
-      "button-delete": "Delete Profile",
-      "button-add": "Add New Profile",
+      "title": "Editar perfiles",
+      "subtitle": "Selecciona un perfil para editar o crea uno nuevo.",
+      "language-label": "Idioma de la aplicación",
+      "settings-title": "Ajustes de reproducción e idioma",
+      "placeholder-name": "Nombre del perfil",
+      "button-edit": "Editar",
+      "button-save": "Listo",
+      "button-cancel": "Cancelar",
+      "button-delete": "Eliminar perfil",
+      "button-add": "Añadir nuevo perfil",
       "confirm-delete": {
-        "title": "Delete profile",
-        "text1": "Are you sure you want to delete the profile <b>{{name}}</b>?",
-        "text2": "The profile history, My List, and activity will be deleted. This action cannot be undone.",
-        "button-confirm": "Yes, delete",
-        "button-cancel": "Cancel"
+        "title": "Eliminar el perfil de",
+        "text1": "¿Estás seguro de que deseas eliminar el perfil <b>{{name}}</b>?",
+        "text2": "El historial del perfil, Mi lista y la actividad serán eliminados. Esta acción no se puede deshacer.",
+        "button-confirm": "Sí, eliminar",
+        "button-cancel": "Cancelar"
       },
       "errors": {
-        "name-required": "Name is required.",
-        "generic": "An error occurred while saving the profile. Please try again."
+        "name-required": "El nombre es obligatorio.",
+        "generic": "Se produjo un error al guardar el perfil. Inténtalo de nuevo."
       }
     },
     "editProfile": {
-      "title": "Edit Profile",
-      "language-label": "App Language",
-      "settings-title": "Playback and Language Settings",
-      "placeholder-name": "Profile name",
-      "button-edit": "Edit Avatar",
-      "button-save": "Save",
-      "button-cancel": "Cancel",
-      "button-delete": "Delete Profile",
+      "title": "Editar perfil",
+      "language-label": "Idioma de la aplicación",
+      "settings-title": "Ajustes de reproducción e idioma",
+      "placeholder-name": "Nombre del perfil",
+      "button-edit": "Editar avatar",
+      "button-save": "Listo",
+      "button-cancel": "Cancelar",
+      "button-delete": "Eliminar perfil",
       "confirm-delete": {
-        "title": "Delete profile",
-        "text1": "Are you sure you want to delete the profile <b>{{name}}</b>?",
-        "text2": "The profile history, My List, and activity will be deleted. This action cannot be undone.",
-        "button-confirm": "Yes, delete",
-        "button-cancel": "Cancel"
+        "title": "Eliminar el perfil de",
+        "text1": "¿Estás seguro de que deseas eliminar el perfil <b>{{name}}</b>?",
+        "text2": "El historial del perfil, Mi lista y la actividad serán eliminados. Esta acción no se puede deshacer.",
+        "button-confirm": "Sí, eliminar",
+        "button-cancel": "Cancelar"
       },
       "errors": {
-        "name-required": "Profile name cannot be empty.",
-        "generic": "Error updating the profile. Please try again."
+        "name-required": "El nombre del perfil no puede estar vacío.",
+        "generic": "Error al actualizar el nombre. Inténtalo de nuevo."
       }
     },
     "selectAvatar": {
-      "title": "Choose your avatar",
-      "buttonSkip": "Skip",
-      "buttonDone": "Done",
-      "featured": "Featured",
-      "error": "Error loading avatars. Please try again."
+      "title": "Elige el avatar",
+      "buttonSkip": "Saltar",
+      "buttonDone": "Listo",
+      "featured": "Destacados",
+      "error": "Error al cargar avatares. Intenta de nuevo."
     }
   },
-
   "account-page": {
-    "title": "Manage your account",
+    "title": "Gestiona tu cuenta",
     "labels": {
-      "passwordHidden": "Password: ••••••"
+      "passwordHidden": "Contraseña: ••••••"
     },
     "actions": {
-      "changePassword": "Change Password"
+      "changePassword": "Cambiar contraseña"
     },
     "sections": {
-      "security": "Access and Security",
-      "otherSettings": "Other Settings"
+      "security": "Acceso y seguridad",
+      "otherSettings": "Otras configuraciones"
     },
     "delete": {
-      "title": "Delete Account",
-      "description": "Be sure before proceeding: deletion is irreversible.",
-      "action": "Delete my account"
+      "title": "Eliminar cuenta",
+      "description": "Asegúrate antes de continuar: la eliminación es irreversible.",
+      "action": "Eliminar mi cuenta"
     },
     "restrict": {
-      "title": "Restrict Profile Creation",
-      "description": "A password will be required to create new profiles."
+      "title": "Restringir la creación de perfiles",
+      "description": "Para crear nuevos perfiles será necesario introducir una contraseña."
     },
     "dialog": {
-      "title": "Confirm your password",
-      "subtitle": "To change parental control settings, please enter your account password.",
-      "placeholder": "Password",
-      "notice": "(case sensitive)",
-      "showPassword": "Show password",
-      "hidePassword": "Hide password",
-      "confirm": "Continue",
-      "cancel": "Cancel",
-      "forgotPassword": "Forgot password?",
+      "title": "Confirma tu contraseña",
+      "subtitle": "Para cambiar la configuración del control parental, debes introducir la contraseña de tu cuenta.",
+      "placeholder": "Contraseña",
+      "notice": "(distingue mayúsculas de minúsculas)",
+      "showPassword": "Mostrar contraseña",
+      "hidePassword": "Ocultar contraseña",
+      "confirm": "Continuar",
+      "cancel": "Cancelar",
+      "forgotPassword": "¿Olvidaste la contraseña?",
       "errors": {
-        "shortPassword": "Invalid password. Enter at least 6 characters.",
-        "unauthenticated": "User not authenticated.",
-        "invalidPassword": "Incorrect password or update error."
+        "shortPassword": "Contraseña inválida. Introduce al menos 6 caracteres.",
+        "unauthenticated": "Usuario no autenticado.",
+        "invalidPassword": "Contraseña incorrecta o error al actualizar."
       }
     },
     "alerts": {
-      "updated": "Settings updated successfully",
-      "failed": "Failed to update settings"
+      "updated": "Configuración actualizada con éxito",
+      "failed": "Fallo al actualizar la configuración"
     }
   },
-
   "details-page": {
     "actions": {
-      "play": "Play",
-      "myList": "My List"
+      "play": "Reproducir",
+      "myList": "Mi lista"
     },
     "info": {
-      "overview": "Overview",
-      "cast": "Cast",
+      "overview": "Sinopsis",
+      "cast": "Reparto",
       "director": "Director",
-      "seasons": "Created By",
-      "episodes": "Episodes",
-      "releaseDate": "Release Date",
-      "genres": "Genres",
-      "runtime": "Runtime",
-      "similar": "Similar Titles"
+      "seasons": "Temporadas",
+      "episodes": "Episodios",
+      "releaseDate": "Fecha de lanzamiento",
+      "genres": "Géneros",
+      "runtime": "Duración",
+      "similar": "Títulos similares"
     },
     "tabs": {
-      "details": "Details",
-      "trailers": "Trailers & Extras",
-      "similar": "Suggestions",
-      "episodes": "Episodes"
+      "details": "Detalles",
+      "trailers": "Tráilers y extras",
+      "similar": "Sugerencias",
+      "episodes": "Episodios"
     },
     "errors": {
-      "notFound": "Unable to load media details.",
-      "videoNotFound": "No video available for playback."
+      "notFound": "No se pudo cargar los detalles de este contenido.",
+      "videoNotFound": "No hay vídeo disponible para reproducir."
     },
     "loading": {
-      "fetching": "Loading details...",
-      "updatingWatchlist": "Updating your list..."
+      "fetching": "Cargando detalles...",
+      "updatingWatchlist": "Actualizando tu lista..."
     }
   },
-
+  "watchlist-page": {
+    "title": "Mi lista",
+    "subtitle": "Mis películas y series",
+    "empty": {
+      "title": "Aún no has añadido nada",
+      "subtitle": "Añade los títulos que quieres ver a Mi lista."
+    },
+    "loading": "Cargando tu lista..."
+  },
+  "browse-page": {
+    "moviesTitle": "Películas",
+    "seriesTitle": "Series",
+    "loading": "Cargando títulos..."
+  },
+  "searchPage": {
+    "placeholder": "Busca por título, género, equipo o liga",
+    "buttons": {
+      "clear": "Borrar búsqueda",
+      "search": "Buscar"
+    },
+    "trendingSection": "Búsquedas más populares hoy"
+  },
   "footer": {
     "links": {
-      "privacyPolicy": "Privacy Policy",
-      "termsOfUse": "Terms of Use",
-      "brazilPrivacyNotice": "Brazil Privacy Notice",
-      "cookiesPolicy": "Cookies Policy",
-      "dataProtectionBrazil": "Data Protection in Brazil",
-      "subscriptionAgreement": "Subscription Agreement",
-      "help": "Help",
-      "supportedDevices": "Supported Devices",
-      "aboutAcaiwaveplus": "About Açaíwave+",
-      "customAds": "Personalized Ads",
-      "feedback": "Send Feedback"
+      "privacyPolicy": "Política de privacidad",
+      "termsOfUse": "Términos de uso",
+      "brazilPrivacyNotice": "Aviso de privacidad de Brasil",
+      "cookiesPolicy": "Política de cookies",
+      "dataProtectionBrazil": "Protección de datos en Brasil",
+      "subscriptionAgreement": "Contrato de suscripción",
+      "help": "Ayuda",
+      "supportedDevices": "Dispositivos compatibles",
+      "aboutAcaiwaveplus": "Acerca de Açaíwave+",
+      "customAds": "Anuncios personalizados",
+      "feedback": "Enviar comentarios"
     },
-    "projectDescription": "Açaíwave+ is a personal project developed solely for educational and portfolio purposes. It functions as a fictional movie catalog with no commercial intent. This project is not affiliated with Disney, Disney+, or any other streaming service.",
-    "copyright": "© 2025 Açaíwave+. All rights reserved."
+    "projectDescription": "Açaíwave+ es un proyecto personal, desarrollado únicamente con fines de estudio y portafolio. Funciona como un catálogo de películas ficticio, sin finalidad comercial. Este proyecto no tiene relación con Disney, Disney+ ni con ningún otro servicio de streaming.",
+    "copyright": "© 2025 Açaíwave+. Todos los derechos reservados."
   }
 }

@@ -2,7 +2,7 @@
   "navigation": {
     "menu": {
       "home": "Início",
-      "search": "Buscar",
+      "search": "Pesquisa",
       "myList": "Minha Lista",
       "movies": "Filmes",
       "tvShows": "Séries",
@@ -82,6 +82,40 @@
       "button": "Entrar",
       "forgot-password": "Não consegue entrar? Redefina sua senha",
       "more-about": "Saiba mais sobre o Açaíwave+"
+    },
+    "change-password": {
+      "title": "Verifique seu e-mail",
+      "subtitle1": "Enviamos um e-mail para <b>{{email}}</b>",
+      "subtitle2": "com um link para redefinir sua senha. Clique no link e siga as instruções para criar uma nova senha.",
+      "subtitle3": "Se não encontrar o e-mail, verifique as pastas de spam ou lixo eletrônico.",
+      "subtitle4": "Não recebeu o e-mail?",
+      "subtitle5": "Reenviar",
+      "dialog": {
+        "no-email": {
+          "message1": "E-mail não encontrado.",
+          "message2": "Volte e insira seu e-mail novamente."
+        },
+        "resent": {
+          "message1": "Novo e-mail enviado!",
+          "message2": "Verifique sua caixa de entrada ou a pasta de spam. Se não encontrar, tente novamente mais tarde."
+        },
+        "error": {
+          "message1": "Falha ao enviar o e-mail.",
+          "message2": "Verifique o endereço e tente novamente."
+        },
+        "too-many": {
+          "message1": "Muitas tentativas detectadas.",
+          "message2": "Aguarde alguns minutos antes de tentar novamente."
+        },
+        "user-not-found": {
+          "message1": "Usuário não encontrado.",
+          "message2": "Verifique se o e-mail está correto."
+        },
+        "unknown": {
+          "message1": "Erro inesperado.",
+          "message2": "Tente novamente mais tarde."
+        }
+      }
     },
     "dialogs": {
       "email-confirm": {
@@ -318,7 +352,8 @@
       "clear": "Limpar busca",
       "search": "Buscar"
     },
-    "trendingSection": "Buscas em Alta Hoje"
+    "trendingSection": "Buscas em Alta Hoje",
+    "noResults": "Nenhum resultado encontrado para \"{{query}}\""
   },
   "footer": {
     "links": {

@@ -168,7 +168,7 @@
     border-radius: 4px;
     background-color: #FFFFFF;
     color: #000000;
-    font-family: "inspire-Heavy", sans-serif;
+    font-family: "Inspire-Heavy", sans-serif;
     font-size: 15px;
     font-weight: 700;
     letter-spacing: 1.76px;
@@ -212,7 +212,7 @@
     transition-duration: 200ms;
     background-color: #FFFFFF33;
     color: #FFFFFF;
-    font-family: "inspire-Heavy", sans-serif;
+    font-family: "Inspire-Heavy", sans-serif;
     font-size: 15px;
     font-weight: 700;
     letter-spacing: 1.76px;
@@ -254,7 +254,7 @@
     background-color: #2D2F36;
     color: #FFFFFF;
 
-    font-family: "inspire-Heavy", sans-serif;
+    font-family: "Inspire-Heavy", sans-serif;
     font-size: 13px;
     font-weight: 700;
     letter-spacing: 1.42px;
@@ -336,7 +336,7 @@
 .tabItem-text-1 {
     visibility: hidden;
     color: rgb(255, 255, 255);
-    font-family: "inspire-Heavy", sans-serif;
+    font-family: "Inspire-Heavy", sans-serif;
     font-size: 20px;
     font-weight: 700;
     letter-spacing: 2px;

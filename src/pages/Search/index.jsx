@@ -5,12 +5,13 @@ import { useTranslation } from "react-i18next";
 import { tmdbService } from "../../services/tmdb/tmdbServices.js";
 import SearchMediaList from "./SearchMediaList/SearchMediaList.jsx";
 import SectionBuilder from "../../components/utils/SectionBuilder/SectionBuilder.jsx";
-import SimpleBackdropCarousel from "../../components/Sliders/SimpleBackdropCarousel/SimpleBackdropCarousel.jsx";
+import SimpleBackdropCarousel from "../../components/Sliders/SimpleBackdropCarousel/index.jsx";
 
 import SearchSvg from "./assets/SearchSvg.jsx";
 import SearchCancelSvg from "./assets/SearchCancelSvg.jsx";
 import "./styles.css";
-
+import LoadingComponent from "../../components/utils/LoadingComponent/index.jsx";
+import SpinningLoading from "../../components/utils/SpinningLoading/index.jsx";
 
 function useDebounce(value, delay) {
   const [debouncedValue, setDebouncedValue] = useState(value);
@@ -27,11 +28,12 @@ const Search = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [results, setResults] = useState([]);
   const [trending, setTrending] = useState([]);
+  const [loading, setLoading] = useState(false);
+
   const language = useSelector((state) => state.lang.language);
   const { t } = useTranslation();
 
   const debouncedSearch = useDebounce(searchTerm, 800);
-
 
   useEffect(() => {
     const fetchResults = async () => {
@@ -40,6 +42,7 @@ const Search = () => {
         return;
       }
 
+      setLoading(true);
       try {
         const data = await tmdbService.fetchSearchMulti({
           query: debouncedSearch,
@@ -51,12 +54,13 @@ const Search = () => {
         setResults(results);
       } catch (err) {
         console.error("Erro ao buscar:", err);
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchResults();
   }, [debouncedSearch, language]);
-
 
   const filteredResults = useMemo(() => {
     return results.filter((item) => {
@@ -67,7 +71,6 @@ const Search = () => {
       return !isPerson && !!item?.backdrop_path;
     });
   }, [results]);
-
 
   useEffect(() => {
     const fetchTrending = async () => {
@@ -88,15 +91,14 @@ const Search = () => {
     fetchTrending();
   }, [language]);
 
-
   const placeholder = t("searchPage.placeholder");
   const clearLabel = t("searchPage.buttons.clear");
   const trendingSection = t("searchPage.trendingSection");
+  const noResultsText = t("searchPage.noResults", { query: debouncedSearch });
 
   return (
     <div className="search-page-container">
       <div className="search-page">
-
         <div className="search-bar-container">
           <input
             id="search-input"
@@ -121,13 +123,18 @@ const Search = () => {
           </button>
         </div>
 
-
-        {filteredResults.length === 0 ? (
+        {loading ? (
+          <SpinningLoading />
+        ) : !debouncedSearch ? (
           <div className="set-group-search">
             <SectionBuilder
               sectionTitle={trendingSection}
               children={<SimpleBackdropCarousel movies={trending} />}
             />
+          </div>
+        ) : filteredResults.length === 0 ? (
+          <div className="search-not-found">
+            <h2>{noResultsText}</h2>
           </div>
         ) : (
           <SearchMediaList filteredMedias={filteredResults} />

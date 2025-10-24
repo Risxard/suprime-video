@@ -7,7 +7,7 @@ import pixarVideo from "./assets/videos/pixar.mp4";
 import starWarsVideo from "./assets/videos/star-wars.mp4";
 import nationalVideo from "./assets/videos/national-geographic.mp4";
 import espnVideo from "./assets/videos/espn.mp4";
-import starVideo from "./assets/videos/star.mp4";
+import huluVideo from "./assets/videos/hulu.mp4";
 
 const channels = [
   {
@@ -35,8 +35,8 @@ const channels = [
     video: espnVideo,
   },
   {
-    img: "https://disney.images.edge.bamgrid.com/ripcut-delivery/v2/variant/disney/AE893BCDD6264C4A876C03A0DE5004D9F394BE1E8388F085431318CDCEC9A598/compose?format=webp&width=800",
-    video: starVideo,
+    img: "https://disney.images.edge.bamgrid.com/ripcut-delivery/v2/variant/disney/81FA4D830379184F4220A87D3197E9A13BB6F3873862C9EA8BE66A6B1834BD37/compose?format=webp&width=800",
+    video: huluVideo,
   },
 ];
 

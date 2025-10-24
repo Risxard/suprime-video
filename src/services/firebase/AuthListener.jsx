@@ -12,8 +12,6 @@ const AuthListener = () => {
       if (user && user.emailVerified) {
         const token = await user.getIdToken();
         dispatch(loginSuccess({ user, token }));
-
-        console.log(token);
       } else {
         dispatch(logout());
       }

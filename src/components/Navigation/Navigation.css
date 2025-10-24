@@ -81,6 +81,12 @@
     text-transform: uppercase;
 }
 
+
+.nav-profiles button:hover {
+    background: rgb(255, 255, 255) !important;
+    color: rgb(0, 0, 0) !important;
+}
+
 .nav-logo-profiles {
     display: block;
     cursor: pointer;
@@ -644,7 +650,7 @@ f #lang-container {
     justify-content: center;
 
     list-style: none;
-        padding: 0;
+    padding: 0;
 }
 
 .NavigationLinks li {
@@ -671,11 +677,15 @@ f #lang-container {
     color: white;
     text-decoration: none;
 
-    font-family: 'Inspire-Black';
+    font-family: 'Inspire-Medium', sans-serif;
 
     font-size: 13px;
     font-weight: 700;
     letter-spacing: 1.42px;
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
 }
 
 .NavigationLinks li a span {
@@ -845,6 +855,10 @@ f #lang-container {
     align-items: center;
 }
 
+.nav-menu.active .nav-menu-show-btn a p {
+    display: flex;
+}
+
 .nav-menu-show-btn a p {
     margin-left: 16px;
     margin-right: 16px;
@@ -852,6 +866,9 @@ f #lang-container {
 
     display: none;
 }
+
+
+
 
 .nav-menu-profile-pic {
     display: block;
@@ -912,7 +929,7 @@ f #lang-container {
 
     color: #cacaca;
 
-        margin: 0;
+    margin: 0;
 }
 
 
@@ -928,7 +945,7 @@ f #lang-container {
     margin: 0;
 }
 
-.nopic a{
+.nopic a {
     width: 100%;
     height: 100%;
 }
@@ -940,8 +957,8 @@ f #lang-container {
     align-items: center;
     text-decoration: none;
     color: inherit;
-    
-    
+
+
 }
 
 .nav-menu-item a p {
@@ -1115,6 +1132,7 @@ f #lang-container {
 
 
 }
+
 @media (min-width: 1024px) {
     .Navigation:after {
         height: 170px;

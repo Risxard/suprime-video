@@ -35,6 +35,7 @@ import TvSeriesPage from "../pages/TvSeriesPage/index.jsx";
 import PopUpMessage from "../components/PopUpMessage/index.jsx";
 import ChangePassword from "../pages/Identity/components/ChangePassword.jsx";
 import DeleteAccount from "../pages/Identity/components/DeleteAccount.jsx";
+import ChannelsPage from "../pages/ChannelsPage/index.jsx";
 
 const AppRoutes = () => {
   const { user, token, currentProfile, loading } = useSelector(
@@ -133,11 +134,9 @@ const AppRoutes = () => {
       path: "/browse/watchlist/",
       element: <BrowsePage children={<WatchlistPage />} />,
     },
-    { path: "/settings/:id/:ref", element: <SettingsPage /> },
-    { path: "/settings", element: <Navigate to="/settings/your-account" /> },
     {
-      path: "/settings",
-      element: <Navigate to="/settings/your-account/:ref" />,
+      path: "/browse/disney",
+      element: <BrowsePage children={<ChannelsPage />} />,
     },
     { path: "/pagetest", element: <PageTest /> },
   ];
