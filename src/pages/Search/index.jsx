@@ -4,7 +4,6 @@ import { useTranslation } from "react-i18next";
 
 import { tmdbService } from "../../services/tmdb/tmdbServices.js";
 import SearchMediaList from "./SearchMediaList/SearchMediaList.jsx";
-import SectionBuilder from "../../components/utils/SectionBuilder/SectionBuilder.jsx";
 import SimpleBackdropCarousel from "../../components/Sliders/SimpleBackdropCarousel/index.jsx";
 
 import SearchSvg from "./assets/SearchSvg.jsx";
@@ -127,10 +126,10 @@ const Search = () => {
           <SpinningLoading />
         ) : !debouncedSearch ? (
           <div className="set-group-search">
-            <SectionBuilder
+            {/* <SectionBuilder
               sectionTitle={trendingSection}
               children={<SimpleBackdropCarousel movies={trending} />}
-            />
+            /> */}
           </div>
         ) : filteredResults.length === 0 ? (
           <div className="search-not-found">

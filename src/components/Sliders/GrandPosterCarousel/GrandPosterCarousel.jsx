@@ -3,7 +3,12 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import "./GrandPosterCarousel.css";
 import GrandPosterCarouselItem from "./components/GrandPosterCarouselItem.jsx";
 
-const GrandPosterCarousel = ({ movies = [], language, top10mode }) => {
+const GrandPosterCarousel = ({
+  movies = [],
+  language,
+  top10mode,
+  smallPoster,
+}) => {
   const carouselRef = useRef(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const duration = 1000;
@@ -20,7 +25,7 @@ const GrandPosterCarousel = ({ movies = [], language, top10mode }) => {
     const el = carouselRef.current;
     if (!el || !el.firstElementChild) return 1;
     const styles = getComputedStyle(el.firstElementChild);
-    return parseInt(styles.getPropertyValue("--card-caroulsel-number")) || 1;
+    return parseInt(styles.getPropertyValue("--card-carousel-number")) || 1;
   };
 
   const animateScrollTo = (target, callback) => {
@@ -96,7 +101,9 @@ const GrandPosterCarousel = ({ movies = [], language, top10mode }) => {
   return (
     <section>
       <div
-        className={`grandPoster-carousel-Container ${top10mode ? "top10" : ""}`}
+        className={`grandPoster-carousel-Container ${
+          top10mode ? "top10" : ""
+        } ${smallPoster ? "small-poster" : ""}`}
       >
         <button
           className="grandPosterPrevBtn"
@@ -120,6 +127,7 @@ const GrandPosterCarousel = ({ movies = [], language, top10mode }) => {
                 language={language}
                 topNumber={index + 1}
                 top10mode={top10mode}
+                smallPoster={smallPoster}
                 className="grandPoster-carousel-item"
               />
             ))}

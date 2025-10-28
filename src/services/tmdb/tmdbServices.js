@@ -87,6 +87,14 @@ export const tmdbService = {
       params: { tvId, seasonNumber, language },
     });
     return data;
+  },
+  fetchList: async ({ list_id, language, page }) => {
+    const { data } = await api.get("/api/tmdb/list", {
+      params: { list_id, language, page },
+    });
+
+    
+    return data;
   }
 };
 

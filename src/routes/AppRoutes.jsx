@@ -135,7 +135,7 @@ const AppRoutes = () => {
       element: <BrowsePage children={<WatchlistPage />} />,
     },
     {
-      path: "/browse/disney",
+      path: "/browse/:channelId",
       element: <BrowsePage children={<ChannelsPage />} />,
     },
     { path: "/pagetest", element: <PageTest /> },

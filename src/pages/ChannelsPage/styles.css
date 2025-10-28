@@ -110,3 +110,9 @@
     width: 358px;
   }
 }
+
+@media (min-width: 1440px) {
+    .channel-intro-image-container img {
+        width: 504px;
+    }
+}

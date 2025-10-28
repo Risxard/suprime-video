@@ -82,9 +82,9 @@ const HeroCarouselItem = ({ movie, language, active }) => {
                 )}
               </div>
               <div className="hero-carousel-info-content-text">
-                <div className="hero-carousel-info-content-text-1">
+                {/* <div className="hero-carousel-info-content-text-1">
                   {movie.original_title || movie.original_name}
-                </div>
+                </div> */}
                 <div className="hero-carousel-info-content-text-2">
                   <MediaClass
                     language={language}

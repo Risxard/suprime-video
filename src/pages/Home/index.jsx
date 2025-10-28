@@ -5,8 +5,6 @@ import i18n from "../../i18n.js";
 import { useTranslation } from "react-i18next";
 import { tmdbService } from "../../services/tmdb/tmdbServices.js";
 import ChannelSection from "../../components/ChannelSection/index.jsx";
-import GrandPosterCarousel from "../../components/Sliders/GrandPosterCarousel/GrandPosterCarousel.jsx";
-import SectionBuilder from "../../components/utils/SectionBuilder/SectionBuilder.jsx";
 
 const Home = () => {
   const [medias, setMedias] = useState([]);
@@ -66,29 +64,6 @@ const Home = () => {
       <main>
         <section className="home-main-section">
           <ChannelSection />
-
-          <SectionBuilder
-            children={
-              <GrandPosterCarousel
-                movies={medias}
-                language={language}
-                top10mode={false}
-              />
-            }
-            sectionTitle={originalsAndExclusives}
-          />
-
-          <SectionBuilder
-            children={
-              <GrandPosterCarousel
-                movies={mediasRecommendations}
-                language={language}
-                top10mode={true}
-              />
-            }
-            sectionTitle={top10MoviesTMDB}
-          />
-
           {/* <BackdropSlider
             sectionTitle={componentsLang.recommendedMovies2}
             medias={mediasRecommendations}

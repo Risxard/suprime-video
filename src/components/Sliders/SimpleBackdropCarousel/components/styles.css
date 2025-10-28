@@ -1,12 +1,10 @@
 .simple-backdrop-item {
-    --card-caroulsel-number: 2;
-
-
+    --card-carousel-number: 2;
     transition-duration: 300ms;
     transition-property: width, display;
     transition-timing-function:
         ease-out;
-    width: calc(100% / var(--card-caroulsel-number));
+    width: calc(100% / var(--card-carousel-number));
     height: auto;
     scroll-snap-align: start;
 
@@ -65,7 +63,7 @@
     transform: scale(1.05, 1.05) translateZ(0) translate3d(0, 0, 0);
 }
 
-.simple-backdrop-item-content:hover::before{
+.simple-backdrop-item-content:hover::before {
     opacity: 1;
 }
 
@@ -125,20 +123,28 @@
 
 
 
+
+.set-skeleton .simple-backdrop-item {
+    pointer-events: none;
+}
+
+
 @media (min-width: 768px) {
     .simple-backdrop-item {
-        --card-caroulsel-number: 3;
+        --card-carousel-number: 3;
     }
 }
 
 @media (min-width: 1024px) {
     .simple-backdrop-item {
-        --card-caroulsel-number: 4;
+        --card-carousel-number: 4;
     }
 }
 
 @media (min-width: 1440px) {
     .simple-backdrop-item {
-        --card-caroulsel-number: 5;
+        --card-carousel-number: 5;
     }
 }
+
+

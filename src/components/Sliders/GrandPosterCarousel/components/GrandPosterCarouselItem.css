@@ -4,13 +4,14 @@
 }
 
 .grandPoster-carousel-item {
-    --card-caroulsel-number: 2;
+    --card-carousel-number: 2;
+    --small-card-carousel-number: 3;
 
     transition-duration: .3s;
     transition-property: width, display;
     transition-timing-function:
         ease-out;
-    width: calc(100% / var(--card-caroulsel-number));
+    width: calc(100% / var(--card-carousel-number));
     height: auto;
     scroll-snap-align: start;
 
@@ -18,6 +19,14 @@
     flex-grow: 0;
     will-change: transform;
 }
+
+
+/* .small-poster .grandPoster-carousel-item {
+    --card-carousel-number: var(--small-card-carousel-number);
+} */
+
+
+
 
 .grandPoster-carousel-item:hover .grandPoster-carousel-item-image {
     transform: scale(1.03) translateZ(0) translateZ(0);
@@ -59,6 +68,11 @@
 
     transition-duration: 0.3s;
     border-radius: 4px;
+}
+
+
+.small-poster .grandPoster-carousel-item .grandPoster-carousel-item-container {
+    aspect-ratio: 71 / 100 !important;
 }
 
 .grandPoster-carousel-item .grandPoster-carousel-item-container::before {
@@ -110,6 +124,11 @@
     aspect-ratio: 5 / 8;
 }
 
+
+.small-poster .grandPoster-carousel-item-image {
+    aspect-ratio: 71 / 100 !important;
+}
+
 .grandPoster-carousel-item-image::before {
     content: "";
     position: absolute;
@@ -138,7 +157,7 @@
     top: 30%;
     border-radius: 4px;
     pointer-events: none;
-    
+
     background: linear-gradient(to top,
             rgba(0, 0, 0, 1) 0%,
 
@@ -149,6 +168,11 @@
             rgba(0, 0, 0, 0) 100%);
 
     z-index: 2;
+}
+
+
+.small-poster .grandPoster-carousel-item-image::after {
+    display: none;
 }
 
 .grandPoster-carousel-item-image>img {
@@ -223,9 +247,6 @@
     padding-left: 16px;
     padding-right: 16px;
     padding-top: 8px;
-
-
-
 }
 
 .grandPoster-carousel-item-info-text .ageClass {
@@ -273,18 +294,21 @@
 
 @media (min-width: 768px) {
     .grandPoster-carousel-item {
-        --card-caroulsel-number: 3;
+        --card-carousel-number: 3;
+        --small-card-carousel-number: 4;
     }
 }
 
 @media (min-width: 1024px) {
     .grandPoster-carousel-item {
-        --card-caroulsel-number: 4;
+        --card-carousel-number: 4;
+        --small-card-carousel-number: 5;
     }
 }
 
 @media (min-width: 1440px) {
     .grandPoster-carousel-item {
-        --card-caroulsel-number: 5;
+        --card-carousel-number: 5;
+        --small-card-carousel-number: 6;
     }
 }

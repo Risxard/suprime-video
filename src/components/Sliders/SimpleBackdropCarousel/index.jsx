@@ -20,7 +20,7 @@ const SimpleBackdropCarousel = ({ movies = [] }) => {
     const el = carouselRef.current;
     if (!el || !el.firstElementChild) return 1;
     const styles = getComputedStyle(el.firstElementChild);
-    return parseInt(styles.getPropertyValue("--card-caroulsel-number")) || 1;
+    return parseInt(styles.getPropertyValue("--card-carousel-number")) || 1;
   };
 
   const animateScrollTo = (target, callback) => {

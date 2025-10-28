@@ -149,7 +149,7 @@
 
 * {
     box-sizing: border-box;
-        margin: 0;
+    margin: 0;
     padding: 0;
 }
 
@@ -320,9 +320,8 @@ body, .hero-carousel-container-text {
 }
 
 main {
-
     padding-inline: var(--inner-width);
-    overflow: hidden;
+
 }
 
 
