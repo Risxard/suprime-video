@@ -38,27 +38,122 @@ export const channelsConfig = {
         logo: introDisneyLogo,
         carousels: [
             {
+                title: "Destaques",
+                type: "simple-backdrop",
+                fetchFn: tmdbService.fetchList,
+                fetchParams: {
+                    list_id: 8567891,
+                    language: "pt-BR",
+                    page: 1,
+                },
+            },
+            {
+                title: "Princesas",
+                type: "simple-backdrop",
+                fetchFn: tmdbService.fetchList,
+                fetchParams: {
+                    list_id: 8567844,
+                    language: "pt-BR",
+                    page: 1,
+                },
+            },
+            {
                 title: "Feras e Monstros",
                 type: "grand-poster",
+                card_size: "sm-card",
                 fetchFn: tmdbService.fetchList,
                 fetchParams: {
                     list_id: 8567702,
                     language: "pt-BR",
                     page: 1,
                 },
-                smallPoster: true,
             },
-            // {
-            //     title: "Top 10 Filmes Disney",
-            //     type: "grand-poster",
-            //     fetchFn: tmdbService.fetchRecommendations,
-            //     fetchParams: {
-            //         mediaType: "movie",
-            //         mediaId: 1035259,
-            //         language: "pt-BR",
-            //     },
-            //     smallPoster: true,
-            // },
+            {
+                title: "Séries da disney",
+                type: "simple-backdrop",
+                fetchFn: tmdbService.fetchList,
+                fetchParams: {
+                    list_id: 8567896,
+                    language: "pt-BR",
+                    page: 1,
+                },
+            },
+            {
+                title: "Filmes em Live-Action",
+                type: "grand-poster",
+                card_size: "ss-card",
+                fetchFn: tmdbService.fetchList,
+                fetchParams: {
+                    list_id: 8567846,
+                    language: "pt-BR",
+                    page: 1,
+                },
+            },
+            {
+                title: "Clássicos",
+                type: "simple-backdrop",
+                fetchFn: tmdbService.fetchList,
+                fetchParams: {
+                    list_id: 338,
+                    language: "pt-BR",
+                    page: 1,
+                },
+            },
+            {
+                title: "Era uma Vez...",
+                type: "grand-poster",
+                card_size: "ss-card",
+                fetchFn: tmdbService.fetchList,
+                fetchParams: {
+                    list_id: 8567899,
+                    language: "pt-BR",
+                    page: 1,
+                },
+            },
+            {
+                title: "Mickey e Seus Amigos",
+                type: "grand-poster",
+                card_size: "ss-card",
+                fetchFn: tmdbService.fetchList,
+                fetchParams: {
+                    list_id: 8567890,
+                    language: "pt-BR",
+                    page: 1,
+                },
+            },
+            {
+                title: "Animações classicas",
+                type: "grand-poster",
+                card_size: "ss-card",
+                fetchFn: tmdbService.fetchList,
+                fetchParams: {
+                    list_id: 24035,
+                    language: "pt-BR",
+                    page: 1,
+                },
+            },
+            {
+                title: "Lilo e Stitch",
+                type: "grand-poster",
+                card_size: "ss-card",
+                fetchFn: tmdbService.fetchList,
+                fetchParams: {
+                    list_id: 8567704,
+                    language: "pt-BR",
+                    page: 1,
+                },
+            },
+            {
+                title: "Coleção Buddies",
+                type: "grand-poster",
+                card_size: "ss-card",
+                fetchFn: tmdbService.fetchCollection,
+                fetchParams: {
+                    collection_id: 91657,
+                    language: "pt-BR",
+                    page: 1,
+                },
+            },
         ],
     },
 
@@ -70,26 +165,56 @@ export const channelsConfig = {
         logo: introPixarLogo,
         carousels: [
             {
-                title: "Filmes da Pixar em Destaque",
+                title: "Destaques",
                 type: "simple-backdrop",
-                fetchFn: tmdbService.fetchTrending,
+                fetchFn: tmdbService.fetchList,
                 fetchParams: {
-                    timeWindow: "day",
-                    pageType: "movie",
+                    list_id: 8567918,
                     language: "pt-BR",
+                    page: 1,
                 },
             },
             {
-                title: "Top Animações Pixar",
-                type: "grand-poster",
-                fetchFn: tmdbService.fetchRecommendations,
+                title: "Filmes",
+                type: "simple-backdrop",
+                fetchFn: tmdbService.fetchList,
+                fetchParams: {
+                    list_id: 8567910,
+                    language: "pt-BR",
+                    page: 1,
+                },
+            },
+            {
+                title: "Filmes",
+                type: "hero-section",
+                fetchFn: tmdbService.fetchMediaDetails,
                 fetchParams: {
                     mediaType: "movie",
-                    mediaId: 508947,
-                    language: "pt-BR",
+                    mediaId: 1022787,
+                    language: "pt-BR"
                 },
-                top10mode: true,
             },
+            {
+                title: "Destaques",
+                type: "simple-backdrop",
+                fetchFn: tmdbService.fetchList,
+                fetchParams: {
+                    list_id: 8567918,
+                    language: "pt-BR",
+                    page: 1,
+                },
+            },
+            {
+                title: "Filmes",
+                type: "simple-backdrop",
+                fetchFn: tmdbService.fetchList,
+                fetchParams: {
+                    list_id: 8567910,
+                    language: "pt-BR",
+                    page: 1,
+                },
+            },
+
         ],
     },
 

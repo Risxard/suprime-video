@@ -1,9 +1,11 @@
 #root {
-
-
     --nav-height: 72px;
     --inner-width: 40px;
     --color-background: #17171B;
+
+
+    --sm-card-carousel-number: 2;
+    --ss-card-carousel-number: 3;
 }
 
 
@@ -14,18 +16,27 @@
 
 @media (min-width: 768px) {
     #root {
-        --inner-width: 56px
+        --inner-width: 56px;
+
+        --sm-card-carousel-number: 3;
+        --ss-card-carousel-number: 4;
     }
 }
 
 @media (min-width: 1024px) {
     #root {
-        --inner-width: 58px
+        --inner-width: 58px;
+
+        --sm-card-carousel-number: 4;
+        --ss-card-carousel-number: 5;
     }
 }
 
 @media (min-width: 1440px) {
     #root {
-        --inner-width: 71px
+        --inner-width: 71px;
+
+        --sm-card-carousel-number: 5;
+        --ss-card-carousel-number: 6;
     }
 }

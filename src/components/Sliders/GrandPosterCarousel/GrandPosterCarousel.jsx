@@ -7,7 +7,7 @@ const GrandPosterCarousel = ({
   movies = [],
   language,
   top10mode,
-  smallPoster,
+  card_size,
 }) => {
   const carouselRef = useRef(null);
   const [activeIndex, setActiveIndex] = useState(0);
@@ -98,12 +98,13 @@ const GrandPosterCarousel = ({
     }
   };
 
+
   return (
     <section>
       <div
         className={`grandPoster-carousel-Container ${
           top10mode ? "top10" : ""
-        } ${smallPoster ? "small-poster" : ""}`}
+        } ${card_size && card_size}`}
       >
         <button
           className="grandPosterPrevBtn"
@@ -127,7 +128,7 @@ const GrandPosterCarousel = ({
                 language={language}
                 topNumber={index + 1}
                 top10mode={top10mode}
-                smallPoster={smallPoster}
+                card_size={card_size}
                 className="grandPoster-carousel-item"
               />
             ))}

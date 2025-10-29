@@ -4,6 +4,7 @@ import { channelsConfig } from "../../config/channelsConfig";
 import LazyCarousel from "../../components/utils/LazyCarousel/LazyCarousel";
 import ChannelIntro from "./components/ChannelIntro";
 import "./styles.css";
+import HeroSection from "../../components/HeroSection";
 
 const ChannelsPage = () => {
   const { channelId } = useParams();
@@ -16,7 +17,6 @@ const ChannelsPage = () => {
     }
   }, [config, navigate]);
 
- 
   if (!config) return null;
 
   return (
@@ -37,7 +37,7 @@ const ChannelsPage = () => {
             fetchFn={carousel.fetchFn}
             fetchParams={carousel.fetchParams}
             top10mode={carousel.top10mode}
-            smallPoster={carousel.smallPoster}
+            card_size={carousel.card_size}
           />
         ))}
       </div>

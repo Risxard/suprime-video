@@ -5,14 +5,21 @@ import "./GrandPosterCarouselItem.css";
 import MediaClass from "../../../MediaClass/MediaClass";
 import { NavLink } from "react-router-dom";
 import CardLabel from "./assets/card-label";
-import { image_path_342, image_path_500 } from "../../../../utils/imagePaths";
+import { image_path_185, image_path_342, image_path_500 } from "../../../../utils/imagePaths";
 
-const GrandPosterCarouselItem = ({ movie, language, top10mode, topNumber, smallPoster }) => {
+const GrandPosterCarouselItem = ({
+  movie,
+  language,
+  top10mode,
+  topNumber,
+  card_size = "",
+}) => {
   const [posterAndLogo, setPosterAndLogo] = useState({});
 
   useEffect(() => {
     const fetchLogo = async () => {
-      if (!movie?.id || smallPoster) return;
+      if (!movie?.id || card_size !== "") return;
+
       try {
         const res = await tmdbService.fetchPosterAndLogo({
           mediaId: movie.id,
@@ -29,17 +36,18 @@ const GrandPosterCarouselItem = ({ movie, language, top10mode, topNumber, smallP
     if (movie && language) {
       fetchLogo();
     }
-  }, [movie, language, smallPoster]);
+  }, [movie, language, card_size]);
 
   if (!movie) return null;
 
-  const release_date = movie?.release_date || movie?.first_date;
+  const release_date = movie?.release_date || movie?.first_air_date;
 
-  const genreNames = (
-    movie.genre_ids?.map((id) =>
-      genreConverter(id, language, movie.media_type || "movie")
-    ) || []
-  ).slice(0, 3);
+  const genreNames =
+    (
+      movie.genre_ids?.map((id) =>
+        genreConverter(id, language, movie.media_type || "movie")
+      ) || []
+    ).slice(0, 3);
 
   return (
     <div className="grandPoster-carousel-item">
@@ -50,23 +58,25 @@ const GrandPosterCarouselItem = ({ movie, language, top10mode, topNumber, smallP
 
             <img
               src={
-                smallPoster
+                card_size
                   ? `${image_path_500}${movie.poster_path}`
-                  : `${image_path_500}${posterAndLogo?.poster?.file_path || movie.poster_path}`
+                  : `${image_path_500}${
+                      posterAndLogo?.poster?.file_path || movie.poster_path
+                    }`
               }
-              alt={movie.title || ""}
+              alt={movie.title || movie.name || ""}
+              className={`grandPoster-image ${card_size}`}
             />
 
-
-            {!smallPoster && (
+            {card_size === "" && (
               <div className="grandPoster-carousel-item-info">
                 <div className="grandPoster-carousel-item-info-logo">
                   {posterAndLogo?.logo?.file_path &&
-                  (posterAndLogo?.poster?.iso_639_1 == "xx" ||
+                  (posterAndLogo?.poster?.iso_639_1 === "xx" ||
                     posterAndLogo?.poster?.iso_639_1 == null) ? (
                     <img
-                      src={`${image_path_342}${posterAndLogo?.logo?.file_path}`}
-                      alt={`${movie.title} logo`}
+                      src={`${image_path_185}${posterAndLogo?.logo?.file_path}`}
+                      alt={`${movie.title || movie.name} logo`}
                     />
                   ) : (
                     <div className="grandPoster-info-content-logo-title">
@@ -84,7 +94,9 @@ const GrandPosterCarouselItem = ({ movie, language, top10mode, topNumber, smallP
 
                   <span className="grandPoster-carousel-text-content">
                     {release_date &&
-                      `${dateConverter(release_date)} ${!top10mode ? "•" : ""} `}
+                      `${dateConverter(release_date)} ${
+                        !top10mode ? "•" : ""
+                      } `}
 
                     {!top10mode && genreNames.join(", ")}
                   </span>

@@ -13,9 +13,9 @@ export const tmdbService = {
       params: { mediaType, mediaId, language },
     });
 
-
     return data;
   },
+  
   fetchRecommendations: async ({ mediaType, mediaId, language, page }) => {
     const { data } = await api.get("/api/tmdb/recommendations", {
       params: { mediaType, mediaId, language, page },
@@ -92,8 +92,12 @@ export const tmdbService = {
     const { data } = await api.get("/api/tmdb/list", {
       params: { list_id, language, page },
     });
-
-    
+    return data;
+  },
+  fetchCollection: async ({ collection_id, language, page }) => {
+    const { data } = await api.get("/api/tmdb/collection", {
+      params: { collection_id, language, page },
+    });
     return data;
   }
 };
