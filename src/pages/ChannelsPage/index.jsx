@@ -28,7 +28,7 @@ const ChannelsPage = () => {
         logo={config.logo}
       />
 
-      <div className="channels-page-content">
+      <section className="channels-page-content">
         {config.carousels.map((carousel, idx) => (
           <LazyCarousel
             key={idx}
@@ -40,7 +40,7 @@ const ChannelsPage = () => {
             card_size={carousel.card_size}
           />
         ))}
-      </div>
+      </section>
     </div>
   );
 };

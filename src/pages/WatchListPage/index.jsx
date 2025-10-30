@@ -17,7 +17,7 @@ const WatchListPage = () => {
   const language = useSelector((state) => state.lang.language);
   const { t } = useTranslation();
 
-  // Traduções
+
   const title = t("watchlist-page.title");
   const subtitle = t("watchlist-page.subtitle");
   const emptyTitle = t("watchlist-page.empty.title");

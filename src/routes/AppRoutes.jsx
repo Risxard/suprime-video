@@ -125,7 +125,7 @@ const AppRoutes = () => {
       element: <BrowsePage children={<TvSeriesPage />} />,
     },
 
-    { path: "/detail/:mediaType/:id/", element: <DetailsPage /> },
+    { path: "/detail/:mediaType/:id", element: <DetailsPage /> },
     { path: "/detail/:mediaType/:id/:referrer", element: <DetailsPage /> },
 
     { path: "/search", element: <Search /> },

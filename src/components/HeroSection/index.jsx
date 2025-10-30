@@ -18,7 +18,6 @@ const HeroSection = ({
   const [posterAndLogo, setPosterAndLogo] = useState({});
   const [isMobile, setIsMobile] = useState(false);
 
-
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth < 480);
@@ -27,7 +26,6 @@ const HeroSection = ({
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
-
 
   useEffect(() => {
     const fetchPosterAndLogo = async () => {
@@ -50,12 +48,11 @@ const HeroSection = ({
 
   if (!mediaDetails) return null;
 
-
   const title = mediaDetails.title || mediaDetails.name;
-  const release_date = mediaDetails.release_date || mediaDetails.first_air_date || "";
+  const release_date =
+    mediaDetails.release_date || mediaDetails.first_air_date || "";
   const genres = mediaDetails.genres || [];
   const overview = mediaDetails.overview || "";
-
 
   const logo_path = posterAndLogo?.logo?.file_path;
   const poster_path = posterAndLogo?.poster?.file_path;
@@ -65,14 +62,12 @@ const HeroSection = ({
     .map((genre) => genreConverter(genre.id, language, mediaType))
     .slice(0, 3);
 
-
   const backgroundImage = isMobile
     ? `${image_path_500}${poster_path}`
     : `${image_path_original}${backdrop_path}`;
 
   return (
-    <section className="hero-section">
-
+    <div className="hero-section">
       <div className="hero-section-background">
         <div className="hero-section-image">
           {backgroundImage && (
@@ -82,10 +77,8 @@ const HeroSection = ({
         </div>
       </div>
 
-
       <div className="hero-section-content-wrapper">
         <div className="hero-section-info-content">
-
           {logo_path && (
             <img
               src={`${image_path_342}${logo_path}`}
@@ -106,14 +99,15 @@ const HeroSection = ({
             </span>
           </span>
 
-
           {overview && (
             <div className="hero-section-info-content-text">{overview}</div>
           )}
 
-
           <div className="hero-section-info-content-actions">
-            <NavLink to={`/detail/${mediaType}/${mediaDetails.id}/play`}>
+            <NavLink
+              to={`/detail/${mediaType}/${mediaDetails.id}/play`}
+              style={{ display: `${mediaType === "tv" ? "none" : "flex"}` }}
+            >
               <svg
                 fill="currentColor"
                 aria-hidden="true"
@@ -138,7 +132,7 @@ const HeroSection = ({
           </div>
         </div>
       </div>
-    </section>
+    </div>
   );
 };
 

@@ -2,8 +2,9 @@ import React, { useEffect, useRef, useState } from "react";
 import SimpleBackdropCarousel from "../../Sliders/SimpleBackdropCarousel";
 import GrandPosterCarousel from "../../Sliders/GrandPosterCarousel/GrandPosterCarousel";
 import SimpleBackdropSkeleton from "../../Sliders/SimpleBackdropCarousel/components/SimpleBackdropSkeleton";
-import HeroSection from "../../HeroSection"; // ajuste o path conforme seu projeto
+import HeroSection from "../../HeroSection";
 import "./styles.css";
+import { image_path_500 } from "../../../utils/imagePaths";
 
 const LazyCarousel = ({
   title,
@@ -20,7 +21,7 @@ const LazyCarousel = ({
   const [hasLoadedOnce, setHasLoadedOnce] = useState(false);
   const sectionRef = useRef(null);
 
-  // Observador de visibilidade (lazy load)
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -36,7 +37,7 @@ const LazyCarousel = ({
     return () => observer.disconnect();
   }, []);
 
-  // Carregamento de dados
+
   useEffect(() => {
     if (!visible || hasLoadedOnce) return;
 
@@ -57,7 +58,7 @@ const LazyCarousel = ({
               (m) =>
                 new Promise((resolve) => {
                   const img = new Image();
-                  img.src = `https://image.tmdb.org/t/p/w500${
+                  img.src = `${image_path_500}${
                     m.poster_path || m.backdrop_path
                   }`;
                   img.onload = resolve;
@@ -115,7 +116,7 @@ const LazyCarousel = ({
   };
 
   return (
-    <section ref={sectionRef}>
+    <div ref={sectionRef}>
       {type !== "hero-section" && title && (
         <div className="section-title">
           <h4>{title}</h4>
@@ -123,7 +124,7 @@ const LazyCarousel = ({
       )}
 
       {renderCarousel()}
-    </section>
+    </div>
   );
 };
 

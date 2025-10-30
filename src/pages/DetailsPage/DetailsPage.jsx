@@ -30,7 +30,7 @@ const DetailsPage = () => {
   const detailsPage = t("details-page", { returnObjects: true });
 
   const language = i18next.language;
-  const { mediaType, id } = useParams();
+  const { mediaType, id, referrer } = useParams();
   const dispatch = useDispatch();
 
   const profileId = useSelector((state) => state.auth.currentProfile.id);
@@ -48,6 +48,7 @@ const DetailsPage = () => {
       setIsLoading(false);
     }
   };
+
 
   useEffect(() => {
     const fetchMediaData = async () => {
@@ -81,6 +82,7 @@ const DetailsPage = () => {
     fetchMediaData();
   }, [id, language, mediaType]);
 
+
   useEffect(() => {
     if (!media) return;
 
@@ -92,6 +94,7 @@ const DetailsPage = () => {
           language,
           originalLanguage: media.original_language,
         });
+
         if (response) setVideoKey(response);
       } catch (error) {
         console.error("Erro ao buscar videoKey:", error);
@@ -100,6 +103,14 @@ const DetailsPage = () => {
 
     fetchVideoKey();
   }, [mediaType, id, language, media]);
+
+
+  useEffect(() => {
+    if (referrer === "play" && videoKey) {
+      setShowPlayer(true);
+    }
+  }, [referrer, videoKey]);
+
 
   useEffect(() => {
     const handleScroll = () => {
@@ -117,6 +128,7 @@ const DetailsPage = () => {
 
   return (
     <>
+
       {showPlayer && videoKey && (
         <MediaPlayer propsKey={videoKey} onClose={() => setShowPlayer(false)} />
       )}
@@ -124,6 +136,7 @@ const DetailsPage = () => {
       <div className="details-page">
         <div className="details-page-container">
           <div className="details-page-content">
+
             <div
               className="details-page-media-background"
               style={{ opacity: bgOpacity }}
@@ -142,6 +155,7 @@ const DetailsPage = () => {
               </div>
               <div className="details-page-media-background-filter" />
             </div>
+
 
             <section className="explore-ui-main-container">
               <div className="explore-ui-main-content">

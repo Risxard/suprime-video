@@ -98,6 +98,8 @@ export const tmdbService = {
     const { data } = await api.get("/api/tmdb/collection", {
       params: { collection_id, language, page },
     });
+
+    console.log(data)
     return data;
   }
 };

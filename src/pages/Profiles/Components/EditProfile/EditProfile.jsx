@@ -80,14 +80,14 @@ const EditProfile = () => {
   const handleNameBlur = async () => {
     const trimmedName = name.trim();
 
-    // ❌ Nome vazio → erro e restaura o anterior
+
     if (!trimmedName) {
       setNameError(profilesPage.editProfile.errors["name-required"]);
       setName(previousName);
       return;
     }
 
-    // ✅ Nome diferente → atualiza
+
     if (trimmedName !== previousName) {
       try {
         await profileService.update(profileId, { "userInfoData.name": trimmedName });

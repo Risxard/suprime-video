@@ -109,11 +109,12 @@
     align-items: center;
     margin-top: 0;
     z-index: 1;
+    row-gap: 10px;
+    column-gap: 20px;
 }
 
 .hero-section-info-content-actions a {
     width: auto;
-    margin-right: 20px;
     opacity: 1;
     height: 40px;
     padding: 0px 17px;
@@ -193,9 +194,7 @@
 }
 
 @media (min-width: 768px) {
-    .hero-section-info-content-actions a {
-        margin-right: 20px;
-    }
+
 
 
     .hero-section-image img {

@@ -14,7 +14,7 @@ const EditProfiles = () => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
 
-  // ⚙️ Acesso ao namespace de tradução
+
   const profilesPage = t("profiles-page", { returnObjects: true });
 
   const profilesList = useSelector((state) => state.auth.profiles);

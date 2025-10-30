@@ -164,6 +164,7 @@ export const channelsConfig = {
         mobileImage: introPixarMobile,
         logo: introPixarLogo,
         carousels: [
+
             {
                 title: "Destaques",
                 type: "simple-backdrop",
@@ -194,27 +195,97 @@ export const channelsConfig = {
                     language: "pt-BR"
                 },
             },
+
+
             {
-                title: "Destaques",
-                type: "simple-backdrop",
+                title: "Toy Story",
+                type: "grand-poster",
+                card_size: "ss-card",
                 fetchFn: tmdbService.fetchList,
                 fetchParams: {
-                    list_id: 8567918,
+                    list_id: 8568116,
                     language: "pt-BR",
                     page: 1,
                 },
             },
             {
-                title: "Filmes",
-                type: "simple-backdrop",
+                title: "Garfinho Pergunta",
+                type: "grand-poster",
+                card_size: "ss-card",
                 fetchFn: tmdbService.fetchList,
                 fetchParams: {
-                    list_id: 8567910,
+                    list_id: 8568113,
+                    language: "pt-BR",
+                    page: 1,
+                },
+            },
+            {
+                title: "Coleção Os incríveis",
+                type: "grand-poster",
+                card_size: "ss-card",
+                fetchFn: tmdbService.fetchList,
+                fetchParams: {
+                    list_id: 8567971,
+                    language: "pt-BR",
+                    page: 1,
+                },
+            },
+            {
+                title: "Coleção Carros",
+                type: "grand-poster",
+                card_size: "ss-card",
+                fetchFn: tmdbService.fetchList,
+                fetchParams: {
+                    list_id: 8567975,
+                    language: "pt-BR",
+                    page: 1,
+                },
+            },
+            {
+                title: "Curtas",
+                type: "grand-poster",
+                card_size: "ss-card",
+                fetchFn: tmdbService.fetchList,
+                fetchParams: {
+                    list_id: 8567969,
+                    language: "pt-BR",
+                    page: 1,
+                },
+            },
+            {
+                title: "Originais",
+                type: "grand-poster",
+                card_size: "ss-card",
+                fetchFn: tmdbService.fetchList,
+                fetchParams: {
+                    list_id: 8568111,
                     language: "pt-BR",
                     page: 1,
                 },
             },
 
+            {
+                title: "Lembranças",
+                type: "grand-poster",
+                card_size: "ss-card",
+                fetchFn: tmdbService.fetchList,
+                fetchParams: {
+                    list_id: 8568107,
+                    language: "pt-BR",
+                    page: 1,
+                },
+            },
+            {
+                title: "Feras e Monstros",
+                type: "grand-poster",
+                card_size: "ss-card",
+                fetchFn: tmdbService.fetchList,
+                fetchParams: {
+                    list_id: 8568128,
+                    language: "pt-BR",
+                    page: 1,
+                },
+            },
         ],
     },
 
@@ -226,25 +297,120 @@ export const channelsConfig = {
         logo: introMarvelLogo,
         carousels: [
             {
-                title: "Heróis em Destaque",
+                title: "Destaques",
                 type: "simple-backdrop",
-                fetchFn: tmdbService.fetchTrending,
+                fetchFn: tmdbService.fetchList,
                 fetchParams: {
-                    timeWindow: "week",
-                    pageType: "movie",
+                    list_id: 8568143,
                     language: "pt-BR",
+                    page: 1,
                 },
             },
             {
-                title: "Filmes do Universo Marvel",
-                type: "grand-poster",
-                fetchFn: tmdbService.fetchRecommendations,
+                title: "UCM: Saga do Infinito",
+                type: "simple-backdrop",
+                fetchFn: tmdbService.fetchList,
                 fetchParams: {
-                    mediaType: "movie",
-                    mediaId: 299534,
+                    list_id: 8568169,
                     language: "pt-BR",
+                    page: 1,
                 },
-                top10mode: true,
+            },
+            {
+                title: "UCM: Saga do Multiverso",
+                type: "simple-backdrop",
+                fetchFn: tmdbService.fetchList,
+                fetchParams: {
+                    list_id: 8568168,
+                    language: "pt-BR",
+                    page: 1,
+                },
+            },
+            {
+                title: "Filmes",
+                type: "hero-section",
+                fetchFn: tmdbService.fetchMediaDetails,
+                fetchParams: {
+                    mediaType: "tv",
+                    mediaId: 138505,
+                    language: "pt-BR"
+                },
+            },
+            {
+                title: "Aventuras Fantásticas",
+                type: "simple-backdrop",
+                fetchFn: tmdbService.fetchList,
+                fetchParams: {
+                    list_id: 8568160,
+                    language: "pt-BR",
+                    page: 1,
+                },
+            },
+            {
+                title: "Monstros da Marvel",
+                type: "grand-poster",
+                card_size: "sm-card",
+                fetchFn: tmdbService.fetchList,
+                fetchParams: {
+                    list_id: 8568154,
+                    language: "pt-BR",
+                    page: 1,
+                },
+            },
+            {
+                title: "Os Defensores",
+                type: "grand-poster",
+                card_size: "ss-card",
+                fetchFn: tmdbService.fetchList,
+                fetchParams: {
+                    list_id: 8568155,
+                    language: "pt-BR",
+                    page: 1,
+                },
+            },
+            {
+                title: "Com personagens de Thunderbolts*",
+                type: "grand-poster",
+                card_size: "ss-card",
+                fetchFn: tmdbService.fetchList,
+                fetchParams: {
+                    list_id: 8568157,
+                    language: "pt-BR",
+                    page: 1,
+                },
+            },
+            {
+                title: "Universo Wakanda",
+                type: "grand-poster",
+                card_size: "ss-card",
+                fetchFn: tmdbService.fetchList,
+                fetchParams: {
+                    list_id: 8568159,
+                    language: "pt-BR",
+                    page: 1,
+                },
+            },
+            {
+                title: "Sam Wilson: Capitão América",
+                type: "grand-poster",
+                card_size: "ss-card",
+                fetchFn: tmdbService.fetchList,
+                fetchParams: {
+                    list_id: 8568166,
+                    language: "pt-BR",
+                    page: 1,
+                },
+            },
+            {
+                title: "UCM: Linha do Tempo dos Filmes",
+                type: "grand-poster",
+                card_size: "ss-card",
+                fetchFn: tmdbService.fetchList,
+                fetchParams: {
+                    list_id: 8568171,
+                    language: "pt-BR",
+                    page: 1,
+                },
             },
         ],
     },
@@ -257,26 +423,72 @@ export const channelsConfig = {
         logo: introStarWarsLogo,
         carousels: [
             {
-                title: "A Galáxia em Destaque",
-                type: "simple-backdrop",
-                fetchFn: tmdbService.fetchTrending,
+                title: "Originais",
+                type: "grand-poster",
+                card_size: "ss-card",
+                fetchFn: tmdbService.fetchList,
                 fetchParams: {
-                    timeWindow: "week",
-                    pageType: "movie",
+                    list_id: 8568180,
                     language: "pt-BR",
+                    page: 1,
                 },
             },
             {
-                title: "Saga Star Wars",
+                title: "Filmes",
                 type: "grand-poster",
-                fetchFn: tmdbService.fetchRecommendations,
+                card_size: "ss-card",
+                fetchFn: tmdbService.fetchList,
                 fetchParams: {
-                    mediaType: "movie",
-                    mediaId: 181812,
+                    list_id: 8568181,
                     language: "pt-BR",
+                    page: 1,
                 },
-                top10mode: true,
             },
+            {
+                title: "Filmes",
+                type: "hero-section",
+                fetchFn: tmdbService.fetchMediaDetails,
+                fetchParams: {
+                    mediaType: "tv",
+                    mediaId: 114479,
+                    language: "pt-BR"
+                },
+            },
+
+            {
+                title: "Séries e Especiais",
+                type: "grand-poster",
+                card_size: "ss-card",
+                fetchFn: tmdbService.fetchList,
+                fetchParams: {
+                    list_id: 8568187,
+                    language: "pt-BR",
+                    page: 1,
+                },
+            },
+            {
+                title: "Star Wars em Ordem Cronológica",
+                type: "grand-poster",
+                card_size: "ss-card",
+                fetchFn: tmdbService.fetchList,
+                fetchParams: {
+                    list_id: 8568193,
+                    language: "pt-BR",
+                    page: 1,
+                },
+            },
+            {
+                title: "Animações",
+                type: "grand-poster",
+                card_size: "ss-card",
+                fetchFn: tmdbService.fetchList,
+                fetchParams: {
+                    list_id: 8568190,
+                    language: "pt-BR",
+                    page: 1,
+                },
+            },
+
         ],
     },
 
@@ -289,7 +501,8 @@ export const channelsConfig = {
         carousels: [
             {
                 title: "Explorando o Mundo",
-                type: "simple-backdrop",
+                type: "grand-poster",
+                card_size: "ss-card",
                 fetchFn: tmdbService.fetchTrending,
                 fetchParams: {
                     timeWindow: "week",
@@ -300,6 +513,7 @@ export const channelsConfig = {
             {
                 title: "Documentários em Destaque",
                 type: "grand-poster",
+                card_size: "ss-card",
                 fetchFn: tmdbService.fetchRecommendations,
                 fetchParams: {
                     mediaType: "tv",
