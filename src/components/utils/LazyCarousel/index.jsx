@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import { image_path_500 } from "../../../utils/imagePaths";
 import "./styles.css";
 
 const LazyCarousel = ({
@@ -66,7 +67,21 @@ const LazyCarousel = ({
             ? 15
             : 20;
 
-        setMovies(items.slice(0, computedLimit));
+        const limited = items.slice(0, computedLimit);
+
+        await Promise.all(
+          limited.map(
+            (m) =>
+              new Promise((resolve) => {
+                const img = new Image();
+                img.src = `${image_path_500}${m.backdrop_path || m.poster_path || ""}`;
+                img.onload = resolve;
+                img.onerror = resolve;
+              })
+          )
+        );
+
+        setMovies(limited);
         setHasLoadedOnce(true);
       } catch (err) {
         console.error("Erro ao buscar dados:", err);
@@ -123,7 +138,7 @@ const LazyCarousel = ({
             </div>
           )}
           <CarouselComponent
-            movies={top10mode ? movies.slice(0, 10) : movies}
+            movies={movies}
             top10mode={top10mode}
             card_size={card_size}
             language={fetchParams.language}

@@ -16,47 +16,43 @@ const GrandPosterCarouselItem = ({
 }) => {
   const [posterAndLogo, setPosterAndLogo] = useState({});
   const [isLoaded, setIsLoaded] = useState(false);
-  const [posterPath, setPosterPath] = useState("");
 
   useEffect(() => {
-    const fetchPosterAndLogoData = async () => {
-      if (!movie?.id) return;
+    const fetchLogo = async () => {
+      if (!movie?.id || card_size !== "") return;
 
       try {
-        const langToUse = card_size === "" ? "pt-BR" : language || "pt-BR";
-
         const res = await tmdbService.fetchPosterAndLogo({
           mediaId: movie.id,
           mediaType: movie.media_type || "movie",
-          language: langToUse,
+          language: language || "pt-BR",
           originalLanguage: movie.original_language || "en",
         });
-
         setPosterAndLogo(res);
-
-        if (res?.poster?.file_path) {
-          setPosterPath(`${image_path_500}${res.poster.file_path}`);
-        } else {
-          setPosterPath(""); 
-        }
       } catch (err) {
-        console.error("Erro ao buscar logo/poster:", err);
-        setPosterPath("");
+        console.error("Erro ao buscar logo TMDB:", err);
       }
     };
 
-    fetchPosterAndLogoData();
+    if (movie && language) {
+      fetchLogo();
+    }
   }, [movie, language, card_size]);
 
   if (!movie) return null;
 
-  const release_date = movie?.release_date || movie?.first_air_date || "";
-  const genreNames =
-    (
-      movie.genre_ids?.map((id) =>
-        genreConverter(id, language, movie.media_type || "movie")
-      ) || []
-    ).slice(0, 3);
+  const release_date = movie?.release_date || movie?.first_air_date;
+  const genreNames = (
+    movie.genre_ids?.map((id) =>
+      genreConverter(id, language, movie.media_type || "movie")
+    ) || []
+  ).slice(0, 3);
+
+  const posterSrc = card_size
+    ? `${image_path_500}${movie.poster_path}`
+    : `${image_path_500}${
+        posterAndLogo?.poster?.file_path || movie.poster_path
+      }`;
 
   return (
     <div className="grandPoster-carousel-item">
@@ -65,24 +61,24 @@ const GrandPosterCarouselItem = ({
           <div className="grandPoster-carousel-item-image">
             {top10mode && <CardLabel topNumber={topNumber} />}
 
-            {posterPath && (
-              <img
-                src={posterPath}
-                alt={movie.title || movie.name || ""}
-                className={`grandPoster-image ${card_size} ${
-                  isLoaded ? "loaded" : "loading"
-                }`}
-                onLoad={() => setIsLoaded(true)}
-                loading="lazy"
-              />
-            )}
+            <img
+              src={posterSrc}
+              alt={movie.title || movie.name || ""}
+              className={`grandPoster-image ${card_size} ${
+                isLoaded ? "loaded" : "loading"
+              }`}
+              onLoad={() => setIsLoaded(true)}
+              loading="lazy"
+            />
 
             {card_size === "" && (
               <div className="grandPoster-carousel-item-info">
                 <div className="grandPoster-carousel-item-info-logo">
-                  {posterAndLogo?.logo?.file_path ? (
+                  {posterAndLogo?.logo?.file_path &&
+                  (posterAndLogo?.poster?.iso_639_1 === "xx" ||
+                    posterAndLogo?.poster?.iso_639_1 == null) ? (
                     <img
-                      src={`${image_path_342}${posterAndLogo.logo.file_path}`}
+                      src={`${image_path_342}${posterAndLogo?.logo?.file_path}`}
                       alt={`${movie.title || movie.name} logo`}
                     />
                   ) : (
@@ -98,6 +94,7 @@ const GrandPosterCarouselItem = ({
                     id={movie.id}
                     mediaType={movie.media_type}
                   />
+
                   <span className="grandPoster-carousel-text-content">
                     {release_date &&
                       `${dateConverter(release_date)} ${
