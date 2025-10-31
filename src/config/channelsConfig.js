@@ -1,10 +1,17 @@
 import { tmdbService } from "../services/tmdb/tmdbServices";
 
+import GrandPosterCarousel from "../components/Sliders/GrandPosterCarousel/GrandPosterCarousel";
+import SimpleBackdropCarousel from "../components/Sliders/SimpleBackdropCarousel";
+import HeroSection from "../components/HeroSection";
+
+import PosterCarouselSkeleton from "../components/Sliders/GrandPosterCarousel/components/PosterCarouselSkeleton";
+import SimpleBackdropSkeleton from "../components/Sliders/SimpleBackdropCarousel/components/SimpleBackdropSkeleton";
+import HeroSectionSkeleton from "../components/HeroSection/components/HeroSectionSkeleton";
+
 import disneyVideo from "../assets/channels/disney/disneyVideo.mp4";
 import introDisneyDesktop from "../assets/channels/disney/introDisneyDesktop.webp";
 import introDisneyMobile from "../assets/channels/disney/introDisneyMobile.webp";
 import introDisneyLogo from "../assets/channels/disney/introDisneyLogo.webp";
-
 
 import pixarVideo from "../assets/channels/pixar/pixarVideo.mp4";
 import introPixarDesktop from "../assets/channels/pixar/introPixarDesktop.webp";
@@ -29,6 +36,22 @@ import introNationalDesktop from "../assets/channels/national/introNationalDeskt
 import introNationalMobile from "../assets/channels/national/introNationalMobile.webp";
 import introNationalLogo from "../assets/channels/national/introNationalLogo.webp";
 
+
+const carouselTypeMap = {
+    "grand-poster": {
+        component: GrandPosterCarousel,
+        skeleton: PosterCarouselSkeleton,
+    },
+    "simple-backdrop": {
+        component: SimpleBackdropCarousel,
+        skeleton: SimpleBackdropSkeleton,
+    },
+    "hero-section": {
+        component: HeroSection,
+        skeleton: HeroSectionSkeleton,
+    },
+};
+
 export const channelsConfig = {
     disney: {
         name: "Disney",
@@ -40,6 +63,8 @@ export const channelsConfig = {
             {
                 title: "Destaques",
                 type: "simple-backdrop",
+                component: SimpleBackdropCarousel,
+                skeleton: SimpleBackdropSkeleton,
                 fetchFn: tmdbService.fetchList,
                 fetchParams: {
                     list_id: 8567891,
@@ -50,6 +75,8 @@ export const channelsConfig = {
             {
                 title: "Princesas",
                 type: "simple-backdrop",
+                component: SimpleBackdropCarousel,
+                skeleton: SimpleBackdropSkeleton,
                 fetchFn: tmdbService.fetchList,
                 fetchParams: {
                     list_id: 8567844,
@@ -60,6 +87,8 @@ export const channelsConfig = {
             {
                 title: "Feras e Monstros",
                 type: "grand-poster",
+                component: GrandPosterCarousel,
+                skeleton: PosterCarouselSkeleton,
                 card_size: "sm-card",
                 fetchFn: tmdbService.fetchList,
                 fetchParams: {
@@ -71,6 +100,8 @@ export const channelsConfig = {
             {
                 title: "Séries da disney",
                 type: "simple-backdrop",
+                component: SimpleBackdropCarousel,
+                skeleton: SimpleBackdropSkeleton,
                 fetchFn: tmdbService.fetchList,
                 fetchParams: {
                     list_id: 8567896,
@@ -81,6 +112,8 @@ export const channelsConfig = {
             {
                 title: "Filmes em Live-Action",
                 type: "grand-poster",
+                component: GrandPosterCarousel,
+                skeleton: PosterCarouselSkeleton,
                 card_size: "ss-card",
                 fetchFn: tmdbService.fetchList,
                 fetchParams: {
@@ -92,6 +125,8 @@ export const channelsConfig = {
             {
                 title: "Clássicos",
                 type: "simple-backdrop",
+                component: SimpleBackdropCarousel,
+                skeleton: SimpleBackdropSkeleton,
                 fetchFn: tmdbService.fetchList,
                 fetchParams: {
                     list_id: 338,
@@ -102,6 +137,8 @@ export const channelsConfig = {
             {
                 title: "Era uma Vez...",
                 type: "grand-poster",
+                component: GrandPosterCarousel,
+                skeleton: PosterCarouselSkeleton,
                 card_size: "ss-card",
                 fetchFn: tmdbService.fetchList,
                 fetchParams: {
@@ -113,6 +150,8 @@ export const channelsConfig = {
             {
                 title: "Mickey e Seus Amigos",
                 type: "grand-poster",
+                component: GrandPosterCarousel,
+                skeleton: PosterCarouselSkeleton,
                 card_size: "ss-card",
                 fetchFn: tmdbService.fetchList,
                 fetchParams: {
@@ -124,6 +163,8 @@ export const channelsConfig = {
             {
                 title: "Animações classicas",
                 type: "grand-poster",
+                component: GrandPosterCarousel,
+                skeleton: PosterCarouselSkeleton,
                 card_size: "ss-card",
                 fetchFn: tmdbService.fetchList,
                 fetchParams: {
@@ -135,6 +176,8 @@ export const channelsConfig = {
             {
                 title: "Lilo e Stitch",
                 type: "grand-poster",
+                component: GrandPosterCarousel,
+                skeleton: PosterCarouselSkeleton,
                 card_size: "ss-card",
                 fetchFn: tmdbService.fetchList,
                 fetchParams: {
@@ -146,6 +189,8 @@ export const channelsConfig = {
             {
                 title: "Coleção Buddies",
                 type: "grand-poster",
+                component: GrandPosterCarousel,
+                skeleton: PosterCarouselSkeleton,
                 card_size: "ss-card",
                 fetchFn: tmdbService.fetchCollection,
                 fetchParams: {
@@ -168,6 +213,8 @@ export const channelsConfig = {
             {
                 title: "Destaques",
                 type: "simple-backdrop",
+                component: SimpleBackdropCarousel,
+                skeleton: SimpleBackdropSkeleton,
                 fetchFn: tmdbService.fetchList,
                 fetchParams: {
                     list_id: 8567918,
@@ -178,6 +225,8 @@ export const channelsConfig = {
             {
                 title: "Filmes",
                 type: "simple-backdrop",
+                component: SimpleBackdropCarousel,
+                skeleton: SimpleBackdropSkeleton,
                 fetchFn: tmdbService.fetchList,
                 fetchParams: {
                     list_id: 8567910,
@@ -186,8 +235,9 @@ export const channelsConfig = {
                 },
             },
             {
-                title: "Filmes",
                 type: "hero-section",
+                component: HeroSection,
+                skeleton: HeroSectionSkeleton,
                 fetchFn: tmdbService.fetchMediaDetails,
                 fetchParams: {
                     mediaType: "movie",
@@ -200,6 +250,8 @@ export const channelsConfig = {
             {
                 title: "Toy Story",
                 type: "grand-poster",
+                component: GrandPosterCarousel,
+                skeleton: PosterCarouselSkeleton,
                 card_size: "ss-card",
                 fetchFn: tmdbService.fetchList,
                 fetchParams: {
@@ -211,6 +263,8 @@ export const channelsConfig = {
             {
                 title: "Garfinho Pergunta",
                 type: "grand-poster",
+                component: GrandPosterCarousel,
+                skeleton: PosterCarouselSkeleton,
                 card_size: "ss-card",
                 fetchFn: tmdbService.fetchList,
                 fetchParams: {
@@ -222,6 +276,8 @@ export const channelsConfig = {
             {
                 title: "Coleção Os incríveis",
                 type: "grand-poster",
+                component: GrandPosterCarousel,
+                skeleton: PosterCarouselSkeleton,
                 card_size: "ss-card",
                 fetchFn: tmdbService.fetchList,
                 fetchParams: {
@@ -233,6 +289,8 @@ export const channelsConfig = {
             {
                 title: "Coleção Carros",
                 type: "grand-poster",
+                component: GrandPosterCarousel,
+                skeleton: PosterCarouselSkeleton,
                 card_size: "ss-card",
                 fetchFn: tmdbService.fetchList,
                 fetchParams: {
@@ -244,6 +302,8 @@ export const channelsConfig = {
             {
                 title: "Curtas",
                 type: "grand-poster",
+                component: GrandPosterCarousel,
+                skeleton: PosterCarouselSkeleton,
                 card_size: "ss-card",
                 fetchFn: tmdbService.fetchList,
                 fetchParams: {
@@ -255,6 +315,8 @@ export const channelsConfig = {
             {
                 title: "Originais",
                 type: "grand-poster",
+                component: GrandPosterCarousel,
+                skeleton: PosterCarouselSkeleton,
                 card_size: "ss-card",
                 fetchFn: tmdbService.fetchList,
                 fetchParams: {
@@ -267,6 +329,8 @@ export const channelsConfig = {
             {
                 title: "Lembranças",
                 type: "grand-poster",
+                component: GrandPosterCarousel,
+                skeleton: PosterCarouselSkeleton,
                 card_size: "ss-card",
                 fetchFn: tmdbService.fetchList,
                 fetchParams: {
@@ -278,6 +342,8 @@ export const channelsConfig = {
             {
                 title: "Feras e Monstros",
                 type: "grand-poster",
+                component: GrandPosterCarousel,
+                skeleton: PosterCarouselSkeleton,
                 card_size: "ss-card",
                 fetchFn: tmdbService.fetchList,
                 fetchParams: {
@@ -299,6 +365,8 @@ export const channelsConfig = {
             {
                 title: "Destaques",
                 type: "simple-backdrop",
+                component: SimpleBackdropCarousel,
+                skeleton: SimpleBackdropSkeleton,
                 fetchFn: tmdbService.fetchList,
                 fetchParams: {
                     list_id: 8568143,
@@ -309,6 +377,8 @@ export const channelsConfig = {
             {
                 title: "UCM: Saga do Infinito",
                 type: "simple-backdrop",
+                component: SimpleBackdropCarousel,
+                skeleton: SimpleBackdropSkeleton,
                 fetchFn: tmdbService.fetchList,
                 fetchParams: {
                     list_id: 8568169,
@@ -319,6 +389,8 @@ export const channelsConfig = {
             {
                 title: "UCM: Saga do Multiverso",
                 type: "simple-backdrop",
+                component: SimpleBackdropCarousel,
+                skeleton: SimpleBackdropSkeleton,
                 fetchFn: tmdbService.fetchList,
                 fetchParams: {
                     list_id: 8568168,
@@ -327,8 +399,9 @@ export const channelsConfig = {
                 },
             },
             {
-                title: "Filmes",
                 type: "hero-section",
+                component: HeroSection,
+                skeleton: HeroSectionSkeleton,
                 fetchFn: tmdbService.fetchMediaDetails,
                 fetchParams: {
                     mediaType: "tv",
@@ -339,6 +412,8 @@ export const channelsConfig = {
             {
                 title: "Aventuras Fantásticas",
                 type: "simple-backdrop",
+                component: SimpleBackdropCarousel,
+                skeleton: SimpleBackdropSkeleton,
                 fetchFn: tmdbService.fetchList,
                 fetchParams: {
                     list_id: 8568160,
@@ -349,6 +424,8 @@ export const channelsConfig = {
             {
                 title: "Monstros da Marvel",
                 type: "grand-poster",
+                component: GrandPosterCarousel,
+                skeleton: PosterCarouselSkeleton,
                 card_size: "sm-card",
                 fetchFn: tmdbService.fetchList,
                 fetchParams: {
@@ -360,6 +437,8 @@ export const channelsConfig = {
             {
                 title: "Os Defensores",
                 type: "grand-poster",
+                component: GrandPosterCarousel,
+                skeleton: PosterCarouselSkeleton,
                 card_size: "ss-card",
                 fetchFn: tmdbService.fetchList,
                 fetchParams: {
@@ -371,6 +450,8 @@ export const channelsConfig = {
             {
                 title: "Com personagens de Thunderbolts*",
                 type: "grand-poster",
+                component: GrandPosterCarousel,
+                skeleton: PosterCarouselSkeleton,
                 card_size: "ss-card",
                 fetchFn: tmdbService.fetchList,
                 fetchParams: {
@@ -382,6 +463,8 @@ export const channelsConfig = {
             {
                 title: "Universo Wakanda",
                 type: "grand-poster",
+                component: GrandPosterCarousel,
+                skeleton: PosterCarouselSkeleton,
                 card_size: "ss-card",
                 fetchFn: tmdbService.fetchList,
                 fetchParams: {
@@ -393,6 +476,8 @@ export const channelsConfig = {
             {
                 title: "Sam Wilson: Capitão América",
                 type: "grand-poster",
+                component: GrandPosterCarousel,
+                skeleton: PosterCarouselSkeleton,
                 card_size: "ss-card",
                 fetchFn: tmdbService.fetchList,
                 fetchParams: {
@@ -404,6 +489,8 @@ export const channelsConfig = {
             {
                 title: "UCM: Linha do Tempo dos Filmes",
                 type: "grand-poster",
+                component: GrandPosterCarousel,
+                skeleton: PosterCarouselSkeleton,
                 card_size: "ss-card",
                 fetchFn: tmdbService.fetchList,
                 fetchParams: {
@@ -415,6 +502,8 @@ export const channelsConfig = {
             {
                 title: "Séries e Especiais da Marvel",
                 type: "grand-poster",
+                component: GrandPosterCarousel,
+                skeleton: PosterCarouselSkeleton,
                 card_size: "ss-card",
                 fetchFn: tmdbService.fetchList,
                 fetchParams: {
@@ -436,6 +525,8 @@ export const channelsConfig = {
             {
                 title: "Originais",
                 type: "grand-poster",
+                component: GrandPosterCarousel,
+                skeleton: PosterCarouselSkeleton,
                 card_size: "ss-card",
                 fetchFn: tmdbService.fetchList,
                 fetchParams: {
@@ -447,6 +538,8 @@ export const channelsConfig = {
             {
                 title: "Filmes",
                 type: "grand-poster",
+                component: GrandPosterCarousel,
+                skeleton: PosterCarouselSkeleton,
                 card_size: "ss-card",
                 fetchFn: tmdbService.fetchList,
                 fetchParams: {
@@ -456,8 +549,9 @@ export const channelsConfig = {
                 },
             },
             {
-                title: "Filmes",
                 type: "hero-section",
+                component: HeroSection,
+                skeleton: HeroSectionSkeleton,
                 fetchFn: tmdbService.fetchMediaDetails,
                 fetchParams: {
                     mediaType: "tv",
@@ -469,6 +563,8 @@ export const channelsConfig = {
             {
                 title: "Séries e Especiais",
                 type: "grand-poster",
+                component: GrandPosterCarousel,
+                skeleton: PosterCarouselSkeleton,
                 card_size: "ss-card",
                 fetchFn: tmdbService.fetchList,
                 fetchParams: {
@@ -480,6 +576,8 @@ export const channelsConfig = {
             {
                 title: "Star Wars em Ordem Cronológica",
                 type: "grand-poster",
+                component: GrandPosterCarousel,
+                skeleton: PosterCarouselSkeleton,
                 card_size: "ss-card",
                 fetchFn: tmdbService.fetchList,
                 fetchParams: {
@@ -491,6 +589,8 @@ export const channelsConfig = {
             {
                 title: "Animações",
                 type: "grand-poster",
+                component: GrandPosterCarousel,
+                skeleton: PosterCarouselSkeleton,
                 card_size: "ss-card",
                 fetchFn: tmdbService.fetchList,
                 fetchParams: {
@@ -513,6 +613,8 @@ export const channelsConfig = {
             {
                 title: "Explorando o Mundo",
                 type: "grand-poster",
+                component: GrandPosterCarousel,
+                skeleton: PosterCarouselSkeleton,
                 card_size: "ss-card",
                 fetchFn: tmdbService.fetchTrending,
                 fetchParams: {
@@ -524,6 +626,8 @@ export const channelsConfig = {
             {
                 title: "Documentários em Destaque",
                 type: "grand-poster",
+                component: GrandPosterCarousel,
+                skeleton: PosterCarouselSkeleton,
                 card_size: "ss-card",
                 fetchFn: tmdbService.fetchRecommendations,
                 fetchParams: {

@@ -227,6 +227,8 @@
 
     position: relative;
     z-index: 10;
+
+
 }
 
 .grandPoster-carousel-item-info-logo img {
@@ -236,6 +238,7 @@
     object-fit: contain;
     border-style: none;
     -webkit-font-smoothing: subpixel-antialiased;
+        aspect-ratio: 3 / 1;
 }
 
 

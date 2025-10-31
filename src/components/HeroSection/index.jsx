@@ -12,7 +12,7 @@ import { NavLink } from "react-router-dom";
 
 const HeroSection = ({
   mediaType = "movie",
-  mediaDetails,
+  movies,
   language = "pt-BR",
 }) => {
   const [posterAndLogo, setPosterAndLogo] = useState({});
@@ -29,13 +29,13 @@ const HeroSection = ({
 
   useEffect(() => {
     const fetchPosterAndLogo = async () => {
-      if (!mediaDetails?.id) return;
+      if (!movies?.id) return;
       try {
         const data = await tmdbService.fetchPosterAndLogo({
-          mediaId: mediaDetails.id,
+          mediaId: movies.id,
           mediaType,
           language,
-          originalLanguage: mediaDetails.original_language || "en",
+          originalLanguage: movies.original_language || "en",
         });
         setPosterAndLogo(data);
       } catch (error) {
@@ -44,19 +44,19 @@ const HeroSection = ({
     };
 
     fetchPosterAndLogo();
-  }, [mediaDetails, mediaType, language]);
+  }, [movies, mediaType, language]);
 
-  if (!mediaDetails) return null;
+  if (!movies) return null;
 
-  const title = mediaDetails.title || mediaDetails.name;
+  const title = movies.title || movies.name;
   const release_date =
-    mediaDetails.release_date || mediaDetails.first_air_date || "";
-  const genres = mediaDetails.genres || [];
-  const overview = mediaDetails.overview || "";
+    movies.release_date || movies.first_air_date || "";
+  const genres = movies.genres || [];
+  const overview = movies.overview || "";
 
   const logo_path = posterAndLogo?.logo?.file_path;
   const poster_path = posterAndLogo?.poster?.file_path;
-  const backdrop_path = mediaDetails.backdrop_path;
+  const backdrop_path = movies.backdrop_path;
 
   const genreNames = genres
     .map((genre) => genreConverter(genre.id, language, mediaType))
@@ -90,7 +90,7 @@ const HeroSection = ({
           <span className="hero-carousel-info-content-text-2">
             <MediaClass
               language={language}
-              id={mediaDetails.id}
+              id={movies.id}
               mediaType={mediaType}
             />
             <span className="text-2-span">
@@ -105,7 +105,7 @@ const HeroSection = ({
 
           <div className="hero-section-info-content-actions">
             <NavLink
-              to={`/detail/${mediaType}/${mediaDetails.id}/play`}
+              to={`/detail/${mediaType}/${movies.id}/play`}
               style={{ display: `${mediaType === "tv" ? "none" : "flex"}` }}
             >
               <svg
@@ -126,7 +126,7 @@ const HeroSection = ({
               Assistir
             </NavLink>
 
-            <NavLink to={`/detail/${mediaType}/${mediaDetails.id}`}>
+            <NavLink to={`/detail/${mediaType}/${movies.id}`}>
               Detalhes
             </NavLink>
           </div>

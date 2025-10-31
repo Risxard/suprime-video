@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { channelsConfig } from "../../config/channelsConfig";
-import LazyCarousel from "../../components/utils/LazyCarousel/LazyCarousel";
+import LazyCarousel from "../../components/utils/LazyCarousel/index.jsx";
 import ChannelIntro from "./components/ChannelIntro";
 import "./styles.css";
 import HeroSection from "../../components/HeroSection";
@@ -36,8 +36,10 @@ const ChannelsPage = () => {
             type={carousel.type}
             fetchFn={carousel.fetchFn}
             fetchParams={carousel.fetchParams}
-            top10mode={carousel.top10mode}
             card_size={carousel.card_size}
+            top10mode={carousel.top10mode}
+            component={carousel.component}
+            skeleton={carousel.skeleton}
           />
         ))}
       </section>

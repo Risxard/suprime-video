@@ -13,6 +13,7 @@ export const tmdbService = {
       params: { mediaType, mediaId, language },
     });
 
+
     return data;
   },
   

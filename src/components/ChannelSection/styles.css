@@ -3,6 +3,9 @@
     height: auto;
 }
 
+.channels-section.skeleton{
+    pointer-events: none;
+}
 
 .channels-group {
     align-items: start;
@@ -148,6 +151,9 @@
 
     z-index: 1;
 }
+
+
+
 
 @media (min-width: 768px) {
     .channels-group {

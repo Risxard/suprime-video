@@ -9,7 +9,7 @@
 .home-main-section{
     display: flex;
     flex-direction: column;
-
+    padding-top: var(--nav-height);
 }
 .feature-background{
     position: absolute;

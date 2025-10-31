@@ -196,7 +196,9 @@ const HeroCarousel = ({ mediasData }) => {
               cancelAutoPlay();
               scrollToIndex(index);
             }}
-          >•</button>
+          >
+            •
+          </button>
         ))}
       </div>
     </div>
