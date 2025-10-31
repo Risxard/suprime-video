@@ -5,6 +5,8 @@ import SimpleBackdropSkeleton from "../../Sliders/SimpleBackdropCarousel/compone
 import HeroSection from "../../HeroSection";
 import "./styles.css";
 import { image_path_500 } from "../../../utils/imagePaths";
+import PosterCarouselSkeleton from "../../Sliders/GrandPosterCarousel/components/PosterCarouselSkeleton";
+import HeroSectionSkeleton from "../../HeroSection/components/HeroSectionSkeleton";
 
 const LazyCarousel = ({
   title,
@@ -21,7 +23,6 @@ const LazyCarousel = ({
   const [hasLoadedOnce, setHasLoadedOnce] = useState(false);
   const sectionRef = useRef(null);
 
-
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -37,7 +38,6 @@ const LazyCarousel = ({
     return () => observer.disconnect();
   }, []);
 
-
   useEffect(() => {
     if (!visible || hasLoadedOnce) return;
 
@@ -51,7 +51,6 @@ const LazyCarousel = ({
         } else {
           const items = Array.isArray(data) ? data : data.results || [];
           const limited = items.slice(0, 20);
-
 
           await Promise.all(
             limited.map(
@@ -81,11 +80,11 @@ const LazyCarousel = ({
     fetchData();
   }, [visible, hasLoadedOnce, fetchFn, fetchParams, type]);
 
-
   const renderCarousel = () => {
     if (loading && !hasLoadedOnce) {
-      if (type === "hero-section") return null;
-      return <SimpleBackdropSkeleton />;
+      if (type === "grand-poster") return <PosterCarouselSkeleton card_size={card_size} />
+      if (type === "hero-section") return <HeroSectionSkeleton />
+      if (type === "simple-backdrop") return <SimpleBackdropSkeleton />
     }
 
     switch (type) {

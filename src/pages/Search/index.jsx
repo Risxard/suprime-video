@@ -126,17 +126,19 @@ const Search = () => {
           <SpinningLoading />
         ) : !debouncedSearch ? (
           <div className="set-group-search">
-            {/* <SectionBuilder
-              sectionTitle={trendingSection}
-              children={<SimpleBackdropCarousel movies={trending} />}
-            /> */}
+            <div className="search-carousel-container">
+              <div className="section-title">
+                <h4>{trendingSection}</h4>
+              </div>
+              <SimpleBackdropCarousel movies={trending} />
+            </div>
           </div>
         ) : filteredResults.length === 0 ? (
           <div className="search-not-found">
             <h2>{noResultsText}</h2>
           </div>
         ) : (
-          <SearchMediaList filteredMedias={filteredResults} />
+          <SearchMediaList medias={filteredResults} />
         )}
       </div>
 

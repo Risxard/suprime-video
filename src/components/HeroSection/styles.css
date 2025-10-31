@@ -8,7 +8,6 @@
     width: 100vw;
     background-color: #1E1F24;
     margin-left: calc(var(--inner-width) * -1);
-
 }
 
 .hero-section-background {

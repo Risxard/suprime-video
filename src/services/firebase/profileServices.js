@@ -64,8 +64,9 @@ export const profileService = {
                         "https://m.media-amazon.com/images/G/02/CerberusPrimeVideo-FN38FSBD/adult-2.png"
                 }
             },
-            watchlist: { movie: [], tv: [] }
+            watchlist: []
         };
+
 
         await setDoc(newDoc, profileData);
         return profileData;
@@ -106,14 +107,14 @@ export const profileService = {
 
         const profileRef = doc(db, "users", uid, "profiles", profileId);
         const snap = await getDoc(profileRef);
-        if (!snap.exists()) return { movie: [], tv: [] };
+        if (!snap.exists()) return [];
 
         const data = snap.data();
-        return data.watchlist || { movie: [], tv: [] };
+        return data.watchlist || [];
     },
 
 
-    updateWatchlist: async (profileId, { type, itemId, action }) => {
+    updateWatchlist: async (profileId, { itemId, mediaType, action }) => {
         const uid = auth.currentUser?.uid;
         if (!uid) throw new Error("Usuário não autenticado");
 
@@ -122,18 +123,50 @@ export const profileService = {
         if (!snap.exists()) throw new Error("Perfil não encontrado");
 
         const data = snap.data();
-        const currentList = data?.watchlist?.[type] || [];
-        const updatedList =
-            action === "add"
-                ? Array.from(new Set([...currentList, itemId]))
-                : currentList.filter((id) => id !== itemId);
 
-        await updateDoc(profileRef, {
-            [`watchlist.${type}`]: updatedList
-        });
+
+        let currentList = [];
+
+        if (Array.isArray(data.watchlist)) {
+
+            currentList = data.watchlist;
+        } else if (data.watchlist && typeof data.watchlist === "object") {
+
+            currentList = [
+                ...(data.watchlist.movie || []).map((id) => ({
+                    id,
+                    media_type: "movie",
+                })),
+                ...(data.watchlist.tv || []).map((id) => ({
+                    id,
+                    media_type: "tv",
+                })),
+            ];
+        }
+
+
+        let updatedList;
+
+        if (action === "add") {
+            const exists = currentList.some(
+                (item) => item.id === itemId && item.media_type === mediaType
+            );
+
+            updatedList = exists
+                ? currentList
+                : [...currentList, { id: itemId, media_type: mediaType }];
+        } else {
+            updatedList = currentList.filter(
+                (item) => !(item.id === itemId && item.media_type === mediaType)
+            );
+        }
+
+        await updateDoc(profileRef, { watchlist: updatedList });
 
         return { code: 200, message: "Watchlist atualizada com sucesso" };
-    }
+    },
+
+
 };
 
 
@@ -201,8 +234,8 @@ export const getWatchlist = async (profileId, dispatch) => {
 export const updateWatchlist = async (profileId, mediaType, mediaId, action, dispatch) => {
     try {
         await profileService.updateWatchlist(profileId, {
-            type: mediaType,
             itemId: mediaId,
+            mediaType,
             action
         });
 
@@ -215,6 +248,7 @@ export const updateWatchlist = async (profileId, mediaType, mediaId, action, dis
         return false;
     }
 };
+
 
 export const updateProfile = async (profileId, updatedPreferences) => {
     try {

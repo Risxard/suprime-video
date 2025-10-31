@@ -4,78 +4,63 @@ import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { tmdbService } from "../../services/tmdb/tmdbServices";
+import { profileService } from "../../services/firebase/profileServices";
 import SearchMediaList from "../Search/SearchMediaList/SearchMediaList";
 import LoadingComponent from "../../components/utils/LoadingComponent";
 
 const WatchListPage = () => {
-  const { filterId } = useParams();
-  const [medias, setMedias] = useState({ movies: [], tv: [] });
-  const [filterType, setFilterType] = useState(filterId);
   const [isLoading, setIsLoading] = useState(false);
+  const [medias, setMedias] = useState([]);
 
-  const watchlist = useSelector((state) => state.auth.watchList);
+  const profileId = useSelector((state) => state.auth.currentProfile?.id);
   const language = useSelector((state) => state.lang.language);
   const { t } = useTranslation();
 
-
   const title = t("watchlist-page.title");
-  const subtitle = t("watchlist-page.subtitle");
   const emptyTitle = t("watchlist-page.empty.title");
   const emptySubtitle = t("watchlist-page.empty.subtitle");
   const loadingText = t("watchlist-page.loading");
 
   useEffect(() => {
-    const fetchMedia = async () => {
+    const fetchWatchlistFromBackend = async () => {
+      if (!profileId) return;
       setIsLoading(true);
+
       try {
-        const fetchedMovies = watchlist.movie
-          ? await Promise.all(
-              watchlist.movie.map(async (id) => {
-                const data = await tmdbService.fetchMediaDetails({
-                  mediaType: "movie",
-                  mediaId: id,
-                  language,
-                });
-                return data;
-              })
-            )
-          : [];
+        const watchlist = await profileService.getWatchlist(profileId);
 
-        const fetchedTVShows = watchlist.tv
-          ? await Promise.all(
-              watchlist.tv.map(async (id) => {
-                const data = await tmdbService.fetchMediaDetails({
-                  mediaType: "tv",
-                  mediaId: id,
-                  language,
-                });
-                return data;
-              })
-            )
-          : [];
+        if (!Array.isArray(watchlist) || watchlist.length === 0) {
+          setMedias([]);
+          return;
+        }
 
-        setMedias({ movies: fetchedMovies, tv: fetchedTVShows });
-      } catch (err) {
-        console.error("Erro ao buscar watchlist:", err);
+        const fetched = await Promise.all(
+          watchlist.map(async (item) => {
+            try {
+              const data = await tmdbService.fetchMediaDetails({
+                mediaType: item.media_type,
+                mediaId: item.id,
+                language,
+              });
+              return { ...data, media_type: item.media_type };
+            } catch (err) {
+              console.error("Erro ao buscar item da watchlist:", err);
+              return null;
+            }
+          })
+        );
+
+        setMedias(fetched.filter(Boolean));
+      } catch (error) {
+        console.error("Erro ao buscar watchlist do backend:", error);
+        setMedias([]);
       } finally {
         setIsLoading(false);
       }
     };
 
-    if (watchlist) {
-      fetchMedia();
-    }
-  }, [watchlist, language]);
-
-  const movies = medias.movies;
-  const tv = medias.tv;
-
-  const filteredMedia =
-    filterType === "movies"
-      ? movies
-      : filterType === "tv"
-      ? tv
-      : [...movies, ...tv];
+    fetchWatchlistFromBackend();
+  }, [profileId, language]);
 
   return (
     <div className="watchlist-page">
@@ -83,20 +68,20 @@ const WatchListPage = () => {
 
       <div className="tablist-carousel-list-container">
         <div role="tablist" className="tablist-carousel-list">
-          <button className="active">{subtitle}</button>
+          <button>{t("watchlist-page.tabs.all")}</button>
         </div>
       </div>
 
       <div className="watchlist-content">
         {isLoading ? (
           <LoadingComponent text={loadingText} />
-        ) : filteredMedia.length === 0 ? (
+        ) : medias.length === 0 ? (
           <div className="watchlist-empty">
             <h3>{emptyTitle}</h3>
             <p>{emptySubtitle}</p>
           </div>
         ) : (
-          <SearchMediaList filteredMedias={filteredMedia} />
+          <SearchMediaList medias={medias} />
         )}
       </div>
     </div>

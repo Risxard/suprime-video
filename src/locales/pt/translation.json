@@ -334,7 +334,11 @@
   },
   "watchlist-page": {
     "title": "Minha Lista",
-    "subtitle": "Meus Filmes e Séries",
+    "tabs": {
+      "all": "Meus Filmes e Séries",
+      "movies": "Minhas Séries",
+      "tv": "Meus Filmes"
+    },
     "empty": {
       "title": "Você ainda não adicionou nada",
       "subtitle": "Coloque os títulos que você quer assistir na Minha Lista."
@@ -347,7 +351,7 @@
     "loading": "Carregando títulos..."
   },
   "searchPage": {
-    "placeholder": "Pesquise por título, gênero, time ou liga",
+    "placeholder": "Pesquise por título",
     "buttons": {
       "clear": "Limpar busca",
       "search": "Buscar"

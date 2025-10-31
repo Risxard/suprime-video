@@ -412,6 +412,17 @@ export const channelsConfig = {
                     page: 1,
                 },
             },
+            {
+                title: "Séries e Especiais da Marvel",
+                type: "grand-poster",
+                card_size: "ss-card",
+                fetchFn: tmdbService.fetchList,
+                fetchParams: {
+                    list_id: 8568331,
+                    language: "pt-BR",
+                    page: 1,
+                },
+            },
         ],
     },
 

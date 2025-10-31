@@ -5,14 +5,13 @@ import { useIntersectionObserver } from "../../../hooks/IntersectionObserver/use
 
 import { setSectionTitle } from "../../../functions/Converter";
 
-const SearchMediaList = ({ filteredMedias }) => {
-  
+const SearchMediaList = ({ medias }) => {
   return (
     <div>
-      {filteredMedias.length > 0 ? (
+      {medias.length > 0 ? (
         <div className="column-container-items">
           <div className="search-card-list">
-            {filteredMedias.map((array) => (
+            {medias.map((array) => (
               <SearchItem key={array.id} media={array} />
             ))}
           </div>
