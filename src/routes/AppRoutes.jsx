@@ -7,9 +7,7 @@ import {
   DetailsPage,
   ProfilesPage,
   WatchlistPage,
-  SettingsPage,
   ErrorPage,
-  FortgetPasswordPage,
   PageTest,
   LandingPage,
   AccountPage,
@@ -36,6 +34,7 @@ import PopUpMessage from "../components/PopUpMessage/index.jsx";
 import ChangePassword from "../pages/Identity/components/ChangePassword.jsx";
 import DeleteAccount from "../pages/Identity/components/DeleteAccount.jsx";
 import ChannelsPage from "../pages/ChannelsPage/index.jsx";
+import ScrollToTop from "../components/utils/ScrollToTop.jsx";
 
 const AppRoutes = () => {
   const { user, token, currentProfile, loading } = useSelector(
@@ -205,6 +204,7 @@ const AppRoutes = () => {
         </Route>
       </Routes>
       <PopUpMessage />
+      <ScrollToTop />
     </BrowserRouter>
   );
 };

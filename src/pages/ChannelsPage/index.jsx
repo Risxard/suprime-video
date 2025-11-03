@@ -1,10 +1,9 @@
 import React, { useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { channelsConfig } from "../../config/channelsConfig";
-import LazyCarousel from "../../components/utils/LazyCarousel/index.jsx";
 import ChannelIntro from "./components/ChannelIntro";
+import LazySection from "../../components/utils/LazySection";
 import "./styles.css";
-import HeroSection from "../../components/HeroSection";
 
 const ChannelsPage = () => {
   const { channelId } = useParams();
@@ -12,9 +11,7 @@ const ChannelsPage = () => {
   const config = channelsConfig[channelId];
 
   useEffect(() => {
-    if (!config) {
-      navigate("/404", { replace: true });
-    }
+    if (!config) navigate("/404", { replace: true });
   }, [config, navigate]);
 
   if (!config) return null;
@@ -28,21 +25,15 @@ const ChannelsPage = () => {
         logo={config.logo}
       />
 
-      <section className="channels-page-content">
-        {config.carousels.map((carousel, idx) => (
-          <LazyCarousel
-            key={idx}
-            title={carousel.title}
-            type={carousel.type}
-            fetchFn={carousel.fetchFn}
-            fetchParams={carousel.fetchParams}
-            card_size={carousel.card_size}
-            top10mode={carousel.top10mode}
-            component={carousel.component}
-            skeleton={carousel.skeleton}
+      <main className="channels-page-content">
+        {config.sections.map((section, idx) => (
+          <LazySection
+            key={`${channelId}-section-${idx}`}
+            section={section}
+            index={idx}
           />
         ))}
-      </section>
+      </main>
     </div>
   );
 };

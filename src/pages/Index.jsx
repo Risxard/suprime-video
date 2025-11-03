@@ -7,7 +7,6 @@ export { default as ProfilesPage } from "./Profiles/Index";
 export { default as WatchlistPage } from "./WatchListPage/index";
 export { default as SettingsPage } from "./Settings/index";
 export { default as ErrorPage } from "./ErrorPage/index";
-export { default as FortgetPasswordPage } from "./FortgotPasswordPage/index";
 export { default as PageTest } from "./Pagetest/index";
 export { default as LandingPage } from "./LandingPage/index";
 export { default as AccountPage } from "./AccountPage/index";
