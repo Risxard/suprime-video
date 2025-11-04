@@ -1,7 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import {
   setCurrentProfile,
-  setCurrentWatchlist,
 } from "../../../store/auth/index.js";
 
 import { useNavigate } from "react-router-dom";
@@ -25,7 +24,6 @@ const EditProfiles = () => {
 
   const handleSetUserProfile = (profile) => {
     dispatch(setCurrentProfile(profile));
-    dispatch(setCurrentWatchlist(profile.watchlist));
     i18next.changeLanguage(profile.userInfoData.language);
     navigate("/");
   };

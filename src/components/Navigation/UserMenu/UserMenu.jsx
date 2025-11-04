@@ -9,7 +9,6 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   logout,
   setCurrentProfile,
-  setCurrentWatchlist,
 } from "../../../store/auth/index.js";
 import { isMobile } from "react-device-detect";
 import { useTranslation } from "react-i18next";
@@ -49,7 +48,6 @@ const UserMenuChildren = ({ currentProfileData }) => {
 
   const handleSetUserProfile = (profile) => {
     dispatch(setCurrentProfile(profile));
-    dispatch(setCurrentWatchlist(profile.watchlist));
     i18next.changeLanguage(profile.userInfoData.language);
     window.location.reload();
   };
@@ -60,7 +58,6 @@ const UserMenuChildren = ({ currentProfileData }) => {
       dispatch(logout());
       localStorage.removeItem("@AuthSV:profiles");
       localStorage.removeItem("@AuthSV:currentProfile");
-      localStorage.removeItem("@AuthSV:watchlist");
       navigate("/login");
     } catch (error) {
       console.error("Erro ao sair:", error);

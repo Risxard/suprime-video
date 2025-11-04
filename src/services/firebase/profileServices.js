@@ -9,7 +9,6 @@ import {
 } from "firebase/firestore";
 import {
     setCurrentProfile,
-    setCurrentWatchlist,
     userProfiles
 } from "../../store/auth/index.js";
 import { sendEmailVerification, sendPasswordResetEmail, } from "firebase/auth";
@@ -223,7 +222,6 @@ export const getWatchlist = async (profileId, dispatch) => {
         const data = await profileService.getWatchlist(profileId);
         if (!data) return false;
 
-        dispatch(setCurrentWatchlist(data));
         return data;
     } catch (error) {
         console.error(error);

@@ -134,6 +134,10 @@ const EditProfile = () => {
 
   if (loading) return <LoadingPage />;
 
+ 
+  const urr = `richardsonsouza.com/${profile.userInfoData?.img?.url}`
+
+  console.log(urr)
   return (
     <>
       <NavProfiles

@@ -1,7 +1,6 @@
 import { useDispatch } from "react-redux";
 import {
   setCurrentProfile,
-  setCurrentWatchlist,
   userProfiles,
 } from "../../../store/auth/index.js";
 
@@ -33,7 +32,6 @@ const SelectProfile = () => {
           const savedProfile = allProfiles[0];
           setCurrentLocalProfile(savedProfile);
           dispatch(setCurrentProfile(savedProfile));
-          dispatch(setCurrentWatchlist(savedProfile.watchlist));
           i18next.changeLanguage(savedProfile.userInfoData.language);
         }
       } catch (error) {
@@ -49,7 +47,6 @@ const SelectProfile = () => {
   const handleSetUserProfile = (profile) => {
     setCurrentLocalProfile(profile);
     dispatch(setCurrentProfile(profile));
-    dispatch(setCurrentWatchlist(profile.watchlist));
     i18next.changeLanguage(profile.userInfoData.language);
     navigate("/");
   };

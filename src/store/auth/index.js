@@ -5,7 +5,6 @@ const initialState = {
   user: null,
   profiles: JSON.parse(localStorage.getItem("@AuthSV:profiles")) || [],
   currentProfile: JSON.parse(localStorage.getItem("@AuthSV:currentProfile")) || null,
-  watchList: JSON.parse(localStorage.getItem("@AuthSV:watchlist")) || [],
   loading: true,
 };
 
@@ -60,10 +59,6 @@ const authSlice = createSlice({
       }
     },
 
-    setCurrentWatchlist(state, action) {
-      localStorage.setItem("@AuthSV:watchlist", JSON.stringify(action.payload));
-      state.watchList = action.payload;
-    },
   },
 });
 
@@ -72,7 +67,6 @@ export const {
   logout,
   userProfiles,
   setCurrentProfile,
-  setCurrentWatchlist,
   setLoading,
 } = authSlice.actions;
 

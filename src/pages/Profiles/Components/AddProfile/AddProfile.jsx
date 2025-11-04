@@ -2,11 +2,12 @@ import React, { useEffect, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import NavProfiles from "../../../../components/Navigation/NavProfiles";
-
 import { useDispatch } from "react-redux";
+
 import editsvg from "../../assets/edit-svg.svg";
 import SelectedSvg from "../../assets/SelectedSvg";
 import DoneSvg from "../../assets/DoneSvg";
+
 import { newProfileStorage } from "../../../../utils/sessionStorageManager";
 import { profileService } from "../../../../services/firebase/profileServices";
 import { syncProfiles } from "../../../../services/firebase/profileServicesHelpers";
@@ -67,7 +68,6 @@ const AddProfile = () => {
   };
 
   const goToAvatarSelection = () => {
-
     newProfileStorage.set(
       {
         profileName: name,
@@ -96,7 +96,8 @@ const AddProfile = () => {
     setIsSaving(true);
     setErrorMessage("");
 
-    const profileName = profile.userInfoData?.name || "Novo Perfil";
+    const profileName =
+      profile.userInfoData?.name || t("profiles-page.addProfile.defaultName");
     const imgUrl = profile.userInfoData?.img?.url;
 
     try {
@@ -105,17 +106,15 @@ const AddProfile = () => {
         imgUrl: imgUrl,
       });
 
-
       await syncProfiles(dispatch);
-
       navigate("/select-profile");
     } catch (error) {
       console.error("Erro ao criar perfil:", error);
 
       if (error.message.includes("Número máximo de perfis")) {
-        setErrorMessage("Número máximo de perfis atingido");
+        setErrorMessage(t("profiles-page.addProfile.error-max"));
       } else {
-        setErrorMessage("Erro ao criar perfil");
+        setErrorMessage(t("profiles-page.addProfile.error-generic"));
       }
     } finally {
       setIsSaving(false);
@@ -126,13 +125,17 @@ const AddProfile = () => {
 
   return (
     <>
-      <NavProfiles text="Cancelar" onSubmitNavBtn={navFunction} />
+      <NavProfiles
+        text={t("profiles-page.addProfile.button-cancel")}
+        onSubmitNavBtn={navFunction}
+      />
+
       <div className="profiles-page-container">
         <div className="edit-profile-container">
           <form onSubmit={handleSubmit}>
             <div className="edit-profile-title">
-              <h2>Adicionar perfil</h2>
-              <p>Para continuar, forneça as seguintes informações.</p>
+              <h2>{t("profiles-page.addProfile.title")}</h2>
+              <p>{t("profiles-page.addProfile.subtitle")}</p>
             </div>
 
             <div className="edit-profile-content">
@@ -146,13 +149,19 @@ const AddProfile = () => {
                   }}
                   onClick={goToAvatarSelection}
                 >
-                  <img name="edit" src={editsvg} alt="Editar" />
+                  <img
+                    name="edit"
+                    src={editsvg}
+                    alt={t("profiles-page.addProfile.button-edit")}
+                  />
                 </div>
               </div>
 
               <div className="profile-box-container">
                 <fieldset>
-                  <label htmlFor="profileName">Nome de perfil</label>
+                  <label htmlFor="profileName">
+                    {t("profiles-page.addProfile.name-label")}
+                  </label>
                   <span className="profile-input-container">
                     <input
                       id="profileName"
@@ -167,7 +176,7 @@ const AddProfile = () => {
 
                 <div className="profile-box-section-container">
                   <div className="profile-box-section-title">
-                    <p>Configurações de reprodução e idioma</p>
+                    <p>{t("profiles-page.addProfile.settings-title")}</p>
                   </div>
 
                   <div
@@ -178,7 +187,7 @@ const AddProfile = () => {
                     ref={dropdownRef}
                   >
                     <span>
-                      <label>Idioma do aplicativo</label>
+                      <label>{t("profiles-page.addProfile.language-label")}</label>
                       <div className="profile-box-section-options-selected">
                         {languages.find((l) => l.code === selectedLang)?.label}
                         <SelectedSvg />
@@ -190,12 +199,8 @@ const AddProfile = () => {
                         {languages.map((lang) => (
                           <li
                             key={lang.code}
-                            className={
-                              selectedLang === lang.code ? "active" : ""
-                            }
-                            onClick={(event) =>
-                              handleSelectLang(lang.code, event)
-                            }
+                            className={selectedLang === lang.code ? "active" : ""}
+                            onClick={(event) => handleSelectLang(lang.code, event)}
                           >
                             {lang.label}
                             {selectedLang === lang.code && <DoneSvg />}
@@ -216,8 +221,8 @@ const AddProfile = () => {
                   {errorMessage
                     ? errorMessage
                     : isSaving
-                    ? "Salvando..."
-                    : "Salvar"}
+                    ? t("profiles-page.addProfile.button-saving")
+                    : t("profiles-page.addProfile.button-save")}
                 </button>
               </div>
             </div>

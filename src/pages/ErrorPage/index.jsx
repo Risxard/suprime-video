@@ -1,12 +1,11 @@
 import { useTranslation } from "react-i18next";
 import "./styles.css";
-import notfroundbackground from "../../assets/404background.jpg";
 import { NavLink } from "react-router-dom";
 import logo from "../../assets/acaiwaveLogo.png";
 
 const Errorpage = () => {
   const { t } = useTranslation();
-  const errorPage = t("errorPage");
+  const errorPage = t("error-page");
   const { title, description, button } = errorPage;
 
   return (
@@ -20,13 +19,11 @@ const Errorpage = () => {
       </nav>
 
       <div className="eror-page-content">
-        <h1>A página que você estava procurando não foi encontrada.</h1>
-        <p>
-          Clique no botão abaixo para acessar a página de início do Açaíwave+
-        </p>
+        <h1>{title}</h1>
+        <p>{description}</p>
 
         <NavLink to="/home" className="error-page-button">
-          INÍCIO DO AÇAÍWAVE+
+          {button}
         </NavLink>
       </div>
     </section>

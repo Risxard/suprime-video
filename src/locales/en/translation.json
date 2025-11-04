@@ -11,7 +11,7 @@
     "userMenu": {
       "profile": "Profile",
       "settings": "Settings",
-      "logout": "Sign out"
+      "logout": "Sign Out"
     },
     "extendedMenu": {
       "categories": "Categories",
@@ -27,7 +27,7 @@
         "appSettings": "App settings",
         "account": "Account",
         "help": "Help",
-        "signOut": "Sign out"
+        "signOut": "Sign Out"
       }
     },
     "altAccountMenu": {
@@ -40,16 +40,16 @@
         "appSettings": "App settings",
         "account": "Account",
         "help": "Help",
-        "signOut": "Sign out"
+        "signOut": "Sign Out"
       }
     }
   },
   "landing-page": {
     "nav": {
-      "login": "Sign in"
+      "login": "Sign In"
     },
     "hero": {
-      "title": "Exclusive series, movie hits, sports with ESPN and much more",
+      "title": "Exclusive series, movie hits, ESPN sports and much more",
       "subtitle1": "Choose a plan starting at",
       "subtitle2": "R$ 27.99/month"
     },
@@ -58,7 +58,7 @@
       "label": "Email",
       "cta": "Get started",
       "input-errors": {
-        "required": "Enter a valid email address."
+        "required": "Please enter a valid email address."
       }
     }
   },
@@ -66,9 +66,9 @@
     "email-section": {
       "title": "Enter your email to continue",
       "subtitle": {
-        "register": "Sign in with your email to start registering. Already have an account? <a href='/preview/acaiwaveplus/identity/login/enter-email'>Sign in here</a>.",
+        "register": "Enter your email to start signing up. Already have an account? <a href='/preview/acaiwaveplus/identity/login/enter-email'>Sign in here</a>.",
         "update-credentials": "Enter the email associated with your account to change your credentials. We'll send a link to reset your password or update your access.",
-        "login": "Sign in to Açaíwave+ with your email. If you don't have an account, you'll need to <a href='/preview/acaiwaveplus/identity/sign-up/enter-email'>create one</a>."
+        "login": "Sign in to Açaíwave+ with your email. If you don't have an account, you'll need to <a href='/preview/acaiwaveplus/identity/sign-up/enter-email'>create an account</a>."
       },
       "label": "Email",
       "button": "Continue"
@@ -79,7 +79,7 @@
       "subtitle2": "(Edit)",
       "placeholder": "Password",
       "input-advise": "(Case sensitive)",
-      "button": "Sign in",
+      "button": "Sign In",
       "forgot-password": "Can't sign in? Reset your password",
       "more-about": "Learn more about Açaíwave+"
     },
@@ -87,7 +87,7 @@
       "title": "Check your email",
       "subtitle1": "We sent an email to <b>{{email}}</b>",
       "subtitle2": "with a link to reset your password. Click the link and follow the instructions to create a new password.",
-      "subtitle3": "If you can't find the email, check your spam or junk folder.",
+      "subtitle3": "If you don't find the email, check your spam or junk folders.",
       "subtitle4": "Didn't receive the email?",
       "subtitle5": "Resend",
       "dialog": {
@@ -97,42 +97,42 @@
         },
         "resent": {
           "message1": "New email sent!",
-          "message2": "Check your inbox or spam folder. If you don't find it, try again later."
+          "message2": "Check your inbox or spam folder. If you still don't find it, try again later."
         },
         "error": {
-          "message1": "Failed to send the email.",
+          "message1": "Failed to send email.",
           "message2": "Check the address and try again."
         },
         "too-many": {
           "message1": "Too many attempts detected.",
-          "message2": "Please wait a few minutes before trying again."
+          "message2": "Wait a few minutes before trying again."
         },
         "user-not-found": {
           "message1": "User not found.",
-          "message2": "Verify that the email is correct."
+          "message2": "Please verify the email address."
         },
         "unknown": {
           "message1": "Unexpected error.",
-          "message2": "Try again later."
+          "message2": "Please try again later."
         }
       }
     },
     "dialogs": {
       "email-confirm": {
         "title": "Confirm your email",
-        "text1": "Before creating the account, please check that your email address is correct:",
+        "text1": "Before creating the account, please confirm that your email address is correct:",
         "button-confirm": "Confirm",
-        "button-cancel": "Back"
+        "button-cancel": "Go back"
       },
       "resend-verification": {
         "help-subject": "Help with email verification",
-        "help-body": "Hello, I need help with email verification on Açaíwave+.",
+        "help-body": "Hi, I need help with email verification on Açaíwave+.",
         "button-ok": "OK",
         "button-help": "Help Center"
       },
       "delete-account": {
         "title": "Delete account",
-        "text1": "Are you sure you want to delete the account linked to <b>{{email}}</b>?",
+        "text1": "Are you sure you want to delete your account linked to <b>{{email}}</b>?",
         "text2": "This action is <b>irreversible</b>. All your data, profiles and preferences will be permanently removed and cannot be recovered.",
         "button-confirm": "Yes, delete account",
         "button-cancel": "Cancel"
@@ -171,7 +171,7 @@
       "title": "Email Verification Required",
       "subtitle1": "We sent an email to",
       "subtitle2": "with a verification link. Please check your inbox and click the link to confirm your email address.",
-      "subtitle3": "If you can't find the email, also check your spam or junk folder.",
+      "subtitle3": "If you don't find the email, also check spam or junk folders.",
       "subtitle4": "Didn't receive the email?",
       "subtitle5": "Resend"
     },
@@ -185,8 +185,8 @@
         "required": "Password is required.",
         "wrong-password": "Incorrect password. Enter the correct password.",
         "too-many": "Too many attempts. Try again later.",
-        "session-expired": "Session expired. Sign in again.",
-        "unknown": "Unexpected error. Try again later."
+        "session-expired": "Session expired. Please sign in again.",
+        "unknown": "Unexpected error. Please try again later."
       }
     },
     "advise-texts": {
@@ -221,12 +221,12 @@
       "confirm-delete": {
         "title": "Delete the profile of",
         "text1": "Are you sure you want to delete the profile <b>{{name}}</b>?",
-        "text2": "The profile history, My List and activity will be deleted. This action cannot be undone.",
+        "text2": "The profile's history, My List and activity will be deleted. This action cannot be undone.",
         "button-confirm": "Yes, delete",
         "button-cancel": "Cancel"
       },
       "errors": {
-        "name-required": "The name is required.",
+        "name-required": "Name is required.",
         "generic": "An error occurred while saving the profile. Try again."
       }
     },
@@ -242,7 +242,7 @@
       "confirm-delete": {
         "title": "Delete the profile of",
         "text1": "Are you sure you want to delete the profile <b>{{name}}</b>?",
-        "text2": "The profile history, My List and activity will be deleted. This action cannot be undone.",
+        "text2": "The profile's history, My List and activity will be deleted. This action cannot be undone.",
         "button-confirm": "Yes, delete",
         "button-cancel": "Cancel"
       },
@@ -250,6 +250,18 @@
         "name-required": "Profile name cannot be empty.",
         "generic": "Error updating the name. Try again."
       }
+    },
+    "addProfile": {
+      "title": "Add profile",
+      "subtitle": "To continue, provide the following information.",
+      "name-label": "Profile name",
+      "language-label": "App language",
+      "settings-title": "Playback and language settings",
+      "button-save": "Save",
+      "button-saving": "Saving...",
+      "button-cancel": "Cancel",
+      "error-max": "Maximum number of profiles reached",
+      "error-generic": "Error creating profile"
     },
     "selectAvatar": {
       "title": "Choose an avatar",
@@ -282,7 +294,7 @@
     },
     "dialog": {
       "title": "Confirm your password",
-      "subtitle": "To change parental control settings, you must enter your account password.",
+      "subtitle": "To change parental control settings, you need to enter your account password.",
       "placeholder": "Password",
       "notice": "(case sensitive)",
       "showPassword": "Show password",
@@ -312,7 +324,7 @@
       "director": "Director",
       "seasons": "Seasons",
       "episodes": "Episodes",
-      "releaseDate": "Release date",
+      "releaseDate": "Release Date",
       "genres": "Genres",
       "runtime": "Runtime",
       "similar": "Similar titles"
@@ -334,26 +346,35 @@
   },
   "watchlist-page": {
     "title": "My List",
-    "subtitle": "My Movies & TV Shows",
+    "tabs": {
+      "all": "My Movies & Series",
+      "movies": "My Series",
+      "tv": "My Movies"
+    },
     "empty": {
       "title": "You haven't added anything yet",
-      "subtitle": "Put the titles you want to watch in My List."
+      "subtitle": "Add titles you want to watch to My List."
     },
     "loading": "Loading your list..."
   },
   "browse-page": {
     "moviesTitle": "Movies",
-    "seriesTitle": "TV Shows",
+    "seriesTitle": "Series",
     "loading": "Loading titles..."
   },
   "searchPage": {
-    "placeholder": "Search by title, genre, team, or league",
+    "placeholder": "Search by title",
     "buttons": {
       "clear": "Clear search",
       "search": "Search"
     },
-    "trendingSection": "Trending Searches Today",
+    "trendingSection": "Top searches today",
     "noResults": "No results found for \"{{query}}\""
+  },
+  "error-page": {
+    "title": "The page you were looking for was not found.",
+    "description": "Click the button below to go to the Açaíwave+ home page",
+    "button": "AÇAÍWAVE+ HOME"
   },
   "footer": {
     "links": {
@@ -369,7 +390,75 @@
       "customAds": "Personalized ads",
       "feedback": "Send feedback"
     },
-    "projectDescription": "Açaíwave+ is a personal project developed solely for study and portfolio purposes. It functions as a fictional movie catalog with no commercial intent. This project has no affiliation with Disney, Disney+ or any other streaming service.",
+    "projectDescription": "Açaíwave+ is a personal project, developed solely for study and portfolio purposes. It functions as a fictional movie catalog and has no commercial intent. This project has no affiliation with Disney, Disney+ or any other streaming service.",
     "copyright": "© 2025 Açaíwave+. All rights reserved."
+  },
+  "sections": {
+    "home": {
+      "recommended": "Recommended for You",
+      "trending": "Trending",
+      "boxOffice": "Box Office Hits",
+      "top10": "Top 10 today in Brazil",
+      "emmy": "Emmy® 2025: Winners and Nominees",
+      "marvelSeries": "Marvel Series & Specials",
+      "mcuUniverse": "Marvel Cinematic Universe",
+      "mcuTimeline": "MCU: Film Timeline",
+      "thunderbolts": "Featuring characters from Thunderbolts*",
+      "disneyChannel": "Disney Channel Series & Specials"
+    },
+    "disney": {
+      "highlights": "Highlights",
+      "princesses": "Princesses",
+      "beastsAndMonsters": "Beasts & Monsters",
+      "series": "Disney Series",
+      "liveAction": "Live-Action Films",
+      "classics": "Classics",
+      "onceUpon": "Once Upon a Time...",
+      "mickeyFriends": "Mickey and Friends",
+      "classicAnimations": "Classic Animations",
+      "liloAndStitch": "Lilo & Stitch",
+      "buddies": "Buddies Collection"
+    },
+    "pixar": {
+      "highlights": "Highlights",
+      "films": "Films",
+      "toyStory": "Toy Story",
+      "forkyAsks": "Forky Asks",
+      "incredibles": "The Incredibles Collection",
+      "cars": "Cars Collection",
+      "shorts": "Shorts",
+      "originals": "Originals",
+      "memories": "Memories",
+      "monsters": "Fears & Monsters"
+    },
+    "marvel": {
+      "highlights": "Highlights",
+      "infinitySaga": "MCU: Infinity Saga",
+      "multiverseSaga": "MCU: Multiverse Saga",
+      "adventures": "Fantastic Adventures",
+      "monsters": "Marvel Monsters",
+      "defenders": "The Defenders",
+      "thunderbolts": "Featuring characters from Thunderbolts*",
+      "wakanda": "Wakanda Universe",
+      "samWilson": "Sam Wilson: Captain America",
+      "timeline": "MCU: Film Timeline",
+      "series": "Marvel Series & Specials"
+    },
+    "starwars": {
+      "originals": "Originals",
+      "films": "Films",
+      "series": "Series & Specials",
+      "chronological": "Star Wars in Chronological Order",
+      "animations": "Animations",
+      "darthVader": "Darth Vader",
+      "vintage": "Star Wars Vintage",
+      "documentaries": "Documentaries"
+    },
+    "national": {
+      "highlights": "Highlights",
+      "originals": "Originals",
+      "films": "Films",
+      "science": "Science & Innovation"
+    }
   }
 }

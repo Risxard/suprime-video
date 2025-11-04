@@ -5,8 +5,7 @@ import LoadingPage from "../../../../components/utils/LoadingPage";
 import AvatarCarousel from "../../../../components/Sliders/AvatarCarousel/AvatarCarousel";
 import { newProfileStorage } from "../../../../utils/sessionStorageManager";
 import { profileService } from "../../../../services/firebase/profileServices";
-import { loadAvatarsByCategory } from "../../../../utils/loadAvatarsByCategory";
-import defaultAvatar from "../../../../assets/avatars/default.png";
+import { avatarCategories } from "../../../../config/avatarCategoriesConfig";
 import i18next from "i18next";
 import { useTranslation } from "react-i18next";
 import "./styles.css";
@@ -19,11 +18,6 @@ export const SelectAvatar = () => {
 
   const [profile, setProfile] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [avatarsByCategory, setAvatarsByCategory] = useState({});
-
-  useEffect(() => {
-    setAvatarsByCategory(loadAvatarsByCategory());
-  }, []);
 
   useEffect(() => {
     const fetchProfile = async () => {
@@ -47,7 +41,7 @@ export const SelectAvatar = () => {
       const updatedData = {
         ...existingData,
         referrer: "create-profile",
-        imgUrl: existingData.imgUrl || defaultAvatar,
+        imgUrl: existingData.imgUrl || avatarCategories?.[0]?.avatars?.[0]?.img?.url,
         profileName: existingData.profileName || "",
         language: existingData.language || i18next.language || "pt-BR",
       };
@@ -86,14 +80,6 @@ export const SelectAvatar = () => {
 
   if (loading) return <LoadingPage />;
 
-  const formatCategoryName = (str) => {
-    return str
-      .replace(/[-_]+/g, " ")
-      .split(" ")
-      .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
-      .join(" ");
-  };
-
   return (
     <>
       <NavProfiles
@@ -127,11 +113,11 @@ export const SelectAvatar = () => {
       </div>
 
       <div className="select-avatar-row-list">
-        {Object.entries(avatarsByCategory).map(([category, avatars]) => (
+        {avatarCategories.map((category) => (
           <AvatarCarousel
-            key={category}
-            avatars={avatars}
-            sectionTitle={formatCategoryName(category)}
+            key={category.id}
+            avatars={category.avatars}
+            sectionTitle={category.name}
             onSelect={handleSelectAvatar}
           />
         ))}

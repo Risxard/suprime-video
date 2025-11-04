@@ -1,5 +1,4 @@
 import { tmdbService } from "../services/tmdb/tmdbServices";
-
 import HeroCarousel from "../components/Sliders/HeroCarousel/HeroCarousel";
 import GrandPosterCarousel from "../components/Sliders/GrandPosterCarousel/GrandPosterCarousel";
 import SimpleBackdropCarousel from "../components/Sliders/SimpleBackdropCarousel";
@@ -9,6 +8,7 @@ import HeroCarouselSkeleton from "../components/Sliders/HeroCarousel/components/
 import PosterCarouselSkeleton from "../components/Sliders/GrandPosterCarousel/components/PosterCarouselSkeleton";
 import SimpleBackdropSkeleton from "../components/Sliders/SimpleBackdropCarousel/components/SimpleBackdropSkeleton";
 import ChannelSectionSkeleton from "../components/ChannelSection/components/ChannelSectionSkeleton";
+import i18n from "../i18n";
 
 export const homeSections = [
   {
@@ -23,7 +23,7 @@ export const homeSections = [
         fetchParams: {
           timeWindow: "day",
           pageType: "movie",
-          language: "pt-BR",
+          language: i18n.language,
           page: 1,
         },
       },
@@ -41,7 +41,7 @@ export const homeSections = [
     id: "recomendados",
     carousels: [
       {
-        title: "Recomendado para Você",
+        title: i18n.t("sections.home.recommended"),
         type: "grand-poster",
         component: GrandPosterCarousel,
         skeleton: PosterCarouselSkeleton,
@@ -49,12 +49,12 @@ export const homeSections = [
         fetchParams: {
           mediaType: "movie",
           mediaId: 1035259,
-          language: "pt-BR",
+          language: i18n.language,
           page: 1,
         },
       },
       {
-        title: "Em Alta",
+        title: i18n.t("sections.home.trending"),
         type: "simple-backdrop",
         component: SimpleBackdropCarousel,
         skeleton: SimpleBackdropSkeleton,
@@ -62,19 +62,19 @@ export const homeSections = [
         fetchParams: {
           timeWindow: "week",
           pageType: "movie",
-          language: "pt-BR",
+          language: i18n.language,
           page: 1,
         },
       },
       {
-        title: "Sucessos de Bilheteria",
+        title: i18n.t("sections.home.boxOffice"),
         type: "grand-poster",
         component: GrandPosterCarousel,
         skeleton: PosterCarouselSkeleton,
         fetchFn: tmdbService.fetchList,
         fetchParams: {
           list_id: 8568368,
-          language: "pt-BR",
+          language: i18n.language,
           page: 1,
         },
       },
@@ -85,7 +85,7 @@ export const homeSections = [
     id: "top10",
     carousels: [
       {
-        title: "Top 10 hoje no Brasil",
+        title: i18n.t("sections.home.top10"),
         type: "grand-poster",
         top10mode: true,
         component: GrandPosterCarousel,
@@ -94,12 +94,12 @@ export const homeSections = [
         fetchParams: {
           timeWindow: "day",
           pageType: "all",
-          language: "pt-BR",
+          language: i18n.language,
           page: 1,
         },
       },
       {
-        title: "Emmy® 2025: Vencedores e Indicados",
+        title: i18n.t("sections.home.emmy"),
         type: "grand-poster",
         component: GrandPosterCarousel,
         skeleton: PosterCarouselSkeleton,
@@ -107,12 +107,12 @@ export const homeSections = [
         fetchFn: tmdbService.fetchList,
         fetchParams: {
           list_id: 8568318,
-          language: "pt-BR",
+          language: i18n.language,
           page: 1,
         },
       },
       {
-        title: "Séries e Especiais da Marvel",
+        title: i18n.t("sections.home.marvelSeries"),
         type: "grand-poster",
         component: GrandPosterCarousel,
         skeleton: PosterCarouselSkeleton,
@@ -120,7 +120,7 @@ export const homeSections = [
         fetchFn: tmdbService.fetchList,
         fetchParams: {
           list_id: 8568331,
-          language: "pt-BR",
+          language: i18n.language,
           page: 1,
         },
       },
@@ -131,7 +131,7 @@ export const homeSections = [
     id: "universos",
     carousels: [
       {
-        title: "Universo Cinematográfico Marvel",
+        title: i18n.t("sections.home.mcuUniverse"),
         type: "grand-poster",
         component: GrandPosterCarousel,
         skeleton: PosterCarouselSkeleton,
@@ -139,12 +139,12 @@ export const homeSections = [
         fetchFn: tmdbService.fetchList,
         fetchParams: {
           list_id: 8568367,
-          language: "pt-BR",
+          language: i18n.language,
           page: 1,
         },
       },
       {
-        title: "UCM: Linha do Tempo dos Filmes",
+        title: i18n.t("sections.home.mcuTimeline"),
         type: "grand-poster",
         component: GrandPosterCarousel,
         skeleton: PosterCarouselSkeleton,
@@ -152,12 +152,12 @@ export const homeSections = [
         fetchFn: tmdbService.fetchList,
         fetchParams: {
           list_id: 8568171,
-          language: "pt-BR",
+          language: i18n.language,
           page: 1,
         },
       },
       {
-        title: "Com personagens de Thunderbolts*",
+        title: i18n.t("sections.home.thunderbolts"),
         type: "grand-poster",
         component: GrandPosterCarousel,
         skeleton: PosterCarouselSkeleton,
@@ -165,7 +165,7 @@ export const homeSections = [
         fetchFn: tmdbService.fetchList,
         fetchParams: {
           list_id: 8568157,
-          language: "pt-BR",
+          language: i18n.language,
           page: 1,
         },
       },
@@ -176,7 +176,7 @@ export const homeSections = [
     id: "disney-channel",
     carousels: [
       {
-        title: "Séries e Especiais do Disney Channel",
+        title: i18n.t("sections.home.disneyChannel"),
         type: "grand-poster",
         component: GrandPosterCarousel,
         skeleton: PosterCarouselSkeleton,
@@ -184,7 +184,7 @@ export const homeSections = [
         fetchFn: tmdbService.fetchList,
         fetchParams: {
           list_id: 8567896,
-          language: "pt-BR",
+          language: i18n.language,
           page: 1,
         },
       },

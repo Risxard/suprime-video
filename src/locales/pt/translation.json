@@ -251,6 +251,18 @@
         "generic": "Erro ao atualizar o nome. Tente novamente."
       }
     },
+    "addProfile": {
+      "title": "Adicionar perfil",
+      "subtitle": "Para continuar, forneça as seguintes informações.",
+      "name-label": "Nome de perfil",
+      "language-label": "Idioma do aplicativo",
+      "settings-title": "Configurações de reprodução e idioma",
+      "button-save": "Salvar",
+      "button-saving": "Salvando...",
+      "button-cancel": "Cancelar",
+      "error-max": "Número máximo de perfis atingido",
+      "error-generic": "Erro ao criar perfil"
+    },
     "selectAvatar": {
       "title": "Escolha o avatar",
       "buttonSkip": "Pular",
@@ -359,6 +371,11 @@
     "trendingSection": "Buscas em Alta Hoje",
     "noResults": "Nenhum resultado encontrado para \"{{query}}\""
   },
+  "error-page": {
+    "title": "A página que você estava procurando não foi encontrada.",
+    "description": "Clique no botão abaixo para acessar a página de início do Açaíwave+",
+    "button": "INÍCIO DO AÇAÍWAVE+"
+  },
   "footer": {
     "links": {
       "privacyPolicy": "Política de Privacidade",
@@ -375,5 +392,73 @@
     },
     "projectDescription": "O Açaíwave+ é um projeto pessoal, desenvolvido unicamente para fins de estudo e portfólio. Ele funciona como um catálogo de filmes fictício, sem qualquer finalidade comercial. Este projeto não possui vínculo com a Disney, Disney+ ou qualquer outro serviço de streaming.",
     "copyright": "© 2025 Açaíwave+. Todos os direitos reservados."
+  },
+  "sections": {
+    "home": {
+      "recommended": "Recomendado para Você",
+      "trending": "Em Alta",
+      "boxOffice": "Sucessos de Bilheteria",
+      "top10": "Top 10 hoje no Brasil",
+      "emmy": "Emmy® 2025: Vencedores e Indicados",
+      "marvelSeries": "Séries e Especiais da Marvel",
+      "mcuUniverse": "Universo Cinematográfico Marvel",
+      "mcuTimeline": "UCM: Linha do Tempo dos Filmes",
+      "thunderbolts": "Com personagens de Thunderbolts*",
+      "disneyChannel": "Séries e Especiais do Disney Channel"
+    },
+    "disney": {
+      "highlights": "Destaques",
+      "princesses": "Princesas",
+      "beastsAndMonsters": "Feras e Monstros",
+      "series": "Séries da Disney",
+      "liveAction": "Filmes em Live-Action",
+      "classics": "Clássicos",
+      "onceUpon": "Era uma Vez...",
+      "mickeyFriends": "Mickey e Seus Amigos",
+      "classicAnimations": "Animações Clássicas",
+      "liloAndStitch": "Lilo e Stitch",
+      "buddies": "Coleção Buddies"
+    },
+    "pixar": {
+      "highlights": "Destaques",
+      "films": "Filmes",
+      "toyStory": "Toy Story",
+      "forkyAsks": "Garfinho Pergunta",
+      "incredibles": "Coleção Os Incríveis",
+      "cars": "Coleção Carros",
+      "shorts": "Curtas",
+      "originals": "Originais",
+      "memories": "Lembranças",
+      "monsters": "Feras e Monstros"
+    },
+    "marvel": {
+      "highlights": "Destaques",
+      "infinitySaga": "UCM: Saga do Infinito",
+      "multiverseSaga": "UCM: Saga do Multiverso",
+      "adventures": "Aventuras Fantásticas",
+      "monsters": "Monstros da Marvel",
+      "defenders": "Os Defensores",
+      "thunderbolts": "Com personagens de Thunderbolts*",
+      "wakanda": "Universo Wakanda",
+      "samWilson": "Sam Wilson: Capitão América",
+      "timeline": "UCM: Linha do Tempo dos Filmes",
+      "series": "Séries e Especiais da Marvel"
+    },
+    "starwars": {
+      "originals": "Originais",
+      "films": "Filmes",
+      "series": "Séries e Especiais",
+      "chronological": "Star Wars em Ordem Cronológica",
+      "animations": "Animações",
+      "darthVader": "Darth Vader",
+      "vintage": "Star Wars Vintage",
+      "documentaries": "Documentários"
+    },
+    "national": {
+      "highlights": "Destaques",
+      "originals": "Originais",
+      "films": "Filmes",
+      "science": "Ciência e Inovação"
+    }
   }
 }

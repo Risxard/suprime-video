@@ -6,7 +6,6 @@ const LazySection = ({ section, index }) => {
   const [visible, setVisible] = useState(false);
   const sectionRef = useRef(null);
 
-  // Detecta visibilidade da seção
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -27,7 +26,6 @@ const LazySection = ({ section, index }) => {
       ref={sectionRef}
       className={`lazy-section ${visible ? "visible" : "lazy-section-placeholder"}`}
     >
-      {/* 🔹 Seção visível → renderiza os carrosseis reais */}
       {visible ? (
         <>
           {section.carousels.map((carousel, i) => (
@@ -48,7 +46,6 @@ const LazySection = ({ section, index }) => {
           ))}
         </>
       ) : (
-        /* 🔸 Placeholder da seção (com skeletons internos) */
         <div className="lazy-section-skeletons">
           {section.carousels.map((carousel, i) => {
             const Skeleton = carousel.skeleton;
