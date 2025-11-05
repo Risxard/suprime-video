@@ -98,7 +98,7 @@ const DeleteAccount = () => {
 
   const handleCancel = () => {
     setShowDialog(false);
-    navigate("/account");
+    navigate("/");
   };
 
   const user = auth.currentUser;

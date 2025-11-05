@@ -8,7 +8,6 @@ import {
   ProfilesPage,
   WatchlistPage,
   ErrorPage,
-  PageTest,
   LandingPage,
   AccountPage,
 } from "../pages/Index";
@@ -136,8 +135,7 @@ const AppRoutes = () => {
     {
       path: "/browse/:channelId",
       element: <BrowsePage children={<ChannelsPage />} />,
-    },
-    { path: "/pagetest", element: <PageTest /> },
+    }
   ];
 
   const privateStandalone = [

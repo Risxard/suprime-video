@@ -207,7 +207,7 @@ const AccountPage = () => {
               </ul>
             </section>
 
-            <section className="account-page-section">
+            {/* <section className="account-page-section">
               <div className="account-page-section-title-container">
                 <div className="account-page-section-title">
                   {accountPage.sections.otherSettings}
@@ -238,7 +238,7 @@ const AccountPage = () => {
                   </button>
                 </li>
               </ul>
-            </section>
+            </section> */}
           </div>
         </div>
       </div>

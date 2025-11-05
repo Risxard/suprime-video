@@ -17,7 +17,7 @@ const DetailCardList = ({ cards }) => {
 
         return (
           <div key={index} className="detail-card-item">
-            <Link to={`/detail/${mediaType}/${card.id}`}>
+            <Link to={`/detail/${mediaType}/${card.id}`} onClick={(e) => e.preventDefault()}>
               <div className="detail-card-item-image-container">
                 <div className="detail-card-item-image">
                   {card.still_path && (

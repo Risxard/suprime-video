@@ -1,4 +1,4 @@
-
+import i18next from "i18next";
 
 import deadpool from "../assets/avatars/marvel/deadpool.png";
 import wolverine from "../assets/avatars/marvel/wolverine.png";
@@ -48,11 +48,42 @@ import daisy from "../assets/avatars/mickey/daisy.png";
 import goofy from "../assets/avatars/mickey/goofy.png";
 import pluto from "../assets/avatars/mickey/pluto.png";
 
-export const avatarCategories = [
 
+const names = {
+  marvel: {
+    "pt-BR": "Marvel",
+    "en-US": "Marvel",
+    "es-ES": "Marvel",
+  },
+  simpsons: {
+    "pt-BR": "Os Simpsons",
+    "en-US": "The Simpsons",
+    "es-ES": "Los Simpson",
+  },
+  princesses: {
+    "pt-BR": "Princesas da Disney",
+    "en-US": "Disney Princesses",
+    "es-ES": "Princesas de Disney",
+  },
+  starwars: {
+    "pt-BR": "Star Wars",
+    "en-US": "Star Wars",
+    "es-ES": "Star Wars",
+  },
+  "mickey-friends": {
+    "pt-BR": "Mickey e Amigos",
+    "en-US": "Mickey and Friends",
+    "es-ES": "Mickey y sus Amigos",
+  },
+};
+
+
+export const avatarCategories = [
   {
     id: "marvel",
-    name: "Marvel",
+    get name() {
+      return names.marvel[i18next.language] || names.marvel["pt-BR"];
+    },
     avatars: [
       { id: "deadpool", img: { url: deadpool } },
       { id: "wolverine", img: { url: wolverine } },
@@ -68,7 +99,9 @@ export const avatarCategories = [
   },
   {
     id: "simpsons",
-    name: "Os Simpsons",
+    get name() {
+      return names.simpsons[i18next.language] || names.simpsons["pt-BR"];
+    },
     avatars: [
       { id: "selma", img: { url: selma } },
       { id: "bart", img: { url: bart } },
@@ -82,7 +115,9 @@ export const avatarCategories = [
   },
   {
     id: "princesses",
-    name: "Princesas da Disney",
+    get name() {
+      return names.princesses[i18next.language] || names.princesses["pt-BR"];
+    },
     avatars: [
       { id: "bela", img: { url: bela } },
       { id: "brancadeneve", img: { url: brancadeneve } },
@@ -96,7 +131,9 @@ export const avatarCategories = [
   },
   {
     id: "starwars",
-    name: "Star Wars",
+    get name() {
+      return names.starwars[i18next.language] || names.starwars["pt-BR"];
+    },
     avatars: [
       { id: "ahsoka", img: { url: ahsoka } },
       { id: "mandalorian", img: { url: mandalorian } },
@@ -113,7 +150,12 @@ export const avatarCategories = [
   },
   {
     id: "mickey-friends",
-    name: "Mickey e Amigos",
+    get name() {
+      return (
+        names["mickey-friends"][i18next.language] ||
+        names["mickey-friends"]["pt-BR"]
+      );
+    },
     avatars: [
       { id: "mickey", img: { url: mickey } },
       { id: "minnie", img: { url: minnie } },

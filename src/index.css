@@ -1,48 +1,5 @@
 @import url('./Variables.css');
 
-@font-face {
-    font-family: 'Gilroy-Bold';
-    src: url(./Layout/Fonts/EM-Gilroy/Gilroy-Bold.ttf) format('truetype');
-}
-
-@font-face {
-    font-family: 'Gilroy-Regular';
-    src: url(./Layout/Fonts/EM-Gilroy/Gilroy-Regular.ttf) format('truetype');
-}
-
-@font-face {
-    font-family: 'Gilroy-Medium';
-    src: url(./layout/Fonts/EM-Gilroy/Gilroy-Medium.ttf) format('truetype');
-}
-
-@font-face {
-    font-family: 'Gilroy-SemiBold';
-    src: url(./Layout/Fonts/EM-Gilroy/Gilroy-SemiBold.ttf) format('OpenType');
-}
-
-@font-face {
-    font-family: 'Ember-regular';
-    src: url(./Layout/Fonts/Ember/AmazonEmberDisplay_Rg.ttf) format('OpenType');
-}
-
-@font-face {
-    font-family: 'Ember-bold';
-    src: url(./Layout/Fonts/Ember/AmazonEmberDisplay_Bd.ttf) format('OpenType');
-}
-
-@font-face {
-    font-family: 'Ember-medium';
-    src: url(./Layout/Fonts/Ember/AmazonEmberDisplay_Md.ttf) format('OpenType');
-}
-
-@font-face {
-    font-family: 'Ember-light';
-    src: url(./Layout/Fonts/Ember/AmazonEmberDisplay_Lt.ttf) format('OpenType');
-}
-
-
-
-
 /* --- Inspire Black Italic --- */
 @font-face {
     font-family: 'Inspire-BlackItalic';
@@ -142,9 +99,6 @@
     font-style: normal;
     font-display: swap;
 }
-
-
-
 
 
 * {
@@ -310,6 +264,7 @@ body, .hero-carousel-container-text {
     width: 100%;
     height: 100%;
     position: relative;
+    overflow: hidden;
 }
 
 .navNormal {

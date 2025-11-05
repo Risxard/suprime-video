@@ -1,9 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import {
-  dateConverter,
-  genreConverter,
-} from "../../../../../functions/Converter";
+import { dateConverter, genreConverter } from "../../../../../utils/converters";
 import "./styles.css";
 
 const MediaDetailsTab = ({ media }) => {

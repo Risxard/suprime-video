@@ -54,7 +54,7 @@ const UserMenuSAChildren = () => {
       </li>
 
       <li className="nav-menu-sa-item nopic">
-        <NavLink to="/settings/app-settings">
+        <NavLink to="/settings/account">
           <p>{appSettings}</p>
         </NavLink>
       </li>
