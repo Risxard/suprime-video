@@ -46,6 +46,8 @@
 .grandPosterNextBtn,
 .grandPosterPrevBtn {
     opacity: 0;
+    border-radius: 4px;
+    overflow: hidden;
 }
 
 .grandPosterNextBtn:hover,

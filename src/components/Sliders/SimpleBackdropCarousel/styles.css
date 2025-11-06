@@ -32,6 +32,8 @@
 .simple-backdrop-NextBtn,
 .simple-backdrop-PrevBtn {
     opacity: 0;
+    border-radius: 4px;
+    overflow: hidden;
 }
 
 .simple-backdrop-NextBtn:hover,
