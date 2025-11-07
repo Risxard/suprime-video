@@ -65,15 +65,13 @@
     color: #fff;
     -webkit-appearance: button;
     text-transform: none;
-    overflow: visible;
+    overflow: hidden;
 }
 
 
 .heroPrevBtn:hover,
 .heroNextBtn:hover {
-
     opacity: 1;
-
 }
 
 
@@ -100,7 +98,6 @@
     align-items: center;
     position: absolute;
     bottom: 0;
-
     width: 100%;
     height: 34px;
 }
@@ -119,13 +116,10 @@
     text-transform: none;
     overflow: visible;
     font-family: Arial, Helvetica, sans-serif;
-
-
     margin: 0;
-
-
     color: #93959C;
     cursor: pointer;
+    overflow: hidden;
 }
 
 .dot.active {

@@ -1,9 +1,14 @@
 import React, { useRef, useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import "./styles.css";
-import SimpleBackdropitem from "./components/SimpleBackdropitem.jsx";
+import PosterCarouselItem from "./components/PosterCarouselItem.jsx";
 
-const SimpleBackdropCarousel = ({ movies = [] }) => {
+const PosterCarousel = ({
+  movies = [],
+  language,
+  top10mode,
+  card_size,
+}) => {
   const carouselRef = useRef(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const duration = 1000;
@@ -93,11 +98,18 @@ const SimpleBackdropCarousel = ({ movies = [] }) => {
     }
   };
 
+
+  
+
   return (
     <section>
-      <div className={`simple-backdrop-container`}>
+      <div
+        className={`poster-carousel-Container ${
+          top10mode ? "top10" : ""
+        } ${card_size && card_size}`}
+      >
         <button
-          className="simple-backdrop-PrevBtn"
+          className="posterPrevBtn"
           onClick={scrollPrev}
           disabled={activeIndex === 0}
         >
@@ -105,23 +117,28 @@ const SimpleBackdropCarousel = ({ movies = [] }) => {
         </button>
 
         <div
-          className="simple-backdrop-carousel"
+          className="poster-carousel"
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
-          ref={carouselRef}
         >
-          {movies.map((movie, index) => (
-            <SimpleBackdropitem
-              key={index}
-              movie={movie}
-              className="simple-backdrop-item"
-            />
-          ))}
+          <div className="poster-carousel-list" ref={carouselRef}>
+            {movies.map((movie, index) => (
+              <PosterCarouselItem
+                key={index}
+                movie={movie}
+                language={language}
+                topNumber={index + 1}
+                top10mode={top10mode}
+                card_size={card_size}
+                className="poster-carousel-item"
+              />
+            ))}
+          </div>
         </div>
 
         <button
-          className="simple-backdrop-NextBtn"
+          className="posterNextBtn"
           onClick={scrollNext}
           disabled={
             activeIndex >= Math.ceil(movies.length / getCardsPerView()) - 1
@@ -134,4 +151,4 @@ const SimpleBackdropCarousel = ({ movies = [] }) => {
   );
 };
 
-export default React.memo(SimpleBackdropCarousel);
+export default PosterCarousel;

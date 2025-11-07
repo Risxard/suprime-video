@@ -1,4 +1,4 @@
-.grandPoster-carousel-list {
+.poster-carousel-list {
     align-content: stretch;
     box-sizing: border-box;
     display: flex;
@@ -27,7 +27,7 @@
 
 
 
-.grandPoster-carousel-Container {
+.poster-carousel-Container {
     margin-left: calc(-1 * var(--inner-width));
     width: calc(100% + (2 * var(--inner-width)) + 10px);
 
@@ -43,22 +43,22 @@
     z-index: -1;
 }
 
-.grandPosterNextBtn,
-.grandPosterPrevBtn {
+.posterNextBtn,
+.posterPrevBtn {
     opacity: 0;
     border-radius: 4px;
     overflow: hidden;
 }
 
-.grandPosterNextBtn:hover,
-.grandPosterPrevBtn:hover {
+.posterNextBtn:hover,
+.posterPrevBtn:hover {
     cursor: pointer;
     opacity: 1;
 }
 
 
-.grandPosterNextBtn svg,
-.grandPosterPrevBtn svg {
+.posterNextBtn svg,
+.posterPrevBtn svg {
     width: 45px;
     height: auto;
 }
@@ -67,7 +67,7 @@
 
 
 
-.grandPosterNextBtn {
+.posterNextBtn {
     width: var(--inner-width);
     border: 0;
     background-color: transparent;
@@ -87,7 +87,7 @@
 }
 
 
-.grandPosterPrevBtn {
+.posterPrevBtn {
     width: var(--inner-width);
     border: 0;
     background-color: transparent;
@@ -106,21 +106,16 @@
 
 }
 
-.grandPosterPrevBtn:disabled,
-.grandPosterNextBtn:disabled {
+.posterPrevBtn:disabled,
+.posterNextBtn:disabled {
     opacity: 0;
     cursor: inherit;
 
 }
 
 
-
-
-
-
-
 @media (min-width: 768px) {
-    .grandPosterNextBtn {
+    .posterNextBtn {
         right: 0;
     }
 }

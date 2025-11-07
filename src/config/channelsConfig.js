@@ -1,11 +1,11 @@
 import { tmdbService } from "../services/tmdb/tmdbServices";
 
-import GrandPosterCarousel from "../components/Sliders/GrandPosterCarousel/GrandPosterCarousel";
-import SimpleBackdropCarousel from "../components/Sliders/SimpleBackdropCarousel";
+import PosterCarousel from "../components/Carousels/PosterCarousel/PosterCarousel";
+import BackdropCarousel from "../components/Carousels/BackdropCarousel";
 import HeroSection from "../components/HeroSection";
 
-import PosterCarouselSkeleton from "../components/Sliders/GrandPosterCarousel/components/PosterCarouselSkeleton";
-import SimpleBackdropSkeleton from "../components/Sliders/SimpleBackdropCarousel/components/SimpleBackdropSkeleton";
+import PosterCarouselSkeleton from "../components/Carousels/PosterCarousel/components/PosterCarouselSkeleton";
+import BackdropSkeleton from "../components/Carousels/BackdropCarousel/components/BackdropSkeleton";
 import HeroSectionSkeleton from "../components/HeroSection/components/HeroSectionSkeleton";
 
 import disneyVideo from "../assets/channels/disney/disneyVideo.mp4";
@@ -47,28 +47,29 @@ export const channelsConfig = {
           {
             title: i18n.t("sections.disney.highlights"),
             type: "simple-backdrop",
-            component: SimpleBackdropCarousel,
-            skeleton: SimpleBackdropSkeleton,
+            component: BackdropCarousel,
+            skeleton: BackdropSkeleton,
             fetchFn: tmdbService.fetchList,
             fetchParams: { list_id: 8567891, language: i18n.language, page: 1 },
           },
           {
             title: i18n.t("sections.disney.princesses"),
             type: "simple-backdrop",
-            component: SimpleBackdropCarousel,
-            skeleton: SimpleBackdropSkeleton,
+            component: BackdropCarousel,
+            skeleton: BackdropSkeleton,
             fetchFn: tmdbService.fetchList,
             fetchParams: { list_id: 8567844, language: i18n.language, page: 1 },
           },
           {
             title: i18n.t("sections.disney.beastsAndMonsters"),
             type: "grand-poster",
-            component: GrandPosterCarousel,
+            component: PosterCarousel,
             skeleton: PosterCarouselSkeleton,
             card_size: "sm-card",
             fetchFn: tmdbService.fetchList,
             fetchParams: { list_id: 8567702, language: i18n.language, page: 1 },
           },
+
         ],
       },
       {
@@ -76,15 +77,15 @@ export const channelsConfig = {
           {
             title: i18n.t("sections.disney.series"),
             type: "simple-backdrop",
-            component: SimpleBackdropCarousel,
-            skeleton: SimpleBackdropSkeleton,
+            component: BackdropCarousel,
+            skeleton: BackdropSkeleton,
             fetchFn: tmdbService.fetchList,
             fetchParams: { list_id: 8567896, language: i18n.language, page: 1 },
           },
           {
             title: i18n.t("sections.disney.liveAction"),
             type: "grand-poster",
-            component: GrandPosterCarousel,
+            component: PosterCarousel,
             skeleton: PosterCarouselSkeleton,
             card_size: "ss-card",
             fetchFn: tmdbService.fetchList,
@@ -93,8 +94,8 @@ export const channelsConfig = {
           {
             title: i18n.t("sections.disney.classics"),
             type: "simple-backdrop",
-            component: SimpleBackdropCarousel,
-            skeleton: SimpleBackdropSkeleton,
+            component: BackdropCarousel,
+            skeleton: BackdropSkeleton,
             fetchFn: tmdbService.fetchList,
             fetchParams: { list_id: 338, language: i18n.language, page: 1 },
           },
@@ -105,7 +106,7 @@ export const channelsConfig = {
           {
             title: i18n.t("sections.disney.onceUpon"),
             type: "grand-poster",
-            component: GrandPosterCarousel,
+            component: PosterCarousel,
             skeleton: PosterCarouselSkeleton,
             card_size: "ss-card",
             fetchFn: tmdbService.fetchList,
@@ -114,7 +115,7 @@ export const channelsConfig = {
           {
             title: i18n.t("sections.disney.mickeyFriends"),
             type: "grand-poster",
-            component: GrandPosterCarousel,
+            component: PosterCarousel,
             skeleton: PosterCarouselSkeleton,
             card_size: "ss-card",
             fetchFn: tmdbService.fetchList,
@@ -123,7 +124,7 @@ export const channelsConfig = {
           {
             title: i18n.t("sections.disney.classicAnimations"),
             type: "grand-poster",
-            component: GrandPosterCarousel,
+            component: PosterCarousel,
             skeleton: PosterCarouselSkeleton,
             card_size: "ss-card",
             fetchFn: tmdbService.fetchList,
@@ -136,7 +137,7 @@ export const channelsConfig = {
           {
             title: i18n.t("sections.disney.liloAndStitch"),
             type: "grand-poster",
-            component: GrandPosterCarousel,
+            component: PosterCarousel,
             skeleton: PosterCarouselSkeleton,
             card_size: "ss-card",
             fetchFn: tmdbService.fetchList,
@@ -145,7 +146,7 @@ export const channelsConfig = {
           {
             title: i18n.t("sections.disney.buddies"),
             type: "grand-poster",
-            component: GrandPosterCarousel,
+            component: PosterCarousel,
             skeleton: PosterCarouselSkeleton,
             card_size: "ss-card",
             fetchFn: tmdbService.fetchCollection,
@@ -168,16 +169,16 @@ export const channelsConfig = {
           {
             title: i18n.t("sections.pixar.highlights"),
             type: "simple-backdrop",
-            component: SimpleBackdropCarousel,
-            skeleton: SimpleBackdropSkeleton,
+            component: BackdropCarousel,
+            skeleton: BackdropSkeleton,
             fetchFn: tmdbService.fetchList,
             fetchParams: { list_id: 8567918, language: i18n.language, page: 1 },
           },
           {
             title: i18n.t("sections.pixar.films"),
             type: "simple-backdrop",
-            component: SimpleBackdropCarousel,
-            skeleton: SimpleBackdropSkeleton,
+            component: BackdropCarousel,
+            skeleton: BackdropSkeleton,
             fetchFn: tmdbService.fetchList,
             fetchParams: { list_id: 8567910, language: i18n.language, page: 1 },
           },
@@ -195,7 +196,7 @@ export const channelsConfig = {
           {
             title: i18n.t("sections.pixar.toyStory"),
             type: "grand-poster",
-            component: GrandPosterCarousel,
+            component: PosterCarousel,
             skeleton: PosterCarouselSkeleton,
             card_size: "ss-card",
             fetchFn: tmdbService.fetchList,
@@ -204,7 +205,7 @@ export const channelsConfig = {
           {
             title: i18n.t("sections.pixar.forkyAsks"),
             type: "grand-poster",
-            component: GrandPosterCarousel,
+            component: PosterCarousel,
             skeleton: PosterCarouselSkeleton,
             card_size: "ss-card",
             fetchFn: tmdbService.fetchList,
@@ -213,7 +214,7 @@ export const channelsConfig = {
           {
             title: i18n.t("sections.pixar.incredibles"),
             type: "grand-poster",
-            component: GrandPosterCarousel,
+            component: PosterCarousel,
             skeleton: PosterCarouselSkeleton,
             card_size: "ss-card",
             fetchFn: tmdbService.fetchList,
@@ -226,7 +227,7 @@ export const channelsConfig = {
           {
             title: i18n.t("sections.pixar.cars"),
             type: "grand-poster",
-            component: GrandPosterCarousel,
+            component: PosterCarousel,
             skeleton: PosterCarouselSkeleton,
             card_size: "ss-card",
             fetchFn: tmdbService.fetchList,
@@ -235,7 +236,7 @@ export const channelsConfig = {
           {
             title: i18n.t("sections.pixar.shorts"),
             type: "grand-poster",
-            component: GrandPosterCarousel,
+            component: PosterCarousel,
             skeleton: PosterCarouselSkeleton,
             card_size: "ss-card",
             fetchFn: tmdbService.fetchList,
@@ -244,7 +245,7 @@ export const channelsConfig = {
           {
             title: i18n.t("sections.pixar.originals"),
             type: "grand-poster",
-            component: GrandPosterCarousel,
+            component: PosterCarousel,
             skeleton: PosterCarouselSkeleton,
             card_size: "ss-card",
             fetchFn: tmdbService.fetchList,
@@ -257,7 +258,7 @@ export const channelsConfig = {
           {
             title: i18n.t("sections.pixar.memories"),
             type: "grand-poster",
-            component: GrandPosterCarousel,
+            component: PosterCarousel,
             skeleton: PosterCarouselSkeleton,
             card_size: "ss-card",
             fetchFn: tmdbService.fetchList,
@@ -266,7 +267,7 @@ export const channelsConfig = {
           {
             title: i18n.t("sections.pixar.monsters"),
             type: "grand-poster",
-            component: GrandPosterCarousel,
+            component: PosterCarousel,
             skeleton: PosterCarouselSkeleton,
             card_size: "ss-card",
             fetchFn: tmdbService.fetchList,
@@ -289,24 +290,24 @@ export const channelsConfig = {
           {
             title: i18n.t("sections.marvel.highlights"),
             type: "simple-backdrop",
-            component: SimpleBackdropCarousel,
-            skeleton: SimpleBackdropSkeleton,
+            component: BackdropCarousel,
+            skeleton: BackdropSkeleton,
             fetchFn: tmdbService.fetchList,
             fetchParams: { list_id: 8568143, language: i18n.language, page: 1 },
           },
           {
             title: i18n.t("sections.marvel.infinitySaga"),
             type: "simple-backdrop",
-            component: SimpleBackdropCarousel,
-            skeleton: SimpleBackdropSkeleton,
+            component: BackdropCarousel,
+            skeleton: BackdropSkeleton,
             fetchFn: tmdbService.fetchList,
             fetchParams: { list_id: 8568169, language: i18n.language, page: 1 },
           },
           {
             title: i18n.t("sections.marvel.multiverseSaga"),
             type: "simple-backdrop",
-            component: SimpleBackdropCarousel,
-            skeleton: SimpleBackdropSkeleton,
+            component: BackdropCarousel,
+            skeleton: BackdropSkeleton,
             fetchFn: tmdbService.fetchList,
             fetchParams: { list_id: 8568168, language: i18n.language, page: 1 },
           },
@@ -324,15 +325,15 @@ export const channelsConfig = {
           {
             title: i18n.t("sections.marvel.adventures"),
             type: "simple-backdrop",
-            component: SimpleBackdropCarousel,
-            skeleton: SimpleBackdropSkeleton,
+            component: BackdropCarousel,
+            skeleton: BackdropSkeleton,
             fetchFn: tmdbService.fetchList,
             fetchParams: { list_id: 8568160, language: i18n.language, page: 1 },
           },
           {
             title: i18n.t("sections.marvel.monsters"),
             type: "grand-poster",
-            component: GrandPosterCarousel,
+            component: PosterCarousel,
             skeleton: PosterCarouselSkeleton,
             card_size: "sm-card",
             fetchFn: tmdbService.fetchList,
@@ -345,7 +346,7 @@ export const channelsConfig = {
           {
             title: i18n.t("sections.marvel.defenders"),
             type: "grand-poster",
-            component: GrandPosterCarousel,
+            component: PosterCarousel,
             skeleton: PosterCarouselSkeleton,
             card_size: "ss-card",
             fetchFn: tmdbService.fetchList,
@@ -354,7 +355,7 @@ export const channelsConfig = {
           {
             title: i18n.t("sections.marvel.thunderbolts"),
             type: "grand-poster",
-            component: GrandPosterCarousel,
+            component: PosterCarousel,
             skeleton: PosterCarouselSkeleton,
             card_size: "ss-card",
             fetchFn: tmdbService.fetchList,
@@ -363,7 +364,7 @@ export const channelsConfig = {
           {
             title: i18n.t("sections.marvel.wakanda"),
             type: "grand-poster",
-            component: GrandPosterCarousel,
+            component: PosterCarousel,
             skeleton: PosterCarouselSkeleton,
             card_size: "ss-card",
             fetchFn: tmdbService.fetchList,
@@ -376,7 +377,7 @@ export const channelsConfig = {
           {
             title: i18n.t("sections.marvel.samWilson"),
             type: "grand-poster",
-            component: GrandPosterCarousel,
+            component: PosterCarousel,
             skeleton: PosterCarouselSkeleton,
             card_size: "ss-card",
             fetchFn: tmdbService.fetchList,
@@ -385,7 +386,7 @@ export const channelsConfig = {
           {
             title: i18n.t("sections.marvel.timeline"),
             type: "grand-poster",
-            component: GrandPosterCarousel,
+            component: PosterCarousel,
             skeleton: PosterCarouselSkeleton,
             card_size: "ss-card",
             fetchFn: tmdbService.fetchList,
@@ -394,7 +395,7 @@ export const channelsConfig = {
           {
             title: i18n.t("sections.marvel.series"),
             type: "grand-poster",
-            component: GrandPosterCarousel,
+            component: PosterCarousel,
             skeleton: PosterCarouselSkeleton,
             card_size: "ss-card",
             fetchFn: tmdbService.fetchList,
@@ -417,7 +418,7 @@ export const channelsConfig = {
           {
             title: i18n.t("sections.starwars.originals"),
             type: "grand-poster",
-            component: GrandPosterCarousel,
+            component: PosterCarousel,
             skeleton: PosterCarouselSkeleton,
             card_size: "ss-card",
             fetchFn: tmdbService.fetchList,
@@ -426,7 +427,7 @@ export const channelsConfig = {
           {
             title: i18n.t("sections.starwars.films"),
             type: "grand-poster",
-            component: GrandPosterCarousel,
+            component: PosterCarousel,
             skeleton: PosterCarouselSkeleton,
             card_size: "ss-card",
             fetchFn: tmdbService.fetchList,
@@ -446,7 +447,7 @@ export const channelsConfig = {
           {
             title: i18n.t("sections.starwars.series"),
             type: "grand-poster",
-            component: GrandPosterCarousel,
+            component: PosterCarousel,
             skeleton: PosterCarouselSkeleton,
             card_size: "ss-card",
             fetchFn: tmdbService.fetchList,
@@ -455,7 +456,7 @@ export const channelsConfig = {
           {
             title: i18n.t("sections.starwars.chronological"),
             type: "grand-poster",
-            component: GrandPosterCarousel,
+            component: PosterCarousel,
             skeleton: PosterCarouselSkeleton,
             card_size: "ss-card",
             fetchFn: tmdbService.fetchList,
@@ -464,7 +465,7 @@ export const channelsConfig = {
           {
             title: i18n.t("sections.starwars.animations"),
             type: "grand-poster",
-            component: GrandPosterCarousel,
+            component: PosterCarousel,
             skeleton: PosterCarouselSkeleton,
             card_size: "ss-card",
             fetchFn: tmdbService.fetchList,
@@ -477,7 +478,7 @@ export const channelsConfig = {
           {
             title: i18n.t("sections.starwars.darthVader"),
             type: "grand-poster",
-            component: GrandPosterCarousel,
+            component: PosterCarousel,
             skeleton: PosterCarouselSkeleton,
             card_size: "ss-card",
             fetchFn: tmdbService.fetchList,
@@ -486,7 +487,7 @@ export const channelsConfig = {
           {
             title: i18n.t("sections.starwars.vintage"),
             type: "grand-poster",
-            component: GrandPosterCarousel,
+            component: PosterCarousel,
             skeleton: PosterCarouselSkeleton,
             card_size: "ss-card",
             fetchFn: tmdbService.fetchList,
@@ -495,7 +496,7 @@ export const channelsConfig = {
           {
             title: i18n.t("sections.starwars.documentaries"),
             type: "grand-poster",
-            component: GrandPosterCarousel,
+            component: PosterCarousel,
             skeleton: PosterCarouselSkeleton,
             card_size: "ss-card",
             fetchFn: tmdbService.fetchList,
@@ -518,7 +519,7 @@ export const channelsConfig = {
           {
             title: i18n.t("sections.national.highlights"),
             type: "grand-poster",
-            component: GrandPosterCarousel,
+            component: PosterCarousel,
             skeleton: PosterCarouselSkeleton,
             card_size: "ss-card",
             fetchFn: tmdbService.fetchList,
@@ -527,7 +528,7 @@ export const channelsConfig = {
           {
             title: i18n.t("sections.national.originals"),
             type: "grand-poster",
-            component: GrandPosterCarousel,
+            component: PosterCarousel,
             skeleton: PosterCarouselSkeleton,
             card_size: "ss-card",
             fetchFn: tmdbService.fetchList,
@@ -547,7 +548,7 @@ export const channelsConfig = {
           {
             title: i18n.t("sections.national.films"),
             type: "grand-poster",
-            component: GrandPosterCarousel,
+            component: PosterCarousel,
             skeleton: PosterCarouselSkeleton,
             card_size: "ss-card",
             fetchFn: tmdbService.fetchList,
@@ -556,7 +557,7 @@ export const channelsConfig = {
           {
             title: i18n.t("sections.national.originals"),
             type: "grand-poster",
-            component: GrandPosterCarousel,
+            component: PosterCarousel,
             skeleton: PosterCarouselSkeleton,
             card_size: "ss-card",
             fetchFn: tmdbService.fetchList,
@@ -565,7 +566,7 @@ export const channelsConfig = {
           {
             title: i18n.t("sections.national.science"),
             type: "grand-poster",
-            component: GrandPosterCarousel,
+            component: PosterCarousel,
             skeleton: PosterCarouselSkeleton,
             card_size: "ss-card",
             fetchFn: tmdbService.fetchList,

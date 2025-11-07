@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import NavProfiles from "../../../../components/Navigation/NavProfiles";
 import LoadingPage from "../../../../components/utils/LoadingPage";
-import AvatarCarousel from "../../../../components/Sliders/AvatarCarousel/AvatarCarousel";
+import AvatarCarousel from "../../../../components/Carousels/AvatarCarousel/AvatarCarousel";
 import { newProfileStorage } from "../../../../utils/sessionStorageManager";
 import { profileService } from "../../../../services/firebase/profileServices";
 import { avatarCategories } from "../../../../config/avatarCategoriesConfig";

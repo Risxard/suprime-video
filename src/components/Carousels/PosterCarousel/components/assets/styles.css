@@ -1,0 +1,69 @@
+.card-label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: auto;
+
+  z-index: 10;
+
+  border-top-left-radius: 4px;
+  overflow: hidden;
+}
+
+.card-label svg {
+  width: 100%;
+  height: 100%;
+}
+
+.card-label-number {
+  font-family: 'Inspire-Heavy', sans-serif;
+  position: absolute;
+  top: 5%;
+  left: 12%;
+  color: #14BFDA;
+  font-size: clamp(14px, 6vw, 30px);
+  font-weight: bold;
+  text-shadow: 0px 0px 4px rgba(255, 255, 255, 0.7);
+}
+
+.visible {
+  opacity: 1;
+  transition: opacity 0.4s ease-in-out;
+}
+
+.hidden {
+  opacity: 0;
+  transition: opacity 0.4s ease-in-out;
+}
+
+
+@media (min-width: 480px) {
+  .card-label-number {
+    font-size: clamp(30px, 7vw, 60px);
+  }
+}
+
+@media (min-width: 768px) {
+  .card-label-number {
+    font-size: clamp(18px, 5vw, 60px);
+  }
+}
+
+@media (min-width: 1024px) {
+  .card-label-number {
+    font-size: clamp(35px, 4vw, 45px);
+  }
+}
+
+@media (min-width: 1280px) {
+  .card-label-number {
+    font-size: clamp(50px, 4vw, 60px);
+  }
+}
+
+@media (min-width: 1440px) {
+  .card-label-number {
+    font-size: clamp(40px, 3vw, 50px);
+  }
+}

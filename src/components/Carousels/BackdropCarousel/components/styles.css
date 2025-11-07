@@ -1,4 +1,4 @@
-.simple-backdrop-item {
+.backdrop-item {
     --card-carousel-number: 2;
     transition-duration: 300ms;
     transition-property: width, display;
@@ -14,12 +14,12 @@
     will-change: transform;
 }
 
-.simple-backdrop-item:first-of-type {
+.backdrop-item:first-of-type {
     scroll-snap-align: start;
     margin-left: 0;
 }
 
-.simple-backdrop-item a {
+.backdrop-item a {
     padding: 10px;
     text-decoration: inherit;
 
@@ -37,7 +37,7 @@
     background-color: transparent;
 }
 
-.simple-backdrop-item-content {
+.backdrop-item-content {
     aspect-ratio: 16 / 9;
 
 
@@ -59,17 +59,17 @@
 
 
 
-.simple-backdrop-item-content:hover {
+.backdrop-item-content:hover {
     transform: scale(1.05, 1.05) translateZ(0) translate3d(0, 0, 0);
 }
 
-.simple-backdrop-item-content:hover::before {
+.backdrop-item-content:hover::before {
     opacity: 1;
 }
 
 
 
-.simple-backdrop-item-content::before {
+.backdrop-item-content::before {
     content: "";
     position: absolute;
     top: 0;
@@ -86,7 +86,7 @@
     transition: opacity 300ms ease;
 }
 
-.simple-backdrop-item-content::after {
+.backdrop-item-content::after {
     content: "";
     position: absolute;
     box-shadow: 0px 20px 24px 0px rgba(0, 0, 0, 0.80);
@@ -98,7 +98,7 @@
     cursor: pointer;
 }
 
-.simple-backdrop-item-image {
+.backdrop-item-image {
     height: 100%;
     align-items: center;
     display: flex;
@@ -107,7 +107,7 @@
     background: #2D2F36;
 }
 
-.simple-backdrop-item-image img {
+.backdrop-item-image img {
     width: 100%;
     height: 100%;
     border-radius: inherit;
@@ -124,25 +124,44 @@
 
 
 
-.set-skeleton .simple-backdrop-item {
+.set-skeleton .backdrop-item {
     pointer-events: none;
 }
 
 
+
+.backdrop-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: opacity 0.4s ease-in-out;
+}
+
+.visible {
+  opacity: 1;
+}
+
+.hidden {
+  opacity: 0;
+}
+
+
+
+
 @media (min-width: 768px) {
-    .simple-backdrop-item {
+    .backdrop-item {
         --card-carousel-number: 3;
     }
 }
 
 @media (min-width: 1024px) {
-    .simple-backdrop-item {
+    .backdrop-item {
         --card-carousel-number: 4;
     }
 }
 
 @media (min-width: 1440px) {
-    .simple-backdrop-item {
+    .backdrop-item {
         --card-carousel-number: 5;
     }
 }

@@ -1,12 +1,12 @@
 import { tmdbService } from "../services/tmdb/tmdbServices";
-import HeroCarousel from "../components/Sliders/HeroCarousel/HeroCarousel";
-import GrandPosterCarousel from "../components/Sliders/GrandPosterCarousel/GrandPosterCarousel";
-import SimpleBackdropCarousel from "../components/Sliders/SimpleBackdropCarousel";
+import HeroCarousel from "../components/Carousels/HeroCarousel/HeroCarousel";
+import PosterCarousel from "../components/Carousels/PosterCarousel/PosterCarousel";
+import BackdropCarousel from "../components/Carousels/BackdropCarousel";
 import ChannelSection from "../components/ChannelSection";
 
-import HeroCarouselSkeleton from "../components/Sliders/HeroCarousel/components/HeroCarouselSkeleton";
-import PosterCarouselSkeleton from "../components/Sliders/GrandPosterCarousel/components/PosterCarouselSkeleton";
-import SimpleBackdropSkeleton from "../components/Sliders/SimpleBackdropCarousel/components/SimpleBackdropSkeleton";
+import HeroCarouselSkeleton from "../components/Carousels/HeroCarousel/components/HeroCarouselSkeleton";
+import PosterCarouselSkeleton from "../components/Carousels/PosterCarousel/components/PosterCarouselSkeleton";
+import BackdropSkeleton from "../components/Carousels/BackdropCarousel/components/BackdropSkeleton";
 import ChannelSectionSkeleton from "../components/ChannelSection/components/ChannelSectionSkeleton";
 import i18n from "../i18n";
 
@@ -34,16 +34,10 @@ export const homeSections = [
         skeleton: ChannelSectionSkeleton,
         fetchFn: null,
       },
-    ],
-  },
-
-  {
-    id: "recomendados",
-    carousels: [
       {
         title: i18n.t("sections.home.recommended"),
-        type: "grand-poster",
-        component: GrandPosterCarousel,
+        type: "poster",
+        component: PosterCarousel,
         skeleton: PosterCarouselSkeleton,
         fetchFn: tmdbService.fetchRecommendations,
         fetchParams: {
@@ -53,11 +47,17 @@ export const homeSections = [
           page: 1,
         },
       },
+    ],
+  },
+
+  {
+    id: "recomendados",
+    carousels: [
       {
         title: i18n.t("sections.home.trending"),
         type: "simple-backdrop",
-        component: SimpleBackdropCarousel,
-        skeleton: SimpleBackdropSkeleton,
+        component: BackdropCarousel,
+        skeleton: BackdropSkeleton,
         fetchFn: tmdbService.fetchTrending,
         fetchParams: {
           timeWindow: "week",
@@ -68,8 +68,8 @@ export const homeSections = [
       },
       {
         title: i18n.t("sections.home.boxOffice"),
-        type: "grand-poster",
-        component: GrandPosterCarousel,
+        type: "poster",
+        component: PosterCarousel,
         skeleton: PosterCarouselSkeleton,
         fetchFn: tmdbService.fetchList,
         fetchParams: {
@@ -78,30 +78,10 @@ export const homeSections = [
           page: 1,
         },
       },
-    ],
-  },
-
-  {
-    id: "top10",
-    carousels: [
-      {
-        title: i18n.t("sections.home.top10"),
-        type: "grand-poster",
-        top10mode: true,
-        component: GrandPosterCarousel,
-        skeleton: PosterCarouselSkeleton,
-        fetchFn: tmdbService.fetchTrending,
-        fetchParams: {
-          timeWindow: "day",
-          pageType: "all",
-          language: i18n.language,
-          page: 1,
-        },
-      },
       {
         title: i18n.t("sections.home.emmy"),
-        type: "grand-poster",
-        component: GrandPosterCarousel,
+        type: "poster",
+        component: PosterCarousel,
         skeleton: PosterCarouselSkeleton,
         card_size: "ss-card",
         fetchFn: tmdbService.fetchList,
@@ -111,10 +91,15 @@ export const homeSections = [
           page: 1,
         },
       },
+    ],
+  },
+  {
+    id: "universos",
+    carousels: [
       {
         title: i18n.t("sections.home.marvelSeries"),
-        type: "grand-poster",
-        component: GrandPosterCarousel,
+        type: "poster",
+        component: PosterCarousel,
         skeleton: PosterCarouselSkeleton,
         card_size: "ss-card",
         fetchFn: tmdbService.fetchList,
@@ -124,16 +109,10 @@ export const homeSections = [
           page: 1,
         },
       },
-    ],
-  },
-
-  {
-    id: "universos",
-    carousels: [
       {
         title: i18n.t("sections.home.mcuUniverse"),
-        type: "grand-poster",
-        component: GrandPosterCarousel,
+        type: "poster",
+        component: PosterCarousel,
         skeleton: PosterCarouselSkeleton,
         card_size: "ss-card",
         fetchFn: tmdbService.fetchList,
@@ -144,9 +123,23 @@ export const homeSections = [
         },
       },
       {
+        title: i18n.t("sections.home.top10"),
+        type: "poster",
+        top10mode: true,
+        component: PosterCarousel,
+        skeleton: PosterCarouselSkeleton,
+        fetchFn: tmdbService.fetchTrending,
+        fetchParams: {
+          timeWindow: "day",
+          pageType: "all",
+          language: i18n.language,
+          page: 1,
+        },
+      },
+      {
         title: i18n.t("sections.home.mcuTimeline"),
-        type: "grand-poster",
-        component: GrandPosterCarousel,
+        type: "poster",
+        component: PosterCarousel,
         skeleton: PosterCarouselSkeleton,
         card_size: "ss-card",
         fetchFn: tmdbService.fetchList,
@@ -158,8 +151,8 @@ export const homeSections = [
       },
       {
         title: i18n.t("sections.home.thunderbolts"),
-        type: "grand-poster",
-        component: GrandPosterCarousel,
+        type: "poster",
+        component: PosterCarousel,
         skeleton: PosterCarouselSkeleton,
         card_size: "ss-card",
         fetchFn: tmdbService.fetchList,
@@ -169,16 +162,10 @@ export const homeSections = [
           page: 1,
         },
       },
-    ],
-  },
-
-  {
-    id: "disney-channel",
-    carousels: [
       {
         title: i18n.t("sections.home.disneyChannel"),
-        type: "grand-poster",
-        component: GrandPosterCarousel,
+        type: "poster",
+        component: PosterCarousel,
         skeleton: PosterCarouselSkeleton,
         card_size: "ss-card",
         fetchFn: tmdbService.fetchList,
@@ -190,4 +177,5 @@ export const homeSections = [
       },
     ],
   },
+
 ];

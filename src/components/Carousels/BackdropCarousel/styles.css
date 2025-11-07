@@ -1,4 +1,4 @@
-.simple-backdrop-container {
+.backdrop-container {
     margin-left: calc(-1 * var(--inner-width));
     width: calc(100% + (2 * var(--inner-width)) + 10px);
     position: relative;
@@ -6,7 +6,7 @@
 
 
 
-.simple-backdrop-carousel {
+.backdrop-carousel {
     padding-left: var(--inner-width);
     padding-right: var(--inner-width);
     padding-top: calc(2px + 20px);
@@ -29,22 +29,22 @@
 
 
 
-.simple-backdrop-NextBtn,
-.simple-backdrop-PrevBtn {
+.backdrop-NextBtn,
+.backdrop-PrevBtn {
     opacity: 0;
     border-radius: 4px;
     overflow: hidden;
 }
 
-.simple-backdrop-NextBtn:hover,
-.simple-backdrop-PrevBtn:hover {
+.backdrop-NextBtn:hover,
+.backdrop-PrevBtn:hover {
     cursor: pointer;
     opacity: 1;
 }
 
 
-.simple-backdrop-NextBtn svg,
-.simple-backdrop-PrevBtn svg {
+.backdrop-NextBtn svg,
+.backdrop-PrevBtn svg {
     width: 45px;
     height: auto;
 }
@@ -53,7 +53,7 @@
 
 
 
-.simple-backdrop-NextBtn {
+.backdrop-NextBtn {
     width: var(--inner-width);
     border: 0;
     background-color: transparent;
@@ -73,7 +73,7 @@
 }
 
 
-.simple-backdrop-PrevBtn {
+.backdrop-PrevBtn {
     width: var(--inner-width);
     border: 0;
     background-color: transparent;
@@ -92,8 +92,8 @@
 
 }
 
-.simple-backdrop-PrevBtn:disabled,
-.simple-backdrop-NextBtn:disabled {
+.backdrop-PrevBtn:disabled,
+.backdrop-NextBtn:disabled {
     opacity: 0;
     cursor: inherit;
 
@@ -102,7 +102,7 @@
 
 
 @media (min-width: 768px) {
-    .simple-backdrop-NextBtn {
+    .backdrop-NextBtn {
         right: 0;
     }
 }

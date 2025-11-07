@@ -1,10 +1,10 @@
 import "./styles.css";
 
-const CardLabel = ({ topNumber }) => {
+const CardLabel = ({ topNumber, isContentReady }) => {
 
 
   return (
-    <div className="card-label">
+    <div className={`card-label ${isContentReady ? "visible" : "hidden"}`}>
       <svg
         width="376"
         height="377"

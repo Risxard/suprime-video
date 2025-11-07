@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 
 import {
+  image_path_185,
   image_path_342,
   image_path_500,
   image_path_original,
@@ -49,7 +50,6 @@ const HeroCarouselItem = ({ movie, language, active }) => {
     ) || []
   ).slice(0, 3);
 
-
   return (
     <div className={`${active ? "active" : ""} hero-carousel-Item`}>
       <NavLink to={`/detail/${movie.media_type}/${movie.id}`}>
@@ -71,10 +71,16 @@ const HeroCarouselItem = ({ movie, language, active }) => {
             <div className="hero-carousel-info-content">
               <div className="hero-carousel-info-content-logo">
                 {posterAndLogo?.logo?.file_path ? (
-                  <img
-                    src={`${image_path_342}${posterAndLogo?.logo?.file_path}`}
-                    alt={`${movie.title} logo`}
-                  />
+                  <picture>
+                    <source
+                      media="(max-width: 479px)"
+                      srcSet={`${image_path_185}${posterAndLogo?.logo?.file_path}`}
+                    />
+                    <img
+                      src={`${image_path_342}${posterAndLogo?.logo?.file_path}`}
+                      alt={`${movie.title} logo`}
+                    />
+                  </picture>
                 ) : (
                   <div className="hero-carousel-info-content-logo-title">
                     {movie.title || movie.name}
@@ -82,9 +88,9 @@ const HeroCarouselItem = ({ movie, language, active }) => {
                 )}
               </div>
               <div className="hero-carousel-info-content-text">
-                {/* <div className="hero-carousel-info-content-text-1">
+                <div className="hero-carousel-info-content-text-1">
                   {movie.original_title || movie.original_name}
-                </div> */}
+                </div>
                 <div className="hero-carousel-info-content-text-2">
                   <MediaClass
                     language={language}

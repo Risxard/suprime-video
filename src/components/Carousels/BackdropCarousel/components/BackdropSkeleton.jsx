@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import "./styles.css";
 
-const SimpleBackdropSkeleton = () => {
+const BackdropSkeleton = () => {
   const [numItems, setNumItems] = useState(2);
 
   useEffect(() => {
@@ -27,13 +27,13 @@ const SimpleBackdropSkeleton = () => {
 
   return (
     <section className="set-skeleton">
-      <div className="simple-backdrop-container">
-        <div className="simple-backdrop-carousel">
+      <div className="backdrop-container">
+        <div className="backdrop-carousel">
           {items.map((_, index) => (
-            <div className="simple-backdrop-item" key={index}>
+            <div className="backdrop-item" key={index}>
               <a href="#">
-                <div className="simple-backdrop-item-content">
-                  <div className="simple-backdrop-item-image"></div>
+                <div className="backdrop-item-content">
+                  <div className="backdrop-item-image"></div>
                 </div>
               </a>
             </div>
@@ -44,4 +44,4 @@ const SimpleBackdropSkeleton = () => {
   );
 };
 
-export default SimpleBackdropSkeleton;
+export default BackdropSkeleton;

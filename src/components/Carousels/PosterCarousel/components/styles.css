@@ -1,9 +1,9 @@
-.grandPoster-carousel-item:first-of-type {
+.poster-carousel-item:first-of-type {
     scroll-snap-align: start;
     margin-left: 0px;
 }
 
-.grandPoster-carousel-item {
+.poster-carousel-item {
     --card-carousel-number: var(--sm-card-carousel-number);
 
     transition-duration: .3s;
@@ -20,30 +20,34 @@
 }
 
 
-.ss-card .grandPoster-carousel-item {
+.ss-card .poster-carousel-item {
     --card-carousel-number: var(--ss-card-carousel-number);
 }
 
-.ss-card .grandPoster-carousel-item-container,
-.sm-card .grandPoster-carousel-item-container {
+.ss-card .poster-carousel-item-container,
+.sm-card .poster-carousel-item-container {
     aspect-ratio: 71 / 100 !important;
 }
 
-.sm-card .grandPoster-carousel-item {
+
+
+
+
+.sm-card .poster-carousel-item {
     --card-carousel-number: var(--sm-card-carousel-number);
 }
 
 
-.grandPoster-carousel-item:hover .grandPoster-carousel-item-image {
+.poster-carousel-item:hover .poster-carousel-item-image {
     transform: scale(1.03) translateZ(0) translateZ(0);
 }
 
-.grandPoster-carousel-item:hover .grandPoster-carousel-item-image:before {
+.poster-carousel-item:hover .poster-carousel-item-image:before {
     opacity: 1;
 }
 
 
-.grandPoster-carousel-item a {
+.poster-carousel-item a {
     padding: 10px;
 
     width: 100%;
@@ -61,7 +65,7 @@
     background-color: transparent;
 }
 
-.grandPoster-carousel-item .grandPoster-carousel-item-container {
+.poster-carousel-item .poster-carousel-item-container {
     width: 100%;
     height: auto;
     text-align: center;
@@ -77,15 +81,15 @@
 }
 
 
-.sm-card .grandPoster-carousel-item .grandPoster-carousel-item-container {
+.sm-card .poster-carousel-item .poster-carousel-item-container {
     aspect-ratio: 71 / 100 !important;
 }
 
-.ss-card .grandPoster-carousel-item .grandPoster-carousel-item-container {
+.ss-card .poster-carousel-item .poster-carousel-item-container {
     aspect-ratio: 71 / 100 !important;
 }
 
-.grandPoster-carousel-item .grandPoster-carousel-item-container::before {
+.poster-carousel-item .poster-carousel-item-container::before {
     content: "";
     position: absolute;
     top: 0;
@@ -103,7 +107,7 @@
 }
 
 
-.grandPoster-carousel-item .grandPoster-carousel-item-container::after {
+.poster-carousel-item .poster-carousel-item-container::after {
     content: "";
     position: absolute;
     box-shadow: 0 20px 24px #000c;
@@ -116,7 +120,7 @@
 }
 
 
-.grandPoster-carousel-item-image {
+.poster-carousel-item-image {
     background: #2D2F36;
     height: 100%;
     align-items: center;
@@ -136,7 +140,7 @@
 
 
 
-.grandPoster-carousel-item-image::before {
+.poster-carousel-item-image::before {
     content: "";
     position: absolute;
     top: 0;
@@ -155,7 +159,7 @@
 
 
 
-.grandPoster-carousel-item-image::after {
+.poster-carousel-item-image::after {
     content: "";
     position: absolute;
     left: 0;
@@ -178,15 +182,17 @@
 }
 
 
-.sm-card .grandPoster-carousel-item-image::after,
-.ss-card .grandPoster-carousel-item-image::after {
+
+.skeleton .poster-carousel-item-image::after,
+.sm-card .poster-carousel-item-image::after,
+.ss-card .poster-carousel-item-image::after {
     display: none;
 }
 
 
 
 
-.grandPoster-carousel-item-image>img {
+.poster-carousel-item-image>img {
     width: 100%;
     max-height: 100%;
     top: 0px;
@@ -202,7 +208,7 @@
     border-style: none;
 }
 
-.grandPoster-carousel-item-info {
+.poster-carousel-item-info {
     position: absolute;
     left: 0;
     right: 0;
@@ -214,7 +220,7 @@
 }
 
 
-.grandPoster-carousel-item-info-logo {
+.poster-carousel-item-info-logo {
     display: flex;
     max-width: 80%;
     width: 100%;
@@ -231,19 +237,19 @@
 
 }
 
-.grandPoster-carousel-item-info-logo img {
+.poster-carousel-item-info-logo img {
     width: 100%;
     height: auto;
 
     object-fit: contain;
     border-style: none;
     -webkit-font-smoothing: subpixel-antialiased;
-        aspect-ratio: 3 / 1;
+    aspect-ratio: 3 / 1;
 }
 
 
 
-.grandPoster-carousel-item-info-text {
+.poster-carousel-item-info-text {
     width: 100%;
     height: 42px;
 
@@ -262,16 +268,16 @@
     padding-top: 8px;
 }
 
-.grandPoster-carousel-item-info-text .ageClass {
+.poster-carousel-item-info-text .ageClass {
     margin-right: 8px;
 }
 
-.grandPoster-carousel-item-info-text .ageClass img {
+.poster-carousel-item-info-text .ageClass img {
     width: 16px;
     height: 16px;
 }
 
-.grandPoster-carousel-text-content {
+.poster-carousel-text-content {
     display: block;
     color: #fff;
     font-family: 'Inspire-Roman', sans-serif;
@@ -288,7 +294,7 @@
     max-width: 200px;
 }
 
-.grandPoster-info-content-logo-title {
+.poster-info-content-logo-title {
     font-family: 'Inspire-Heavy', sans-serif;
 
     font-size: 15px;
@@ -299,4 +305,22 @@
     text-align: center;
 
     width: 100%;
+}
+
+
+
+.visible {
+    opacity: 1;
+    transition: opacity 0.4s ease-in-out;
+}
+
+.hidden {
+    opacity: 0;
+    transition: opacity 0.4s ease-in-out;
+}
+
+
+.isContentRead .poster-carousel-item-image::after {
+    opacity: 1;
+    transition: opacity 0.4s ease-in-out;
 }

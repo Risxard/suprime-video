@@ -1,14 +1,9 @@
 import React, { useRef, useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import "./GrandPosterCarousel.css";
-import GrandPosterCarouselItem from "./components/GrandPosterCarouselItem.jsx";
+import "./styles.css";
+import BackdropItem from "./components/Backdropitem";
 
-const GrandPosterCarousel = ({
-  movies = [],
-  language,
-  top10mode,
-  card_size,
-}) => {
+const BackdropCarousel = ({ movies = [] }) => {
   const carouselRef = useRef(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const duration = 1000;
@@ -98,18 +93,11 @@ const GrandPosterCarousel = ({
     }
   };
 
-
-  
-
   return (
     <section>
-      <div
-        className={`grandPoster-carousel-Container ${
-          top10mode ? "top10" : ""
-        } ${card_size && card_size}`}
-      >
+      <div className={`backdrop-container`}>
         <button
-          className="grandPosterPrevBtn"
+          className="backdrop-PrevBtn"
           onClick={scrollPrev}
           disabled={activeIndex === 0}
         >
@@ -117,28 +105,23 @@ const GrandPosterCarousel = ({
         </button>
 
         <div
-          className="grandPoster-carousel"
+          className="backdrop-carousel"
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
+          ref={carouselRef}
         >
-          <div className="grandPoster-carousel-list" ref={carouselRef}>
-            {movies.map((movie, index) => (
-              <GrandPosterCarouselItem
-                key={index}
-                movie={movie}
-                language={language}
-                topNumber={index + 1}
-                top10mode={top10mode}
-                card_size={card_size}
-                className="grandPoster-carousel-item"
-              />
-            ))}
-          </div>
+          {movies.map((movie, index) => (
+            <BackdropItem
+              key={index}
+              movie={movie}
+              className="backdrop-item"
+            />
+          ))}
         </div>
 
         <button
-          className="grandPosterNextBtn"
+          className="backdrop-NextBtn"
           onClick={scrollNext}
           disabled={
             activeIndex >= Math.ceil(movies.length / getCardsPerView()) - 1
@@ -151,4 +134,4 @@ const GrandPosterCarousel = ({
   );
 };
 
-export default GrandPosterCarousel;
+export default React.memo(BackdropCarousel);

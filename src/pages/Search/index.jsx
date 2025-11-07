@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 
 import { tmdbService } from "../../services/tmdb/tmdbServices.js";
 import SearchMediaList from "./SearchMediaList/SearchMediaList.jsx";
-import SimpleBackdropCarousel from "../../components/Sliders/SimpleBackdropCarousel/index.jsx";
+import BackdropCarousel from "../../components/Carousels/BackdropCarousel/index.jsx";
 
 import SearchSvg from "./assets/SearchSvg.jsx";
 import SearchCancelSvg from "./assets/SearchCancelSvg.jsx";
@@ -130,7 +130,7 @@ const Search = () => {
               <div className="section-title">
                 <h4>{trendingSection}</h4>
               </div>
-              <SimpleBackdropCarousel movies={trending} />
+              <BackdropCarousel movies={trending} />
             </div>
           </div>
         ) : filteredResults.length === 0 ? (

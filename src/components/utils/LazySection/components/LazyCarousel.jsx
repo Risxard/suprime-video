@@ -77,12 +77,17 @@ const LazyCarousel = ({
           items = [response];
         }
 
-        const computedLimit =
-          typeof limit === "number"
-            ? limit
-            : type === "hero-carousel"
-            ? 15
-            : 20;
+        let computedLimit;
+
+        if (top10mode) {
+          computedLimit = 10;
+        } else if (typeof limit === "number") {
+          computedLimit = limit;
+        } else if (type === "hero-carousel") {
+          computedLimit = 15;
+        } else {
+          computedLimit = 20;
+        }
 
         setMovies(items.slice(0, computedLimit));
         setHasLoadedOnce(true);
@@ -112,7 +117,9 @@ const LazyCarousel = ({
     }
 
     if (loading && !hasLoadedOnce)
-      return SkeletonComponent ? <SkeletonComponent card_size={card_size} /> : null;
+      return SkeletonComponent ? (
+        <SkeletonComponent card_size={card_size} />
+      ) : null;
 
     if (type === "hero-section" && mediaDetails)
       return (

@@ -28,17 +28,16 @@ const PosterCarouselSkeleton = ({ card_size }) => {
   return (
     <section>
       <div
-        className={`grandPoster-carousel-Container ${
+        className={`poster-carousel-Container skeleton${
           card_size ? card_size : ""
         }`}
       >
-        <div className="grandPoster-carousel">
-          <div className="grandPoster-carousel-list">
+        <div className="poster-carousel">
+          <div className="poster-carousel-list">
             {items.map((_, index) => (
-              <div className="grandPoster-carousel-item" key={index}>
+              <div className="poster-carousel-item " key={index}>
                 <a href="#">
-                  <div className="grandPoster-carousel-item-container">
-                    <div className="grandPoster-carousel-item-image"></div>
+                  <div className="poster-carousel-item-container">
                   </div>
                 </a>
               </div>
