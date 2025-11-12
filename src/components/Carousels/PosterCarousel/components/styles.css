@@ -154,9 +154,37 @@
     outline: 3px solid #FFFFFF;
     outline-offset: 3px;
     opacity: 0;
-    transition: opacity .3s ease;
+    transition: opacity 0.4s ease-in-out;
 }
 
+
+.poster-carousel-item[data-set="true"] .poster-carousel-item-image::after {
+    opacity: 1;
+}
+
+.poster-carousel-item[data-set="true"] .poster-carousel-item-image>img {
+    opacity: 1;
+}
+
+.poster-carousel-item[data-set="true"] .card-label {
+    opacity: 1;
+}
+
+.poster-carousel-item[data-set="true"] .poster-carousel-item-info-logo {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.4s;
+}
+
+.poster-carousel-item[data-set="true"] .poster-carousel-item-info-text {
+    opacity: 1;
+    transition-delay: 0.4s;
+}
+
+.poster-carousel-item .card-label {
+    transition: opacity 0.4s ease-in-out;
+    opacity: 0;
+}
 
 
 .poster-carousel-item-image::after {
@@ -170,15 +198,18 @@
     pointer-events: none;
 
     background: linear-gradient(to top,
-            rgba(0, 0, 0, 1) 0%,
+            rgba(8, 8, 8, 1) 0%,
 
-            rgba(0, 0, 0, 1) 20%,
+            rgba(8, 8, 8, 1) 20%,
 
-            rgba(0, 0, 0, 0.7) 60%,
+            rgba(8, 8, 8, 0.7) 60%,
 
-            rgba(0, 0, 0, 0) 100%);
+            rgba(8, 8, 8, 0) 100%);
 
     z-index: 2;
+
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
 }
 
 
@@ -190,8 +221,6 @@
 }
 
 
-
-
 .poster-carousel-item-image>img {
     width: 100%;
     max-height: 100%;
@@ -201,11 +230,12 @@
     transition-property: opacity;
     position: absolute;
     display: block;
-    opacity: 1;
-    transition-timing-function: ease-in-out;
-    transition-duration: 0.2s;
     border-radius: 4px;
     border-style: none;
+
+
+    transition: opacity 0.4s ease-in-out;
+    opacity: 0;
 }
 
 .poster-carousel-item-info {
@@ -234,7 +264,12 @@
     position: relative;
     z-index: 10;
 
-
+    opacity: 0;
+    transform: translateY(5px);
+    transition:
+        opacity 0.6s ease-in-out,
+        transform 0.6s ease-in-out;
+    transition-delay: 0s;
 }
 
 .poster-carousel-item-info-logo img {
@@ -266,6 +301,12 @@
     padding-left: 16px;
     padding-right: 16px;
     padding-top: 8px;
+
+    opacity: 0;
+    transition:
+        opacity 0.6s ease-in-out,
+        transform 0.6s ease-in-out;
+    transition-delay: 0s;
 }
 
 .poster-carousel-item-info-text .ageClass {
@@ -305,22 +346,4 @@
     text-align: center;
 
     width: 100%;
-}
-
-
-
-.visible {
-    opacity: 1;
-    transition: opacity 0.4s ease-in-out;
-}
-
-.hidden {
-    opacity: 0;
-    transition: opacity 0.4s ease-in-out;
-}
-
-
-.isContentRead .poster-carousel-item-image::after {
-    opacity: 1;
-    transition: opacity 0.4s ease-in-out;
 }

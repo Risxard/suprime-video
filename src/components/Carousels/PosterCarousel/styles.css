@@ -25,7 +25,9 @@
 }
 
 
-
+.poster-carousel-list.snap-enabled {
+  scroll-snap-type: x mandatory;
+}
 
 .poster-carousel-Container {
     margin-left: calc(-1 * var(--inner-width));
@@ -49,6 +51,15 @@
     border-radius: 4px;
     overflow: hidden;
 }
+
+.posterPrevBtn:focus-visible {
+    outline: none;
+}
+
+.posterNextBtn:focus-visible {
+    outline: none;
+}
+
 
 .posterNextBtn:hover,
 .posterPrevBtn:hover {

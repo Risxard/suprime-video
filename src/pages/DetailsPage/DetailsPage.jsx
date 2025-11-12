@@ -1,10 +1,10 @@
 import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import i18next from "i18next";
 import { useTranslation } from "react-i18next";
 import "./styles.css";
 import {
-  image_path_342,
+  image_path_500,
   image_path_92,
   image_path_original,
 } from "../../utils/imagePaths";
@@ -15,16 +15,28 @@ import DoneActionIcon from "./assets/DoneActionIcon";
 import LoadingIcon from "../../assets/svgs/LoadingIcon";
 import DetailsTab from "./components/DetailsTab";
 import MediaPlayer from "../../components/MediaPlayer/MediaPlayer";
-import { updateWatchlist } from "../../services/firebase/profileServices";
+import LoadingComponent from "../../components/utils/LoadingComponent/index";
+import {
+  getWatchlist,
+  updateWatchlist,
+} from "../../services/firebase/profileServices";
 import { useDispatch, useSelector } from "react-redux";
 
 const DetailsPage = () => {
   const [media, setMedia] = useState(null);
   const [logo, setLogo] = useState(null);
   const [bgOpacity, setBgOpacity] = useState(1);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isPageLoading, setIsPageLoading] = useState(true);
+  const [isWatchlistLoading, setIsWatchlistLoading] = useState(false);
   const [videoKey, setVideoKey] = useState("");
   const [showPlayer, setShowPlayer] = useState(false);
+  const [isContentReady, setIsContentReady] = useState(false);
+  const [shouldRenderDetails, setShouldRenderDetails] = useState(false);
+  const [watchlist, setWatchlist] = useState([]);
+  const [logoTried, setLogoTried] = useState(false);
+
+  const imagesLoaded = useRef(0);
+  const totalImagesToLoad = useRef(0);
 
   const { t } = useTranslation();
   const detailsPage = t("details-page", { returnObjects: true });
@@ -34,35 +46,50 @@ const DetailsPage = () => {
   const dispatch = useDispatch();
 
   const profileId = useSelector((state) => state.auth.currentProfile.id);
-  const watchlist = useSelector((state) => state.auth.watchList) || [];
 
-  let isInWatchlist = false;
+  const fetchWatchlist = async () => {
+    try {
+      const list = await getWatchlist(profileId, dispatch);
+      if (Array.isArray(list)) {
+        setWatchlist(list);
+      } else {
+        setWatchlist([]);
+      }
+    } catch (error) {
+      console.error("Erro ao buscar watchlist:", error);
+    }
+  };
 
-  if (Array.isArray(watchlist)) {
-    isInWatchlist = watchlist.some(
-      (item) => item.id === id && item.media_type === mediaType
-    );
-  } else if (watchlist && typeof watchlist === "object") {
-    const list = watchlist[mediaType] || [];
-    isInWatchlist = Array.isArray(list) && list.includes(id);
-  }
+  useEffect(() => {
+    if (profileId) fetchWatchlist();
+  }, [profileId]);
+
+  const isInWatchlist = watchlist.some(
+    (item) => String(item.id) === String(id) && item.media_type === mediaType
+  );
 
   const action = isInWatchlist ? "remove" : "add";
 
   const handleToWatchlist = async (profileId, mediaType, mediaId, action) => {
-    setIsLoading(true);
+    setIsWatchlistLoading(true);
     try {
       await updateWatchlist(profileId, mediaType, mediaId, action, dispatch);
+      await fetchWatchlist();
     } catch (error) {
       console.error("Erro ao adicionar/remover da watchlist:", error);
     } finally {
-      setIsLoading(false);
+      setIsWatchlistLoading(false);
     }
   };
 
   useEffect(() => {
     const fetchMediaData = async () => {
-      setIsLoading(true);
+      setIsContentReady(false);
+      setIsPageLoading(true);
+      setLogoTried(false);
+      imagesLoaded.current = 0;
+      totalImagesToLoad.current = 0;
+
       try {
         const details = await tmdbService.fetchMediaDetails({
           mediaType,
@@ -78,11 +105,15 @@ const DetailsPage = () => {
           originalLanguage: details.original_language,
         });
 
-        if (response) setLogo(response.file_path);
+        if (response) {
+          setLogo(response.file_path);
+        } else {
+          setLogo(null);
+        }
       } catch (error) {
         console.error("Erro ao buscar mídia:", error);
       } finally {
-        setIsLoading(false);
+        setLogoTried(true);
       }
     };
 
@@ -104,9 +135,14 @@ const DetailsPage = () => {
           originalLanguage: media.original_language,
         });
 
-        if (response) setVideoKey(response);
+        if (response) {
+          setVideoKey(response);
+        } else {
+          setShouldRenderDetails(true);
+        }
       } catch (error) {
         console.error("Erro ao buscar videoKey:", error);
+        setShouldRenderDetails(true);
       }
     };
 
@@ -116,8 +152,16 @@ const DetailsPage = () => {
   useEffect(() => {
     if (referrer === "play" && videoKey) {
       setShowPlayer(true);
+      setShouldRenderDetails(false);
+    } else {
+      setShouldRenderDetails(true);
     }
   }, [referrer, videoKey]);
+
+  const handleClosePlayer = () => {
+    setShowPlayer(false);
+    setShouldRenderDetails(true);
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -133,88 +177,126 @@ const DetailsPage = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const handleImageLoaded = () => {
+    imagesLoaded.current += 1;
+    if (imagesLoaded.current >= totalImagesToLoad.current) {
+      setTimeout(() => {
+        setIsContentReady(true);
+        setIsPageLoading(false);
+      }, 250);
+    }
+  };
+
+  useEffect(() => {
+    let count = 1;
+    if (logo) count += 1;
+    totalImagesToLoad.current = count;
+  }, [logo]);
+
   return (
     <>
+      {isPageLoading && <LoadingComponent />}
+
       {showPlayer && videoKey && (
-        <MediaPlayer propsKey={videoKey} onClose={() => setShowPlayer(false)} />
+        <MediaPlayer propsKey={videoKey} onClose={handleClosePlayer} />
       )}
 
-      <div className="details-page">
-        <div className="details-page-container">
-          <div className="details-page-content">
-            <div
-              className="details-page-media-background"
-              style={{ opacity: bgOpacity }}
-            >
-              <div className="details-page-media-background-image">
-                <img
-                  src={`${image_path_92}${media?.backdrop_path}`}
-                  alt=""
-                  className="details-page-media-background-image-blurred"
-                />
-                <img
-                  src={`${image_path_original}${media?.backdrop_path}`}
-                  alt=""
-                  className="details-page-media-background-image-original"
-                />
+      {shouldRenderDetails && media && (
+        <div
+          className="details-page"
+          data-set={isContentReady ? "true" : "false"}
+        >
+          <div className="details-page-container">
+            <div className="details-page-content">
+              <div
+                className="details-page-media-background"
+                style={{ opacity: bgOpacity }}
+              >
+                <div className="details-page-media-background-image">
+                  <img
+                    src={`${image_path_92}${media?.backdrop_path}`}
+                    alt=""
+                    className="details-page-media-background-image-blurred"
+                  />
+                  <img
+                    src={`${image_path_original}${media?.backdrop_path}`}
+                    alt=""
+                    className="details-page-media-background-image-original"
+                    onLoad={handleImageLoaded}
+                  />
+                </div>
+                <div className="details-page-media-background-filter" />
               </div>
-              <div className="details-page-media-background-filter" />
-            </div>
 
-            <section className="explore-ui-main-container">
-              <div className="explore-ui-main-content">
-                <div className="explore-ui-main-content-logo">
-                  {logo ? (
-                    <img
-                      src={`${image_path_342}${logo}`}
-                      alt="Logo"
-                      className="details-page-logo"
-                    />
-                  ) : (
-                    <h2>{media?.title || media?.name}</h2>
-                  )}
-                </div>
+              <section className="explore-ui-main-container">
+                <div className="explore-ui-main-content">
+                  <div className="explore-ui-main-content-logo">
+                    {logo ? (
+                      <img
+                        src={`${image_path_500}${logo}`}
+                        alt="Logo"
+                        className="details-page-logo"
+                        onLoad={handleImageLoaded}
+                        style={{
+                          opacity: isContentReady ? 1 : 0,
+                          transition: "opacity 0.6s ease-in-out",
+                        }}
+                      />
+                    ) : (
+                      logoTried && (
+                        <h2
+                          style={{
+                            opacity: isContentReady ? 1 : 0,
+                            transition: "opacity 0.6s ease-in-out",
+                          }}
+                        >
+                          {media?.title || media?.name}
+                        </h2>
+                      )
+                    )}
+                  </div>
 
-                <div className="explore-ui-main-content-overview">
-                  <p>{media?.overview}</p>
-                </div>
+                  <div className="explore-ui-main-content-overview">
+                    <p>{media?.overview}</p>
+                  </div>
 
-                <div className="explore-ui-main-content-actions">
-                  <button
-                    className="play-action"
-                    onClick={() => setShowPlayer(true)}
-                  >
-                    <PlayActionIcon />
-                    {detailsPage.actions.play}
-                  </button>
-
-                  <div
-                    className="watchlist-action"
-                    onClick={() =>
-                      handleToWatchlist(profileId, mediaType, id, action)
-                    }
-                  >
-                    <button>
-                      {isLoading ? (
-                        <LoadingIcon />
-                      ) : isInWatchlist ? (
-                        <DoneActionIcon />
-                      ) : (
-                        <PlusActionIcon />
-                      )}
+                  <div className="explore-ui-main-content-actions">
+                    <button
+                      className="play-action"
+                      onClick={() => setShowPlayer(true)}
+                    >
+                      <PlayActionIcon />
+                      {detailsPage.actions.play}
                     </button>
-                    <span className="watchlist-action-showup">
-                      {detailsPage.actions.myList}
-                    </span>
+
+                    <div
+                      className="watchlist-action"
+                      onClick={() =>
+                        handleToWatchlist(profileId, mediaType, id, action)
+                      }
+                    >
+                      <button disabled={isWatchlistLoading}>
+                        {isWatchlistLoading ? (
+                          <LoadingIcon />
+                        ) : isInWatchlist ? (
+                          <DoneActionIcon />
+                        ) : (
+                          <PlusActionIcon />
+                        )}
+                      </button>
+                      <span className="watchlist-action-showup">
+                        {detailsPage.actions.myList}
+                      </span>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </section>
+              </section>
 
-            <DetailsTab media={media} />
+              <DetailsTab media={media} />
+            </div>
           </div>
         </div>
-      </div>
+      )}
 
       <div className="app-background" />
     </>

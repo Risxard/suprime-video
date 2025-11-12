@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { tmdbService } from "../../services/tmdb/tmdbServices";
 import "./styles.css";
 import {
@@ -10,13 +11,21 @@ import MediaClass from "../MediaClass/MediaClass";
 import { dateConverter, genreConverter } from "../../functions/Converter";
 import { NavLink } from "react-router-dom";
 
-const HeroSection = ({
-  mediaType = "movie",
-  movies,
-  language = "pt-BR",
-}) => {
+const HeroSection = ({ mediaType = "movie", movies, language = "pt" }) => {
+  const { t, i18n } = useTranslation();
+
   const [posterAndLogo, setPosterAndLogo] = useState({});
   const [isMobile, setIsMobile] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isContentReady, setIsContentReady] = useState(false);
+  const [backgroundImage, setBackgroundImage] = useState("");
+  const [logoImage, setLogoImage] = useState("");
+
+  useEffect(() => {
+    if (language && i18n.language !== language) {
+      i18n.changeLanguage(language);
+    }
+  }, [language, i18n]);
 
   useEffect(() => {
     const handleResize = () => {
@@ -40,34 +49,70 @@ const HeroSection = ({
         setPosterAndLogo(data);
       } catch (error) {
         console.error("Erro ao buscar poster/logo:", error);
+      } finally {
+        setIsLoading(false);
       }
     };
-
     fetchPosterAndLogo();
   }, [movies, mediaType, language]);
+
+  useEffect(() => {
+    if (isLoading || !movies) return;
+
+    const logo_path = posterAndLogo?.logo?.file_path;
+    const poster_path = posterAndLogo?.poster?.file_path;
+    const backdrop_path = movies.backdrop_path;
+
+    const bgImage = isMobile
+      ? poster_path
+        ? `${image_path_500}${poster_path}`
+        : `${image_path_500}${movies.poster_path}`
+      : backdrop_path
+      ? `${image_path_original}${backdrop_path}`
+      : poster_path
+      ? `${image_path_original}${poster_path}`
+      : "";
+
+    const logoImg = logo_path ? `${image_path_342}${logo_path}` : "";
+
+    setBackgroundImage(bgImage);
+    setLogoImage(logoImg);
+
+    let loadedCount = 0;
+    const required = 1 + (logoImg ? 1 : 0);
+    const markLoaded = () => {
+      loadedCount++;
+      if (loadedCount >= required) setIsContentReady(true);
+    };
+
+    if (bgImage) {
+      const bg = new Image();
+      bg.src = bgImage;
+      bg.onload = markLoaded;
+      bg.onerror = markLoaded;
+    } else markLoaded();
+
+    if (logoImg) {
+      const lg = new Image();
+      lg.src = logoImg;
+      lg.onload = markLoaded;
+      lg.onerror = markLoaded;
+    }
+  }, [posterAndLogo, isLoading, movies, isMobile]);
 
   if (!movies) return null;
 
   const title = movies.title || movies.name;
-  const release_date =
-    movies.release_date || movies.first_air_date || "";
+  const release_date = movies.release_date || movies.first_air_date || "";
   const genres = movies.genres || [];
   const overview = movies.overview || "";
-
-  const logo_path = posterAndLogo?.logo?.file_path;
-  const poster_path = posterAndLogo?.poster?.file_path;
-  const backdrop_path = movies.backdrop_path;
 
   const genreNames = genres
     .map((genre) => genreConverter(genre.id, language, mediaType))
     .slice(0, 3);
 
-  const backgroundImage = isMobile
-    ? `${image_path_500}${poster_path}`
-    : `${image_path_original}${backdrop_path}`;
-
   return (
-    <div className="hero-section">
+    <div className="hero-section" data-set={isContentReady ? "true" : "false"}>
       <div className="hero-section-background">
         <div className="hero-section-image">
           {backgroundImage && (
@@ -79,13 +124,21 @@ const HeroSection = ({
 
       <div className="hero-section-content-wrapper">
         <div className="hero-section-info-content">
-          {logo_path && (
+          {logoImage && (
             <img
-              src={`${image_path_342}${logo_path}`}
+              src={logoImage}
               alt={`${title} logo`}
               className="hero-section-info-content-logo"
             />
           )}
+
+          <div className="hero-promo-label">
+            <span
+              dangerouslySetInnerHTML={{
+                __html: t("hero-section.buttons.title"),
+              }}
+            />
+          </div>
 
           <span className="hero-carousel-info-content-text-2">
             <MediaClass
@@ -123,11 +176,11 @@ const HeroSection = ({
                   d="M17.7642 7.86385C18.7453 8.36366 18.7453 9.63634 17.7642 10.1361L2.66343 17.8289C1.69706 18.3212 0.5 17.6925 0.5 16.6927V1.30727C0.5 0.307478 1.69706 -0.321171 2.66343 0.171123L17.7642 7.86385Z"
                 ></path>
               </svg>
-              Assistir
+              {t("hero-section.buttons.play")}
             </NavLink>
 
             <NavLink to={`/detail/${mediaType}/${movies.id}`}>
-              Detalhes
+              {t("hero-section.buttons.details")}
             </NavLink>
           </div>
         </div>

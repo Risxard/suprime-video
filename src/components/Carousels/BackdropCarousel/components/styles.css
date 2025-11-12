@@ -12,6 +12,8 @@
     flex-grow: 0;
     scroll-snap-align: start;
     will-change: transform;
+
+
 }
 
 .backdrop-item:first-of-type {

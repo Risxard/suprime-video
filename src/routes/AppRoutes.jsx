@@ -34,6 +34,7 @@ import ChangePassword from "../pages/Identity/components/ChangePassword.jsx";
 import DeleteAccount from "../pages/Identity/components/DeleteAccount.jsx";
 import ChannelsPage from "../pages/ChannelsPage/index.jsx";
 import ScrollToTop from "../components/utils/ScrollToTop.jsx";
+import TestPage from "../pages/TestPage/TestPage.jsx";
 
 const AppRoutes = () => {
   const { user, token, currentProfile, loading } = useSelector(
@@ -135,7 +136,11 @@ const AppRoutes = () => {
     {
       path: "/browse/:channelId",
       element: <BrowsePage children={<ChannelsPage />} />,
-    }
+    },
+    {
+      path: "/testpage",
+      element: <TestPage />,
+    },
   ];
 
   const privateStandalone = [

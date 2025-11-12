@@ -28,6 +28,11 @@
 }
 
 
+.backdrop-carousel.snap-enabled {
+  scroll-snap-type: x mandatory;
+}
+
+
 
 .backdrop-NextBtn,
 .backdrop-PrevBtn {
@@ -35,6 +40,14 @@
     border-radius: 4px;
     overflow: hidden;
 }
+
+.backdrop-PrevBtn:focus-visible {
+    outline: none;
+}
+.backdrop-NextBtn:focus-visible {
+    outline: none;
+}
+
 
 .backdrop-NextBtn:hover,
 .backdrop-PrevBtn:hover {

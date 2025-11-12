@@ -5,7 +5,7 @@ import "./styles.css";
 import MediaClass from "../../../MediaClass/MediaClass";
 import { NavLink } from "react-router-dom";
 import CardLabel from "./assets/card-label";
-import { image_path_342 } from "../../../../utils/imagePaths";
+import { image_path_185, image_path_342 } from "../../../../utils/imagePaths";
 
 const PosterCarouselBigItem = ({
   movie,
@@ -14,17 +14,15 @@ const PosterCarouselBigItem = ({
   topNumber,
   card_size = "",
 }) => {
-  const [posterAndLogo, setPosterAndLogo] = useState({});
-  const [isPosterLoaded, setIsPosterLoaded] = useState(false);
-  const [isLogoLoaded, setIsLogoLoaded] = useState(false);
+  const [posterAndLogo, setPosterAndLogo] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isContentReady, setIsContentReady] = useState(false);
+  const [posterSrc, setPosterSrc] = useState("");
+  const [logoSrc, setLogoSrc] = useState("");
+  const [showLogo, setShowLogo] = useState(false);
 
   useEffect(() => {
-    setIsPosterLoaded(false);
-    setIsLogoLoaded(false);
-  }, [movie?.id, language, card_size]);
-
-  useEffect(() => {
-    const fetchLogo = async () => {
+    const fetchPosterAndLogo = async () => {
       if (!movie?.id || card_size !== "") return;
 
       try {
@@ -37,13 +35,63 @@ const PosterCarouselBigItem = ({
         setPosterAndLogo(res);
       } catch (err) {
         console.error("Erro ao buscar logo TMDB:", err);
+        setPosterAndLogo(null);
+      } finally {
+        setIsLoading(false);
       }
     };
 
     if (movie && language) {
-      fetchLogo();
+      fetchPosterAndLogo();
     }
   }, [movie, language, card_size]);
+
+
+  useEffect(() => {
+    if (isLoading || !movie) return;
+
+    const poster = posterAndLogo?.poster;
+    const logo = posterAndLogo?.logo;
+    const isoPoster = poster?.iso_639_1?.toLowerCase() || null;
+
+    let finalPoster = "";
+    let finalLogo = "";
+    let shouldShowLogo = false;
+
+
+    if (poster?.file_path) {
+      finalPoster = `${image_path_342}${poster.file_path}`;
+
+
+      if (isoPoster === null || isoPoster === "xx") {
+        shouldShowLogo = !!logo?.file_path;
+        if (logo?.file_path) {
+          finalLogo = `${image_path_185}${logo.file_path}`;
+        }
+      } else {
+
+        shouldShowLogo = false;
+      }
+    }
+
+
+    else if (movie.poster_path) {
+      finalPoster = `${image_path_342}${movie.poster_path}`;
+      shouldShowLogo = false;
+    }
+
+
+    if (finalPoster) {
+      setPosterSrc(finalPoster);
+      setLogoSrc(finalLogo);
+      setShowLogo(shouldShowLogo);
+
+      const img = new Image();
+      img.src = finalPoster;
+      img.onload = () => setIsContentReady(true);
+      img.onerror = () => setIsContentReady(true);
+    }
+  }, [posterAndLogo, isLoading, movie]);
 
   if (!movie) return null;
 
@@ -54,69 +102,57 @@ const PosterCarouselBigItem = ({
     ) || []
   ).slice(0, 3);
 
-  const posterSrc = `${image_path_342}${posterAndLogo?.poster?.file_path}`;
-  const logoSrc = `${image_path_342}${posterAndLogo?.logo?.file_path}`;
 
-  const isContentReady =
-    isPosterLoaded && (isLogoLoaded || !posterAndLogo?.logo?.file_path);
 
   return (
-    <div className="poster-carousel-item">
+    <div
+      className="poster-carousel-item"
+      data-set={isContentReady ? "true" : "false"}
+    >
       <NavLink to={`/detail/${movie.media_type}/${movie.id}`}>
         <div className="poster-carousel-item-container">
           <div className="poster-carousel-item-image">
-            {top10mode && <CardLabel topNumber={topNumber} isContentReady/>}
+            {top10mode && <CardLabel topNumber={topNumber} />}
 
             <img
               src={posterSrc}
               alt={movie.title || movie.name || ""}
-              className={`poster-image ${card_size} ${
-                isContentReady ? "visible" : "hidden"
-              }`}
-              onLoad={() => setIsPosterLoaded(true)}
+              className={`poster-image ${card_size}`}
               loading="lazy"
             />
 
-            <div className="poster-carousel-item-info">
-              <div className="poster-carousel-item-info-logo">
-                {posterAndLogo?.logo?.file_path ? (
-                  <img
-                    src={logoSrc}
-                    alt={`${movie.title || movie.name} logo`}
-                    className={`logo-image ${
-                      isContentReady ? "visible" : "hidden"
-                    }`}
-                    onLoad={() => setIsLogoLoaded(true)}
-                    loading="lazy"
-                  />
-                ) : (
-                  <div
-                    className={`poster-info-content-logo-title ${
-                      isContentReady ? "visible" : "hidden"
-                    }`}
-                  >
-                    {movie.title || movie.name}
-                  </div>
-                )}
-              </div>
+            {isContentReady && (
+              <div className="poster-carousel-item-info">
+                <div className="poster-carousel-item-info-logo">
+                  {showLogo && logoSrc ? (
+                    <img
+                      src={logoSrc}
+                      alt={`${movie.title || movie.name} logo`}
+                      className="logo-image"
+                    />
+                  ) : (
+                    <div className="poster-info-content-logo-title">
+                      {movie.title || movie.name}
+                    </div>
+                  )}
+                </div>
 
-              <div
-                className={`poster-carousel-item-info-text ${
-                  isContentReady ? "visible" : "hidden"
-                }`}
-              >
-                <MediaClass
-                  language={language}
-                  id={movie.id}
-                  mediaType={movie.media_type}
-                />
-                <span className="poster-carousel-text-content">
-                  {release_date &&
-                    `${dateConverter(release_date)} ${!top10mode ? "•" : ""} `}
-                  {!top10mode && genreNames.join(", ")}
-                </span>
+                <div className="poster-carousel-item-info-text">
+                  <MediaClass
+                    language={language}
+                    id={movie.id}
+                    mediaType={movie.media_type}
+                  />
+                  <span className="poster-carousel-text-content">
+                    {release_date &&
+                      `${dateConverter(release_date)} ${
+                        !top10mode ? "•" : ""
+                      } `}
+                    {!top10mode && genreNames.join(", ")}
+                  </span>
+                </div>
               </div>
-            </div>
+            )}
           </div>
         </div>
       </NavLink>
@@ -143,8 +179,10 @@ const PosterCarouselMediumItem = ({ movie }) => {
 
   const posterSrc = `${image_path_342}${movie.poster_path}`;
 
+  const isContentReady = isPosterLoaded;
+
   return (
-    <div className="poster-carousel-item">
+    <div className="poster-carousel-item" data-set={isContentReady}>
       <NavLink to={`/detail/${movie.media_type}/${movie.id}`}>
         <div className="poster-carousel-item-container">
           <div className="poster-carousel-item-image">
@@ -152,9 +190,7 @@ const PosterCarouselMediumItem = ({ movie }) => {
               <img
                 src={posterSrc}
                 alt={movie.title || movie.name || ""}
-                className={`poster-image sm-card ${
-                  isPosterLoaded ? "visible" : "hidden"
-                }`}
+                className={`poster-image sm-card`}
                 onLoad={() => setIsPosterLoaded(true)}
                 onError={() => setIsPosterLoaded(true)}
                 loading="lazy"
@@ -186,8 +222,10 @@ const PosterCarouselSmallItem = ({ movie }) => {
 
   const posterSrc = `${image_path_342}${movie.poster_path}`;
 
+  const isContentReady = isPosterLoaded;
+
   return (
-    <div className="poster-carousel-item">
+    <div className="poster-carousel-item" data-set={isContentReady}>
       <NavLink to={`/detail/${movie.media_type}/${movie.id}`}>
         <div className="poster-carousel-item-container">
           <div className="poster-carousel-item-image">
@@ -195,11 +233,9 @@ const PosterCarouselSmallItem = ({ movie }) => {
               <img
                 src={posterSrc}
                 alt={movie.title || movie.name || ""}
-                className={`poster-image ss-card ${
-                  isPosterLoaded ? "visible" : "hidden"
-                }`}
+                className={`poster-image ss-card`}
                 onLoad={() => setIsPosterLoaded(true)}
-                onError={() => setIsPosterLoaded(true)}
+                onError={() => setIsPosterLoaded(false)}
                 loading="lazy"
               />
             )}

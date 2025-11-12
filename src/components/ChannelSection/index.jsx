@@ -1,49 +1,57 @@
 import React, { useRef } from "react";
 import "./styles.css";
+import { NavLink } from "react-router-dom";
 
 import disneyVideo from "./assets/videos/disney.mp4";
-import marvelVideo from "./assets/videos/marvel.mp4";
 import pixarVideo from "./assets/videos/pixar.mp4";
+import marvelVideo from "./assets/videos/marvel.mp4";
 import starWarsVideo from "./assets/videos/star-wars.mp4";
 import nationalVideo from "./assets/videos/national-geographic.mp4";
 import espnVideo from "./assets/videos/espn.mp4";
 import huluVideo from "./assets/videos/hulu.mp4";
-import { NavLink } from "react-router-dom";
+
+import disneyImage from "./assets/images/disney.webp";
+import pixarImage from "./assets/images/pixar.webp";
+import marvelImage from "./assets/images/marvel.webp";
+import starWarsImage from "./assets/images/starwars.webp";
+import nationalImage from "./assets/images/national.webp";
+import espnImage from "./assets/images/espn.webp";
+import huluImage from "./assets/images/hulu.webp";
 
 const channels = [
   {
     url: "disney",
-    img: "https://disney.images.edge.bamgrid.com/ripcut-delivery/v2/variant/disney/FFA0BEBAC1406D88929497501C84019EBBA1B018D3F7C4C3C829F1810A24AD6E/compose?format=webp&width=800",
+    img: disneyImage,
     video: disneyVideo,
   },
   {
     url: "pixar",
-    img: "https://disney.images.edge.bamgrid.com/ripcut-delivery/v2/variant/disney/7F4E1A299763030A0A8527227AD2812C049CE3E02822F7EDEFCFA1CFB703DDA5/compose?format=webp&width=800",
+    img: pixarImage,
     video: pixarVideo,
   },
   {
     url: "marvel",
-    img: "https://disney.images.edge.bamgrid.com/ripcut-delivery/v2/variant/disney/8D83D724070255A0A0078E3D7945301A1F5ADD0DCCA1C7F908542AEA0C742823/compose?format=webp&width=800",
+    img: marvelImage,
     video: marvelVideo,
   },
   {
     url: "starwars",
-    img: "https://disney.images.edge.bamgrid.com/ripcut-delivery/v2/variant/disney/5A9416D67DC9595496B2666087596EE64DE379272051BB854157C0D938BE2C26/compose?format=webp&width=800",
+    img: starWarsImage,
     video: starWarsVideo,
   },
   {
     url: "national",
-    img: "https://disney.images.edge.bamgrid.com/ripcut-delivery/v2/variant/disney/2EF24AA0A1E648E6D1A3B26491F516632137ED87AB22969D153316F8BD670FB5/compose?format=webp&width=800",
+    img: nationalImage,
     video: nationalVideo,
   },
   {
     url: "espn",
-    img: "https://disney.images.edge.bamgrid.com/ripcut-delivery/v2/variant/disney/1CC4B181E5EF37C07D5D0224A04C504FBBCC238B93173450F0A1960DA7EF4B4F/compose?format=webp&width=800",
+    img: espnImage,
     video: espnVideo,
   },
   {
     url: "hulu",
-    img: "https://disney.images.edge.bamgrid.com/ripcut-delivery/v2/variant/disney/81FA4D830379184F4220A87D3197E9A13BB6F3873862C9EA8BE66A6B1834BD37/compose?format=webp&width=800",
+    img: huluImage,
     video: huluVideo,
   },
 ];

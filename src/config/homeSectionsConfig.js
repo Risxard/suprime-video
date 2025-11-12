@@ -3,11 +3,16 @@ import HeroCarousel from "../components/Carousels/HeroCarousel/HeroCarousel";
 import PosterCarousel from "../components/Carousels/PosterCarousel/PosterCarousel";
 import BackdropCarousel from "../components/Carousels/BackdropCarousel";
 import ChannelSection from "../components/ChannelSection";
+import HeroSection from "../components/HeroSection";
+
 
 import HeroCarouselSkeleton from "../components/Carousels/HeroCarousel/components/HeroCarouselSkeleton";
 import PosterCarouselSkeleton from "../components/Carousels/PosterCarousel/components/PosterCarouselSkeleton";
 import BackdropSkeleton from "../components/Carousels/BackdropCarousel/components/BackdropSkeleton";
 import ChannelSectionSkeleton from "../components/ChannelSection/components/ChannelSectionSkeleton";
+import HeroSectionSkeleton from "../components/HeroSection/components/HeroSectionSkeleton";
+
+
 import i18n from "../i18n";
 
 export const homeSections = [
@@ -47,12 +52,6 @@ export const homeSections = [
           page: 1,
         },
       },
-    ],
-  },
-
-  {
-    id: "recomendados",
-    carousels: [
       {
         title: i18n.t("sections.home.trending"),
         type: "simple-backdrop",
@@ -78,6 +77,12 @@ export const homeSections = [
           page: 1,
         },
       },
+    ],
+  },
+
+  {
+    id: "universos",
+    carousels: [
       {
         title: i18n.t("sections.home.emmy"),
         type: "poster",
@@ -91,11 +96,21 @@ export const homeSections = [
           page: 1,
         },
       },
-    ],
-  },
-  {
-    id: "universos",
-    carousels: [
+      {
+        title: "Ficção Científica",
+        type: "poster",
+        component: PosterCarousel,
+        skeleton: PosterCarouselSkeleton,
+        card_size: "ss-card",
+        fetchFn: tmdbService.fetchPerGenres,
+        fetchParams: {
+          pageType: "movie",
+          language: i18n.language,
+          with_genres: 878,
+          page: 1,
+          sort_by: "popularity.desc",
+        },
+      },
       {
         title: i18n.t("sections.home.marvelSeries"),
         type: "poster",
@@ -108,6 +123,13 @@ export const homeSections = [
           language: i18n.language,
           page: 1,
         },
+      },
+      {
+        type: "hero-section",
+        component: HeroSection,
+        skeleton: HeroSectionSkeleton,
+        fetchFn: tmdbService.fetchMediaDetails,
+        fetchParams: { mediaType: "movie", mediaId: 617126, language: i18n.language },
       },
       {
         title: i18n.t("sections.home.mcuUniverse"),
@@ -150,6 +172,22 @@ export const homeSections = [
         },
       },
       {
+        title: "Açao e Aventura",
+        type: "poster",
+        component: PosterCarousel,
+        skeleton: PosterCarouselSkeleton,
+        card_size: "ss-card",
+        fetchFn: tmdbService.fetchPerGenres,
+        fetchParams: {
+          pageType: "movie",
+          language: i18n.language,
+          with_genres: 12,
+          page: 1,
+          sort_by: "popularity.desc",
+        },
+      },
+
+      {
         title: i18n.t("sections.home.thunderbolts"),
         type: "poster",
         component: PosterCarousel,
@@ -173,6 +211,21 @@ export const homeSections = [
           list_id: 8567896,
           language: i18n.language,
           page: 1,
+        },
+      },
+      {
+        title: "Séries para você",
+        type: "poster",
+        component: PosterCarousel,
+        skeleton: PosterCarouselSkeleton,
+        card_size: "ss-card",
+        fetchFn: tmdbService.fetchPerGenres,
+        fetchParams: {
+          pageType: "tv",
+          language: i18n.language,
+          with_genres: 28,
+          page: 1,
+          sort_by: "popularity.desc",
         },
       },
     ],

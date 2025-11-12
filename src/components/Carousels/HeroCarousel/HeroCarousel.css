@@ -37,7 +37,10 @@
 
     scrollbar-width: none;
     -ms-overflow-style: none;
+}
 
+.hero-carousel-List.snap-enabled {
+  scroll-snap-type: x mandatory;
 }
 
 .hero-carousel-List::-webkit-scrollbar {

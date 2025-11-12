@@ -393,6 +393,13 @@
     "projectDescription": "O Açaíwave+ é um projeto pessoal, desenvolvido unicamente para fins de estudo e portfólio. Ele funciona como um catálogo de filmes fictício, sem qualquer finalidade comercial. Este projeto não possui vínculo com a Disney, Disney+ ou qualquer outro serviço de streaming.",
     "copyright": "© 2025 Açaíwave+. Todos os direitos reservados."
   },
+  "hero-section": {
+    "buttons": {
+      "title": "Assista agora o trailer deste grande sucesso <br/> de bilheteria",
+      "play": "Assistir",
+      "details": "Detalhes"
+    }
+  },
   "sections": {
     "home": {
       "recommended": "Recomendado para Você",

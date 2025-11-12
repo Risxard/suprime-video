@@ -13,6 +13,9 @@ const HeroCarousel = ({ mediasData }) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
   const [autoPlay, setAutoPlay] = useState(true);
+  const [isResizing, setIsResizing] = useState(false);
+  const resizeTimeoutRef = useRef(null);
+
   const touchStartX = useRef(0);
   const touchEndX = useRef(0);
 
@@ -26,7 +29,7 @@ const HeroCarousel = ({ mediasData }) => {
 
   const handleTouchEnd = () => {
     const deltaX = touchEndX.current - touchStartX.current;
-    const threshold = 150;
+    const threshold = 50;
     if (deltaX > threshold) {
       cancelAutoPlay();
       scrollPrev();
@@ -140,6 +143,21 @@ const HeroCarousel = ({ mediasData }) => {
     return () => clearInterval(interval);
   }, [activeIndex, medias, autoPlay]);
 
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (!isResizing) setIsResizing(true);
+      clearTimeout(resizeTimeoutRef.current);
+      resizeTimeoutRef.current = setTimeout(() => setIsResizing(false), 500);
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+      clearTimeout(resizeTimeoutRef.current);
+    };
+  }, []);
+
   const extendedMedias = [medias[medias.length - 1], ...medias, medias[0]];
 
   return (
@@ -158,6 +176,9 @@ const HeroCarousel = ({ mediasData }) => {
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
+        style={{
+          scrollSnapType: isResizing ? "x mandatory" : "none",
+        }}
       >
         {extendedMedias.map((movie, index) => {
           const realIndex =
