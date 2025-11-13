@@ -1,5 +1,4 @@
 .backdropinfo-item {
-    
     transition-duration: 300ms;
     transition-property: width, display;
     transition-timing-function:
@@ -12,8 +11,6 @@
     flex-grow: 0;
     scroll-snap-align: start;
     will-change: transform;
-
-
 }
 
 .backdropinfo-item:first-of-type {
@@ -49,12 +46,12 @@
 
     cursor: pointer;
 
-    transition-timing-function:
-        ease-out;
     z-index: -1;
-    transition-duration: 300ms;
     border-radius: inherit;
     background: #2D2F36;
+
+    transition: opacity 0.4s ease-in-out;
+    opacity: 0;
 }
 
 
@@ -150,7 +147,19 @@
 
 .backdropinfo-item-info-container {
     padding-top: 0 !important;
+    transition: opacity 0.4s ease-in-out;
+    opacity: 0;
 }
+
+
+.backdropinfo-item[data-set="true"] .backdropinfo-item-image-container {
+    opacity: 1;
+}
+
+.backdropinfo-item[data-set="true"] .backdropinfo-item-info-container {
+    opacity: 1;
+}
+
 
 .backdropinfo-item-info-title {
     transition: color 300ms ease;
@@ -182,7 +191,7 @@
 
 .backdropinfo-item-info-details {
     -webkit-line-clamp: 1;
-    display: block;
+    display: flex;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -197,6 +206,15 @@
     opacity: 60%;
 
     transition-duration: 300ms;
+
+    flex-direction: row;
 }
 
+.backdropinfo-item-info-details .ageClass {
+    margin-right: 8px;
+}
 
+.backdropinfo-item-info-details .ageClass img {
+    width: 16px;
+    height: 16px;
+}

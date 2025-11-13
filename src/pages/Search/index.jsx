@@ -11,6 +11,7 @@ import SearchCancelSvg from "./assets/SearchCancelSvg.jsx";
 import "./styles.css";
 import LoadingComponent from "../../components/utils/LoadingComponent/index.jsx";
 import SpinningLoading from "../../components/utils/SpinningLoading/index.jsx";
+import BackdropInfoCarousel from "../../components/Carousels/BackdropInfoCarousel/index.jsx";
 
 function useDebounce(value, delay) {
   const [debouncedValue, setDebouncedValue] = useState(value);
@@ -130,7 +131,7 @@ const Search = () => {
               <div className="section-title">
                 <h4>{trendingSection}</h4>
               </div>
-              <BackdropCarousel movies={trending} />
+              <BackdropInfoCarousel movies={trending} />
             </div>
           </div>
         ) : filteredResults.length === 0 ? (

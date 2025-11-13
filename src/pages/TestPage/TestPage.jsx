@@ -1,7 +1,6 @@
 import React from "react";
 import LazySection from "../../components/utils/LazySection";
 import { testPage } from "../../config/testPageConfig";
-import PosterCarouselSkeleton from "../../components/Carousels/PosterCarousel/components/PosterCarouselSkeleton";
 
 const TestPage = () => {
   return (

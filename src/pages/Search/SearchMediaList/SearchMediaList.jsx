@@ -1,9 +1,6 @@
-import React, { useEffect, useState } from "react";
-
-import SearchItem from "./Searchitem/SearchItem";
-import { useIntersectionObserver } from "../../../hooks/IntersectionObserver/useIntersationObserver";
-
-import { setSectionTitle } from "../../../functions/Converter";
+import React from "react";
+import BackdropInfoItem from "../../../components/Carousels/BackdropInfoCarousel/components/BackdropInfoItem";
+import "./styles.css";
 
 const SearchMediaList = ({ medias }) => {
   return (
@@ -12,7 +9,7 @@ const SearchMediaList = ({ medias }) => {
         <div className="column-container-items">
           <div className="search-card-list">
             {medias.map((array) => (
-              <SearchItem key={array.id} media={array} />
+              <BackdropInfoItem key={array.id} movie={array} />
             ))}
           </div>
         </div>

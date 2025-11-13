@@ -1,0 +1,33 @@
+.search-card-list {
+    --search-card-number: 2;
+
+    display: grid;
+    align-items: start;
+    margin: 0 -10px;
+    margin-top: 0px;
+    margin-right: -10px;
+    margin-bottom: 0px;
+    margin-left: -10px;
+    grid-template-columns: repeat(var(--search-card-number), minmax(0, 1fr));
+}
+
+@media (min-width: 768px) {
+    .search-card-list {
+        --search-card-number: 3;
+    }
+
+}
+
+@media (min-width: 1024px) {
+    .search-card-list {
+        --search-card-number: 4;
+    }
+
+}
+
+@media (min-width: 1440px) {
+    .search-card-list {
+        --search-card-number: 5;
+    }
+
+}

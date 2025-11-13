@@ -106,7 +106,7 @@
     opacity: 0;
 
     bottom: 19px;
-
+    right: 16px;
     justify-content: center;
     align-items: center;
     position: absolute;
@@ -124,8 +124,8 @@
     align-items: center;
     justify-content: center;
 
-    height: 20px;
-    width: 20px;
+    height: 16px;
+    width: 16px;
     margin-left: 4px;
     color: #FFFFFF;
 }
@@ -154,7 +154,7 @@
 
 
 @media (min-width: 768px) {
-.search-not-found {
+    .search-not-found {
         margin-top: 46px;
     }
 }
@@ -166,16 +166,14 @@
 
     .search-bar-container button svg {
         margin-right: 16px;
-        height: 24px;
-        width: 24px;
+        height: 20px;
+        width: 20px;
         margin-left: 6px;
     }
 
-
     .search-bar-container button {
-
         bottom: 24px;
-        right: 16px;
+
     }
 
     .search-bar-container label svg {
