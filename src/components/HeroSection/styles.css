@@ -225,6 +225,9 @@
 .hero-section[data-set="true"] .hero-section-info-content-actions {
     opacity: 1;
 }
+.hero-section[data-set="true"] .hero-section-info-content-text {
+    opacity: 1;
+}
 
 .hero-section[data-set="true"] .hero-section-info-content-logo {
     opacity: 1;

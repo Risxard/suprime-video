@@ -49,9 +49,9 @@
       "login": "Entrar"
     },
     "hero": {
-      "title": "Séries exclusivas, sucessos do cinema, esportes com a ESPN e muito mais",
-      "subtitle1": "Escolha um plano a partir de",
-      "subtitle2": "R$ 27,99/mês"
+      "title": "Um lugar pra encontrar sua próxima história favorita",
+      "subtitle1": "Veja trailers, explore novidades e",
+      "subtitle2": "adicione à sua lista"
     },
     "email-section": {
       "prompt": "Digite o seu e-mail para começar",
@@ -411,7 +411,12 @@
       "mcuUniverse": "Universo Cinematográfico Marvel",
       "mcuTimeline": "UCM: Linha do Tempo dos Filmes",
       "thunderbolts": "Com personagens de Thunderbolts*",
-      "disneyChannel": "Séries e Especiais do Disney Channel"
+      "disneyChannel": "Séries e Especiais do Disney Channel",
+      "actionAdventure": "Ação e Aventura",
+      "sciFi": "Ficção Científica",
+      "animationMovies": "Filmes de Animação",
+      "crime": "Policial",
+      "seriesForYou": "Séries para você"
     },
     "disney": {
       "highlights": "Destaques",

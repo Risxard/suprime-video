@@ -4,14 +4,14 @@ import PosterCarousel from "../components/Carousels/PosterCarousel/PosterCarouse
 import BackdropCarousel from "../components/Carousels/BackdropCarousel";
 import ChannelSection from "../components/ChannelSection";
 import HeroSection from "../components/HeroSection";
-
+import BackdropInfoCarousel from "../components/Carousels/BackdropInfoCarousel";
 
 import HeroCarouselSkeleton from "../components/Carousels/HeroCarousel/components/HeroCarouselSkeleton";
 import PosterCarouselSkeleton from "../components/Carousels/PosterCarousel/components/PosterCarouselSkeleton";
 import BackdropSkeleton from "../components/Carousels/BackdropCarousel/components/BackdropSkeleton";
 import ChannelSectionSkeleton from "../components/ChannelSection/components/ChannelSectionSkeleton";
 import HeroSectionSkeleton from "../components/HeroSection/components/HeroSectionSkeleton";
-
+import BackdropInfoSkeleton from "../components/Carousels/BackdropInfoCarousel/components/BackdropInfoSkeleton";
 
 import i18n from "../i18n";
 
@@ -54,15 +54,29 @@ export const homeSections = [
       },
       {
         title: i18n.t("sections.home.trending"),
-        type: "simple-backdrop",
-        component: BackdropCarousel,
-        skeleton: BackdropSkeleton,
+        type: "backdropinfo",
+        component: BackdropInfoCarousel,
+        skeleton: BackdropInfoSkeleton,
         fetchFn: tmdbService.fetchTrending,
         fetchParams: {
           timeWindow: "week",
           pageType: "movie",
           language: i18n.language,
           page: 1,
+        },
+      },
+      {
+        title: i18n.t("sections.home.actionAdventure"),
+        type: "backdropinfo",
+        component: BackdropInfoCarousel,
+        skeleton: BackdropInfoSkeleton,
+        fetchFn: tmdbService.fetchPerGenres,
+        fetchParams: {
+          pageType: "movie",
+          language: i18n.language,
+          with_genres: 12,
+          page: 1,
+          sort_by: "popularity.desc",
         },
       },
       {
@@ -97,11 +111,10 @@ export const homeSections = [
         },
       },
       {
-        title: "Ficção Científica",
-        type: "poster",
-        component: PosterCarousel,
-        skeleton: PosterCarouselSkeleton,
-        card_size: "ss-card",
+        title: i18n.t("sections.home.sciFi"),
+        type: "backdropinfo",
+        component: BackdropInfoCarousel,
+        skeleton: BackdropInfoSkeleton,
         fetchFn: tmdbService.fetchPerGenres,
         fetchParams: {
           pageType: "movie",
@@ -129,19 +142,21 @@ export const homeSections = [
         component: HeroSection,
         skeleton: HeroSectionSkeleton,
         fetchFn: tmdbService.fetchMediaDetails,
-        fetchParams: { mediaType: "movie", mediaId: 617126, language: i18n.language },
+        fetchParams: { mediaType: "movie", mediaId: 845781, language: i18n.language },
       },
+
       {
-        title: i18n.t("sections.home.mcuUniverse"),
-        type: "poster",
-        component: PosterCarousel,
-        skeleton: PosterCarouselSkeleton,
-        card_size: "ss-card",
-        fetchFn: tmdbService.fetchList,
+        title: i18n.t("sections.home.animationMovies"),
+        type: "backdropinfo",
+        component: BackdropInfoCarousel,
+        skeleton: BackdropInfoSkeleton,
+        fetchFn: tmdbService.fetchPerGenres,
         fetchParams: {
-          list_id: 8568367,
+          pageType: "movie",
           language: i18n.language,
+          with_genres: 12,
           page: 1,
+          sort_by: "popularity.desc",
         },
       },
       {
@@ -159,6 +174,29 @@ export const homeSections = [
         },
       },
       {
+        title: i18n.t("sections.pixar.toyStory"),
+        type: "grand-poster",
+        component: PosterCarousel,
+        skeleton: PosterCarouselSkeleton,
+        card_size: "ss-card",
+        fetchFn: tmdbService.fetchList,
+        fetchParams: { list_id: 8568116, language: i18n.language, page: 1 },
+      },
+      {
+        title: i18n.t("sections.home.mcuUniverse"),
+        type: "poster",
+        component: PosterCarousel,
+        skeleton: PosterCarouselSkeleton,
+        card_size: "ss-card",
+        fetchFn: tmdbService.fetchList,
+        fetchParams: {
+          list_id: 8568367,
+          language: i18n.language,
+          page: 1,
+        },
+      },
+
+      {
         title: i18n.t("sections.home.mcuTimeline"),
         type: "poster",
         component: PosterCarousel,
@@ -172,21 +210,12 @@ export const homeSections = [
         },
       },
       {
-        title: "Açao e Aventura",
-        type: "poster",
-        component: PosterCarousel,
-        skeleton: PosterCarouselSkeleton,
-        card_size: "ss-card",
-        fetchFn: tmdbService.fetchPerGenres,
-        fetchParams: {
-          pageType: "movie",
-          language: i18n.language,
-          with_genres: 12,
-          page: 1,
-          sort_by: "popularity.desc",
-        },
+        type: "hero-section",
+        component: HeroSection,
+        skeleton: HeroSectionSkeleton,
+        fetchFn: tmdbService.fetchMediaDetails,
+        fetchParams: { mediaType: "movie", mediaId: 617126, language: i18n.language },
       },
-
       {
         title: i18n.t("sections.home.thunderbolts"),
         type: "poster",
@@ -214,7 +243,20 @@ export const homeSections = [
         },
       },
       {
-        title: "Séries para você",
+        title: i18n.t("sections.home.crime"),
+        type: "poster",
+        component: PosterCarousel,
+        skeleton: PosterCarouselSkeleton,
+        card_size: "ss-card",
+        fetchFn: tmdbService.fetchList,
+        fetchParams: {
+          list_id: 8570921,
+          language: i18n.language,
+          page: 1,
+        },
+      },
+      {
+        title: i18n.t("sections.home.seriesForYou"),
         type: "poster",
         component: PosterCarousel,
         skeleton: PosterCarouselSkeleton,

@@ -354,7 +354,6 @@ export const deleteUserAccountAndData = async () => {
 
         await deleteUser(user);
 
-        console.log("Usuário e todos os dados deletados com sucesso!");
     } catch (err) {
         console.error("Erro ao deletar conta e dados:", err);
         throw err;
