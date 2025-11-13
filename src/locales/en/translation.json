@@ -51,14 +51,14 @@
     "hero": {
       "title": "A place to find your next favorite story",
       "subtitle1": "Watch trailers, explore what's new and",
-      "subtitle2": "add it to your list"
+      "subtitle2": "add to your list"
     },
     "email-section": {
       "prompt": "Enter your email to get started",
       "label": "Email",
-      "cta": "Start now",
+      "cta": "Get started now",
       "input-errors": {
-        "required": "Enter a valid email address."
+        "required": "Please enter a valid email address."
       }
     }
   },
@@ -66,7 +66,7 @@
     "email-section": {
       "title": "Enter your email to continue",
       "subtitle": {
-        "register": "Enter your email to start your registration. Already have an account? <a href='/preview/acaiwaveplus/identity/login/enter-email'>Sign in here</a>.",
+        "register": "Enter your email to start your sign-up. Already have an account? <a href='/preview/acaiwaveplus/identity/login/enter-email'>Sign in here</a>.",
         "update-credentials": "Enter the email associated with your account to change your credentials. We'll send a link to reset your password or update your access.",
         "login": "Sign in to Açaíwave+ with your account using email. If you don't have an account, you'll need to <a href='/preview/acaiwaveplus/identity/sign-up/enter-email'>create an account</a>."
       },
@@ -78,7 +78,7 @@
       "subtitle1": "Sign in to Açaíwave+ with your account using email",
       "subtitle2": "(Edit)",
       "placeholder": "Password",
-      "input-advise": "(Case sensitive)",
+      "input-advise": "(Case-sensitive)",
       "button": "Sign in",
       "forgot-password": "Can't sign in? Reset your password",
       "more-about": "Learn more about Açaíwave+"
@@ -87,7 +87,7 @@
       "title": "Check your email",
       "subtitle1": "We sent an email to <b>{{email}}</b>",
       "subtitle2": "with a link to reset your password. Click the link and follow the instructions to create a new password.",
-      "subtitle3": "If you can't find the email, check the spam or junk folders.",
+      "subtitle3": "If you can't find the email, check your spam or junk folders.",
       "subtitle4": "Didn't receive the email?",
       "subtitle5": "Resend",
       "dialog": {
@@ -105,7 +105,7 @@
         },
         "too-many": {
           "message1": "Too many attempts detected.",
-          "message2": "Wait a few minutes before trying again."
+          "message2": "Please wait a few minutes before trying again."
         },
         "user-not-found": {
           "message1": "User not found.",
@@ -120,7 +120,7 @@
     "dialogs": {
       "email-confirm": {
         "title": "Confirm your email",
-        "text1": "Before creating the account, make sure your email address is correct:",
+        "text1": "Before creating the account, please verify that your email address is correct:",
         "button-confirm": "Confirm",
         "button-cancel": "Back"
       },
@@ -132,21 +132,21 @@
       },
       "delete-account": {
         "title": "Delete account",
-        "text1": "Are you sure you want to delete your account linked to <b>{{email}}</b>?",
+        "text1": "Are you sure you want to delete the account linked to <b>{{email}}</b>?",
         "text2": "This action is <b>irreversible</b>. All your data, profiles and preferences will be permanently removed and cannot be recovered.",
         "button-confirm": "Yes, delete account",
         "button-cancel": "Cancel"
       }
     },
     "create-password": {
-      "title": "Finish your signup to continue",
+      "title": "Finish signing up to continue",
       "subtitle1": "Create your account with the email",
       "edit": "(Edit)",
       "name-label": "Your name",
       "password-label": "Choose your password",
       "strength": {
         "weak": "Weak",
-        "medium": "Medium",
+        "medium": "Fair",
         "good": "Good",
         "great": "Great"
       },
@@ -191,7 +191,7 @@
     },
     "advise-texts": {
       "title": "Açaíwave+ is not a real streaming service.",
-      "subtitle": "It is not affiliated with Disney or any of its subsidiaries. All names, brands and images are the property of their respective owners. This site was created only for portfolio purposes."
+      "subtitle": "It has no affiliation with Disney or any of its subsidiaries. All names, brands and images are the property of their respective owners. This site was created for portfolio purposes only."
     }
   },
   "profiles-page": {
@@ -219,9 +219,9 @@
       "button-delete": "Delete profile",
       "button-add": "Add new profile",
       "confirm-delete": {
-        "title": "Delete the profile of",
+        "title": "Delete profile of",
         "text1": "Are you sure you want to delete the profile <b>{{name}}</b>?",
-        "text2": "The profile's history, My List and activity will be deleted. This action cannot be undone.",
+        "text2": "The profile history, My List and activity will be deleted. This action cannot be undone.",
         "button-confirm": "Yes, delete",
         "button-cancel": "Cancel"
       },
@@ -240,9 +240,9 @@
       "button-cancel": "Cancel",
       "button-delete": "Delete profile",
       "confirm-delete": {
-        "title": "Delete the profile of",
+        "title": "Delete profile of",
         "text1": "Are you sure you want to delete the profile <b>{{name}}</b>?",
-        "text2": "The profile's history, My List and activity will be deleted. This action cannot be undone.",
+        "text2": "The profile history, My List and activity will be deleted. This action cannot be undone.",
         "button-confirm": "Yes, delete",
         "button-cancel": "Cancel"
       },
@@ -264,7 +264,7 @@
       "error-generic": "Error creating profile"
     },
     "selectAvatar": {
-      "title": "Choose avatar",
+      "title": "Choose an avatar",
       "buttonSkip": "Skip",
       "buttonDone": "Done",
       "featured": "Featured",
@@ -301,7 +301,7 @@
       "hidePassword": "Hide password",
       "confirm": "Continue",
       "cancel": "Cancel",
-      "forgotPassword": "Forgot your password?",
+      "forgotPassword": "Forgot password?",
       "errors": {
         "shortPassword": "Invalid password. Enter at least 6 characters.",
         "unauthenticated": "User not authenticated.",
@@ -316,7 +316,7 @@
   "details-page": {
     "actions": {
       "play": "Play",
-      "myList": "My list"
+      "myList": "My List"
     },
     "info": {
       "overview": "Overview",
@@ -336,8 +336,8 @@
       "episodes": "Episodes"
     },
     "errors": {
-      "notFound": "Could not load details for this media.",
-      "videoNotFound": "No video available for playback."
+      "notFound": "Could not load the details for this media.",
+      "videoNotFound": "No video available to play."
     },
     "loading": {
       "fetching": "Loading details...",
@@ -347,7 +347,7 @@
   "watchlist-page": {
     "title": "My List",
     "tabs": {
-      "all": "My Movies and Series",
+      "all": "My Movies and Shows",
       "movies": "My Series",
       "tv": "My Movies"
     },
@@ -359,7 +359,7 @@
   },
   "browse-page": {
     "moviesTitle": "Movies",
-    "seriesTitle": "Series",
+    "seriesTitle": "TV Shows",
     "loading": "Loading titles..."
   },
   "searchPage": {
@@ -368,7 +368,7 @@
       "clear": "Clear search",
       "search": "Search"
     },
-    "trendingSection": "Trending Searches Today",
+    "trendingSection": "Trending searches today",
     "noResults": "No results found for \"{{query}}\""
   },
   "error-page": {
@@ -385,17 +385,17 @@
       "dataProtectionBrazil": "Data Protection in Brazil",
       "subscriptionAgreement": "Subscription Agreement",
       "help": "Help",
-      "supportedDevices": "Supported Devices",
+      "supportedDevices": "Supported devices",
       "aboutAcaiwaveplus": "About Açaíwave+",
-      "customAds": "Personalized Ads",
+      "customAds": "Personalized ads",
       "feedback": "Send feedback"
     },
-    "projectDescription": "Açaíwave+ is a personal project, developed solely for study and portfolio purposes. It works as a fictional movie catalog with no commercial intent. This project is not affiliated with Disney, Disney+, or any other streaming service.",
+    "projectDescription": "Açaíwave+ is a personal project developed solely for study and portfolio purposes. It functions as a fictitious movie catalog and has no commercial intent. This project is not affiliated with Disney, Disney+ or any other streaming service.",
     "copyright": "© 2025 Açaíwave+. All rights reserved."
   },
   "hero-section": {
     "buttons": {
-      "title": "Watch the trailer for this major box-office hit now",
+      "title": "Watch the trailer of this big box-office hit <br/> now",
       "play": "Play",
       "details": "Details"
     }
@@ -411,17 +411,22 @@
       "mcuUniverse": "Marvel Cinematic Universe",
       "mcuTimeline": "MCU: Film Timeline",
       "thunderbolts": "Featuring characters from Thunderbolts*",
-      "disneyChannel": "Disney Channel Series & Specials"
+      "disneyChannel": "Disney Channel Series & Specials",
+      "actionAdventure": "Action & Adventure",
+      "sciFi": "Science Fiction",
+      "animationMovies": "Animated Movies",
+      "crime": "Crime",
+      "seriesForYou": "Shows for you"
     },
     "disney": {
       "highlights": "Highlights",
       "princesses": "Princesses",
-      "beastsAndMonsters": "Beasts and Monsters",
+      "beastsAndMonsters": "Beasts & Monsters",
       "series": "Disney Series",
       "liveAction": "Live-Action Films",
       "classics": "Classics",
       "onceUpon": "Once Upon a Time...",
-      "mickeyFriends": "Mickey and Friends",
+      "mickeyFriends": "Mickey & Friends",
       "classicAnimations": "Classic Animations",
       "liloAndStitch": "Lilo & Stitch",
       "buddies": "Buddies Collection"
@@ -436,13 +441,13 @@
       "shorts": "Shorts",
       "originals": "Originals",
       "memories": "Memories",
-      "monsters": "Beasts and Monsters"
+      "monsters": "Monsters"
     },
     "marvel": {
       "highlights": "Highlights",
       "infinitySaga": "MCU: Infinity Saga",
       "multiverseSaga": "MCU: Multiverse Saga",
-      "adventures": "Fantastic Adventures",
+      "adventures": "Epic Adventures",
       "monsters": "Marvel Monsters",
       "defenders": "The Defenders",
       "thunderbolts": "Featuring characters from Thunderbolts*",

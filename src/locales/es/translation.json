@@ -46,17 +46,17 @@
   },
   "landing-page": {
     "nav": {
-      "login": "Entrar"
+      "login": "Iniciar sesión"
     },
     "hero": {
       "title": "Un lugar para encontrar tu próxima historia favorita",
-      "subtitle1": "Mira tráilers, explora novedades y",
-      "subtitle2": "añádelo a tu lista"
+      "subtitle1": "Mira trailers, explora novedades y",
+      "subtitle2": "añádelas a tu lista"
     },
     "email-section": {
-      "prompt": "Introduce tu correo electrónico para empezar",
+      "prompt": "Introduce tu correo electrónico para comenzar",
       "label": "Correo electrónico",
-      "cta": "Comenzar ahora",
+      "cta": "Empieza ahora",
       "input-errors": {
         "required": "Introduce una dirección de correo electrónico válida."
       }
@@ -66,45 +66,45 @@
     "email-section": {
       "title": "Introduce tu correo electrónico para continuar",
       "subtitle": {
-        "register": "Introduce tu correo electrónico para iniciar tu registro. ¿Ya tienes una cuenta? <a href='/preview/acaiwaveplus/identity/login/enter-email'>Entra aquí</a>.",
+        "register": "Introduce tu correo electrónico para iniciar el registro. ¿Ya tienes una cuenta? <a href='/preview/acaiwaveplus/identity/login/enter-email'>Inicia sesión aquí</a>.",
         "update-credentials": "Introduce el correo asociado a tu cuenta para cambiar tus credenciales. Enviaremos un enlace para restablecer tu contraseña o actualizar tu acceso.",
-        "login": "Accede a Açaíwave+ con tu cuenta usando el correo electrónico. Si no tienes cuenta, necesitarás <a href='/preview/acaiwaveplus/identity/sign-up/enter-email'>crear una cuenta</a>."
+        "login": "Inicia sesión en Açaíwave+ con tu cuenta usando el correo. Si no tienes cuenta, necesitarás <a href='/preview/acaiwaveplus/identity/sign-up/enter-email'>crear una cuenta</a>."
       },
       "label": "Correo electrónico",
       "button": "Continuar"
     },
     "password-section": {
       "title": "Introduce la contraseña",
-      "subtitle1": "Accede a Açaíwave+ con tu cuenta usando el correo electrónico",
+      "subtitle1": "Inicia sesión en Açaíwave+ con tu cuenta usando el correo",
       "subtitle2": "(Editar)",
       "placeholder": "Contraseña",
       "input-advise": "(Mayúsculas y minúsculas)",
       "button": "Entrar",
-      "forgot-password": "¿No puedes entrar? Restablece tu contraseña",
+      "forgot-password": "¿No puedes acceder? Restablece tu contraseña",
       "more-about": "Más información sobre Açaíwave+"
     },
     "change-password": {
-      "title": "Comprueba tu correo",
+      "title": "Revisa tu correo",
       "subtitle1": "Hemos enviado un correo a <b>{{email}}</b>",
       "subtitle2": "con un enlace para restablecer tu contraseña. Haz clic en el enlace y sigue las instrucciones para crear una nueva contraseña.",
       "subtitle3": "Si no encuentras el correo, revisa las carpetas de spam o correo no deseado.",
-      "subtitle4": "¿No has recibido el correo?",
+      "subtitle4": "¿No recibiste el correo?",
       "subtitle5": "Reenviar",
       "dialog": {
         "no-email": {
           "message1": "Correo no encontrado.",
-          "message2": "Vuelve e introduce tu correo nuevamente."
+          "message2": "Vuelve e introduce tu correo de nuevo."
         },
         "resent": {
           "message1": "¡Nuevo correo enviado!",
-          "message2": "Revisa tu bandeja de entrada o la carpeta de spam. Si no lo encuentras, inténtalo más tarde."
+          "message2": "Revisa tu bandeja de entrada o la carpeta de spam. Si no lo encuentras, inténtalo de nuevo más tarde."
         },
         "error": {
           "message1": "Error al enviar el correo.",
           "message2": "Verifica la dirección e inténtalo de nuevo."
         },
         "too-many": {
-          "message1": "Demasiados intentos detectados.",
+          "message1": "Detectadas demasiadas intentos.",
           "message2": "Espera unos minutos antes de intentarlo de nuevo."
         },
         "user-not-found": {
@@ -113,40 +113,40 @@
         },
         "unknown": {
           "message1": "Error inesperado.",
-          "message2": "Inténtalo de nuevo más tarde."
+          "message2": "Intenta de nuevo más tarde."
         }
       }
     },
     "dialogs": {
       "email-confirm": {
         "title": "Confirma tu correo",
-        "text1": "Antes de crear la cuenta, comprueba que tu dirección de correo electrónico es correcta:",
+        "text1": "Antes de crear la cuenta, verifica que tu dirección de correo sea correcta:",
         "button-confirm": "Confirmar",
         "button-cancel": "Volver"
       },
       "resend-verification": {
-        "help-subject": "Ayuda con verificación de correo",
+        "help-subject": "Ayuda con la verificación de correo",
         "help-body": "Hola, necesito ayuda con la verificación de correo en Açaíwave+.",
         "button-ok": "OK",
         "button-help": "Centro de ayuda"
       },
       "delete-account": {
         "title": "Eliminar cuenta",
-        "text1": "¿Estás seguro de que deseas eliminar tu cuenta vinculada a <b>{{email}}</b>?",
+        "text1": "¿Estás seguro de que deseas eliminar la cuenta vinculada a <b>{{email}}</b>?",
         "text2": "Esta acción es <b>irreversible</b>. Todos tus datos, perfiles y preferencias serán eliminados permanentemente y no podrán recuperarse.",
         "button-confirm": "Sí, eliminar cuenta",
         "button-cancel": "Cancelar"
       }
     },
     "create-password": {
-      "title": "Finaliza tu registro para continuar",
+      "title": "Completa tu registro para continuar",
       "subtitle1": "Crea tu cuenta con el correo",
       "edit": "(Editar)",
       "name-label": "Tu nombre",
       "password-label": "Elige tu contraseña",
       "strength": {
         "weak": "Débil",
-        "medium": "Regular",
+        "medium": "Media",
         "good": "Buena",
         "great": "Excelente"
       },
@@ -157,7 +157,7 @@
         "password-pattern": "La contraseña debe contener al menos 1 mayúscula, 1 número y 1 carácter especial",
         "terms": "Debes aceptar los términos para continuar",
         "email-in-use": "Este correo ya está en uso. Intenta con otro o inicia sesión.",
-        "generic": "Ocurrió un error al crear la cuenta. Revisa los requisitos de la contraseña."
+        "generic": "Ocurrió un error al crear la cuenta. Comprueba los requisitos de la contraseña."
       },
       "terms-text": "Acepto los",
       "terms-link": "Términos de uso",
@@ -170,9 +170,9 @@
     "email-verification": {
       "title": "Verificación de correo necesaria",
       "subtitle1": "Hemos enviado un correo a",
-      "subtitle2": "con un enlace de verificación. Por favor, accede a tu bandeja de entrada y haz clic en el enlace para confirmar tu dirección de correo electrónico.",
+      "subtitle2": "con un enlace de verificación. Por favor, accede a tu bandeja de entrada y haz clic en el enlace para confirmar tu dirección de correo.",
       "subtitle3": "Si no encuentras el correo, revisa también las carpetas de spam o correo no deseado.",
-      "subtitle4": "¿No has recibido el correo?",
+      "subtitle4": "¿No recibiste el correo?",
       "subtitle5": "Reenviar"
     },
     "delete-account": {
@@ -184,14 +184,14 @@
       "errors": {
         "required": "La contraseña es obligatoria.",
         "wrong-password": "Contraseña incorrecta. Introduce la contraseña correcta.",
-        "too-many": "Demasiados intentos. Inténtalo más tarde.",
+        "too-many": "Demasiados intentos. Intenta de nuevo más tarde.",
         "session-expired": "Sesión caducada. Inicia sesión de nuevo.",
-        "unknown": "Error inesperado. Inténtalo más tarde."
+        "unknown": "Error inesperado. Intenta de nuevo más tarde."
       }
     },
     "advise-texts": {
       "title": "Açaíwave+ no es un servicio de streaming real.",
-      "subtitle": "No tiene ninguna relación con Disney ni con ninguna de sus subsidiarias. Todos los nombres, marcas e imágenes son propiedad de sus respectivos dueños. Este sitio fue creado únicamente con fines de portafolio."
+      "subtitle": "No tiene vinculación con Disney ni ninguna de sus subsidiarias. Todos los nombres, marcas e imágenes son propiedad de sus respectivos dueños. Este sitio fue creado únicamente con fines de portafolio."
     }
   },
   "profiles-page": {
@@ -204,8 +204,8 @@
       "title": "¿Quién está viendo?",
       "addProfile": "Añadir perfil",
       "loading": "Cargando perfiles...",
-      "error": "Error al cargar perfiles. Inténtalo de nuevo más tarde.",
-      "empty": "No se encontró ningún perfil. Crea uno nuevo para empezar."
+      "error": "Error al cargar los perfiles. Intenta de nuevo más tarde.",
+      "empty": "No se encontraron perfiles. Crea uno nuevo para comenzar."
     },
     "editProfiles": {
       "title": "Editar perfiles",
@@ -221,13 +221,13 @@
       "confirm-delete": {
         "title": "Eliminar el perfil de",
         "text1": "¿Estás seguro de que deseas eliminar el perfil <b>{{name}}</b>?",
-        "text2": "El historial del perfil, Mi Lista y la actividad se eliminarán. Esta acción no puede deshacerse.",
+        "text2": "El historial del perfil, Mi Lista y la actividad serán eliminados. Esta acción no se puede deshacer.",
         "button-confirm": "Sí, eliminar",
         "button-cancel": "Cancelar"
       },
       "errors": {
         "name-required": "El nombre es obligatorio.",
-        "generic": "Se produjo un error al guardar el perfil. Inténtalo de nuevo."
+        "generic": "Ocurrió un error al guardar el perfil. Intenta de nuevo."
       }
     },
     "editProfile": {
@@ -242,13 +242,13 @@
       "confirm-delete": {
         "title": "Eliminar el perfil de",
         "text1": "¿Estás seguro de que deseas eliminar el perfil <b>{{name}}</b>?",
-        "text2": "El historial del perfil, Mi Lista y la actividad se eliminarán. Esta acción no puede deshacerse.",
+        "text2": "El historial del perfil, Mi Lista y la actividad serán eliminados. Esta acción no se puede deshacer.",
         "button-confirm": "Sí, eliminar",
         "button-cancel": "Cancelar"
       },
       "errors": {
         "name-required": "El nombre del perfil no puede estar vacío.",
-        "generic": "Error al actualizar el nombre. Inténtalo de nuevo."
+        "generic": "Error al actualizar el nombre. Intenta de nuevo."
       }
     },
     "addProfile": {
@@ -265,10 +265,10 @@
     },
     "selectAvatar": {
       "title": "Elige el avatar",
-      "buttonSkip": "Omitir",
+      "buttonSkip": "Saltar",
       "buttonDone": "Listo",
       "featured": "Destacados",
-      "error": "Error al cargar avatares. Inténtalo de nuevo."
+      "error": "Error al cargar avatares. Intenta de nuevo."
     }
   },
   "account-page": {
@@ -290,7 +290,7 @@
     },
     "restrict": {
       "title": "Restringir la creación de perfiles",
-      "description": "Para crear nuevos perfiles, será necesario introducir una contraseña."
+      "description": "Para crear nuevos perfiles será necesario introducir una contraseña."
     },
     "dialog": {
       "title": "Confirma tu contraseña",
@@ -310,7 +310,7 @@
     },
     "alerts": {
       "updated": "Configuración actualizada con éxito",
-      "failed": "Error al actualizar configuración"
+      "failed": "Error al actualizar la configuración"
     }
   },
   "details-page": {
@@ -336,8 +336,8 @@
       "episodes": "Episodios"
     },
     "errors": {
-      "notFound": "No se pudieron cargar los detalles de este medio.",
-      "videoNotFound": "No hay vídeo disponible para reproducir."
+      "notFound": "No se pudieron cargar los detalles de este contenido.",
+      "videoNotFound": "No hay vídeo disponible para reproducción."
     },
     "loading": {
       "fetching": "Cargando detalles...",
@@ -347,9 +347,9 @@
   "watchlist-page": {
     "title": "Mi lista",
     "tabs": {
-      "all": "Mis películas y series",
-      "movies": "Mis series",
-      "tv": "Mis películas"
+      "all": "Mis Películas y Series",
+      "movies": "Mis Series",
+      "tv": "Mis Películas"
     },
     "empty": {
       "title": "Aún no has añadido nada",
@@ -368,12 +368,12 @@
       "clear": "Borrar búsqueda",
       "search": "Buscar"
     },
-    "trendingSection": "Búsquedas destacadas hoy",
+    "trendingSection": "Búsquedas de tendencia hoy",
     "noResults": "No se encontraron resultados para \"{{query}}\""
   },
   "error-page": {
-    "title": "La página que estabas buscando no fue encontrada.",
-    "description": "Haz clic en el botón de abajo para acceder a la página de inicio de Açaíwave+",
+    "title": "La página que buscabas no se encontró.",
+    "description": "Haz clic en el botón abajo para ir a la página principal de Açaíwave+",
     "button": "INICIO DE AÇAÍWAVE+"
   },
   "footer": {
@@ -386,16 +386,16 @@
       "subscriptionAgreement": "Contrato de suscripción",
       "help": "Ayuda",
       "supportedDevices": "Dispositivos compatibles",
-      "aboutAcaiwaveplus": "Acerca de Açaíwave+",
+      "aboutAcaiwaveplus": "Sobre Açaíwave+",
       "customAds": "Anuncios personalizados",
       "feedback": "Enviar comentarios"
     },
-    "projectDescription": "Açaíwave+ es un proyecto personal, desarrollado únicamente con fines de estudio y portafolio. Funciona como un catálogo de películas ficticio, sin ningún propósito comercial. Este proyecto no tiene relación con Disney, Disney+ ni con ningún otro servicio de streaming.",
+    "projectDescription": "Açaíwave+ es un proyecto personal, desarrollado únicamente con fines de estudio y portafolio. Funciona como un catálogo de películas ficticio, sin fines comerciales. Este proyecto no tiene relación con Disney, Disney+ ni ningún otro servicio de streaming.",
     "copyright": "© 2025 Açaíwave+. Todos los derechos reservados."
   },
   "hero-section": {
     "buttons": {
-      "title": "Mira ahora el tráiler de este gran éxito <br/> de taquilla",
+      "title": "Mira ahora el tráiler de este gran éxito <br/> taquillero",
       "play": "Ver",
       "details": "Detalles"
     }
@@ -404,21 +404,26 @@
     "home": {
       "recommended": "Recomendado para ti",
       "trending": "En tendencia",
-      "boxOffice": "Éxitos de taquilla",
+      "boxOffice": "Taquillazos",
       "top10": "Top 10 hoy en España",
       "emmy": "Emmy® 2025: Ganadores y nominados",
       "marvelSeries": "Series y especiales de Marvel",
-      "mcuUniverse": "Universo cinematográfico Marvel",
-      "mcuTimeline": "UCM: Línea de tiempo de las películas",
+      "mcuUniverse": "Universo Cinematográfico de Marvel",
+      "mcuTimeline": "UCM: Cronología de las películas",
       "thunderbolts": "Con personajes de Thunderbolts*",
-      "disneyChannel": "Series y especiales del Disney Channel"
+      "disneyChannel": "Series y especiales de Disney Channel",
+      "actionAdventure": "Acción y aventura",
+      "sciFi": "Ciencia ficción",
+      "animationMovies": "Películas de animación",
+      "crime": "Policiaco",
+      "seriesForYou": "Series para ti"
     },
     "disney": {
       "highlights": "Destacados",
       "princesses": "Princesas",
       "beastsAndMonsters": "Bestias y monstruos",
       "series": "Series de Disney",
-      "liveAction": "Películas live-action",
+      "liveAction": "Películas en acción real",
       "classics": "Clásicos",
       "onceUpon": "Érase una vez...",
       "mickeyFriends": "Mickey y sus amigos",
@@ -448,7 +453,7 @@
       "thunderbolts": "Con personajes de Thunderbolts*",
       "wakanda": "Universo Wakanda",
       "samWilson": "Sam Wilson: Capitán América",
-      "timeline": "UCM: Línea de tiempo de las películas",
+      "timeline": "UCM: Cronología de las películas",
       "series": "Series y especiales de Marvel"
     },
     "starwars": {
