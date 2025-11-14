@@ -46,19 +46,19 @@
   },
   "landing-page": {
     "nav": {
-      "login": "Sign in"
+      "login": "Sign In"
     },
     "hero": {
       "title": "A place to find your next favorite story",
-      "subtitle1": "Watch trailers, explore what's new and",
+      "subtitle1": "Watch trailers, explore new releases and",
       "subtitle2": "add to your list"
     },
     "email-section": {
       "prompt": "Enter your email to get started",
       "label": "Email",
-      "cta": "Get started now",
+      "cta": "Get started",
       "input-errors": {
-        "required": "Please enter a valid email address."
+        "required": "Enter a valid email address."
       }
     }
   },
@@ -66,20 +66,20 @@
     "email-section": {
       "title": "Enter your email to continue",
       "subtitle": {
-        "register": "Enter your email to start your sign-up. Already have an account? <a href='/preview/acaiwaveplus/identity/login/enter-email'>Sign in here</a>.",
+        "register": "Enter your email to start your registration. Already have an account? <a href='/preview/acaiwaveplus/identity/login/enter-email'>Sign in here</a>.",
         "update-credentials": "Enter the email associated with your account to change your credentials. We'll send a link to reset your password or update your access.",
-        "login": "Sign in to Açaíwave+ with your account using email. If you don't have an account, you'll need to <a href='/preview/acaiwaveplus/identity/sign-up/enter-email'>create an account</a>."
+        "login": "Sign in to Açaíwave+ with your account using your email. If you don't have an account, you'll need to <a href='/preview/acaiwaveplus/identity/sign-up/enter-email'>create an account</a>."
       },
       "label": "Email",
       "button": "Continue"
     },
     "password-section": {
       "title": "Enter your password",
-      "subtitle1": "Sign in to Açaíwave+ with your account using email",
+      "subtitle1": "Sign in to Açaíwave+ with your account using your email",
       "subtitle2": "(Edit)",
       "placeholder": "Password",
-      "input-advise": "(Case-sensitive)",
-      "button": "Sign in",
+      "input-advise": "(Case sensitive)",
+      "button": "Sign In",
       "forgot-password": "Can't sign in? Reset your password",
       "more-about": "Learn more about Açaíwave+"
     },
@@ -97,7 +97,7 @@
         },
         "resent": {
           "message1": "New email sent!",
-          "message2": "Check your inbox or spam folder. If you can't find it, try again later."
+          "message2": "Check your inbox or spam folder. If you don't find it, try again later."
         },
         "error": {
           "message1": "Failed to send the email.",
@@ -105,7 +105,7 @@
         },
         "too-many": {
           "message1": "Too many attempts detected.",
-          "message2": "Please wait a few minutes before trying again."
+          "message2": "Wait a few minutes before trying again."
         },
         "user-not-found": {
           "message1": "User not found.",
@@ -120,9 +120,9 @@
     "dialogs": {
       "email-confirm": {
         "title": "Confirm your email",
-        "text1": "Before creating the account, please verify that your email address is correct:",
+        "text1": "Before creating the account, please check that your email address is correct:",
         "button-confirm": "Confirm",
-        "button-cancel": "Back"
+        "button-cancel": "Go back"
       },
       "resend-verification": {
         "help-subject": "Help with email verification",
@@ -139,14 +139,14 @@
       }
     },
     "create-password": {
-      "title": "Finish signing up to continue",
+      "title": "Finish your sign up to continue",
       "subtitle1": "Create your account with the email",
       "edit": "(Edit)",
       "name-label": "Your name",
       "password-label": "Choose your password",
       "strength": {
         "weak": "Weak",
-        "medium": "Fair",
+        "medium": "Medium",
         "good": "Good",
         "great": "Great"
       },
@@ -171,7 +171,7 @@
       "title": "Email Verification Required",
       "subtitle1": "We sent an email to",
       "subtitle2": "with a verification link. Please check your inbox and click the link to confirm your email address.",
-      "subtitle3": "If you can't find the email, also check your spam or junk folders.",
+      "subtitle3": "If you can't find the email, also check spam or junk folders.",
       "subtitle4": "Didn't receive the email?",
       "subtitle5": "Resend"
     },
@@ -191,7 +191,7 @@
     },
     "advise-texts": {
       "title": "Açaíwave+ is not a real streaming service.",
-      "subtitle": "It has no affiliation with Disney or any of its subsidiaries. All names, brands and images are the property of their respective owners. This site was created for portfolio purposes only."
+      "subtitle": "It has no affiliation with Disney or any of its subsidiaries. All names, trademarks and images are the property of their respective owners. This site was created for portfolio purposes only."
     }
   },
   "profiles-page": {
@@ -219,9 +219,9 @@
       "button-delete": "Delete profile",
       "button-add": "Add new profile",
       "confirm-delete": {
-        "title": "Delete profile of",
+        "title": "Delete the profile of",
         "text1": "Are you sure you want to delete the profile <b>{{name}}</b>?",
-        "text2": "The profile history, My List and activity will be deleted. This action cannot be undone.",
+        "text2": "Profile history, My List and activity will be deleted. This action cannot be undone.",
         "button-confirm": "Yes, delete",
         "button-cancel": "Cancel"
       },
@@ -240,9 +240,9 @@
       "button-cancel": "Cancel",
       "button-delete": "Delete profile",
       "confirm-delete": {
-        "title": "Delete profile of",
+        "title": "Delete the profile of",
         "text1": "Are you sure you want to delete the profile <b>{{name}}</b>?",
-        "text2": "The profile history, My List and activity will be deleted. This action cannot be undone.",
+        "text2": "Profile history, My List and activity will be deleted. This action cannot be undone.",
         "button-confirm": "Yes, delete",
         "button-cancel": "Cancel"
       },
@@ -296,7 +296,7 @@
       "title": "Confirm your password",
       "subtitle": "To change parental control settings, you must enter your account password.",
       "placeholder": "Password",
-      "notice": "(case-sensitive)",
+      "notice": "(case sensitive)",
       "showPassword": "Show password",
       "hidePassword": "Hide password",
       "confirm": "Continue",
@@ -336,7 +336,7 @@
       "episodes": "Episodes"
     },
     "errors": {
-      "notFound": "Could not load the details for this media.",
+      "notFound": "Could not load details for this media.",
       "videoNotFound": "No video available to play."
     },
     "loading": {
@@ -347,19 +347,19 @@
   "watchlist-page": {
     "title": "My List",
     "tabs": {
-      "all": "My Movies and Shows",
+      "all": "My Movies and Series",
       "movies": "My Series",
       "tv": "My Movies"
     },
     "empty": {
       "title": "You haven't added anything yet",
-      "subtitle": "Add the titles you want to watch to My List."
+      "subtitle": "Add titles you want to watch to My List."
     },
     "loading": "Loading your list..."
   },
   "browse-page": {
     "moviesTitle": "Movies",
-    "seriesTitle": "TV Shows",
+    "seriesTitle": "Series",
     "loading": "Loading titles..."
   },
   "searchPage": {
@@ -372,9 +372,88 @@
     "noResults": "No results found for \"{{query}}\""
   },
   "error-page": {
-    "title": "The page you were looking for was not found.",
+    "title": "The page you were looking for could not be found.",
     "description": "Click the button below to go to the Açaíwave+ home page",
-    "button": "AÇAÍWAVE+ HOME"
+    "button": "ACAIWAVE+ HOME"
+  },
+  "legalPage": {
+    "title": "Legal Notices",
+    "dropdown": {
+      "privacy": "Privacy Policy",
+      "terms": "Açaíwave+ Terms of Use",
+      "cookies": "Cookies Policy"
+    },
+    "privacy": {
+      "title": "Privacy Policy",
+      "p1": "Açaíwave+ respects your privacy. We are an online catalog created for informational and portfolio purposes only, displaying public data about movies and series. We do not host videos, do not stream content, and do not charge any fees.",
+      "section1-title": "1. Information we collect",
+      "section1-text": "We collect only the minimum necessary for operation:",
+      "section1-list": {
+        "item1": "Language preference;",
+        "item2": "Basic browsing data (cookies and anonymous metrics);",
+        "item3": "Information submitted voluntarily, such as user registration."
+      },
+      "section2-title": "2. Video display",
+      "section2-text": "Açaíwave+ may display embedded videos from external platforms such as YouTube or similar services. These videos are not hosted by us — playback happens directly on the source platform. Any data collection during playback is the responsibility of the platform providing the video.",
+      "section3-title": "3. Use of information",
+      "section3-text": "We use data only to improve the experience, adjust preferences, and keep the platform running smoothly.",
+      "section4-title": "4. Sharing",
+      "section4-text": "We do not sell data. Only analytics services may have limited, anonymized access to understand platform usage.",
+      "section5-title": "5. Security",
+      "section5-text": "We take measures to keep your data protected, within the limits of a personal, non-commercial project.",
+      "section6-title": "6. Your rights",
+      "section6-text": "You can request access, modification, or deletion of your registration data."
+    },
+    "terms": {
+      "title": "Açaíwave+ Terms of Use",
+      "p1": "These terms explain how Açaíwave+ should be used. By continuing to browse, you agree to these conditions.",
+      "section1-title": "1. About the platform",
+      "section1-text": "Açaíwave+ is an informative catalog created as a personal project. We are not a streaming service, do not host videos, and do not provide copyrighted content.",
+      "section2-title": "2. Displayed content",
+      "section2-text": "The information displayed is obtained from public databases, such as TMDb. All rights belong to the original owners.",
+      "section3-title": "3. Embedded videos",
+      "section3-text": "Embedded videos shown on Açaíwave+ (trailers, previews, promotional materials, etc.) are played directly from external platforms. Açaíwave+ does not control ads, cookies, or recommendations shown by those platforms.",
+      "section4-title": "4. Free of charge",
+      "section4-text": "Use of the platform is completely free. There are no paid plans, subscriptions, or charges.",
+      "section5-title": "5. Permitted use",
+      "section5-list": {
+        "item1": "scraping site data at large scale;",
+        "item2": "using information for commercial purposes without permission;",
+        "item3": "trying to modify or damage the site."
+      },
+      "section6-title": "6. Limitation of liability",
+      "section6-text": "Açaíwave+ is not responsible for external services such as TMDb or YouTube."
+    },
+    "cookies": {
+      "title": "Cookies Policy",
+      "p1": "This policy explains how Açaíwave+ uses cookies to improve navigation and remember basic preferences.",
+      "section1-title": "1. What are cookies?",
+      "section1-text": "Cookies are small files used to enhance the user experience.",
+      "section2-title": "2. Why we use cookies?",
+      "section2-list": {
+        "item1": "So the site works correctly;",
+        "item2": "To remember settings like language;",
+        "item3": "To collect simple, anonymous metrics;",
+        "item4": "To improve performance and loading."
+      },
+      "section3-title": "3. Embedded videos and cookies",
+      "section3-text": "Videos displayed on Açaíwave+ are loaded from services like YouTube. Those services may use their own cookies, and Açaíwave+ does not control or access that data.",
+      "section4-title": "4. What we DO NOT use",
+      "section4-list": {
+        "item1": "ad cookies;",
+        "item2": "individual trackers;",
+        "item3": "collection of sensitive information."
+      },
+      "section5-title": "5. How to disable cookies?",
+      "section5-text": "You can manage cookies in your browser:",
+      "section5-links": {
+        "chrome": "Google Chrome",
+        "firefox": "Mozilla Firefox",
+        "edge": "Microsoft Edge",
+        "safari": "Safari"
+      }
+    },
+    "print": "Print"
   },
   "footer": {
     "links": {
@@ -390,12 +469,12 @@
       "customAds": "Personalized ads",
       "feedback": "Send feedback"
     },
-    "projectDescription": "Açaíwave+ is a personal project developed solely for study and portfolio purposes. It functions as a fictitious movie catalog and has no commercial intent. This project is not affiliated with Disney, Disney+ or any other streaming service.",
+    "projectDescription": "Açaíwave+ is a personal project, developed solely for study and portfolio purposes. It works as a fictional movie catalog, with no commercial intent. This project is not affiliated with Disney, Disney+, or any other streaming service.",
     "copyright": "© 2025 Açaíwave+. All rights reserved."
   },
   "hero-section": {
     "buttons": {
-      "title": "Watch the trailer of this big box-office hit <br/> now",
+      "title": "Watch now the trailer of this big box-office hit <br/>",
       "play": "Play",
       "details": "Details"
     }
@@ -414,19 +493,19 @@
       "disneyChannel": "Disney Channel Series & Specials",
       "actionAdventure": "Action & Adventure",
       "sciFi": "Science Fiction",
-      "animationMovies": "Animated Movies",
+      "animationMovies": "Animated Films",
       "crime": "Crime",
-      "seriesForYou": "Shows for you"
+      "seriesForYou": "Series for You"
     },
     "disney": {
       "highlights": "Highlights",
       "princesses": "Princesses",
-      "beastsAndMonsters": "Beasts & Monsters",
+      "beastsAndMonsters": "Beasts and Monsters",
       "series": "Disney Series",
       "liveAction": "Live-Action Films",
       "classics": "Classics",
       "onceUpon": "Once Upon a Time...",
-      "mickeyFriends": "Mickey & Friends",
+      "mickeyFriends": "Mickey and Friends",
       "classicAnimations": "Classic Animations",
       "liloAndStitch": "Lilo & Stitch",
       "buddies": "Buddies Collection"
@@ -447,7 +526,7 @@
       "highlights": "Highlights",
       "infinitySaga": "MCU: Infinity Saga",
       "multiverseSaga": "MCU: Multiverse Saga",
-      "adventures": "Epic Adventures",
+      "adventures": "Fantastic Adventures",
       "monsters": "Marvel Monsters",
       "defenders": "The Defenders",
       "thunderbolts": "Featuring characters from Thunderbolts*",
@@ -463,7 +542,7 @@
       "chronological": "Star Wars in Chronological Order",
       "animations": "Animations",
       "darthVader": "Darth Vader",
-      "vintage": "Star Wars Vintage",
+      "vintage": "Vintage Star Wars",
       "documentaries": "Documentaries"
     },
     "national": {

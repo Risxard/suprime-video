@@ -8,3 +8,4 @@ export { default as WatchlistPage } from "./WatchListPage/index";
 export { default as ErrorPage } from "./ErrorPage/index";
 export { default as LandingPage } from "./LandingPage/index";
 export { default as AccountPage } from "./AccountPage/index";
+export { default as LegalPage } from "./LegalPage/index";

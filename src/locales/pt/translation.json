@@ -376,6 +376,85 @@
     "description": "Clique no botão abaixo para acessar a página de início do Açaíwave+",
     "button": "INÍCIO DO AÇAÍWAVE+"
   },
+  "legalPage": {
+    "title": "Avisos Legais",
+    "dropdown": {
+      "privacy": "Política de Privacidade",
+      "terms": "Termos de Uso da Açaíwave+",
+      "cookies": "Política de Cookies"
+    },
+    "privacy": {
+      "title": "Política de Privacidade",
+      "p1": "A Açaíwave+ respeita sua privacidade. Somos um catálogo online criado apenas para fins informativos, exibindo dados públicos sobre filmes e séries. Não hospedamos vídeos, não transmitimos conteúdo e não realizamos qualquer tipo de cobrança.",
+      "section1-title": "1. Informações que coletamos",
+      "section1-text": "Coletamos apenas o mínimo necessário para o funcionamento:",
+      "section1-list": {
+        "item1": "Preferência de idioma;",
+        "item2": "Dados básicos de navegação (cookies e métricas anônimas);",
+        "item3": "Informações enviadas voluntariamente, como cadastro de usuário."
+      },
+      "section2-title": "2. Exibição de vídeos",
+      "section2-text": "O Açaíwave+ pode exibir vídeos incorporados de plataformas externas, como YouTube ou serviços similares. Esses vídeos não são hospedados por nós — toda a reprodução acontece diretamente na plataforma de origem. Qualquer coleta de dados durante a reprodução é responsabilidade da plataforma que fornece o vídeo.",
+      "section3-title": "3. Uso das informações",
+      "section3-text": "Usamos os dados apenas para melhorar a experiência, ajustar preferências e manter a plataforma funcionando de forma estável.",
+      "section4-title": "4. Compartilhamento",
+      "section4-text": "Não comercializamos dados. Somente serviços de análise podem ter acesso limitado e anonimizado para entender o uso da plataforma.",
+      "section5-title": "5. Segurança",
+      "section5-text": "Adotamos medidas para manter seus dados protegidos, dentro dos limites de um projeto pessoal sem fins comerciais.",
+      "section6-title": "6. Seus direitos",
+      "section6-text": "Você pode solicitar acesso, alteração ou exclusão dos dados de cadastro."
+    },
+    "terms": {
+      "title": "Termos de Uso da Açaíwave+",
+      "p1": "Estes termos explicam como o Açaíwave+ deve ser utilizado. Ao continuar navegando, você concorda com estas condições.",
+      "section1-title": "1. Sobre a plataforma",
+      "section1-text": "A Açaíwave+ é um catálogo informativo criado como projeto pessoal. Não somos um serviço de streaming, não hospedamos vídeos e não disponibilizamos conteúdo protegido por direitos autorais.",
+      "section2-title": "2. Conteúdos exibidos",
+      "section2-text": "As informações exibidas são obtidas de bancos de dados públicos, como o TMDb. Todos os direitos pertencem aos proprietários originais.",
+      "section3-title": "3. Vídeos exibidos",
+      "section3-text": "Vídeos incorporados exibidos no Açaíwave+ (trailers, prévias, materiais promocionais etc.) são tocados diretamente de plataformas externas. O Açaíwave+ não controla anúncios, cookies ou recomendações exibidas por essas plataformas.",
+      "section4-title": "4. Gratuidade",
+      "section4-text": "O uso da plataforma é totalmente gratuito. Não existem planos pagos, assinaturas ou cobranças.",
+      "section5-title": "5. Uso permitido",
+      "section5-list": {
+        "item1": "copiar dados do site em grande escala;",
+        "item2": "usar informações para fins comerciais sem permissão;",
+        "item3": "tentar modificar ou danificar o site."
+      },
+      "section6-title": "6. Limitação de responsabilidade",
+      "section6-text": "O Açaíwave+ não responde por serviços externos como TMDb ou YouTube."
+    },
+    "cookies": {
+      "title": "Política de Cookies",
+      "p1": "Esta política explica como o Açaíwave+ utiliza cookies para melhorar a navegação e lembrar preferências básicas.",
+      "section1-title": "1. O que são cookies?",
+      "section1-text": "Cookies são pequenos arquivos usados para melhorar a experiência de uso.",
+      "section2-title": "2. Por que usamos cookies?",
+      "section2-list": {
+        "item1": "Para que o site funcione corretamente;",
+        "item2": "Para lembrar configurações como idioma;",
+        "item3": "Para coletar métricas simples e anônimas;",
+        "item4": "Para melhorar desempenho e carregamento."
+      },
+      "section3-title": "3. Vídeos incorporados e cookies",
+      "section3-text": "Vídeos exibidos no Açaíwave+ são carregados de serviços como YouTube. Esses serviços podem usar cookies próprios, e o Açaíwave+ não controla nem acessa esses dados.",
+      "section4-title": "4. O que NÃO utilizamos",
+      "section4-list": {
+        "item1": "cookies de anúncios;",
+        "item2": "rastreadores individuais;",
+        "item3": "coleta de informações sensíveis."
+      },
+      "section5-title": "5. Como desativar cookies?",
+      "section5-text": "Você pode gerenciar cookies no navegador:",
+      "section5-links": {
+        "chrome": "Google Chrome",
+        "firefox": "Mozilla Firefox",
+        "edge": "Microsoft Edge",
+        "safari": "Safari"
+      }
+    },
+    "print": "Imprimir"
+  },
   "footer": {
     "links": {
       "privacyPolicy": "Política de Privacidade",

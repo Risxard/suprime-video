@@ -10,6 +10,7 @@ import {
   ErrorPage,
   LandingPage,
   AccountPage,
+  LegalPage,
 } from "../pages/Index";
 
 import PrivateLayout from "../App";
@@ -110,6 +111,10 @@ const AppRoutes = () => {
     {
       path: "/*",
       element: !isAuthenticated ? <Navigate to="/" /> : <ErrorPage />,
+    },
+    {
+      path: "/legal/:id",
+      element: <LegalPage />,
     },
   ];
 

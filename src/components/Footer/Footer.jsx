@@ -8,6 +8,14 @@ const Footer = () => {
   const { t } = useTranslation();
   const footerSection = t("footer", { returnObjects: true });
 
+  const legalRoutes = {
+    privacyPolicy: "/legal/política-de-privacidade",
+    termsOfUse: "/legal/termos-de-uso-do-acaiwaveplus",
+    cookiesPolicy: "/legal/política-de-cookies",
+  };
+
+  const fallback = legalRoutes.privacyPolicy;
+
   return (
     <footer>
       <span className="footer-logo">
@@ -18,21 +26,73 @@ const Footer = () => {
 
       <div className="footer-container">
         <ul>
-          <li><a href="#">{footerSection.links.privacyPolicy}</a></li>
-          <li><a href="#">{footerSection.links.termsOfUse}</a></li>
-          <li><a href="#">{footerSection.links.brazilPrivacyNotice}</a></li>
-          <li><a href="#">{footerSection.links.cookiesPolicy}</a></li>
-          <li><a href="#">{footerSection.links.dataProtectionBrazil}</a></li>
-          <li><a href="#">{footerSection.links.subscriptionAgreement}</a></li>
-          <li><a href="#">{footerSection.links.help}</a></li>
-          <li><a href="#">{footerSection.links.supportedDevices}</a></li>
-          <li><a href="#">{footerSection.links.aboutAcaiwaveplus}</a></li>
-          <li><a href="#">{footerSection.links.customAds}</a></li>
-          <li><a href="#">{footerSection.links.feedback}</a></li>
+          <li>
+            <NavLink to={legalRoutes.privacyPolicy}>
+              {footerSection.links.privacyPolicy}
+            </NavLink>
+          </li>
 
-          <div className="footer-text">
-            {footerSection.projectDescription}
-          </div>
+          <li>
+            <NavLink to={legalRoutes.termsOfUse}>
+              {footerSection.links.termsOfUse}
+            </NavLink>
+          </li>
+
+          <li>
+            <NavLink to={fallback}>
+              {footerSection.links.brazilPrivacyNotice}
+            </NavLink>
+          </li>
+
+          <li>
+            <NavLink to={legalRoutes.cookiesPolicy}>
+              {footerSection.links.cookiesPolicy}
+            </NavLink>
+          </li>
+
+          <li>
+            <NavLink to={fallback}>
+              {footerSection.links.dataProtectionBrazil}
+            </NavLink>
+          </li>
+
+          <li>
+            <NavLink to={fallback}>
+              {footerSection.links.subscriptionAgreement}
+            </NavLink>
+          </li>
+
+          <li>
+            <NavLink to="/help">
+              {footerSection.links.help}
+            </NavLink>
+          </li>
+
+          <li>
+            <NavLink to={fallback}>
+              {footerSection.links.supportedDevices}
+            </NavLink>
+          </li>
+
+          <li>
+            <NavLink to="/about">
+              {footerSection.links.aboutAcaiwaveplus}
+            </NavLink>
+          </li>
+
+          <li>
+            <NavLink to={fallback}>
+              {footerSection.links.customAds}
+            </NavLink>
+          </li>
+
+          <li>
+            <NavLink to="/feedback">
+              {footerSection.links.feedback}
+            </NavLink>
+          </li>
+
+          <div className="footer-text">{footerSection.projectDescription}</div>
         </ul>
 
         <span className="Rights">{footerSection.copyright}</span>
