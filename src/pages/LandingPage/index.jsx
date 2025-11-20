@@ -17,6 +17,10 @@ import img1920_15x from "./assets/landing-1920-1.5x.webp";
 import img2560_1x from "./assets/landing-2560-1x.webp";
 import img2560_15x from "./assets/landing-2560-1.5x.webp";
 import Footer from "../../components/Footer/Footer";
+import { loginAsGuest } from "../../services/firebase/loginUser";
+import { auth } from "../../services/firebase/firebaseconfig";
+
+
 
 const LandingPage = () => {
   const navigate = useNavigate();
@@ -26,6 +30,17 @@ const LandingPage = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
+
+
+  const handleGuestLogin = async () => {
+    const result = await loginAsGuest();
+
+    if (result.success) {
+      navigate("/app");
+    } else {
+      alert(result.error);
+    }
+  };
 
   const onSubmit = (data) => {
     const expiresInMinutes = 10;
@@ -41,6 +56,11 @@ const LandingPage = () => {
     navigate("/identity/sign-up/create-password");
   };
 
+
+
+  const ls = auth.currentUser;
+
+  console.log(ls)
   return (
     <div className="landing-page">
       <div className="landing-nav">
@@ -49,6 +69,10 @@ const LandingPage = () => {
           onClick={() => navigate("/identity/login/enter-email")}
         >
           {t("landing-page.nav.login")}
+        </button>
+
+        <button className="login-btn" onClick={handleGuestLogin}>
+          Entrar como convidado
         </button>
       </div>
 
@@ -105,7 +129,9 @@ const LandingPage = () => {
                 type="email"
                 placeholder={t("landing-page.email-section.label")}
                 {...register("email", {
-                  required: t("landing-page.email-section.input-errors.required"),
+                  required: t(
+                    "landing-page.email-section.input-errors.required"
+                  ),
                   pattern: {
                     value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
                     message: t(

@@ -34,8 +34,11 @@ const DetailsPage = () => {
   const language = i18next.language;
 
   const dispatch = useDispatch();
-  const profileId = useSelector((state) => state.auth.currentProfile.id);
 
+  const user = useSelector((state) => state.auth.user);
+  const isGuest = user?.isAnonymous === true;
+
+  const profileId = useSelector((state) => state.auth.currentProfile?.id);
 
   const {
     media,
@@ -44,35 +47,34 @@ const DetailsPage = () => {
     loading: loadingMedia,
   } = useMediaDetails(mediaType, id, language);
 
-
   const { videoKey } = useMediaVideo(media, mediaType, language);
-
 
   const {
     isInWatchlist,
     toggleWatchlist,
     loading: loadingWatchlist,
-  } = useWatchlist(profileId, dispatch);
-
+  } = isGuest
+    ? {
+        isInWatchlist: () => false,
+        toggleWatchlist: () => {},
+        loadingWatchlist: false,
+      }
+    : useWatchlist(profileId, dispatch);
 
   const bgOpacity = useScrollOpacity();
-
 
   const { isReady, isLoading, onImageLoaded } = useImageLoader(logo);
 
   const [showPlayer, setShowPlayer] = useState(false);
   const [shouldRenderDetails, setShouldRenderDetails] = useState(true);
 
-
   const [autoPlayed, setAutoPlayed] = useState(false);
-
 
   useEffect(() => {
     setShowPlayer(false);
     setShouldRenderDetails(true);
     setAutoPlayed(false);
   }, [id]);
-
 
   useEffect(() => {
     if (referrer === "play" && videoKey && !autoPlayed) {
@@ -103,7 +105,6 @@ const DetailsPage = () => {
         <div className="details-page" data-set={isReady ? "true" : "false"}>
           <div className="details-page-container">
             <div className="details-page-content">
-
               <div
                 className="details-page-media-background"
                 style={{ opacity: bgOpacity }}
@@ -126,10 +127,8 @@ const DetailsPage = () => {
                 <div className="details-page-media-background-filter" />
               </div>
 
-
               <section className="explore-ui-main-container">
                 <div className="explore-ui-main-content">
-
                   <div className="explore-ui-main-content-logo">
                     {logo ? (
                       <img
@@ -156,11 +155,9 @@ const DetailsPage = () => {
                     )}
                   </div>
 
-
                   <div className="explore-ui-main-content-overview">
                     <p>{media?.overview}</p>
                   </div>
-
 
                   <div className="explore-ui-main-content-actions">
                     <button
@@ -176,14 +173,18 @@ const DetailsPage = () => {
                       {detailsPage.actions.play}
                     </button>
 
-                    <div
-                      className="watchlist-action"
-                      onClick={() =>
-                        toggleWatchlist(mediaType, id, inWatchlist)
-                      }
-                    >
-                      <button disabled={loadingWatchlist}>
-                        {loadingWatchlist ? (
+                    <div className="watchlist-action">
+                      <button
+                        disabled={!isGuest && loadingWatchlist}
+                        onClick={() => {
+                          if (!isGuest) {
+                            toggleWatchlist(mediaType, id, inWatchlist);
+                          }
+                        }}
+                      >
+                        {isGuest ? (
+                          <PlusActionIcon />
+                        ) : loadingWatchlist ? (
                           <LoadingIcon />
                         ) : inWatchlist ? (
                           <DoneActionIcon />
@@ -191,6 +192,7 @@ const DetailsPage = () => {
                           <PlusActionIcon />
                         )}
                       </button>
+
                       <span className="watchlist-action-showup">
                         {detailsPage.actions.myList}
                       </span>

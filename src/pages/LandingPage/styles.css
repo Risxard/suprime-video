@@ -24,6 +24,8 @@
     right: 0;
 
     z-index: 100;
+
+    gap: 16px;
 }
 
 
@@ -75,6 +77,19 @@
     text-decoration: none !important;
 }
 
+
+.landing-nav .login-btn:last-child {
+    background-color: rgba(2, 213, 232, 0.8);
+    line-height: 1;
+}
+
+.landing-nav .login-btn:last-child:hover {
+    color: #040714;
+    border-color: #f9f9f9;
+    background-color: #f9f9f9;
+    border: 1px solid #f9f9f9;
+    text-decoration: none !important;
+}
 
 .landing-page-container {
     width: 100%;

@@ -47,13 +47,21 @@ const DetailsTab = ({ media }) => {
         </li>
       </ul>
 
-      <div>
+      <div className="details-tabs-content">
         {mediaType === "tv" && (
           <div
+            className="locked-content"
             style={{
               display: activeTab === "episodios" ? "block" : "none",
             }}
           >
+            <div className="login-to-unlock">
+              <div className="login-to-unlock-content">
+                <h2>Logue para desbloquear o conteúdo</h2>
+                <button>Login</button>
+              </div>
+            </div>
+
             <SeasonsTab seasons={media?.seasons} tvId={media?.id} />
           </div>
         )}

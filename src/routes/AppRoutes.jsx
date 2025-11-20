@@ -42,6 +42,7 @@ const AppRoutes = () => {
     (state) => state.auth
   );
   const isAuthenticated = !!user && !!token;
+  const isGuest = user?.isAnonymous === true;
 
   if (loading) {
     return <LoadingPage />;
@@ -192,15 +193,24 @@ const AppRoutes = () => {
         ))}
 
         <Route element={<PrivateLayout isAuthenticated={isAuthenticated} />}>
-          {privateRoutes.map(({ path, element }) => (
-            <Route
-              key={path}
-              path={path}
-              element={
-                !currentProfile ? <Navigate to="/select-profile" /> : element
-              }
-            />
-          ))}
+          {privateRoutes.map(({ path, element }) => {
+            
+            return (
+              <Route
+                key={path}
+                path={path}
+                element={
+                  isGuest ? (
+                    element
+                  ) : !currentProfile ? (
+                    <Navigate to="/select-profile" />
+                  ) : (
+                    element
+                  )
+                }
+              />
+            );
+          })}
         </Route>
 
         <Route

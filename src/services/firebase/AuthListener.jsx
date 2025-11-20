@@ -9,12 +9,19 @@ const AuthListener = () => {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
-      if (user && user.emailVerified) {
-        const token = await user.getIdToken();
-        dispatch(loginSuccess({ user, token }));
-      } else {
-        dispatch(logout());
+      
+      if (user) {
+        const isGuest = user.isAnonymous === true;
+        const isVerifiedUser = user.emailVerified === true;
+
+        if (isGuest || isVerifiedUser) {
+          const token = await user.getIdToken();
+          dispatch(loginSuccess({ user, token }));
+          return;
+        }
       }
+
+      dispatch(logout());
     });
 
     return () => unsubscribe();
