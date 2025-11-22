@@ -20,6 +20,7 @@ import MediaPlayer from "../../components/MediaPlayer/MediaPlayer";
 import LoadingComponent from "../../components/utils/LoadingComponent";
 
 import { useDispatch, useSelector } from "react-redux";
+import { showPopup } from "../../store/slices/popupSlice";
 
 import { useMediaDetails } from "../../hooks/useMediaDetails";
 import { useMediaVideo } from "../../hooks/useMediaVideo";
@@ -56,18 +57,16 @@ const DetailsPage = () => {
   } = isGuest
     ? {
         isInWatchlist: () => false,
-        toggleWatchlist: () => {},
+        toggleWatchlist: async () => {},
         loadingWatchlist: false,
       }
     : useWatchlist(profileId, dispatch);
 
   const bgOpacity = useScrollOpacity();
-
   const { isReady, isLoading, onImageLoaded } = useImageLoader(logo);
 
   const [showPlayer, setShowPlayer] = useState(false);
   const [shouldRenderDetails, setShouldRenderDetails] = useState(true);
-
   const [autoPlayed, setAutoPlayed] = useState(false);
 
   useEffect(() => {
@@ -90,8 +89,56 @@ const DetailsPage = () => {
   };
 
   const inWatchlist = isInWatchlist(id, mediaType);
-
   const pageIsLoading = loadingMedia || isLoading;
+
+
+  const handleWatchlistClick = async () => {
+    if (isGuest) {
+      dispatch(
+        showPopup({
+          message: "Faça login para adicionar à lista.",
+          iconType: "fail",
+        })
+      );
+      return;
+    }
+
+    try {
+      await toggleWatchlist(mediaType, id, inWatchlist);
+
+      dispatch(
+        showPopup({
+          message: inWatchlist
+            ? "Removido da sua lista."
+            : "Adicionado à sua lista!",
+          iconType: inWatchlist ? "fail" : "done",
+        })
+      );
+    } catch (error) {
+      console.error(error);
+      dispatch(
+        showPopup({
+          message: "Não foi possível atualizar sua lista.",
+          iconType: "fail",
+        })
+      );
+    }
+  };
+
+  const handlePlayClick = () => {
+    if (videoKey) {
+      setShowPlayer(true);
+      setShouldRenderDetails(false);
+      return;
+    }
+
+    dispatch(
+      showPopup({
+        message: "Trailer indisponível.",
+        iconType: "fail",
+      })
+    );
+  };
 
   return (
     <>
@@ -160,15 +207,7 @@ const DetailsPage = () => {
                   </div>
 
                   <div className="explore-ui-main-content-actions">
-                    <button
-                      className="play-action"
-                      onClick={() => {
-                        if (videoKey) {
-                          setShowPlayer(true);
-                          setShouldRenderDetails(false);
-                        }
-                      }}
-                    >
+                    <button className="play-action" onClick={handlePlayClick}>
                       <PlayActionIcon />
                       {detailsPage.actions.play}
                     </button>
@@ -176,11 +215,7 @@ const DetailsPage = () => {
                     <div className="watchlist-action">
                       <button
                         disabled={!isGuest && loadingWatchlist}
-                        onClick={() => {
-                          if (!isGuest) {
-                            toggleWatchlist(mediaType, id, inWatchlist);
-                          }
-                        }}
+                        onClick={handleWatchlistClick}
                       >
                         {isGuest ? (
                           <PlusActionIcon />

@@ -20,19 +20,31 @@ const SuggestionsTab = ({ data }) => {
           page: 1,
         });
 
+        let results = response?.results || [];
 
-        const filteredMedias = response.slice(0, 8);
-        setMedias(filteredMedias);
+
+        if (results.length === 0) {
+          const fallbackResponse = await tmdbService.fetchPerGenres({
+            pageType: mediaType,
+            language,
+            with_genres: data?.genres?.map((genre) => genre.id).join(","),
+            page: 1,
+            sort_by: "popularity.desc",
+          });
+
+          results = fallbackResponse || [];
+        }
+
+        setMedias(results.slice(0, 8));
       } catch (error) {
         console.error("Erro ao buscar mídia:", error);
       }
     };
 
-    if (!data || data.length === 0) {
+    if (!data?.similar?.results || data.similar.results.length === 0) {
       fetchMediaData();
     } else {
-      const filteredMedias = data?.slice(0, 8);
-      setMedias(filteredMedias);
+      setMedias(data.similar.results.slice(0, 8));
     }
   }, [data, id, mediaType, language]);
 

@@ -8,11 +8,9 @@ export const tmdbService = {
     return data;
   },
   fetchMediaDetails: async ({ mediaType, mediaId, language }) => {
-
     const { data } = await api.get("/api/tmdb/mediadetails", {
       params: { mediaType, mediaId, language },
     });
-
 
     return data;
   },

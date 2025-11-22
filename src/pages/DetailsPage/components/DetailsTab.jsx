@@ -67,7 +67,7 @@ const DetailsTab = ({ media }) => {
         )}
 
         <div style={{ display: activeTab === "sugestoes" ? "block" : "none" }}>
-          <SuggestionsTab data={media?.similar?.results} />
+          <SuggestionsTab data={media} />
         </div>
 
         <div style={{ display: activeTab === "detalhes" ? "block" : "none" }}>
