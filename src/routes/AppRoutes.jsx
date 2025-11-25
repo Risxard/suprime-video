@@ -37,10 +37,38 @@ import ChannelsPage from "../pages/ChannelsPage/index.jsx";
 import ScrollToTop from "../components/utils/ScrollToTop.jsx";
 import TestPage from "../pages/TestPage/TestPage.jsx";
 
+
+const PublicRoute = ({ element, isAuthenticated }) => {
+  if (isAuthenticated) {
+    return <Navigate to="/home" />;
+  }
+  return element;
+};
+
+const PrivateRoute = ({ element, isGuest, currentProfile }) => {
+  if (isGuest) return element;
+
+  if (!currentProfile) {
+    return <Navigate to="/select-profile" />;
+  }
+
+  return element;
+};
+
+
+const PrivateStandaloneRoute = ({ element, isAuthenticated, isGuest }) => {
+  if (!isAuthenticated) return <Navigate to="/" />;
+  if (isGuest) return <Navigate to="/home" />;
+  return element;
+};
+
+
+
 const AppRoutes = () => {
   const { user, token, currentProfile, loading } = useSelector(
     (state) => state.auth
   );
+
   const isAuthenticated = !!user && !!token;
   const isGuest = user?.isAnonymous === true;
 
@@ -51,27 +79,19 @@ const AppRoutes = () => {
   const publicRoutes = [
     {
       path: "/",
-      element: isAuthenticated ? <Navigate to="/home" /> : <LandingPage />,
+      element: <LandingPage />,
     },
     {
       path: "/landing",
-      element: isAuthenticated ? <Navigate to="/home" /> : <LandingPage />,
+      element: <LandingPage />,
     },
     {
       path: "/identity/login/enter-email",
-      element: isAuthenticated ? (
-        <Navigate to="/home" />
-      ) : (
-        <Identity children={<EmailSection />} />
-      ),
+      element: <Identity children={<EmailSection />} />,
     },
     {
       path: "/identity/login/enter-password",
-      element: isAuthenticated ? (
-        <Navigate to="/home" />
-      ) : (
-        <Identity children={<PasswordSection />} />
-      ),
+      element: <Identity children={<PasswordSection />} />,
     },
     {
       path: "/identity/update-credentials/change-password",
@@ -79,48 +99,33 @@ const AppRoutes = () => {
     },
     {
       path: "/identity/update-credentials/enter-email",
-      element: isAuthenticated ? (
-        <Navigate to="/identity/update-credentials/change-password" />
-      ) : (
-        <Identity children={<EmailSection />} />
-      ),
+      element: <Identity children={<EmailSection />} />,
     },
     {
       path: "/identity/login/verify-email",
-      element: isAuthenticated ? (
-        <Navigate to="/home" />
-      ) : (
-        <Identity children={<EmailVerification />} />
-      ),
+      element: <Identity children={<EmailVerification />} />,
     },
     {
       path: "/identity/sign-up/enter-email",
-      element: isAuthenticated ? (
-        <Navigate to="/home" />
-      ) : (
-        <Identity children={<EmailSection />} />
-      ),
+      element: <Identity children={<EmailSection />} />,
     },
     {
       path: "/identity/sign-up/create-password",
-      element: isAuthenticated ? (
-        <Navigate to="/home" />
-      ) : (
-        <Identity children={<CreatePasswordSection />} />
-      ),
-    },
-    {
-      path: "/*",
-      element: !isAuthenticated ? <Navigate to="/" /> : <ErrorPage />,
+      element: <Identity children={<CreatePasswordSection />} />,
     },
     {
       path: "/legal/:id",
       element: <LegalPage />,
     },
+    {
+      path: "/*",
+      element: <ErrorPage />,
+    },
   ];
 
   const privateRoutes = [
     { path: "/home", element: <Home /> },
+
     {
       path: "/browse/movies",
       element: <BrowsePage children={<MoviesPage />} />,
@@ -177,50 +182,64 @@ const AppRoutes = () => {
     },
     {
       path: "/identity/delete-account/confirm-deletion",
-      element: isAuthenticated ? (
-        <Identity children={<DeleteAccount />} updatePage={true} />
-      ) : (
-        <Navigate to="/" />
-      ),
+      element: <Identity children={<DeleteAccount />} updatePage={true} />,
     },
   ];
+
+
 
   return (
     <BrowserRouter basename="/preview/acaiwaveplus">
       <Routes>
+
         {publicRoutes.map(({ path, element }) => (
-          <Route key={path} path={path} element={element} />
+          <Route
+            key={path}
+            path={path}
+            element={
+              <PublicRoute
+                element={element}
+                isAuthenticated={isAuthenticated}
+              />
+            }
+          />
         ))}
 
+
         <Route element={<PrivateLayout isAuthenticated={isAuthenticated} />}>
-          {privateRoutes.map(({ path, element }) => {
-            
-            return (
-              <Route
-                key={path}
-                path={path}
-                element={
-                  isGuest ? (
-                    element
-                  ) : !currentProfile ? (
-                    <Navigate to="/select-profile" />
-                  ) : (
-                    element
-                  )
-                }
-              />
-            );
-          })}
+          {privateRoutes.map(({ path, element }) => (
+            <Route
+              key={path}
+              path={path}
+              element={
+                <PrivateRoute
+                  element={element}
+                  isGuest={isGuest}
+                  currentProfile={currentProfile}
+                />
+              }
+            />
+          ))}
         </Route>
 
-        <Route
-          element={<PrivateStandalone isAuthenticated={isAuthenticated} />}
-        >
+
+        <Route element={<PrivateStandalone isAuthenticated={isAuthenticated} />}>
           {privateStandalone.map(({ path, element }) => (
-            <Route key={path} path={path} element={element} />
+            <Route
+              key={path}
+              path={path}
+              element={
+                <PrivateStandaloneRoute
+                  element={element}
+                  isAuthenticated={isAuthenticated}
+                  isGuest={isGuest}
+                />
+              }
+            />
           ))}
         </Route>
       </Routes>
+
       <PopUpMessage />
       <ScrollToTop />
     </BrowserRouter>
