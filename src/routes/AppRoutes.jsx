@@ -38,30 +38,36 @@ import ScrollToTop from "../components/utils/ScrollToTop.jsx";
 import TestPage from "../pages/TestPage/TestPage.jsx";
 
 
-const PublicRoute = ({ element, isAuthenticated }) => {
-  if (isAuthenticated) {
+const PublicRoute = ({ element, isAuthenticated, isGuest, path }) => {
+
+
+  if (isAuthenticated && !isGuest) {
     return <Navigate to="/home" />;
   }
-  return element;
-};
 
-const PrivateRoute = ({ element, isGuest, currentProfile }) => {
-  if (isGuest) return element;
 
-  if (!currentProfile) {
-    return <Navigate to="/select-profile" />;
+  const isLanding = path === "/" || path === "/landing";
+  if (isGuest && isLanding) {
+    return <Navigate to="/home" />;
   }
 
+
   return element;
 };
 
+
+const PrivateRoute = ({ element, isGuest, isAuthenticated, currentProfile }) => {
+  if (!isAuthenticated) return <Navigate to="/" />;
+  if (isGuest) return element;
+  if (!currentProfile) return <Navigate to="/select-profile" />;
+  return element;
+};
 
 const PrivateStandaloneRoute = ({ element, isAuthenticated, isGuest }) => {
   if (!isAuthenticated) return <Navigate to="/" />;
   if (isGuest) return <Navigate to="/home" />;
   return element;
 };
-
 
 
 const AppRoutes = () => {
@@ -76,121 +82,56 @@ const AppRoutes = () => {
     return <LoadingPage />;
   }
 
+
   const publicRoutes = [
-    {
-      path: "/",
-      element: <LandingPage />,
-    },
-    {
-      path: "/landing",
-      element: <LandingPage />,
-    },
-    {
-      path: "/identity/login/enter-email",
-      element: <Identity children={<EmailSection />} />,
-    },
-    {
-      path: "/identity/login/enter-password",
-      element: <Identity children={<PasswordSection />} />,
-    },
-    {
-      path: "/identity/update-credentials/change-password",
-      element: <Identity children={<ChangePassword />} updatePage={true} />,
-    },
-    {
-      path: "/identity/update-credentials/enter-email",
-      element: <Identity children={<EmailSection />} />,
-    },
-    {
-      path: "/identity/login/verify-email",
-      element: <Identity children={<EmailVerification />} />,
-    },
-    {
-      path: "/identity/sign-up/enter-email",
-      element: <Identity children={<EmailSection />} />,
-    },
-    {
-      path: "/identity/sign-up/create-password",
-      element: <Identity children={<CreatePasswordSection />} />,
-    },
-    {
-      path: "/legal/:id",
-      element: <LegalPage />,
-    },
-    {
-      path: "/*",
-      element: <ErrorPage />,
-    },
+    { path: "/", element: <LandingPage /> },
+    { path: "/landing", element: <LandingPage /> },
+
+
+    { path: "/identity/login/enter-email", element: <Identity children={<EmailSection />} /> },
+    { path: "/identity/login/enter-password", element: <Identity children={<PasswordSection />} /> },
+    { path: "/identity/login/verify-email", element: <Identity children={<EmailVerification />} /> },
+    { path: "/identity/sign-up/enter-email", element: <Identity children={<EmailSection />} /> },
+    { path: "/identity/sign-up/create-password", element: <Identity children={<CreatePasswordSection />} /> },
+
+
+    { path: "/identity/update-credentials/change-password", element: <Identity children={<ChangePassword />} updatePage={true} /> },
+    { path: "/identity/update-credentials/enter-email", element: <Identity children={<EmailSection />} /> },
+
+    { path: "/legal/:id", element: <LegalPage /> },
+    { path: "/*", element: <ErrorPage /> },
   ];
+
 
   const privateRoutes = [
     { path: "/home", element: <Home /> },
-
-    {
-      path: "/browse/movies",
-      element: <BrowsePage children={<MoviesPage />} />,
-    },
-    {
-      path: "/browse/series",
-      element: <BrowsePage children={<TvSeriesPage />} />,
-    },
-
+    { path: "/browse/movies", element: <BrowsePage children={<MoviesPage />} /> },
+    { path: "/browse/series", element: <BrowsePage children={<TvSeriesPage />} /> },
     { path: "/detail/:mediaType/:id", element: <DetailsPage /> },
     { path: "/detail/:mediaType/:id/:referrer", element: <DetailsPage /> },
-
     { path: "/search", element: <Search /> },
-
-    {
-      path: "/browse/watchlist/",
-      element: <BrowsePage children={<WatchlistPage />} />,
-    },
-    {
-      path: "/browse/:channelId",
-      element: <BrowsePage children={<ChannelsPage />} />,
-    },
-    {
-      path: "/testpage",
-      element: <TestPage />,
-    },
+    { path: "/browse/watchlist", element: <BrowsePage children={<WatchlistPage />} /> },
+    { path: "/browse/:channelId", element: <BrowsePage children={<ChannelsPage />} /> },
+    { path: "/testpage", element: <TestPage /> },
   ];
+
 
   const privateStandalone = [
-    {
-      path: "/select-profile",
-      element: <ProfilesPage children={<SelectProfile />} />,
-    },
+    { path: "/select-profile", element: <ProfilesPage children={<SelectProfile />} /> },
     { path: "/settings/account", element: <AccountPage /> },
-    {
-      path: "/edit-profiles",
-      element: <ProfilesPage children={<EditProfiles />} />,
-    },
-    {
-      path: "/edit-profile/:profileId",
-      element: <ProfilesPage children={<EditProfile />} />,
-    },
-    {
-      path: "/select-avatar/",
-      element: <ProfilesPage children={<SelectAvatar />} />,
-    },
-    {
-      path: "/select-avatar/:profileId",
-      element: <ProfilesPage children={<SelectAvatar />} />,
-    },
-    {
-      path: "/add-profile",
-      element: <ProfilesPage children={<AddProfile />} />,
-    },
-    {
-      path: "/identity/delete-account/confirm-deletion",
-      element: <Identity children={<DeleteAccount />} updatePage={true} />,
-    },
+    { path: "/edit-profiles", element: <ProfilesPage children={<EditProfiles />} /> },
+    { path: "/edit-profile/:profileId", element: <ProfilesPage children={<EditProfile />} /> },
+    { path: "/select-avatar", element: <ProfilesPage children={<SelectAvatar />} /> },
+    { path: "/select-avatar/:profileId", element: <ProfilesPage children={<SelectAvatar />} /> },
+    { path: "/add-profile", element: <ProfilesPage children={<AddProfile />} /> },
+    { path: "/identity/delete-account/confirm-deletion", element: <Identity children={<DeleteAccount />} updatePage={true} /> },
   ];
-
 
 
   return (
     <BrowserRouter basename="/preview/acaiwaveplus">
       <Routes>
+
 
         {publicRoutes.map(({ path, element }) => (
           <Route
@@ -198,8 +139,10 @@ const AppRoutes = () => {
             path={path}
             element={
               <PublicRoute
+                path={path}
                 element={element}
                 isAuthenticated={isAuthenticated}
+                isGuest={isGuest}
               />
             }
           />
@@ -215,6 +158,7 @@ const AppRoutes = () => {
                 <PrivateRoute
                   element={element}
                   isGuest={isGuest}
+                  isAuthenticated={isAuthenticated}
                   currentProfile={currentProfile}
                 />
               }
@@ -238,6 +182,7 @@ const AppRoutes = () => {
             />
           ))}
         </Route>
+
       </Routes>
 
       <PopUpMessage />

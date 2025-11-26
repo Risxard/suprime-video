@@ -24,7 +24,7 @@ const UserMenuSAChildren = () => {
       dispatch(logout());
       localStorage.removeItem("@AuthSV:profiles");
       localStorage.removeItem("@AuthSV:currentProfile");
-      navigate("/login");
+      navigate("/");
     } catch (error) {
       console.error("Erro ao sair:", error);
     }

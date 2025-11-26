@@ -18,7 +18,6 @@ import img2560_1x from "./assets/landing-2560-1x.webp";
 import img2560_15x from "./assets/landing-2560-1.5x.webp";
 import Footer from "../../components/Footer/Footer";
 import { loginAsGuest } from "../../services/firebase/loginUser";
-import { auth } from "../../services/firebase/firebaseconfig";
 
 
 
@@ -36,7 +35,7 @@ const LandingPage = () => {
     const result = await loginAsGuest();
 
     if (result.success) {
-      navigate("/app");
+      navigate("/home");
     } else {
       alert(result.error);
     }
@@ -56,11 +55,6 @@ const LandingPage = () => {
     navigate("/identity/sign-up/create-password");
   };
 
-
-
-  const ls = auth.currentUser;
-
-  console.log(ls)
   return (
     <div className="landing-page">
       <div className="landing-nav">

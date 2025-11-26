@@ -1,22 +1,39 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./UserMenu.css";
-import {
-  NavLink,
-  useLocation,
-  useNavigate,
-} from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  logout,
-  setCurrentProfile,
-} from "../../../store/auth/index.js";
+import { logout, setCurrentProfile } from "../../../store/auth";
 import { isMobile } from "react-device-detect";
 import { useTranslation } from "react-i18next";
-import { auth } from "../../../services/firebase/firebaseconfig.js";
+import { auth } from "../../../services/firebase/firebaseconfig";
 import i18next from "i18next";
-
 import AddProfile from "../Icons/AddProfile.jsx";
 import { profileService } from "../../../services/firebase/profileServices.js";
+import guestAvatar from "../../../assets/avatars/mickey/mickey.png";
+
+const getUserType = (user) => {
+  if (!user) return "NO_USER";
+  if (user.isAnonymous) return "GUEST";
+  return "AUTH_USER";
+};
+
+const GuestMenu = ({ handleLogout }) => {
+  return (
+    <div className="nav-menu-list-itens">
+      <li className="nav-menu-item nopic">
+        <NavLink to="./identity/sign-up/enter-email">
+          <p>Criar conta</p>
+        </NavLink>
+      </li>
+
+      <li className="nav-menu-item nopic" onClick={handleLogout}>
+        <NavLink to="#">
+          <p>Sair do modo convidado</p>
+        </NavLink>
+      </li>
+    </div>
+  );
+};
 
 const UserMenuChildren = ({ currentProfileData }) => {
   const [sortedProfileList, setCurrentProfileList] = useState([]);
@@ -24,7 +41,9 @@ const UserMenuChildren = ({ currentProfileData }) => {
   const navigate = useNavigate();
 
   const { t } = useTranslation();
-  const navigationAccountMenu = t("navigation.accountMenu", { returnObjects: true });
+  const navigationAccountMenu = t("navigation.accountMenu", {
+    returnObjects: true,
+  });
   const { yourAccount, profiles } = navigationAccountMenu;
   const { editProfile, appSettings, account, help, signOut } = yourAccount;
 
@@ -32,17 +51,18 @@ const UserMenuChildren = ({ currentProfileData }) => {
     const fetchProfiles = async () => {
       try {
         const allProfiles = await profileService.getAll();
-        const filteredProfiles = allProfiles.filter(
-          (profile) => profile.id !== currentProfileData?.id
+        const filtered = allProfiles.filter(
+          (p) => p.id !== currentProfileData?.id
         );
-        const sortedList = [...filteredProfiles].sort((a, b) =>
+        const sorted = [...filtered].sort((a, b) =>
           a.id < b.id ? 1 : a.id > b.id ? -1 : 0
         );
-        setCurrentProfileList(sortedList);
-      } catch (error) {
-        console.error("Erro ao buscar perfis:", error);
+        setCurrentProfileList(sorted);
+      } catch (e) {
+        console.error("Erro ao buscar perfis:", e);
       }
     };
+
     fetchProfiles();
   }, [currentProfileData]);
 
@@ -56,11 +76,9 @@ const UserMenuChildren = ({ currentProfileData }) => {
     try {
       await auth.signOut();
       dispatch(logout());
-      localStorage.removeItem("@AuthSV:profiles");
-      localStorage.removeItem("@AuthSV:currentProfile");
-      navigate("/login");
-    } catch (error) {
-      console.error("Erro ao sair:", error);
+      navigate("/landing");
+    } catch (e) {
+      console.error("Erro ao sair:", e);
     }
   };
 
@@ -72,7 +90,7 @@ const UserMenuChildren = ({ currentProfileData }) => {
           key={profile.id}
           onClick={() => handleSetUserProfile(profile)}
         >
-          <a href="#">
+          <a>
             <span
               className="nav-menu-profile-pic"
               style={{
@@ -81,9 +99,7 @@ const UserMenuChildren = ({ currentProfileData }) => {
                 }),
               }}
             ></span>
-            {profile.userInfoData?.name && (
-              <p className="capitalize">{profile.userInfoData.name}</p>
-            )}
+            <p className="capitalize">{profile.userInfoData?.name}</p>
           </a>
         </li>
       ))}
@@ -102,21 +118,25 @@ const UserMenuChildren = ({ currentProfileData }) => {
           <p>{editProfile}</p>
         </NavLink>
       </li>
+
       <li className="nav-menu-item nopic">
         <NavLink to="/settings/account">
           <p>{appSettings}</p>
         </NavLink>
       </li>
+
       <li className="nav-menu-item nopic">
         <NavLink to="/settings/account">
           <p>{account}</p>
         </NavLink>
       </li>
+
       <li className="nav-menu-item nopic">
         <NavLink to="/help">
           <p>{help}</p>
         </NavLink>
       </li>
+
       <li className="nav-menu-item nopic" onClick={handleLogout}>
         <NavLink to="#">
           <p>{signOut}</p>
@@ -128,42 +148,62 @@ const UserMenuChildren = ({ currentProfileData }) => {
 
 const UserMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [currentProfileData, setCurrentProfileData] = useState(null);
   const avatarButtonRef = useRef(null);
-  const currentProfile = useSelector((state) => state.auth.currentProfile);
-  const location = useLocation();
 
-  useEffect(() => {
-    if (currentProfile) setCurrentProfileData(currentProfile);
-  }, [currentProfile]);
+  const { user, currentProfile } = useSelector((state) => state.auth);
+  const userType = getUserType(user);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const shouldRender =
+    (userType === "AUTH_USER" && currentProfile) || userType === "GUEST";
+
+  const handleLogout = async () => {
+    try {
+      await auth.signOut();
+      dispatch(logout());
+      navigate("/");
+    } catch (e) {
+      console.error(e);
+    }
+  };
 
   const toggleMenu = () => {
     if (isMobile) setIsOpen(!isOpen);
   };
 
-  const handleClickOutside = (event) => {
+  const handleClickOutside = (e) => {
     if (
       avatarButtonRef.current &&
-      !avatarButtonRef.current.contains(event.target)
+      !avatarButtonRef.current.contains(e.target)
     ) {
       setIsOpen(false);
     }
   };
 
+
   useEffect(() => {
     if (isMobile && isOpen) {
       document.addEventListener("click", handleClickOutside);
     }
-    return () => {
-      document.removeEventListener("click", handleClickOutside);
-    };
+    return () => document.removeEventListener("click", handleClickOutside);
   }, [isOpen]);
 
-  useEffect(() => {
-    setIsOpen(false);
-  }, [location]);
+  useEffect(() => setIsOpen(false), [location]);
 
-  return currentProfileData ? (
+
+  if (!shouldRender) return null;
+
+  const displayName =
+    userType === "GUEST"
+      ? "Convidado"
+      : currentProfile?.userInfoData?.name || "Usuário";
+
+  const avatarDisplay =
+    userType === "GUEST" ? guestAvatar : currentProfile?.userInfoData?.img?.url;
+
+  return (
     <ul
       className={`nav-menu ${isOpen ? "active" : ""}`}
       data-mobile={isMobile}
@@ -177,16 +217,13 @@ const UserMenu = () => {
         ref={avatarButtonRef}
       >
         <a>
-          {currentProfileData.userInfoData?.name && (
-            <p className="capitalize">
-              {currentProfileData.userInfoData.name}
-            </p>
-          )}
+          <p className="capitalize">{displayName}</p>
+
           <span
             className="nav-menu-profile-pic"
             style={{
-              ...(currentProfileData.userInfoData?.img?.url && {
-                backgroundImage: `url(${currentProfileData.userInfoData.img.url})`,
+              ...(avatarDisplay && {
+                backgroundImage: `url(${avatarDisplay})`,
               }),
             }}
           ></span>
@@ -194,11 +231,17 @@ const UserMenu = () => {
       </li>
 
       <div className="nav-menu-separator" />
-      <UserMenuChildren currentProfileData={currentProfileData} />
+
+      {userType === "GUEST" ? (
+        <GuestMenu handleLogout={handleLogout} />
+      ) : (
+        <UserMenuChildren currentProfileData={currentProfile} />
+      )}
 
       {isOpen && isMobile && <span className="focus-modal" />}
     </ul>
-  ) : null;
+  );
 };
+
 
 export default UserMenu;

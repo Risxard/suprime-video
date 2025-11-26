@@ -1,6 +1,6 @@
-import { 
-  signInWithEmailAndPassword, 
-  signInAnonymously 
+import {
+  signInWithEmailAndPassword,
+  signInAnonymously
 } from "firebase/auth";
 
 import { sendEmailVerificationLink } from "./profileServices";
@@ -55,8 +55,11 @@ export async function loginAsGuest() {
   try {
     const userCredential = await signInAnonymously(auth);
     const user = userCredential.user;
+    
+    localStorage.removeItem("auth-data");
 
     return { success: true, user };
+
 
   } catch (err) {
     console.error("Erro ao entrar como convidado:", err);
