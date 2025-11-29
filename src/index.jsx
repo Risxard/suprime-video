@@ -6,7 +6,7 @@ import store from "./store/store.js";
 import "./index.css";
 
 import AppRoutes from "./routes/AppRoutes.jsx";
-import AuthListener from "./services/firebase/AuthListener.jsx";
+import AuthListener from "./services/firebase/utils/AuthListener.jsx";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

@@ -47,6 +47,7 @@ const authSlice = createSlice({
     },
 
     setCurrentProfile(state, action) {
+
       const currentProfile = state.profiles.find(
         (profile) => profile.id === action.payload.id
       );

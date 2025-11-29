@@ -61,7 +61,7 @@ const SelectProfile = () => {
 
   return (
     <>
-      <NavProfiles text="Editar Perfil" onSubmitNavBtn={navFunction} />
+      <NavProfiles text={profilesPage.editProfile.title} onSubmitNavBtn={navFunction} />
 
       <div className="profiles-page-container">
         <section className="profiles-page-content">

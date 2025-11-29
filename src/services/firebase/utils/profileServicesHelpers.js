@@ -1,5 +1,5 @@
-import { profileService } from "./profileServices";
-import { userProfiles, setCurrentProfile } from "../../store/auth";
+import { profileService } from "../profileServices";
+import { userProfiles, setCurrentProfile } from "../../../store/auth";
 
 export const syncProfiles = async (dispatch) => {
   try {

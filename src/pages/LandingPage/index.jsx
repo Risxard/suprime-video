@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
+
 import "./styles.css";
 import acaiwaveLogo from "../../assets/acaiwaveLogo.png";
 
@@ -16,29 +17,28 @@ import img1920_1x from "./assets/landing-1920-1x.webp";
 import img1920_15x from "./assets/landing-1920-1.5x.webp";
 import img2560_1x from "./assets/landing-2560-1x.webp";
 import img2560_15x from "./assets/landing-2560-1.5x.webp";
+
 import Footer from "../../components/Footer/Footer";
-import { loginAsGuest } from "../../services/firebase/loginUser";
 
-
+import { useAuth } from "../../hooks/Auth/useAuth";
 
 const LandingPage = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
+  const { loginAsGuest, loading, error } = useAuth();
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
-
   const handleGuestLogin = async () => {
     const result = await loginAsGuest();
 
-    if (result.success) {
-      navigate("/home");
-    } else {
-      alert(result.error);
-    }
+    if (!result.success) return;
+
+    navigate("/home");
   };
 
   const onSubmit = (data) => {
@@ -65,8 +65,12 @@ const LandingPage = () => {
           {t("landing-page.nav.login")}
         </button>
 
-        <button className="login-btn" onClick={handleGuestLogin}>
-          Entrar como convidado
+        <button
+          className="login-btn"
+          onClick={handleGuestLogin}
+          disabled={loading}
+        >
+          {loading ? "Carregando..." : "Entrar como convidado"}
         </button>
       </div>
 

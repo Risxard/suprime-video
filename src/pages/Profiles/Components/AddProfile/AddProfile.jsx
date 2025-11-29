@@ -10,7 +10,7 @@ import DoneSvg from "../../assets/DoneSvg";
 
 import { newProfileStorage } from "../../../../utils/sessionStorageManager";
 import { profileService } from "../../../../services/firebase/profileServices";
-import { syncProfiles } from "../../../../services/firebase/profileServicesHelpers";
+import { syncProfiles } from "../../../../services/firebase/utils/profileServicesHelpers.js";
 
 const languages = [
   { code: "pt-BR", label: "Português (Brasil)" },

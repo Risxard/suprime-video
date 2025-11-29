@@ -12,7 +12,7 @@ import DoneSvg from "../../assets/DoneSvg";
 import { useDispatch } from "react-redux";
 import editsvg from "../../assets/edit-svg.svg";
 import SelectedSvg from "../../assets/SelectedSvg";
-import { syncProfiles } from "../../../../services/firebase/profileServicesHelpers";
+import { syncProfiles } from "../../../../services/firebase/utils/profileServicesHelpers.js";
 
 const languages = [
   { code: "pt-BR", label: "Português (Brasil)" },

@@ -68,6 +68,7 @@ const UserMenuChildren = ({ currentProfileData }) => {
 
   const handleSetUserProfile = (profile) => {
     dispatch(setCurrentProfile(profile));
+
     i18next.changeLanguage(profile.userInfoData.language);
     window.location.reload();
   };

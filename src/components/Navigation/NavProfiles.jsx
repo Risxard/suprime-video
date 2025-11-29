@@ -3,7 +3,7 @@ import React from "react";
 import logo from "../../assets/acaiwaveLogo.png";
 import "./Navigation.css";
 
-var NavProfiles = ({ onSubmitNavBtn, text }) => {
+const NavProfiles = ({ onSubmitNavBtn, text }) => {
   return (
     <nav className="nav-profiles">
       <div className="nav-logo-profiles">

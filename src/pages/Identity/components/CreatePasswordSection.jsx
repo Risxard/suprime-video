@@ -3,13 +3,15 @@ import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import ArrowSvg from "../assets/ArrowSvg";
 import ErrorSvg from "../assets/ErrorSvg";
-import { createNewAccount } from "../../../services/firebase/CreateNewAccount";
 import LoaderOverlooping from "../assets/LoaderOverlooping";
 import "./styles.css";
 import { sendEmailVerificationLink } from "../../../services/firebase/profileServices";
 import { auth } from "../../../services/firebase/firebaseconfig";
 import ShowPassword from "../../../assets/ShowPassword";
 import { useTranslation } from "react-i18next";
+
+import { useAuth } from "../../../hooks/Auth/useAuth";
+import SelectedSvg from "../../Profiles/assets/SelectedSvg";
 
 function CreatePasswordSection() {
   const [activeField, setActiveField] = useState("");
@@ -25,6 +27,8 @@ function CreatePasswordSection() {
   const nameRef = useRef(null);
   const navigate = useNavigate();
   const { t } = useTranslation();
+
+  const { registerUser } = useAuth();
 
   const {
     register,
@@ -83,7 +87,8 @@ function CreatePasswordSection() {
     setIsLoading(true);
 
     try {
-      await createNewAccount({
+
+      await registerUser({
         email,
         password: data.password,
         name: data.name,
@@ -273,7 +278,9 @@ function CreatePasswordSection() {
                   })}
                   style={{ display: "none" }}
                 />
-                <span className="custom-checkbox"></span>
+                <span className="custom-checkbox">
+                  {watch("terms") && <SelectedSvg />}
+                </span>
 
                 <p>
                   {t("identity-page.create-password.terms-text")}{" "}

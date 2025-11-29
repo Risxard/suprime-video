@@ -3,22 +3,23 @@ import { NavLink, useNavigate } from "react-router-dom";
 import ArrowSvg from "../assets/ArrowSvg";
 import ErrorSvg from "../assets/ErrorSvg";
 import LoaderOverlooping from "../assets/LoaderOverlooping";
-import { loginUser } from "../../../services/firebase/loginUser";
 import ShowPassword from "../../../assets/ShowPassword";
+
 import { useTranslation } from "react-i18next";
+import { useAuth } from "../../../hooks/Auth/useAuth";
 
 function PasswordSection() {
   const [tempPassword, setTempPassword] = useState("");
-  const [error, setError] = useState(null);
   const [isActive, setIsActive] = useState(false);
   const [showMoreInfo, setShowMoreInfo] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
   const [email, setEmail] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
   const passwordRef = useRef(null);
   const navigate = useNavigate();
   const { t } = useTranslation();
+
+  const { loginUser, loading, error } = useAuth();
 
   useEffect(() => {
     const authData = JSON.parse(localStorage.getItem("auth-data"));
@@ -40,12 +41,8 @@ function PasswordSection() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError(null);
-    setIsLoading(true);
 
     if (!email) {
-      setError(t("identity-page.password-section.password-erros.not-possible"));
-      setIsLoading(false);
       return;
     }
 
@@ -58,12 +55,7 @@ function PasswordSection() {
       navigate("/home");
     } else if (needsVerification) {
       navigate("/identity/login/verify-email");
-      setError(error);
-    } else {
-      setError(error);
     }
-
-    setIsLoading(false);
   };
 
   const handleEdit = (e) => {
@@ -72,12 +64,9 @@ function PasswordSection() {
     navigate("/identity/login/enter-email");
   };
 
-  const toggleMoreInfo = () => setShowMoreInfo(!showMoreInfo);
-  const toggleShowPassword = () => setShowPassword((prev) => !prev);
-
   return (
     <>
-      {isLoading ? (
+      {loading ? (
         <LoaderOverlooping />
       ) : (
         <>
@@ -104,6 +93,7 @@ function PasswordSection() {
                 <label htmlFor="password">
                   {t("identity-page.password-section.placeholder")}
                 </label>
+
                 <input
                   id="password"
                   type={showPassword ? "text" : "password"}
@@ -113,21 +103,18 @@ function PasswordSection() {
                   value={tempPassword}
                   onChange={(e) => setTempPassword(e.target.value)}
                   onBlur={handleBlur}
-                  disabled={isLoading}
+                  disabled={loading}
                 />
+
                 <div className="show-password">
-                  <button
-                    type="button"
-                    onClick={toggleShowPassword}
-                    aria-label={
-                      showPassword
-                        ? t("Ocultar senha")
-                        : t("Mostrar senha")
-                    }
-                  >
+                  <button type="button" onClick={() => setShowPassword(v => !v)}>
                     <ShowPassword showPassword={showPassword} />
                   </button>
                 </div>
+              </div>
+
+              <div className="password-prompt">
+                <p>{t("identity-page.password-section.input-advise")}</p>
               </div>
 
               {error && (
@@ -138,18 +125,14 @@ function PasswordSection() {
                   <p>{error}</p>
                 </div>
               )}
-
-              <div className="password-prompt">
-                <p>{t("identity-page.password-section.input-advise")}</p>
-              </div>
             </div>
 
             <button
               type="submit"
               className="identity-button"
-              disabled={isLoading}
+              disabled={loading}
             >
-              {isLoading
+              {loading
                 ? t("identity-page.password-section.button") + "..."
                 : t("identity-page.password-section.button")}
             </button>
@@ -158,7 +141,7 @@ function PasswordSection() {
           <div className="identity-footer">
             <div className="more-info">
               <button
-                onClick={toggleMoreInfo}
+                onClick={() => setShowMoreInfo(v => !v)}
                 className={showMoreInfo ? "active" : ""}
               >
                 {t("identity-page.password-section.more-about")} <ArrowSvg />
