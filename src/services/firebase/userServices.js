@@ -1,4 +1,4 @@
-import api from '../api.js';
+import api from '../config/apiConfig';
 
 export const userServices = {
   getUserData: async () => {

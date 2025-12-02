@@ -2,23 +2,26 @@ import { useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { dateConverter, genreConverter } from "../../../../../utils/converters";
 import "./styles.css";
+import { useSelector } from "react-redux";
 
 const MediaDetailsTab = ({ media }) => {
   const { t } = useTranslation();
   const { mediaType } = useParams();
 
   const detailsInfo = t("details-page.info", { returnObjects: true });
+  const language = useSelector((state) => state.lang.language);
 
   const release_date = media?.release_date || media?.first_air_date;
 
   const genreNames =
     media?.genres?.map((g) =>
-      genreConverter(g.id, "pt-BR", mediaType || "movie")
+      genreConverter(g.id, language, mediaType || "movie")
     ) ||
     media?.genre_ids?.map((id) =>
-      genreConverter(id, "pt-BR", mediaType || "movie")
+      genreConverter(id, language, mediaType || "movie")
     ) ||
     [];
+
 
   const creatorsOrDirectors =
     mediaType === "tv"

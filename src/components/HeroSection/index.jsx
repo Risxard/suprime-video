@@ -8,8 +8,8 @@ import {
   image_path_500,
 } from "../../utils/imagePaths";
 import MediaClass from "../MediaClass/MediaClass";
-import { dateConverter, genreConverter } from "../../functions/Converter";
 import { NavLink } from "react-router-dom";
+import { dateConverter, genreConverter } from "../../utils/converters";
 
 const HeroSection = ({ mediaType = "movie", movies, language = "pt" }) => {
   const { t, i18n } = useTranslation();
@@ -21,11 +21,13 @@ const HeroSection = ({ mediaType = "movie", movies, language = "pt" }) => {
   const [backgroundImage, setBackgroundImage] = useState("");
   const [logoImage, setLogoImage] = useState("");
 
+
   useEffect(() => {
     if (language && i18n.language !== language) {
       i18n.changeLanguage(language);
     }
   }, [language, i18n]);
+
 
   useEffect(() => {
     const handleResize = () => {

@@ -1,43 +1,47 @@
-import genres from '../Services/genres/genres.json'
+import genres from "./genresList.json";
 
-
+/**
+ * Converte minutos em formato "Xh Ym"
+ */
 export function runtimeConverter(minutos) {
-  if (isNaN(minutos) || minutos < 0) {
-    return "Tempo inválido";
-  }
+  if (isNaN(minutos) || minutos < 0) return "Tempo inválido";
 
   const horas = Math.floor(minutos / 60);
   const minutosRestantes = minutos % 60;
 
-  const horasPlural = horas === 1 ? "h" : "h";
-  const minutosPlural = minutosRestantes === 1 ? "m" : "m";
-
-  const resultado = `${horas}${horasPlural} ${minutosRestantes}${minutosPlural}`;
-
-  return resultado;
+  return `${horas}h ${minutosRestantes}m`;
 }
 
+/**
+ * Retorna apenas o ano
+ */
 export function dateConverter(date) {
-
-  if (date) {
-    const data = date.split('-');
-    const ano = data[0];
-    return ano;
-  }
+  if (!date) return "";
+  return date.split("-")[0];
 }
 
+/**
+ * Converte ID de gênero usando seu JSON real
+ */
+export function genreConverter(
+  genre_id,
+  lang = "pt-BR",
+  type = "movie"
+) {
+  if (!genre_id) return "";
 
-export function genreConverter(genre_id, lang, type) {
-  const movieGenres = genres.movie || {};
-  const tvGenres = genres.tv || {};
+  const list = type === "movie" ? genres.movies : genres.tv;
 
-  let selectedGenres = type === "movie" ? movieGenres : tvGenres;
+  if (!Array.isArray(list)) return "";
 
-  let langFiltered = lang === "pt-BR" ? selectedGenres.pt_br : selectedGenres.en_us;
+  const found = list.find((g) => g.id === genre_id);
+  if (!found) return "";
 
-  let findIdGenre = langFiltered;
-
-  let foundGenre = findIdGenre.find((genre) => genre.id === genre_id);
-
-  return foundGenre ? foundGenre.name : 'Gênero não encontrado';
+  return (
+    found.name?.[lang] ||
+    found.name?.["pt-BR"] ||
+    found.name?.["en-US"] ||
+    found.name?.["es-ES"] ||
+    ""
+  );
 }

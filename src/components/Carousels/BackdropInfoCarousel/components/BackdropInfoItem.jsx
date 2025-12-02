@@ -2,9 +2,9 @@ import "./styles.css";
 import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { image_path_500 } from "../../../../utils/imagePaths";
-import { dateConverter, genreConverter } from "../../../../functions/Converter";
 import MediaClass from "../../../MediaClass/MediaClass.jsx";
-import i18next from "i18next";
+import { useSelector } from "react-redux";
+import { dateConverter, genreConverter } from "../../../../utils/converters.js";
 
 const BackdropInfoItem = ({ movie }) => {
   const [isBackdropLoaded, setIsBackdropLoaded] = useState(false);
@@ -53,7 +53,7 @@ const BackdropInfoItem = ({ movie }) => {
     [];
 
   const release_date = movie?.release_date || movie?.first_air_date;
-  const language = i18next.language;
+const language = useSelector((state) => state.lang.language);
 
   return (
     <div className="backdropinfo-item" data-set={isContentReady}>

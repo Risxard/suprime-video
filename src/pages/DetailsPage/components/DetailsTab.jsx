@@ -6,10 +6,14 @@ import "./styles.css";
 import MediaDetailsTab from "./components/MediaDetailsTab/MediaDetailsTab";
 import SuggestionsTab from "./components/SuggestionsTab/SuggestionsTab";
 import SeasonsTab from "./components/SeasonsTab/SeasonsTab";
+import { auth } from "../../../services/firebase/firebaseconfig";
 
 const DetailsTab = ({ media }) => {
   const { t } = useTranslation();
   const { mediaType } = useParams();
+
+  const isGuest = auth.currentUser?.isAnonymous === true;
+
 
   const tabs = t("details-page.tabs", { returnObjects: true });
 
@@ -50,7 +54,7 @@ const DetailsTab = ({ media }) => {
       <div className="details-tabs-content">
         {mediaType === "tv" && (
           <div
-            className="locked-content"
+            className={isGuest ? "locked-content" : ""}
             style={{
               display: activeTab === "episodios" ? "block" : "none",
             }}

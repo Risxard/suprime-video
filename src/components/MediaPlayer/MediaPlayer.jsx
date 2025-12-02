@@ -7,9 +7,9 @@ import "./styles.css";
 import { useDispatch } from "react-redux";
 import { hidePlayerModal } from "../../store/slices/modals.js";
 import Player from "./Player/Player.jsx";
+import LoadingComponent from "../utils/LoadingComponent/index.jsx";
 
 const MediaPlayer = ({ propsKey, onClose }) => {
-
   return (
     <div id="media-player">
       <span className="exit-mediaplayer">
@@ -17,6 +17,9 @@ const MediaPlayer = ({ propsKey, onClose }) => {
           <X />
         </span>
       </span>
+      <div className="media-loading">
+        <LoadingComponent />
+      </div>
       <Player videoKey={propsKey} controlsMode={1}></Player>
     </div>
   );

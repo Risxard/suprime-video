@@ -60,7 +60,6 @@ function PasswordSection() {
 
   const handleEdit = (e) => {
     e.preventDefault();
-    localStorage.removeItem("auth-data");
     navigate("/identity/login/enter-email");
   };
 

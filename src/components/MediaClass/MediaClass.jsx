@@ -1,5 +1,5 @@
 import React from "react";
-import useMediaClassification from "../../hooks/MediaClassification/useMediaClassification";
+import useMediaClassification from "../../hooks/useMediaClassification";
 import { RATINGS } from "../../assets/ratings";
 import "./styles.css";
 

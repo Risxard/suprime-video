@@ -1,6 +1,6 @@
 .details-page {
     display: block;
-    top: var(--nav-height);
+    margin-top: var(--nav-height);
     padding: 0;
     position: relative;
     overflow-x: inherit;

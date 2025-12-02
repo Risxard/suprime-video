@@ -111,7 +111,7 @@ const DetailsPage = () => {
           message: inWatchlist
             ? "Removido da sua lista."
             : "Adicionado à sua lista!",
-          iconType: inWatchlist ? "fail" : "done",
+          iconType: inWatchlist ? "done" : "done",
         })
       );
     } catch (error) {

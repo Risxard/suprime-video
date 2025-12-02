@@ -1,5 +1,3 @@
-import i18next from "i18next";
-
 import deadpool from "../assets/avatars/marvel/deadpool.png";
 import wolverine from "../assets/avatars/marvel/wolverine.png";
 import daredevil from "../assets/avatars/marvel/daredevil.png";
@@ -47,6 +45,8 @@ import donald from "../assets/avatars/mickey/donald.png";
 import daisy from "../assets/avatars/mickey/daisy.png";
 import goofy from "../assets/avatars/mickey/goofy.png";
 import pluto from "../assets/avatars/mickey/pluto.png";
+import store from "../store/store";
+
 
 
 const names = {
@@ -77,12 +77,15 @@ const names = {
   },
 };
 
+function getLanguage() {
+  return store.getState().lang.language || "pt-BR";
+}
 
 export const avatarCategories = [
   {
     id: "marvel",
     get name() {
-      return names.marvel[i18next.language] || names.marvel["pt-BR"];
+      return names.marvel[getLanguage()];
     },
     avatars: [
       { id: "deadpool", img: { url: deadpool } },
@@ -97,10 +100,11 @@ export const avatarCategories = [
       { id: "ironman", img: { url: ironman } },
     ],
   },
+
   {
     id: "simpsons",
     get name() {
-      return names.simpsons[i18next.language] || names.simpsons["pt-BR"];
+      return names.simpsons[getLanguage()];
     },
     avatars: [
       { id: "selma", img: { url: selma } },
@@ -113,10 +117,11 @@ export const avatarCategories = [
       { id: "homer", img: { url: homer } },
     ],
   },
+
   {
     id: "princesses",
     get name() {
-      return names.princesses[i18next.language] || names.princesses["pt-BR"];
+      return names.princesses[getLanguage()];
     },
     avatars: [
       { id: "bela", img: { url: bela } },
@@ -129,10 +134,11 @@ export const avatarCategories = [
       { id: "tiana", img: { url: tiana } },
     ],
   },
+
   {
     id: "starwars",
     get name() {
-      return names.starwars[i18next.language] || names.starwars["pt-BR"];
+      return names.starwars[getLanguage()];
     },
     avatars: [
       { id: "ahsoka", img: { url: ahsoka } },
@@ -148,13 +154,11 @@ export const avatarCategories = [
       { id: "obiwan", img: { url: obiwan } },
     ],
   },
+
   {
     id: "mickey-friends",
     get name() {
-      return (
-        names["mickey-friends"][i18next.language] ||
-        names["mickey-friends"]["pt-BR"]
-      );
+      return names["mickey-friends"][getLanguage()];
     },
     avatars: [
       { id: "mickey", img: { url: mickey } },

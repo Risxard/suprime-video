@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { tmdbService } from "../../services/tmdb/tmdbServices";
+import { tmdbService } from "../services/tmdb/tmdbServices";
 
 const useMediaClassification = ({ id, language, mediaType }) => {
   const [mediaClass, setMediaClass] = useState("");

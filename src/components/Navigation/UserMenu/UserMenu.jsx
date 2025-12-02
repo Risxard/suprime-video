@@ -10,6 +10,7 @@ import i18next from "i18next";
 import AddProfile from "../Icons/AddProfile.jsx";
 import { profileService } from "../../../services/firebase/profileServices.js";
 import guestAvatar from "../../../assets/avatars/mickey/mickey.png";
+import { useAuth } from "../../../hooks/Auth/useAuth.js";
 
 const getUserType = (user) => {
   if (!user) return "NO_USER";
@@ -73,14 +74,11 @@ const UserMenuChildren = ({ currentProfileData }) => {
     window.location.reload();
   };
 
+  const { logout } = useAuth();
+
   const handleLogout = async () => {
-    try {
-      await auth.signOut();
-      dispatch(logout());
-      navigate("/landing");
-    } catch (e) {
-      console.error("Erro ao sair:", e);
-    }
+    await logout();
+    navigate("/");
   };
 
   return (
@@ -160,14 +158,11 @@ const UserMenu = () => {
   const shouldRender =
     (userType === "AUTH_USER" && currentProfile) || userType === "GUEST";
 
+  const { logout } = useAuth();
+
   const handleLogout = async () => {
-    try {
-      await auth.signOut();
-      dispatch(logout());
-      navigate("/");
-    } catch (e) {
-      console.error(e);
-    }
+    await logout();
+    navigate("/");
   };
 
   const toggleMenu = () => {
@@ -183,7 +178,6 @@ const UserMenu = () => {
     }
   };
 
-
   useEffect(() => {
     if (isMobile && isOpen) {
       document.addEventListener("click", handleClickOutside);
@@ -192,7 +186,6 @@ const UserMenu = () => {
   }, [isOpen]);
 
   useEffect(() => setIsOpen(false), [location]);
-
 
   if (!shouldRender) return null;
 
@@ -243,6 +236,5 @@ const UserMenu = () => {
     </ul>
   );
 };
-
 
 export default UserMenu;

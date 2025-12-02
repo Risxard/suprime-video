@@ -1,4 +1,4 @@
-import api from "../api";
+import api from "../config/apiConfig";
 
 export const tmdbService = {
   fetchTrending: async ({ timeWindow, pageType, language, page }) => {

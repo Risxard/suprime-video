@@ -8,8 +8,8 @@ import {
 import "./HeroCarouselItem.css";
 import { tmdbService } from "../../../../services/tmdb/tmdbServices";
 import MediaClass from "../../../MediaClass/MediaClass";
-import { dateConverter, genreConverter } from "../../../../functions/Converter";
 import { NavLink } from "react-router-dom";
+import { dateConverter, genreConverter } from "../../../../utils/converters";
 
 const HeroCarouselItem = ({ movie, language, active }) => {
   const [posterAndLogo, setPosterAndLogo] = useState({});

@@ -27,13 +27,6 @@ const SelectProfile = () => {
       try {
         const allProfiles = await profileService.getAll();
         setProfiles(allProfiles);
-
-        if (allProfiles.length > 0) {
-          const savedProfile = allProfiles[0];
-          setCurrentLocalProfile(savedProfile);
-          dispatch(setCurrentProfile(savedProfile));
-          i18next.changeLanguage(savedProfile.userInfoData.language);
-        }
       } catch (error) {
         console.error("Erro ao buscar perfis:", error);
       } finally {

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { auth } from './firebase/firebaseconfig';
+import { auth } from '../firebase/firebaseconfig';
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000';
 

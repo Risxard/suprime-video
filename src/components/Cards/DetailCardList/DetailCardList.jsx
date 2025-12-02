@@ -5,12 +5,13 @@ import {
   image_path_500,
 } from "../../../utils/imagePaths";
 import "./styles.css";
-import { runtimeConverter } from "../../../functions/Converter";
 
 const DetailCardList = ({ cards, userType }) => {
   if (!cards || cards.length === 0) return null;
 
   const validCards = cards;
+
+
 
   return (
     <div className="detail-card-list">

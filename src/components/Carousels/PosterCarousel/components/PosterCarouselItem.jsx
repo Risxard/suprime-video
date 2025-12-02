@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import { dateConverter, genreConverter } from "../../../../functions/Converter";
 import { tmdbService } from "../../../../services/tmdb/tmdbServices";
 import "./styles.css";
 import MediaClass from "../../../MediaClass/MediaClass";
 import { NavLink } from "react-router-dom";
 import CardLabel from "./assets/card-label";
 import { image_path_185, image_path_342 } from "../../../../utils/imagePaths";
+import { dateConverter, genreConverter } from "../../../../utils/converters";
 
 const PosterCarouselBigItem = ({
   movie,
@@ -46,7 +46,6 @@ const PosterCarouselBigItem = ({
     }
   }, [movie, language, card_size]);
 
-
   useEffect(() => {
     if (isLoading || !movie) return;
 
@@ -58,10 +57,8 @@ const PosterCarouselBigItem = ({
     let finalLogo = "";
     let shouldShowLogo = false;
 
-
     if (poster?.file_path) {
       finalPoster = `${image_path_342}${poster.file_path}`;
-
 
       if (isoPoster === null || isoPoster === "xx") {
         shouldShowLogo = !!logo?.file_path;
@@ -69,17 +66,12 @@ const PosterCarouselBigItem = ({
           finalLogo = `${image_path_185}${logo.file_path}`;
         }
       } else {
-
         shouldShowLogo = false;
       }
-    }
-
-
-    else if (movie.poster_path) {
+    } else if (movie.poster_path) {
       finalPoster = `${image_path_342}${movie.poster_path}`;
       shouldShowLogo = false;
     }
-
 
     if (finalPoster) {
       setPosterSrc(finalPoster);
@@ -102,14 +94,14 @@ const PosterCarouselBigItem = ({
     ) || []
   ).slice(0, 3);
 
-
+  const mediaType = movie.first_air_date ? "tv" : "movie";
 
   return (
     <div
       className="poster-carousel-item"
       data-set={isContentReady ? "true" : "false"}
     >
-      <NavLink to={`/detail/${movie.media_type}/${movie.id}`}>
+      <NavLink to={`/detail/${mediaType}/${movie.id}`}>
         <div className="poster-carousel-item-container">
           <div className="poster-carousel-item-image">
             {top10mode && <CardLabel topNumber={topNumber} />}
@@ -178,12 +170,13 @@ const PosterCarouselMediumItem = ({ movie }) => {
   if (!movie) return null;
 
   const posterSrc = `${image_path_342}${movie.poster_path}`;
-
   const isContentReady = isPosterLoaded;
+
+  const mediaType = movie.first_air_date ? "tv" : "movie";
 
   return (
     <div className="poster-carousel-item" data-set={isContentReady}>
-      <NavLink to={`/detail/${movie.media_type}/${movie.id}`}>
+      <NavLink to={`/detail/${mediaType}/${movie.id}`}>
         <div className="poster-carousel-item-container">
           <div className="poster-carousel-item-image">
             {movie.poster_path && (
@@ -224,9 +217,11 @@ const PosterCarouselSmallItem = ({ movie }) => {
 
   const isContentReady = isPosterLoaded;
 
+  const mediaType = movie.first_air_date ? "tv" : "movie";
+
   return (
     <div className="poster-carousel-item" data-set={isContentReady}>
-      <NavLink to={`/detail/${movie.media_type}/${movie.id}`}>
+      <NavLink to={`/detail/${mediaType}/${movie.id}`}>
         <div className="poster-carousel-item-container">
           <div className="poster-carousel-item-image">
             {movie.poster_path && (

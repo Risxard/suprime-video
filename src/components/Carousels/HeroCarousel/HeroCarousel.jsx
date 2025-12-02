@@ -1,12 +1,12 @@
 import React, { useRef, useEffect, useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import "./HeroCarousel.css";
-import i18n from "../../../i18n.js";
 import HeroCarouselItem from "./components/HeroCarouselItem.jsx";
+import { useSelector } from "react-redux";
 
 const HeroCarousel = ({ mediasData }) => {
   const medias = mediasData || [];
-  const language = i18n.language;
+  const language = useSelector((state) => state.lang.language);
   const heroCarousel = useRef(null);
   const duration = 500;
 
@@ -142,7 +142,6 @@ const HeroCarousel = ({ mediasData }) => {
 
     return () => clearInterval(interval);
   }, [activeIndex, medias, autoPlay]);
-
 
   useEffect(() => {
     const handleResize = () => {

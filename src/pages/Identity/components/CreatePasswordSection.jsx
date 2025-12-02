@@ -117,7 +117,6 @@ function CreatePasswordSection() {
 
   const handleEdit = (e) => {
     e.preventDefault();
-    localStorage.removeItem("auth-data");
     navigate("/identity/sign-up/enter-email");
   };
 

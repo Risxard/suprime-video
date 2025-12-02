@@ -1,6 +1,6 @@
 import { useState, useCallback } from 'react';
 import { loginAsGuest, loginUser, registerUser } from '../../services/firebase/AuthServices';
-
+import { auth } from '../../services/firebase/firebaseconfig';
 
 export function useAuth() {
   const [loading, setLoading] = useState(false);
@@ -42,10 +42,29 @@ export function useAuth() {
     }
   }, []);
 
+  const handleLogout = useCallback(async () => {
+    setLoading(true);
+    setError(null);
+    try {
+      await auth.signOut();
+
+      localStorage.removeItem('auth-data');
+      localStorage.removeItem('@AuthSV:currentProfile');
+      localStorage.removeItem('@AuthSV:profiles');
+      localStorage.removeItem('i18nextLng');
+
+      setLoading(false);
+    } catch (error) {
+      setLoading(false);
+      setError(error.message);
+    }
+  }, []);
+
   return {
     loginUser: handleLoginUser,
     loginAsGuest: handleLoginAsGuest,
     registerUser: handleRegisterUser,
+    logout: handleLogout,
     loading,
     error,
   };
