@@ -8,7 +8,7 @@ import i18next from "i18next";
 import { useTranslation } from "react-i18next";
 import NavProfiles from "../../../components/Navigation/NavProfiles.jsx";
 import AddNewButton from "../assets/AddNewButton.jsx";
-
+import editSvg from "../assets/edit-svg.svg";
 const EditProfiles = () => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
@@ -78,7 +78,7 @@ const EditProfiles = () => {
                           "profiles-page.editProfiles.button-edit"
                         )} ${profile.userInfoData?.name}`}
                         name="edit"
-                        src="https://static-assets.bamgrid.com/product/disneyplus/images/edit.0a8445c2cff0e80361b2e66906aaeca0.svg"
+                        src={editSvg}
                         alt="Editar"
                       />
                     </div>

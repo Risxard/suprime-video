@@ -116,18 +116,6 @@ const Navigation = () => {
                 <p>{tvShows}</p>
               </Link>
             </li>
-
-            {/* <li>
-              <Link
-                to="/originals"
-                onClick={(e) => handleLinkClick(e, "/originals")}
-              >
-                <span>
-                  <StarSvg />
-                </span>
-                <p>{originals}</p>
-              </Link>
-            </li> */}
           </ul>
 
           <ExtendedMenu />

@@ -1,8 +1,6 @@
 import genres from "./genresList.json";
 
-/**
- * Converte minutos em formato "Xh Ym"
- */
+
 export function runtimeConverter(minutos) {
   if (isNaN(minutos) || minutos < 0) return "Tempo inválido";
 
@@ -12,17 +10,13 @@ export function runtimeConverter(minutos) {
   return `${horas}h ${minutosRestantes}m`;
 }
 
-/**
- * Retorna apenas o ano
- */
+
 export function dateConverter(date) {
   if (!date) return "";
   return date.split("-")[0];
 }
 
-/**
- * Converte ID de gênero usando seu JSON real
- */
+
 export function genreConverter(
   genre_id,
   lang = "pt-BR",

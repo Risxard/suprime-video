@@ -134,13 +134,6 @@ const HeroSection = ({ mediaType = "movie", movies, language = "pt" }) => {
             />
           )}
 
-          {/* <div className="hero-promo-label">
-            <span
-              dangerouslySetInnerHTML={{
-                __html: t("hero-section.buttons.title"),
-              }}
-            />
-          </div> */}
 
           <span className="hero-carousel-info-content-text-2">
             <MediaClass

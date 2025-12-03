@@ -42,11 +42,19 @@
         "help": "Ajuda",
         "signOut": "Sair"
       }
+    },
+    "guestMenu": {
+      "guestName": "Convidado",
+      "guestNameGeneric": "Usuário",
+      "guestRegister": "Criar conta",
+      "guestSignOut": "Sair do modo convidado"
     }
   },
   "landing-page": {
     "nav": {
-      "login": "Entrar"
+      "login": "Entrar",
+      "loginAsGuest": "Entrar como convidado",
+      "loginLoading": "Carregando..."
     },
     "hero": {
       "title": "Um lugar pra encontrar sua próxima história favorita",
@@ -337,7 +345,19 @@
     },
     "errors": {
       "notFound": "Não foi possível carregar os detalhes dessa mídia.",
-      "videoNotFound": "Nenhum vídeo disponível para reprodução."
+      "videoNotFound": "Nenhum vídeo disponível para reprodução.",
+      "noEpisodesMessage": "Desculpe, ainda não conseguimos disponibilizar as informações dessa temporada.",
+      "loginToUnlock": {
+        "title": "Faça login para desbloquear este conteúdo",
+        "button": "Login"
+      }
+    },
+    "messages": {
+      "notRegistred": "Faça login para adicionar à lista.",
+      "added": "Adicionado à sua lista!",
+      "removed": "Removido da sua lista.",
+      "error": "Não foi possível atualizar sua lista.",
+      "videoNotFound": "Trailer indisponível."
     },
     "loading": {
       "fetching": "Carregando detalhes...",

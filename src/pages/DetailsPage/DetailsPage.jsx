@@ -32,6 +32,7 @@ const DetailsPage = () => {
   const { mediaType, id, referrer } = useParams();
   const { t } = useTranslation();
   const detailsPage = t("details-page", { returnObjects: true });
+  const messages = t("details-page", { returnObjects: true });
   const language = i18next.language;
 
   const dispatch = useDispatch();
@@ -96,7 +97,7 @@ const DetailsPage = () => {
     if (isGuest) {
       dispatch(
         showPopup({
-          message: "Faça login para adicionar à lista.",
+          message: messages.notRegistred,
           iconType: "fail",
         })
       );
@@ -109,8 +110,8 @@ const DetailsPage = () => {
       dispatch(
         showPopup({
           message: inWatchlist
-            ? "Removido da sua lista."
-            : "Adicionado à sua lista!",
+            ? messages.removed
+            : messages.added,
           iconType: inWatchlist ? "done" : "done",
         })
       );
@@ -118,7 +119,7 @@ const DetailsPage = () => {
       console.error(error);
       dispatch(
         showPopup({
-          message: "Não foi possível atualizar sua lista.",
+          message: messages.error,
           iconType: "fail",
         })
       );
@@ -134,7 +135,7 @@ const DetailsPage = () => {
 
     dispatch(
       showPopup({
-        message: "Trailer indisponível.",
+        message: messages.videoNotFound,
         iconType: "fail",
       })
     );

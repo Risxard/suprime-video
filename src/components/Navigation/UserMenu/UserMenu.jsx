@@ -19,17 +19,22 @@ const getUserType = (user) => {
 };
 
 const GuestMenu = ({ handleLogout }) => {
+  const { t } = useTranslation();
+  const guestMenu = t("navigation.guestMenu", {
+    returnObjects: true,
+  });
+
   return (
     <div className="nav-menu-list-itens">
       <li className="nav-menu-item nopic">
         <NavLink to="./identity/sign-up/enter-email">
-          <p>Criar conta</p>
+          <p>{guestMenu.guestRegister}</p>
         </NavLink>
       </li>
 
       <li className="nav-menu-item nopic" onClick={handleLogout}>
         <NavLink to="#">
-          <p>Sair do modo convidado</p>
+          <p>{guestMenu.guestSignOut}</p>
         </NavLink>
       </li>
     </div>
@@ -155,6 +160,11 @@ const UserMenu = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  const { t } = useTranslation();
+  const guestMenu = t("navigation.guestMenu", {
+    returnObjects: true,
+  });
+
   const shouldRender =
     (userType === "AUTH_USER" && currentProfile) || userType === "GUEST";
 
@@ -191,8 +201,8 @@ const UserMenu = () => {
 
   const displayName =
     userType === "GUEST"
-      ? "Convidado"
-      : currentProfile?.userInfoData?.name || "Usuário";
+      ? guestMenu.guestName
+      : currentProfile?.userInfoData?.name || guestMenu.guestNameGeneric;
 
   const avatarDisplay =
     userType === "GUEST" ? guestAvatar : currentProfile?.userInfoData?.img?.url;

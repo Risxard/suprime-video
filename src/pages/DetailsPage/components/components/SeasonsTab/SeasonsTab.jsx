@@ -1,16 +1,21 @@
 import { ChevronDown } from "lucide-react";
 import "./styles.css";
 import { useState, useEffect, useRef } from "react";
-import i18next from "i18next";
 import { tmdbService } from "../../../../../services/tmdb/tmdbServices";
 import DetailCardList from "../../../../../components/Cards/DetailCardList/DetailCardList";
 import { auth } from "../../../../../services/firebase/firebaseconfig";
+import { useSelector } from "react-redux";
+import { useTranslation } from "react-i18next";
 
 const SeasonsTab = ({ seasons = [], tvId }) => {
   const [showDropdown, setShowDropdown] = useState(false);
   const [selectedSeason, setSelectedSeason] = useState(1);
   const [medias, setMedias] = useState({});
-  const language = i18next.language;
+  const language = useSelector((state) => state.lang.language);
+  const { t } = useTranslation();
+  const errors = t("details-page.errors", {
+    returnObjects: true,
+  });
 
   const dropdownRef = useRef(null);
 
@@ -169,10 +174,7 @@ const SeasonsTab = ({ seasons = [], tvId }) => {
 
       {filteredEpisodes.length === 0 && (
         <div className="no-episodes-message">
-          <h2>
-            Desculpe, ainda não conseguimos disponibilizar as informações dessa
-            temporada.
-          </h2>
+          <h2>{errors.noEpisodesMessage}</h2>
         </div>
       )}
     </div>

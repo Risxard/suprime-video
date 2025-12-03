@@ -207,38 +207,6 @@ const AccountPage = () => {
               </ul>
             </section>
 
-            {/* <section className="account-page-section">
-              <div className="account-page-section-title-container">
-                <div className="account-page-section-title">
-                  {accountPage.sections.otherSettings}
-                </div>
-              </div>
-              <ul>
-                <li className="account-page-section-settings-actions">
-                  <button onClick={handleToggleClick}>
-                    <div className="account-page-section-settings-action-description">
-                      <span>{accountPage.restrict.title}</span>
-                      <span>{accountPage.restrict.description}</span>
-                    </div>
-
-                    <div
-                      className={`account-page-section-settings-action-toggle ${
-                        isRestricted ? "active" : ""
-                      }`}
-                    >
-                      <label>
-                        <input
-                          type="checkbox"
-                          checked={isRestricted}
-                          readOnly
-                        />
-                        <span></span>
-                      </label>
-                    </div>
-                  </button>
-                </li>
-              </ul>
-            </section> */}
           </div>
         </div>
       </div>

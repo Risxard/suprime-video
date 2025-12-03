@@ -14,8 +14,10 @@ const DetailsTab = ({ media }) => {
 
   const isGuest = auth.currentUser?.isAnonymous === true;
 
-
   const tabs = t("details-page.tabs", { returnObjects: true });
+  const loginToUnlock = t("details-page.errors.loginToUnlock", {
+    returnObjects: true,
+  });
 
   const [activeTab, setActiveTab] = useState(
     mediaType === "movie" ? "sugestoes" : "episodios"
@@ -61,8 +63,8 @@ const DetailsTab = ({ media }) => {
           >
             <div className="login-to-unlock">
               <div className="login-to-unlock-content">
-                <h2>Logue para desbloquear o conteúdo</h2>
-                <button>Login</button>
+                <h2>{loginToUnlock.title}</h2>
+                <button>{loginToUnlock.button}</button>
               </div>
             </div>
 

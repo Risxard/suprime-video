@@ -15,7 +15,7 @@
     text-align: center;
     height: 100vh;
     width: 100vw;
-    background: url(https://prod-static.disney-plus.net/assets/product/disneyplus/images/404.06a47039848e01563a88857231aba51b.jpg) 50% no-repeat;
+    background: url('../../assets/404Background.jpg') 50% no-repeat;
     background-size: cover;
 }
 

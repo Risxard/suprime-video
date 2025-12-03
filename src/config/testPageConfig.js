@@ -68,33 +68,6 @@ export const testPage = [
                 fetchFn: tmdbService.fetchMediaDetails,
                 fetchParams: { mediaType: "movie", mediaId: 617126, language: i18n.language },
             },
-            // {
-            //     title: i18n.t("sections.home.disneyChannel"),
-            //     type: "poster",
-            //     component: PosterCarousel,
-            //     skeleton: PosterCarouselSkeleton,
-            //     card_size: "sm-card",
-            //     fetchFn: tmdbService.fetchList,
-            //     fetchParams: {
-            //         list_id: 8567896,
-            //         language: i18n.language,
-            //         page: 1,
-            //     },
-            // },
-
-            // {
-            //     title: i18n.t("sections.home.disneyChannel"),
-            //     type: "poster",
-            //     component: PosterCarousel,
-            //     skeleton: PosterCarouselSkeleton,
-            //     card_size: "ss-card",
-            //     fetchFn: tmdbService.fetchList,
-            //     fetchParams: {
-            //         list_id: 8567896,
-            //         language: i18n.language,
-            //         page: 1,
-            //     },
-            // },
         ]
     }
 ];

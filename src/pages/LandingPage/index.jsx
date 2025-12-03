@@ -70,7 +70,7 @@ const LandingPage = () => {
           onClick={handleGuestLogin}
           disabled={loading}
         >
-          {loading ? "Carregando..." : "Entrar como convidado"}
+          {loading ? t("landing-page.nav.loginLoading") : t("landing-page.nav.loginAsGuest")}
         </button>
       </div>
 

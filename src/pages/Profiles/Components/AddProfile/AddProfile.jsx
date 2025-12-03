@@ -7,6 +7,7 @@ import { useDispatch } from "react-redux";
 import editsvg from "../../assets/edit-svg.svg";
 import SelectedSvg from "../../assets/SelectedSvg";
 import DoneSvg from "../../assets/DoneSvg";
+import defaultImage from "../../../../assets/avatars/mickey/mickey.png";
 
 import { newProfileStorage } from "../../../../utils/sessionStorageManager";
 import { profileService } from "../../../../services/firebase/profileServices";
@@ -26,7 +27,7 @@ const AddProfile = () => {
   const [profile, setProfile] = useState({
     userInfoData: {
       img: {
-        url: "https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/BD2FA0F3965617FC515E3CEBD3AD51C00CCFFBF98F96448EFE46B82867FCE542/scale?width=600&aspectRatio=1.00&format=png",
+        url: defaultImage,
       },
       name: "",
       language: "pt-BR",
