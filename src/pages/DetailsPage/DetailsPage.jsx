@@ -32,7 +32,7 @@ const DetailsPage = () => {
   const { mediaType, id, referrer } = useParams();
   const { t } = useTranslation();
   const detailsPage = t("details-page", { returnObjects: true });
-  const messages = t("details-page", { returnObjects: true });
+  const messages = t("details-page.messages", { returnObjects: true });
   const language = i18next.language;
 
   const dispatch = useDispatch();

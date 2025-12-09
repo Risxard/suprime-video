@@ -69,7 +69,7 @@
   border-radius: 8px;
 }
 
-.locked-content .login-to-unlock button {
+.locked-content .login-to-unlock a {
   font-family: 'Inspire-Heavy', sans-serif;
   border-radius: 8px;
   background: rgb(255, 255, 255);
@@ -81,8 +81,10 @@
   border: none;
   cursor: pointer;
   transition: background 0.3s ease;
+
+  text-decoration: none;
 }
-.locked-content .login-to-unlock button:hover {
+.locked-content .login-to-unlock a:hover {
   background: rgb(200, 200, 200);
 }
 

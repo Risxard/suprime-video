@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import "./styles.css";
 
@@ -64,7 +64,9 @@ const DetailsTab = ({ media }) => {
             <div className="login-to-unlock">
               <div className="login-to-unlock-content">
                 <h2>{loginToUnlock.title}</h2>
-                <button>{loginToUnlock.button}</button>
+                <NavLink to="/identity/sign-up/enter-email">
+                  {loginToUnlock.button}
+                </NavLink>
               </div>
             </div>
 
